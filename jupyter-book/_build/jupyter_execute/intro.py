@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# **소개**
+# # 소개
+
 # 
 # 문제 해결을 위한 알고리즘 이해의 기초를 학습합니다.
 # 소개되는 내용은 [Problem Solving with Algorithms and Data Structures using Python](https://runestone.academy/runestone/books/published/pythonds3/index.html)을
@@ -44,17 +45,6 @@
 #     - 2부: 이진탐색트리
 #     - 3부: 균형 이진탐색트리(AVL tree)
 # 1. ...
-
-# **연습문제**
-# 
-# 1. [파이썬 추상 자료형 클래스 선언 및 활용](https://colab.research.google.com/github/codingalzi/algopy/blob/master/excs/python_proper_class.ipynb)
-# 1. [기초 추상 자료형 구현](https://colab.research.google.com/github/codingalzi/algopy/blob/master/excs/stack_queue_deque.ipynb)
-# 1. [하노이의 탑 알고리즘 시각화](https://colab.research.google.com/github/codingalzi/algopy/blob/master/excs/tower_of_hanoi.ipynb)
-# 1. [동적계획법: 어레이 활용 플로이드-워셜 알고리즘, 0-1 배낭 채우기 문제](https://colab.research.google.com/github/codingalzi/algopy/blob/master/excs/floyd_warshall_napsack.ipynb) 
-# 1. [정렬](https://colab.research.google.com/github/codingalzi/algopy/blob/master/excs/sorting.ipynb) 
-# 1. [파스 트리](https://colab.research.google.com/github/codingalzi/algopy/blob/master/excs/parse_tree.ipynb) 
-# 1. ...
-# 
 
 # **프로그래밍 환경**
 # 
