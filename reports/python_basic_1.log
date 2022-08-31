@@ -22,7 +22,7 @@ my_name[0] = "X"
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mTypeError[0m                                 Traceback (most recent call last)
-[0;32m/tmp/ipykernel_965/755640450.py[0m in [0;36m<module>[0;34m[0m
+[0;32m/tmp/ipykernel_1105/755640450.py[0m in [0;36m<module>[0;34m[0m
 [0;32m----> 1[0;31m [0mmy_name[0m[0;34m[[0m[0;36m0[0m[0;34m][0m [0;34m=[0m [0;34m"X"[0m[0;34m[0m[0;34m[0m[0m
 [0m
 [0;31mTypeError[0m: 'str' object does not support item assignment
