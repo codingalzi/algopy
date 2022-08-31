@@ -3,6 +3,11 @@
 
 # # 파이썬 프로그래밍 기초 1부
 
+# **소스코드:**
+# 아래 내용을 
+# [(구글 코랩) 파이썬 프로그래밍 기초 1부](https://colab.research.google.com/github/codingalzi/algopy/blob/master/jupyter-book/python_basic_1.ipynb)에서 
+# 직접 실행할 수 있다.
+
 # 파이썬은 객체지향 프로그래밍(OOP) 언어이며
 # 다양하며 중요한 자료형을 기본적으로 제공한다. 
 # 또한 다른 언어에 비교해서 보다 쉽게 프로그램을 작성할 수 있는 프로그래밍의 기본 요소를 제공한다. 
