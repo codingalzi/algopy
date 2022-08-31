@@ -20,7 +20,7 @@ nbclient.exceptions.CellExecutionError: An error occurred while executing the fo
 54 + 21 == (54).**add**(21)
 ------------------
 
-[0;36m  File [0;32m"/tmp/ipykernel_1348/2312467663.py"[0;36m, line [0;32m1[0m
+[0;36m  File [0;32m"/tmp/ipykernel_1437/2312467663.py"[0;36m, line [0;32m1[0m
 [0;31m    54 + 21 == (54).**add**(21)[0m
 [0m                    ^[0m
 [0;31mSyntaxError[0m[0;31m:[0m invalid syntax
