@@ -38,9 +38,12 @@
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
@@ -374,29 +377,16 @@ const thebe_selector_output = ".output, .cell_output"
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="id1">
 <h1><span class="section-number">1. </span>파이썬 프로그래밍 기초 1부<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<p><strong>소스코드:</strong>
-아래 내용을
+<p><strong>소스코드</strong></p>
+<p>아래 내용을
 <a class="reference external" href="https://colab.research.google.com/github/codingalzi/algopy/blob/master/jupyter-book/python_basic_1.ipynb">(구글 코랩) 파이썬 프로그래밍 기초 1부</a>에서
 직접 실행할 수 있다.</p>
-<p>파이썬은 객체지향 프로그래밍(OOP) 언어이며
-다양하며 중요한 자료형을 기본적으로 제공한다.
-또한 다른 언어에 비교해서 보다 쉽게 프로그램을 작성할 수 있는 프로그래밍의 기본 요소를 제공한다.
-파이썬은 또한 인터프리터를 사용하는 스크립트 언어이며
-따라서 아래처럼 명령문을 바로바로 하나씩 실행한 결과를 확인할 수 있다.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;문제해결 알고리즘&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>문제해결 알고리즘
-</pre></div>
-</div>
-</div>
-</div>
+<p><strong>주요 내용</strong></p>
+<p>파이썬이 기본으로 제공하는 내장 자료형을 알아본다.</p>
 <div class="section" id="id2">
 <h2><span class="section-number">1.1. </span>파이썬 기본 내장 자료형<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>파이썬은 객체지향 프로그래밍(OOP) 언어이며
+다양하며 중요한 자료형을 기본적으로 제공한다.</p>
 <div class="section" id="id3">
 <h3><span class="section-number">1.1.1. </span>정수와 부동소수점<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <p>숫자와 관련해서 정수 자료형 클래스 <code class="docutils literal notranslate"><span class="pre">int</span></code>와 부동소수점 자료형 클래스 <code class="docutils literal notranslate"><span class="pre">float</span></code>가 기본으로 제공된다.
@@ -611,7 +601,7 @@ True
 <p>위 코드에서 <code class="docutils literal notranslate"><span class="pre">the_sum</span></code> 변수가 처음에 0을 참조하도록 선언되었다(아래 그림 참고).
 이후 참조하는 값이 1인데, 이유는 <code class="docutils literal notranslate"><span class="pre">the_sum</span> <span class="pre">+</span> <span class="pre">1</span></code>이 1을 나타내는 표현식이기 때문이다.
 그리고 이어서 곧바로 <code class="docutils literal notranslate"><span class="pre">True</span></code>를 참조하도록 변수 재할당이 실행된다.</p>
-<div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/notebooks/pythonds01-Introduction/Figures/assignment1.png" width="30%"></div><div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/notebooks/pythonds01-Introduction/Figures/assignment2.png" width="30%"></div><p><strong>참고</strong>: <a class="reference external" href="https://pythontutor.com/visualize.html#code=the_sum%20%3D%200%0Athe_sum%20%3D%20the_sum%20%2B%201%0Athe_sum%20%3D%20True&amp;cumulative=false&amp;curInstr=0&amp;heapPrimitives=nevernest&amp;mode=display&amp;origin=opt-frontend.js&amp;py=3&amp;rawInputLstJSON=%5B%5D&amp;textReferences=false">PythonTutor-0-1-True</a></p>
+<div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/notebooks/pythonds01-Introduction/Figures/assignment1.png" width="50%"></div><div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/notebooks/pythonds01-Introduction/Figures/assignment2.png" width="50%"></div><p><strong>참고</strong>: <a class="reference external" href="https://pythontutor.com/visualize.html#code=the_sum%20%3D%200%0Athe_sum%20%3D%20the_sum%20%2B%201%0Athe_sum%20%3D%20True&amp;cumulative=false&amp;curInstr=0&amp;heapPrimitives=nevernest&amp;mode=display&amp;origin=opt-frontend.js&amp;py=3&amp;rawInputLstJSON=%5B%5D&amp;textReferences=false">PythonTutor-0-1-True</a></p>
 </div>
 </div>
 <div class="section" id="id6">
@@ -727,7 +717,7 @@ True
 </div>
 </div>
 </div>
-<p><strong>참조</strong>: <a class="reference external" href="https://pythontutor.com/visualize.html#code=my_list%20%3D%20%5B1,%202,%203,%204%5D%0Abig_list%20%3D%20%5Bmy_list%5D%20*%203%0Amy_list%5B2%5D%20%3D%2045&amp;cumulative=false&amp;curInstr=0&amp;heapPrimitives=nevernest&amp;mode=display&amp;origin=opt-frontend.js&amp;py=3&amp;rawInputLstJSON=%5B%5D&amp;textReferences=false">PythonTutor-my-big-list</a></p>
+<p><strong>참고</strong>: <a class="reference external" href="https://pythontutor.com/visualize.html#code=my_list%20%3D%20%5B1,%202,%203,%204%5D%0Abig_list%20%3D%20%5Bmy_list%5D%20*%203%0Amy_list%5B2%5D%20%3D%2045&amp;cumulative=false&amp;curInstr=0&amp;heapPrimitives=nevernest&amp;mode=display&amp;origin=opt-frontend.js&amp;py=3&amp;rawInputLstJSON=%5B%5D&amp;textReferences=false">PythonTutor-my-big-list</a></p>
 <p><strong>리스트 메서드</strong></p>
 <p>리스트 자료형이 제공하는 주요 메서드는 아래와 같다.</p>
 <table class="colwidths-auto table">
