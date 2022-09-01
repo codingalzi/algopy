@@ -3,24 +3,20 @@
 
 # # 파이썬 프로그래밍 기초 1부
 
-# **소스코드:**
+# **소스코드**
+# 
 # 아래 내용을 
 # [(구글 코랩) 파이썬 프로그래밍 기초 1부](https://colab.research.google.com/github/codingalzi/algopy/blob/master/jupyter-book/python_basic_1.ipynb)에서 
 # 직접 실행할 수 있다.
 
-# 파이썬은 객체지향 프로그래밍(OOP) 언어이며
-# 다양하며 중요한 자료형을 기본적으로 제공한다. 
-# 또한 다른 언어에 비교해서 보다 쉽게 프로그램을 작성할 수 있는 프로그래밍의 기본 요소를 제공한다. 
-# 파이썬은 또한 인터프리터를 사용하는 스크립트 언어이며 
-# 따라서 아래처럼 명령문을 바로바로 하나씩 실행한 결과를 확인할 수 있다. 
-
-# In[1]:
-
-
-print("문제해결 알고리즘")
-
+# **주요 내용**
+# 
+# 파이썬이 기본으로 제공하는 내장 자료형을 알아본다.
 
 # ## 파이썬 기본 내장 자료형
+
+# 파이썬은 객체지향 프로그래밍(OOP) 언어이며
+# 다양하며 중요한 자료형을 기본적으로 제공한다. 
 
 # ### 정수와 부동소수점
 
@@ -30,7 +26,7 @@ print("문제해결 알고리즘")
 # 정수 자료형의 경우 이와 더불어 몫(`//`)과 나머지(`%`) 연산도 메서드로 제공한다.
 # 정수들의 나눗셈은 부동소수점이며, 일반적으로 알려진 연산 우선순위가 적용된다.
 
-# In[2]:
+# In[1]:
 
 
 print(2 + 3 * 4)
@@ -51,31 +47,31 @@ print(2 ** 100)
 # 참(`True`)과 거짓(`False`) 두 개의 진리값만을 데이터로 갖는 부울 자료형 클래스인 `bool`도 기본 자료형으로 제공된다.
 # 논리 연산자 `and`, `or`, `not` 등을 이용하여 보다 복잡한 논리식을 표현할 수 있다
 
-# In[3]:
+# In[2]:
 
 
 True
 
 
-# In[4]:
+# In[3]:
 
 
 False
 
 
-# In[5]:
+# In[4]:
 
 
 False or True
 
 
-# In[6]:
+# In[5]:
 
 
 not (False or True)
 
 
-# In[7]:
+# In[6]:
 
 
 True and True
@@ -98,7 +94,7 @@ True and True
 # | `or` | 둘 중에 하나라도 참일 때 참 |
 # | `not` | 참이면 거짓, 거짓이면 참 |
 
-# In[8]:
+# In[7]:
 
 
 print(5 == 10)
@@ -120,21 +116,21 @@ print((5 >= 1) and (5 <= 10))
 # **참조**<font size='2'>reference</font>하도록 
 # 파이썬 해석기가 메모리를 조작한다.
 
-# In[9]:
+# In[8]:
 
 
 the_sum = 0
 the_sum
 
 
-# In[10]:
+# In[9]:
 
 
 the_sum = the_sum + 1
 the_sum
 
 
-# In[11]:
+# In[10]:
 
 
 the_sum = True
@@ -145,9 +141,9 @@ the_sum
 # 이후 참조하는 값이 1인데, 이유는 `the_sum + 1`이 1을 나타내는 표현식이기 때문이다. 
 # 그리고 이어서 곧바로 `True`를 참조하도록 변수 재할당이 실행된다.
 
-# <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/notebooks/pythonds01-Introduction/Figures/assignment1.png" width="30%"></div>
+# <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/notebooks/pythonds01-Introduction/Figures/assignment1.png" width="50%"></div>
 
-# <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/notebooks/pythonds01-Introduction/Figures/assignment2.png" width="30%"></div>
+# <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/notebooks/pythonds01-Introduction/Figures/assignment2.png" width="50%"></div>
 
 # **참고**: [PythonTutor-0-1-True](https://pythontutor.com/visualize.html#code=the_sum%20%3D%200%0Athe_sum%20%3D%20the_sum%20%2B%201%0Athe_sum%20%3D%20True&cumulative=false&curInstr=0&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false)
 
@@ -164,13 +160,13 @@ the_sum
 # 아무 항목도 포함하지 않는 빈 리스트는 `[]`로 표기하며,
 # 리스트의 항목으로 임의의 자료형이 사용될 수 있다.
 
-# In[12]:
+# In[11]:
 
 
 [1, 3, True, 6.5]
 
 
-# In[13]:
+# In[12]:
 
 
 my_list = [1, 3, True, 6.5]
@@ -194,7 +190,7 @@ my_list
 # `my_list[1:3]`은 인덱스 1번부터 3번 인덱스 이전까지의 항목을 추출해서 새로운 리스트를 생성한다.
 # 또한 반복 이어붙이기를 이용하여 원하는 모양의 리스트를 빠르게 초기화할 수 있다.
 
-# In[14]:
+# In[13]:
 
 
 my_list = [0] * 6
@@ -205,7 +201,7 @@ my_list
 
 # 아래 코드에서 확인할 수 있듯이 리스트를 다른 리스트의 항목으로 사용되는 경우 참조되는 방식에 주의해야 한다. 
 
-# In[15]:
+# In[14]:
 
 
 my_list = [1, 2, 3, 4]
@@ -213,14 +209,14 @@ big_list = [my_list] * 3
 print(big_list)
 
 
-# In[16]:
+# In[15]:
 
 
 my_list[2] = 45
 print(big_list)
 
 
-# **참조**: [PythonTutor-my-big-list](https://pythontutor.com/visualize.html#code=my_list%20%3D%20%5B1,%202,%203,%204%5D%0Abig_list%20%3D%20%5Bmy_list%5D%20*%203%0Amy_list%5B2%5D%20%3D%2045&cumulative=false&curInstr=0&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false)
+# **참고**: [PythonTutor-my-big-list](https://pythontutor.com/visualize.html#code=my_list%20%3D%20%5B1,%202,%203,%204%5D%0Abig_list%20%3D%20%5Bmy_list%5D%20*%203%0Amy_list%5B2%5D%20%3D%2045&cumulative=false&curInstr=0&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false)
 
 # **리스트 메서드**
 
@@ -239,117 +235,117 @@ print(big_list)
 # | `a_list.count(item)` | 지정된 값이 항목으로 사용된 횟수 반환 |
 # | `a_list.remove(item)` | 지정된 값이 맨 처음으로 사용된 위치에서 삭제. 반환값은 `None` |
 
-# In[17]:
+# In[16]:
 
 
 my_list = [1024, 3, True, 6.5]
 
 
-# In[18]:
+# In[17]:
 
 
 my_list.append(False)
 print(my_list)
 
 
-# In[19]:
+# In[18]:
 
 
 my_list.insert(2,4.5)
 print(my_list)
 
 
-# In[20]:
+# In[19]:
 
 
 print(my_list.pop())
 
 
-# In[21]:
+# In[20]:
 
 
 print(my_list)
 
 
-# In[22]:
+# In[21]:
 
 
 print(my_list.pop(1))
 
 
-# In[23]:
+# In[22]:
 
 
 print(my_list)
 
 
-# In[24]:
+# In[23]:
 
 
 my_list.pop(2)
 
 
-# In[25]:
+# In[24]:
 
 
 print(my_list)
 
 
-# In[26]:
+# In[25]:
 
 
 my_list.sort()
 
 
-# In[27]:
+# In[26]:
 
 
 print(my_list)
 
 
-# In[28]:
+# In[27]:
 
 
 my_list.reverse()
 
 
-# In[29]:
+# In[28]:
 
 
 print(my_list)
 
 
-# In[30]:
+# In[29]:
 
 
 print(my_list.count(6.5))
 
 
-# In[31]:
+# In[30]:
 
 
 print(my_list.index(4.5))
 
 
-# In[32]:
+# In[31]:
 
 
 my_list.remove(5.5+1)
 
 
-# In[33]:
+# In[32]:
 
 
 print(my_list)
 
 
-# In[34]:
+# In[33]:
 
 
 del my_list[0]
 
 
-# In[35]:
+# In[34]:
 
 
 print(my_list)
@@ -371,7 +367,7 @@ print(my_list)
 # 파이썬 해석기는 내부에서 아래 명령문을 실행한다. 
 # `54`를 괄호로 감싸야 함에 주의해야 한다.
 
-# In[36]:
+# In[35]:
 
 
 (54).__add__(21)
@@ -390,37 +386,37 @@ print(my_list)
 # 하지만 `list()` 함수를 이용하여 리스트 자료형으로 형변환하면
 # `range` 객체에 포함되는 항목을 확인할 수 있다.
 
-# In[37]:
+# In[36]:
 
 
 range(10)
 
 
-# In[38]:
+# In[37]:
 
 
 list(range(10))
 
 
-# In[39]:
+# In[38]:
 
 
 range(5, 10)
 
 
-# In[40]:
+# In[39]:
 
 
 list(range(5, 10))
 
 
-# In[41]:
+# In[40]:
 
 
 list(range(5, 10, 2))
 
 
-# In[42]:
+# In[41]:
 
 
 list(range(10, 1, -1))
@@ -432,25 +428,25 @@ list(range(10, 1, -1))
 # 작은 따옴표, 큰 따옴표 모두 사용할 수 있지만 동일한 따옴표로 감싸야 한다.
 # 인덱싱, `+`, `*` 등의 순차 자료형에 사용할 수 있는 연산자를 모두 사용할 수 있다.
 
-# In[43]:
+# In[42]:
 
 
 my_name = "David"
 
 
-# In[44]:
+# In[43]:
 
 
 my_name[3]
 
 
-# In[45]:
+# In[44]:
 
 
 my_name * 2
 
 
-# In[46]:
+# In[45]:
 
 
 len(my_name)
@@ -467,73 +463,73 @@ len(my_name)
 # | `a_string.rjust(w)` | 기존 문자열을 오른편에 갖는 크기 `w`의 문자열 반환 |
 # | `a_string.split(s_str)` | 지정된 문자열(`s_str`)을 기준으로 쪼개진 문자열들의 리스트 반환 |
 
-# In[47]:
+# In[46]:
 
 
 my_name
 
 
-# In[48]:
+# In[47]:
 
 
 my_name.lower()
 
 
-# In[49]:
+# In[48]:
 
 
 my_name.upper()
 
 
-# In[50]:
+# In[49]:
 
 
 my_name.lower().count('d')
 
 
-# In[51]:
+# In[50]:
 
 
 my_name.upper().find('d')
 
 
-# In[52]:
+# In[51]:
 
 
 my_name.center(10)
 
 
-# In[53]:
+# In[52]:
 
 
 my_name.ljust(10)
 
 
-# In[54]:
+# In[53]:
 
 
 my_name.rjust(10)
 
 
-# In[55]:
+# In[54]:
 
 
 my_name.find("v")
 
 
-# In[56]:
+# In[55]:
 
 
 my_name.find("vi")
 
 
-# In[57]:
+# In[56]:
 
 
 my_name.split("v")
 
 
-# In[58]:
+# In[57]:
 
 
 my_name.split("vi")
@@ -543,7 +539,7 @@ my_name.split("vi")
 
 # 리스트는 항목의 추가, 삭제, 변경할 수 있는, 즉 수정가능한<font size='2'>mutable</font>인 자료형이다.
 
-# In[59]:
+# In[58]:
 
 
 my_list[0] = 2 ** 10
@@ -567,32 +563,32 @@ my_list
 # **튜플**은 문자열처럼 한 번 생성되면 수정이 불가능한 점만을 제외하면
 # 리스트와 매우 유사하게 작동하는 순차 자료형이다.
 
-# In[60]:
+# In[59]:
 
 
 my_tuple = (2, True, 4.96)
 my_tuple
 
 
-# In[61]:
+# In[60]:
 
 
 len(my_tuple)
 
 
-# In[62]:
+# In[61]:
 
 
 my_tuple[0]
 
 
-# In[63]:
+# In[62]:
 
 
 my_tuple * 3
 
 
-# In[64]:
+# In[63]:
 
 
 my_tuple[0:2]
@@ -616,7 +612,7 @@ my_tuple[0:2]
 # 쉼표로 구분된 항목(원소)들을 집합 기호(`{...}`)로 감싼 형식을 갖는다.
 # 항목의 중복은 허용하지 않으며, 항목들 사이의 순서는 무시된다.
 
-# In[65]:
+# In[64]:
 
 
 my_set = {3, 6, "cat", 4.5, False}
@@ -635,49 +631,49 @@ my_set
 # | `A - B` | A에는 속하지만 B에는 속하지 않는 항목들의 집합 |
 # | `A <= B` | A의 모든 항목이 B의 항목인지 여부 판단 |
 
-# In[66]:
+# In[65]:
 
 
 len(my_set)
 
 
-# In[67]:
+# In[66]:
 
 
 False in my_set
 
 
-# In[68]:
+# In[67]:
 
 
 "dog" in my_set
 
 
-# In[69]:
+# In[68]:
 
 
 my_set2 = {1, 3, (5, 6, 7)}
 
 
-# In[70]:
+# In[69]:
 
 
 my_set | my_set2
 
 
-# In[71]:
+# In[70]:
 
 
 my_set & my_set2
 
 
-# In[72]:
+# In[71]:
 
 
 my_set - my_set2
 
 
-# In[73]:
+# In[72]:
 
 
 my_set <= my_set2
@@ -696,67 +692,67 @@ my_set <= my_set2
 # | `A.pop()` | 집합 A에서 임의의 항목 삭제. 삭제된 값 반환 |
 # | `A.clear()` | 모든 항목 삭제. 반환값은 `None` |
 
-# In[74]:
+# In[73]:
 
 
 my_set = {False, 3, 4.5, 6, 'cat'}
 
 
-# In[75]:
+# In[74]:
 
 
 your_set = {99, 3, 100}
 
 
-# In[76]:
+# In[75]:
 
 
 my_set.union(your_set)
 
 
-# In[77]:
+# In[76]:
 
 
 my_set | your_set
 
 
-# In[78]:
+# In[77]:
 
 
 my_set.intersection(your_set)
 
 
-# In[79]:
+# In[78]:
 
 
 my_set & your_set
 
 
-# In[80]:
+# In[79]:
 
 
 my_set.difference(your_set)
 
 
-# In[81]:
+# In[80]:
 
 
 my_set - your_set
 
 
-# In[82]:
+# In[81]:
 
 
 {3, 100}.issubset(your_set)
 
 
-# In[83]:
+# In[82]:
 
 
 {3, 100} <= your_set
 
 
-# In[84]:
+# In[83]:
 
 
 my_set.add("house")
@@ -764,32 +760,32 @@ my_set.add("house")
 my_set
 
 
-# In[85]:
+# In[84]:
 
 
 my_set.remove(4.5)
 my_set
 
 
-# In[86]:
+# In[85]:
 
 
 my_set.pop()
 
 
-# In[87]:
+# In[86]:
 
 
 my_set
 
 
-# In[88]:
+# In[87]:
 
 
 my_set.clear()
 
 
-# In[89]:
+# In[88]:
 
 
 my_set
@@ -801,7 +797,7 @@ my_set
 # 차이점은 항목이 **키:값** 형식을 갖춘다는 점 뿐이다. 
 # 각각의 항목은 쉼표로 구분되며 집합 기호인 중괄호(`{...}`)로 감싸인다.
 
-# In[90]:
+# In[89]:
 
 
 capitals = {"대한민국": "서울", "미국": "워싱턴"}
@@ -811,27 +807,27 @@ capitals
 # 사전에 항목을 추가하려면 키(key)와 값(value)을 아래처럼 변수 할당 하듯이 지정하면 된다.
 # 또한 키를 이용하여 연관된 값을 확인할 수 있다.
 
-# In[91]:
+# In[90]:
 
 
 capitals["영국"] = "런던"
 print(capitals)
 
 
-# In[92]:
+# In[91]:
 
 
 print(capitals["대한민국"])
 
 
-# In[93]:
+# In[92]:
 
 
 capitals["인도"] = "뉴델리"
 print(len(capitals))
 
 
-# In[94]:
+# In[93]:
 
 
 for k in capitals:
@@ -854,55 +850,55 @@ for k in capitals:
 # | `D.get(k)` | 키 `k`와 연관된 값 반환. 키로 사용되지 않았으면 `None` 반환 |
 # | `D.get(k, alt)` | 키 `k`와 연관된 값 반환. 키로 사용되지 않았으면 지정된 값 `alt` 반환 |
 
-# In[95]:
+# In[94]:
 
 
 phone_ext={"david": 1410, "brad": 1137, "roman": 1171}
 
 
-# In[96]:
+# In[95]:
 
 
 phone_ext.keys()
 
 
-# In[97]:
+# In[96]:
 
 
 list(phone_ext.keys())
 
 
-# In[98]:
+# In[97]:
 
 
 phone_ext.values()
 
 
-# In[99]:
+# In[98]:
 
 
 list(phone_ext.values())
 
 
-# In[100]:
+# In[99]:
 
 
 phone_ext.items()
 
 
-# In[101]:
+# In[100]:
 
 
 list(phone_ext.items())
 
 
-# In[102]:
+# In[101]:
 
 
 phone_ext.get("kent")
 
 
-# In[103]:
+# In[102]:
 
 
 phone_ext.get("kent", "NO ENTRY")
