@@ -903,3 +903,11 @@ phone_ext.get("kent")
 
 phone_ext.get("kent", "NO ENTRY")
 
+
+# ## 연습문제
+
+# 아래 링크에 있는 문제들을 풀어라.
+# 
+# 1. [(실습) 기본자료형](https://colab.research.google.com/github/codingalzi/pybook/blob/master/practices/practice-datatypes.ipynb)
+# 1. [(실습) (실습) 모음 자료형 1부: 문자열, 리스트, 튜플](https://colab.research.google.com/github/codingalzi/pybook/blob/master/practices/practice-collections1.ipynb)
+# 1. [(실습) 모음 자료형 2부: 집합, 사전, range, 조건제시법](https://colab.research.google.com/github/codingalzi/pybook/blob/master/practices/practice-collections2.ipynb)

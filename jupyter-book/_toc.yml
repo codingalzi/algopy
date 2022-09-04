@@ -8,3 +8,4 @@ options:
 #  only_build_toc_files: true
 chapters:
 - file: python_basic_1
+- file: python_basic_2
