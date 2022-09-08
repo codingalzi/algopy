@@ -665,13 +665,13 @@ def score(goal, teststring):
     return numScore / len(goal)
 
 
-# 다음 `main()` 함수는 `score()` 점수가 갱신될 때마다 해당 점수를 출력하며,
+# 다음 `infinite_monkey()` 함수는 `score()` 점수가 갱신될 때마다 해당 점수를 출력하며,
 # 일치도가 100%가 될 때 종료한다. 
 
 # In[45]:
 
 
-def main():
+def infinite_monkey():
     goalstring = "methinks it is like a weasel"
     newstring = generateOne(28)
     best = 0
@@ -684,11 +684,15 @@ def main():
         newscore = score(goalstring, newstring)
 
 
-# __경고__: 아래 코드는 언제 종료할지 모른다. 실행 후 잠시 뒤에 강제 종료하는 게 좋다.
-# 
-# ```python
-# main()
-# ```
+# __경고__: `infinite_monkey()` 함수를 호출하면 함수의 실행이 언제 종료할지 모른다.
+# 실행 후 잠시 뒤에 강제 종료하는 게 좋다.
+# 필요하면 아래 코드의 주석을 해제하고 실행해 볼 수 있다.
+
+# In[46]:
+
+
+# infinite_monkey()
+
 
 # ## 연습문제
 
@@ -725,4 +729,6 @@ def main():
 
 # **문제 3**
 
-# 생성된 문자열 중에서 정확한 위치에서 사용된 문자는 그대로 두고 그렇지 않은 문자만 업데이트하는 함수를 구현하여 보다 빠르게 지정된 문자열을 생성하는 함수를 구현하라.
+# 무한 원숭이 정리에서 작성한 `infinite_monkey()` 함수가 아래 기능을 만족하도록 수정하라.
+# 
+# > 생성된 문자열 중에서 정확한 위치에서 사용된 문자는 그대로 두고 그렇지 않은 문자만 업데이트한다.
