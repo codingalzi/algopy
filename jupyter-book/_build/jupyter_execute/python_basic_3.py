@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # 파이썬 프로그래밍 기초 3부
+# # 파이썬 기초 3부: 클래스와 상속
 
 # **소스코드**
 # 
 # 아래 내용을 
-# [(구글 코랩) 파이썬 프로그래밍 기초 3부](https://colab.research.google.com/github/codingalzi/algopy/blob/master/jupyter-book/python_basic_3.ipynb)에서 
+# [(구글 코랩) 파이썬 기초 3부: 클래스와 상속](https://colab.research.google.com/github/codingalzi/algopy/blob/master/jupyter-book/python_basic_3.ipynb)에서 
 # 직접 실행할 수 있다.
 
 # **주요 내용**
@@ -15,7 +15,7 @@
 # - 클래스와 인스턴스
 # - 상속
 # - `Fraction` 추상 자료형
-# - 논리 게이트
+# - `Vector` 추상 자료형
 
 # ## 객체 지향 프로그래밍
 

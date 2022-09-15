@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # 파이썬 프로그래밍 기초 2부
+# # 파이썬 기초 2부: 제어 구조와 함수
 
 # **소스코드**
 # 
 # 아래 내용을 
-# [(구글 코랩) 파이썬 프로그래밍 기초 2부](https://colab.research.google.com/github/codingalzi/algopy/blob/master/jupyter-book/python_basic_2.ipynb)에서 
+# [(구글 코랩) 파이썬 기초 2부: 제어 구조와 함수](https://colab.research.google.com/github/codingalzi/algopy/blob/master/jupyter-book/python_basic_2.ipynb)에서 
 # 직접 실행할 수 있다.
 
 # **주요 내용**

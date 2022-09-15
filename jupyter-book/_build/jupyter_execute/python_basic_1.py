@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # 파이썬 프로그래밍 기초 1부
+# # 파이썬 기초 1부: 자료형
 
 # **소스코드**
 # 
 # 아래 내용을 
-# [(구글 코랩) 파이썬 프로그래밍 기초 1부](https://colab.research.google.com/github/codingalzi/algopy/blob/master/jupyter-book/python_basic_1.ipynb)에서 직접 실행할 수 있다.
+# [(구글 코랩) 파이썬 기초 1부: 자료형](https://colab.research.google.com/github/codingalzi/algopy/blob/master/jupyter-book/python_basic_1.ipynb)에서 직접 실행할 수 있다.
 
 # **주요 내용**
 # 
