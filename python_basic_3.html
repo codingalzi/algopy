@@ -264,23 +264,11 @@ const thebe_selector_output = ".output, .cell_output"
     <a class="reference internal nav-link" href="#id12">
      3.3.2. 벡터 자료형
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id13">
-       3.3.2.1. 벡터 내적
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id14">
-       3.3.2.2. 벡터 합
-      </a>
-     </li>
-    </ul>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id15">
+  <a class="reference internal nav-link" href="#id13">
    3.4. 연습문제
   </a>
  </li>
@@ -360,23 +348,11 @@ const thebe_selector_output = ".output, .cell_output"
     <a class="reference internal nav-link" href="#id12">
      3.3.2. 벡터 자료형
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id13">
-       3.3.2.1. 벡터 내적
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id14">
-       3.3.2.2. 벡터 합
-      </a>
-     </li>
-    </ul>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id15">
+  <a class="reference internal nav-link" href="#id13">
    3.4. 연습문제
   </a>
  </li>
@@ -421,7 +397,7 @@ const thebe_selector_output = ".output, .cell_output"
 <h2><span class="section-number">3.2. </span>클래스<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <p>파이썬 클래스는 아래 형식으로 정의된다.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">클래스이름</span><span class="p">(</span><span class="n">상속클래스</span><span class="p">):</span>
-    <span class="n">클래스본체</span>
+    <span class="n">클래스</span> <span class="n">본체</span>
 </pre></div>
 </div>
 <p>상속하는 클래스가 없는 경우 <code class="docutils literal notranslate"><span class="pre">(상속클래스)</span></code> 부분은 생략해도 된다.</p>
@@ -484,7 +460,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;__main__.Fraction object at 0x7fadf86ecf40&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;__main__.Fraction object at 0x7f8b3842af10&gt;
 </pre></div>
 </div>
 </div>
@@ -1052,8 +1028,7 @@ True
 </div>
 <p>반면에 리스트 클래스 <code class="docutils literal notranslate"><span class="pre">list</span></code> 는 벡터의 내적 연산자를 지원하지 않는다.
 따라서 리스트의 내적 연산을 지원하도록 <code class="docutils literal notranslate"><span class="pre">list</span></code> 클래스의 기능을 확장해야 한다.</p>
-<div class="section" id="id13">
-<h4><span class="section-number">3.3.2.1. </span>벡터 내적<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h4>
+<p><strong>벡터 내적</strong></p>
 <p>아래 코드는 <code class="docutils literal notranslate"><span class="pre">list</span></code> 클래스를 상속받는 <code class="docutils literal notranslate"><span class="pre">Vector</span></code> 클래스를 선언한다.
 리스트에 없던 <code class="docutils literal notranslate"><span class="pre">len</span></code> 속성과 <code class="docutils literal notranslate"><span class="pre">dot()</span></code> 메서드가 새롭게 추가된다.</p>
 <ul class="simple">
@@ -1256,9 +1231,7 @@ True
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="id14">
-<h4><span class="section-number">3.3.2.2. </span>벡터 합<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h4>
+<p><strong>벡터 합</strong></p>
 <p>예를 들어, <code class="docutils literal notranslate"><span class="pre">+</span></code> 연산자는 두 개의 리스트를 이어붙인다.
 반면에 벡터의 덧셈은 동일한 위치의 항목들의 합으로 이루어진 벡터를 계산한다.
 이런 벡터 연산을 지원하며려 <code class="docutils literal notranslate"><span class="pre">__add__()</span></code> 메서드를 재정의하면 된다.</p>
@@ -1367,9 +1340,8 @@ True
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="id15">
-<h2><span class="section-number">3.4. </span>연습문제<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id13">
+<h2><span class="section-number">3.4. </span>연습문제<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h2>
 <ol class="simple">
 <li><p><a class="reference external" href="https://colab.research.google.com/github/codingalzi/algopy/blob/master/excs/class_inheritance.ipynb">(실습) 클래스와 상속</a></p></li>
 </ol>
