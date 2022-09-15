@@ -31,6 +31,17 @@
 # - 분수들의 사칙연산 기능을 제공한다.
 # - 모든 '3/5'와 같이 기약분수로 표현된다.
 
+# ## 클래스
+
+# 파이썬 클래스는 아래 형식으로 정의된다.
+# 
+# ```python
+# class 클래스이름(상속클래스):
+#     클래스본체
+# ```
+# 
+# 상속하는 클래스가 없는 경우 `(상속클래스)` 부분은 생략해도 된다.
+
 # ### 클래스 생성자
 
 # 모든 파이썬 클래스는 **생성자**라고 불리는 `__init__()` 메서드를 포함한다.
@@ -527,11 +538,11 @@ print(x == y)
 # `Sequence`는 `Collection` 클래를 상속한다. 
 # 이렁 이유로 "리스트는 순차<font size='2'>Sequence</font> 자료형이다" 등으로 말한다.
 # 이와 달리 항목들의 순서를 고려하지 않는 `dict`와 `set` 은 순차 자료형이 아니다.
-# 
+
 # <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/problem_solving_with_algorithms/master/_sources/Introduction/Figures/inheritance1.png" width="70%"></div>
 # 
 # <그림 출처: [Problem Solving with Algorithms and Data Structures using Python의 1.13 절](https://runestone.academy/ns/books/published/pythonds3/Introduction/ObjectOrientedProgramminginPythonDefiningClasses.html)>
-# 
+
 # `list`, `tuple`, `str` 클래스 모두 `Sequence` 클래스를 상속하기에
 # 인덱싱, 슬라이싱 등 자신들의 항목을 다루는 공통된 방식을 갖는다.
 # 반면에 각 자료형마다 서로 다른 메서드를 제공한다.
@@ -541,34 +552,33 @@ print(x == y)
 # 클래스를 상속할 때의 가장 큰 장점은 
 # 첫째, 기존에 작성된 코드를 필요에 따라 수정하고 재활용 할 수 있다는 것과
 # 둘째, 자식 클래스의 인스턴스들 사이의 관계를 보다 잘 이해할 수 있다는 것이다. 
-# 
-# 두 가지 예제를 이용하여 상속을 설명한다. 
 
-# ### 벡터의 내적
+# 여기서는 상속을 이용하여 벡터라는 새로운 모음 자료형을 직접 구현하는 과정을 자세히 살펴 본다.
 
-# 벡터는 정수 또는 부동소수점의 리스트를 의미하며
-# 길이가 같은 두 벡터의 내적은 각 항목끼리의 곱셈의 합이다. 
-# 예를 들어 `[2, 3, 4]` 와 `[5, 6, 9]` 두 벡터의 내적은 다음과 같다.
+# ### 벡터 자료형
+
+# 벡터는 1차원 리스트와 비슷하다.
+# 차이점은 벡터의 연산이 리스트의 연산과 많이 다르다.
+# 예를 들어 길이가 같은 두 벡터의 내적은 각 항목끼리의 곱셈의 합이다. 
+# 다음은 `[2, 3, 4]` 와 `[5, 6, 9]` 두 벡터의 내적을 계산하는 방법을 보여준다.
 # 
 # ```python
 # 2 * 5 + 3 * 6 + 4 * 9
 # ```
 # 
-# 리스트 클래스 `list` 는 벡터의 내적 연산자를 지원하지 않는다.
-# 따라서 내적 연산을 지원하도록 `list` 클래스의 기능을 확장해야 한다. 
+# 반면에 리스트 클래스 `list` 는 벡터의 내적 연산자를 지원하지 않는다.
+# 따라서 리스트의 내적 연산을 지원하도록 `list` 클래스의 기능을 확장해야 한다.
 
-# **Vector 클래스**
+# #### 벡터 내적
 
-# 아래 코드는 `list` 클래스를 상속하면서 내적 연산자를 지원하는 `Vector` 클래스를
-# 정의한다.
+# 아래 코드는 `list` 클래스를 상속받는 `Vector` 클래스를 선언한다.
+# 리스트에 없던 `len` 속성과 `dot()` 메서드가 새롭게 추가된다.
 # 
 # - `super().__init__()`: 부모 클래스의 생성자 호출.
 #     자식 클래스의 생성자를 호출할 때 호출되면
 #     부모 클래스의 속성과 메서드를 모두 상속받음.
 # - `dot()` 메서드: 추가되는 메서드. 내적 반환.
 # - `len` 속성: 추가되는 인스턴스 속성. 벡터의 길이.
-
-# ## list 클래스 상속
 
 # In[31]:
 
@@ -585,12 +595,12 @@ class Vector(list):
         super().__init__(items)
         
         # 속성 추가
-        self.len = self.__len__()
+        self.len = self.__len__()  # 벡터의 차원(길이)
             
     # 내적 메서드
     def dot(self, other):
         """
-        벡터 내적
+        두 벡터의 내적 계산
         """
 
         # 벡터의 길이가 다르면 실행 오류 발생
@@ -662,9 +672,7 @@ x[0]
 x[::2]
 
 
-# 리스트 클래스에 없던 속성과 메서드도 당연히 지원된다.
-
-# * `len` 속성
+# 새로이 추가된 `len` 속성도 이제 활용 가능하다.
 
 # In[38]:
 
@@ -672,7 +680,7 @@ x[::2]
 x.len
 
 
-# * 내적
+# 벡터 내적도 잘 작동한다.
 
 # In[39]:
 
@@ -682,10 +690,20 @@ x.dot(y)
 x.dot(y) == 2 * 5 + 3 * 6 + 4 * 9
 
 
-# 벡터의 내적을 자주 활용한다면 함수로 지정하는 게 좋다.
-# 아래 `dot()` 함수는 벡터 인자에 대해서만 작동하도록 구현되었다.
+# **메서드의 함수화**
+
+# `str()` 함수는 인자의 자료형에 속한 `__str__()` 메서드를 활용한다.
 
 # In[40]:
+
+
+str(x) == x.__str__()
+
+
+# 이처럼 벡터의 내적을 자주 활용한다면 클래스 외부의 함수로 지정해서 사용하면 편리하다.
+# 아래 `dot()` 함수는 벡터 인자에 대해서만 작동하도록 구현되었다.
+
+# In[41]:
 
 
 def dot(x, y):
@@ -693,25 +711,20 @@ def dot(x, y):
     
     return x.dot(y)
 
+
+# In[42]:
+
+
 dot(x, y) == x.dot(y)
 
 
-# **메서드 재정의**
-
-# 상속 받은 메서드를 재정의할 수 있다.
-# 사실 `Vector` 클래스의 생성자 메서드는
-# 부모 클래스인 `list` 클래스의 생성자를 재정의 하였다.
-# 생성자 이외의 상속 받은 다른 메서드도 필요에 따라 재정의할 수 있다.
-
-# **벡터 합**
+# #### 벡터 합
 
 # 예를 들어, `+` 연산자는 두 개의 리스트를 이어붙인다. 
 # 반면에 벡터의 덧셈은 동일한 위치의 항목들의 합으로 이루어진 벡터를 계산한다.
 # 이런 벡터 연산을 지원하며려 `__add__()` 메서드를 재정의하면 된다.
 
-# ## list 클래스 상속
-
-# In[41]:
+# In[43]:
 
 
 class Vector(list):
@@ -726,12 +739,12 @@ class Vector(list):
         super().__init__(items)
         
         # 속성 추가
-        self.len = self.__len__()
+        self.len = self.__len__()  # 벡터의 차원(길이)
             
     # 내적 메서드
     def dot(self, other):
         """
-        벡터 내적
+        벡터 내적 계산
         """
 
         # 벡터의 길이가 다르면 실행 오류 발생
@@ -764,8 +777,13 @@ class Vector(list):
             new_list.append(item)
 
         return Vector(new_list)
-    
-# dot 함수도 새로 정의해야 함.
+
+
+# `dot()` 함수도 새로 정의해야 한다.
+
+# In[44]:
+
+
 def dot(x, y):
     assert isinstance(x, Vector) and isinstance(y, Vector)
     
@@ -775,7 +793,7 @@ def dot(x, y):
 # 클래스를 수정하면 인스턴스를 새로 생성해야
 # 변경된 내용이 반영된다.
 
-# In[42]:
+# In[45]:
 
 
 x = Vector([2, 3, 4])
@@ -784,17 +802,15 @@ y = Vector([5, 6, 9])
 
 # 벡터 내적은 동일하게 작동한다.
 
-# In[43]:
+# In[46]:
 
-
-x.dot(y)
 
 dot(x, y)
 
 
 # 벡터의 합이 이제 지원된다.
 
-# In[44]:
+# In[47]:
 
 
 x + y
@@ -802,112 +818,4 @@ x + y
 
 # ## 연습문제
 
-# 참고: [(실습) 상속](https://colab.research.google.com/github/codingalzi/pybook/blob/master/practices/practice-inheritance.ipynb)
-
-# ## 연습문제
-
-# **문제 1**
-
-# `f1`, `f2`가 아래와 같이 정의된다.
-
-# In[45]:
-
-
-f1 = Fraction(1, 4)
-f2 = Fraction(1, 2)
-
-
-# 그런데 `f1 + f2`의 결과를 직접 확인하려 하면 원하는 대로 보여지지 않는다.
-
-# In[46]:
-
-
-f1 + f2
-
-
-# 어떤 매직 메서드를 구현하면 되는지 확인하고 직접 구현하라.
-
-# **문제 2**
-
-# 다음 연산자들을 지원하는 매직 메서드를 중복정의하라.
-# 
-# ```python
-# *, /, -, >, <
-# ```
-
-# **문제 3**
-
-# 다음 연산자들을 사용하기 위해 별도로 특정 매직 메서드를 구현해야 하는지 확인하라.
-# 
-# ```python
-# >=, <=
-# ```
-
-# **문제 4**
-
-# 컴퓨터가 제공하는 부동소수점은 불완전하다.
-# 예를 들어, 아래 코드는 100만분의 1을 100만번 더했을 때 
-# 1이 계산되지 않음을 보여준다.
-
-# In[47]:
-
-
-x = 0.000001
-y = 0
-
-for _ in range(1000000):
-    y += x
-
-print(f"y = {y}")
-print(y == 1)
-
-
-# 분수 클래스 `Fraction`를 이용하면 보다 엄밀한 계산이 가능함을 보여라.
-
-# **문제 5**
-
-# **문제 6**
-
-# ## 프로그래밍 과제
-
-# 1. Implement the simple methods ``get_num`` and ``get_den`` that will
-#    return the numerator and denominator of a fraction.
-# 
-# 1. In many ways it would be better if all fractions were maintained in
-#    lowest terms right from the start. Modify the constructor for the
-#    ``Fraction`` class so that ``GCD`` is used to reduce fractions
-#    immediately. Notice that this means the ``__add__`` function no
-#    longer needs to reduce. Make the necessary modifications.
-# 
-# 1. Implement the remaining simple arithmetic operators (``__sub__``,
-#    ``__mul__``, and ``__truediv__``).
-# 
-# 1. Implement the remaining relational operators (``__gt__``,
-#    ``__ge__``, ``__lt__``, ``__le__``, and ``__ne__``).
-# 
-# 1. Modify the constructor for the fraction class so that it checks to
-#    make sure that the numerator and denominator are both integers. If
-#    either is not an integer, the constructor should raise an exception.
-# 
-# 1. In the definition of fractions we assumed that negative fractions
-#    have a negative numerator and a positive denominator. Using a
-#    negative denominator would cause some of the relational operators to
-#    give incorrect results. In general, this is an unnecessary
-#    constraint. Modify the constructor to allow the user to pass a
-#    negative denominator so that all of the operators continue to work
-#    properly.
-# 
-# 1. Research the ``__radd__`` method. How does it differ from
-#    ``__add__``? When is it used? Implement ``__radd__``.
-# 
-# 1. Repeat the last question but this time consider the ``__iadd__``
-#    method.
-# 
-# 1. Research the ``__repr__`` method. How does it differ from
-#    ``__str__``? When is it used? Implement ``__repr__``.
-# 
-# 1. Design a class to represent a playing card and another one to represent a deck of cards.
-#    Using these two classes, implement your favorite card game.
-# 
-# 1. Find a Sudoku puzzle online or in the local newspaper. Write a program to solve
-#    the puzzle.
+# 1. [(실습) 클래스와 상속](https://colab.research.google.com/github/codingalzi/algopy/blob/master/excs/class_inheritance.ipynb)
