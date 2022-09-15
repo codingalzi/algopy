@@ -247,12 +247,44 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id9">
-   3.2. 연습문제
+   3.2. 상속
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id10">
+     3.2.1. 모음 자료형의 상속 체계
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id11">
+     3.2.2. 벡터의 내적
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#list">
+   3.3. list 클래스 상속
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id10">
-   3.3. 프로그래밍 과제
+  <a class="reference internal nav-link" href="#id12">
+   3.4. list 클래스 상속
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id13">
+   3.5. 연습문제
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id14">
+   3.6. 연습문제
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id15">
+   3.7. 프로그래밍 과제
   </a>
  </li>
 </ul>
@@ -314,12 +346,44 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id9">
-   3.2. 연습문제
+   3.2. 상속
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id10">
+     3.2.1. 모음 자료형의 상속 체계
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id11">
+     3.2.2. 벡터의 내적
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#list">
+   3.3. list 클래스 상속
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id10">
-   3.3. 프로그래밍 과제
+  <a class="reference internal nav-link" href="#id12">
+   3.4. list 클래스 상속
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id13">
+   3.5. 연습문제
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id14">
+   3.6. 연습문제
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id15">
+   3.7. 프로그래밍 과제
   </a>
  </li>
 </ul>
@@ -417,7 +481,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;__main__.Fraction object at 0x7fe0a03d5a60&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;__main__.Fraction object at 0x7f8550424ca0&gt;
 </pre></div>
 </div>
 </div>
@@ -945,7 +1009,357 @@ True
 </div>
 </div>
 <div class="section" id="id9">
-<h2><span class="section-number">3.2. </span>연습문제<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.2. </span>상속<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<p><strong>상속</strong><font size='2'>inheritance</font>은 객체 지향 프로그래밍의 또 다른 주요 요소이다.
+클래스를 선언할 때 다른 클래스의 속성과 메서드를 상속 받아 활용할 수 있다.
+상속을 받는 클래스를 <strong>자식 클래스</strong> 또는 <strong>하위 클래스</strong>,
+상속을 하는 클래스를 <strong>부모 클래스</strong> 또는 <strong>상위 클래스</strong>라고 부른다.</p>
+<p>상속을 정의하는 방식은 다음과 같다.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">자식클래스</span><span class="p">(</span><span class="n">부모클래스</span><span class="p">):</span>
+    <span class="n">클래스</span> <span class="n">본문</span>
+</pre></div>
+</div>
+<div class="section" id="id10">
+<h3><span class="section-number">3.2.1. </span>모음 자료형의 상속 체계<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<p>아래 그림은 파이썬 모음 자료형의 상속 체계를 보여준다.
+예를 들어, <code class="docutils literal notranslate"><span class="pre">list</span></code> 클래스는 <code class="docutils literal notranslate"><span class="pre">Sequence</span></code> 클래스를 상속하며,
+<code class="docutils literal notranslate"><span class="pre">Sequence</span></code>는 <code class="docutils literal notranslate"><span class="pre">Collection</span></code> 클래를 상속한다.
+이렁 이유로 “리스트는 순차<font size='2'>Sequence</font> 자료형이다” 등으로 말한다.
+이와 달리 항목들의 순서를 고려하지 않는 <code class="docutils literal notranslate"><span class="pre">dict</span></code>와 <code class="docutils literal notranslate"><span class="pre">set</span></code> 은 순차 자료형이 아니다.</p>
+<div align="center"><img src="https://raw.githubusercontent.com/codingalzi/problem_solving_with_algorithms/master/_sources/Introduction/Figures/inheritance1.png" width="70%"></div>
+<p>&lt;그림 출처: <a class="reference external" href="https://runestone.academy/ns/books/published/pythonds3/Introduction/ObjectOrientedProgramminginPythonDefiningClasses.html">Problem Solving with Algorithms and Data Structures using Python의 1.13 절</a>&gt;</p>
+<p><code class="docutils literal notranslate"><span class="pre">list</span></code>, <code class="docutils literal notranslate"><span class="pre">tuple</span></code>, <code class="docutils literal notranslate"><span class="pre">str</span></code> 클래스 모두 <code class="docutils literal notranslate"><span class="pre">Sequence</span></code> 클래스를 상속하기에
+인덱싱, 슬라이싱 등 자신들의 항목을 다루는 공통된 방식을 갖는다.
+반면에 각 자료형마다 서로 다른 메서드를 제공한다.
+이렇듯 한 클래스의 여러 자식 클래스는 서로 공통된 요소와 함께
+각 자식 클래스 고유의 요소를 갖는다.</p>
+<p>클래스를 상속할 때의 가장 큰 장점은
+첫째, 기존에 작성된 코드를 필요에 따라 수정하고 재활용 할 수 있다는 것과
+둘째, 자식 클래스의 인스턴스들 사이의 관계를 보다 잘 이해할 수 있다는 것이다.</p>
+<p>두 가지 예제를 이용하여 상속을 설명한다.</p>
+</div>
+<div class="section" id="id11">
+<h3><span class="section-number">3.2.2. </span>벡터의 내적<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<p>벡터는 정수 또는 부동소수점의 리스트를 의미하며
+길이가 같은 두 벡터의 내적은 각 항목끼리의 곱셈의 합이다.
+예를 들어 <code class="docutils literal notranslate"><span class="pre">[2,</span> <span class="pre">3,</span> <span class="pre">4]</span></code> 와 <code class="docutils literal notranslate"><span class="pre">[5,</span> <span class="pre">6,</span> <span class="pre">9]</span></code> 두 벡터의 내적은 다음과 같다.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="mi">2</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="mi">6</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="mi">9</span>
+</pre></div>
+</div>
+<p>리스트 클래스 <code class="docutils literal notranslate"><span class="pre">list</span></code> 는 벡터의 내적 연산자를 지원하지 않는다.
+따라서 내적 연산을 지원하도록 <code class="docutils literal notranslate"><span class="pre">list</span></code> 클래스의 기능을 확장해야 한다.</p>
+<p><strong>Vector 클래스</strong></p>
+<p>아래 코드는 <code class="docutils literal notranslate"><span class="pre">list</span></code> 클래스를 상속하면서 내적 연산자를 지원하는 <code class="docutils literal notranslate"><span class="pre">Vector</span></code> 클래스를
+정의한다.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">super().__init__()</span></code>: 부모 클래스의 생성자 호출.
+자식 클래스의 생성자를 호출할 때 호출되면
+부모 클래스의 속성과 메서드를 모두 상속받음.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dot()</span></code> 메서드: 추가되는 메서드. 내적 반환.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">len</span></code> 속성: 추가되는 인스턴스 속성. 벡터의 길이.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="list">
+<h2><span class="section-number">3.3. </span>list 클래스 상속<a class="headerlink" href="#list" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Vector</span><span class="p">(</span><span class="nb">list</span><span class="p">):</span>
+    <span class="c1"># Vector 클래스 생성자 재정의</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">items</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        - list 클래스 상속</span>
+<span class="sd">        - items: 벡터로 사용될 리스트</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="c1"># 부모 클래스 생성자 호출</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">items</span><span class="p">)</span>
+        
+        <span class="c1"># 속성 추가</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">len</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__len__</span><span class="p">()</span>
+            
+    <span class="c1"># 내적 메서드</span>
+    <span class="k">def</span> <span class="nf">dot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        벡터 내적</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># 벡터의 길이가 다르면 실행 오류 발생</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">len</span> <span class="o">!=</span> <span class="n">other</span><span class="o">.</span><span class="n">len</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;두 벡터의 길이가 달라요!&quot;</span><span class="p">)</span>
+
+        <span class="c1"># 내적 계산: 각 항목들의 곱의 합</span>
+        <span class="c1"># 리스트를 상속하기에 인덱싱 사용 가능</span>
+        <span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">len</span><span class="p">):</span>
+            <span class="nb">sum</span> <span class="o">+=</span> <span class="bp">self</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">other</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="nb">sum</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>두 개의 벡터를 생성하자.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">__str__()</span></code> 등 리스트의 모든 매직 메서드와
+<code class="docutils literal notranslate"><span class="pre">append()</span></code> 등의 다른 모든 메서드,
+그리고 인덱싱, 슬라이싱 등
+리스트의 모든 기능을 활용할 수 있다.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">__str__()</span></code> 메서드</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2, 3, 4]
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">append()</span></code> 메서드</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2, 3, 4, 5]
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pop()</span></code> 메서드</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+<span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2, 3, 4]
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>인덱싱</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>슬라이싱</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">[::</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2, 4]
+</pre></div>
+</div>
+</div>
+</div>
+<p>리스트 클래스에 없던 속성과 메서드도 당연히 지원된다.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">len</span></code> 속성</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">.</span><span class="n">len</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>내적</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
+<span class="n">x</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="mi">6</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="mi">9</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<p>벡터의 내적을 자주 활용한다면 함수로 지정하는 게 좋다.
+아래 <code class="docutils literal notranslate"><span class="pre">dot()</span></code> 함수는 벡터 인자에 대해서만 작동하도록 구현되었다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">Vector</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">Vector</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">x</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
+<span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="o">==</span> <span class="n">x</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>메서드 재정의</strong></p>
+<p>상속 받은 메서드를 재정의할 수 있다.
+사실 <code class="docutils literal notranslate"><span class="pre">Vector</span></code> 클래스의 생성자 메서드는
+부모 클래스인 <code class="docutils literal notranslate"><span class="pre">list</span></code> 클래스의 생성자를 재정의 하였다.
+생성자 이외의 상속 받은 다른 메서드도 필요에 따라 재정의할 수 있다.</p>
+<p><strong>벡터 합</strong></p>
+<p>예를 들어, <code class="docutils literal notranslate"><span class="pre">+</span></code> 연산자는 두 개의 리스트를 이어붙인다.
+반면에 벡터의 덧셈은 동일한 위치의 항목들의 합으로 이루어진 벡터를 계산한다.
+이런 벡터 연산을 지원하며려 <code class="docutils literal notranslate"><span class="pre">__add__()</span></code> 메서드를 재정의하면 된다.</p>
+</div>
+<div class="section" id="id12">
+<h2><span class="section-number">3.4. </span>list 클래스 상속<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Vector</span><span class="p">(</span><span class="nb">list</span><span class="p">):</span>
+    <span class="c1"># Vector 클래스 생성자 재정의</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">items</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        - list 클래스 상속</span>
+<span class="sd">        - items: 벡터로 사용될 리스트</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="c1"># 부모 클래스 생성자 호출</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">items</span><span class="p">)</span>
+        
+        <span class="c1"># 속성 추가</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">len</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__len__</span><span class="p">()</span>
+            
+    <span class="c1"># 내적 메서드</span>
+    <span class="k">def</span> <span class="nf">dot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        벡터 내적</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># 벡터의 길이가 다르면 실행 오류 발생</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">len</span> <span class="o">!=</span> <span class="n">other</span><span class="o">.</span><span class="n">len</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;두 벡터의 길이가 달라요!&quot;</span><span class="p">)</span>
+
+        <span class="c1"># 내적 계산: 각 항목들의 곱의 합</span>
+        <span class="c1"># 리스트를 상속하기에 인덱싱 사용 가능</span>
+        <span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">len</span><span class="p">):</span>
+            <span class="nb">sum</span> <span class="o">+=</span> <span class="bp">self</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">other</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="nb">sum</span>
+    
+    <span class="c1"># 벡터 합 메서드</span>
+    <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        벡터 합</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># 벡터의 길이가 다르면 실행 오류 발생</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">len</span> <span class="o">!=</span> <span class="n">other</span><span class="o">.</span><span class="n">len</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;두 벡터의 길이가 달라요!&quot;</span><span class="p">)</span>
+
+        <span class="c1"># 벡터 합 계산: 각 항목들의 합으로 이루어진 벡터</span>
+        <span class="n">new_list</span> <span class="o">=</span> <span class="p">[]</span>
+        
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">len</span><span class="p">):</span>
+            <span class="n">item</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">other</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">new_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="n">new_list</span><span class="p">)</span>
+    
+<span class="c1"># dot 함수도 새로 정의해야 함.</span>
+<span class="k">def</span> <span class="nf">dot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">Vector</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">Vector</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">x</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>클래스를 수정하면 인스턴스를 새로 생성해야
+변경된 내용이 반영된다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>벡터 내적은 동일하게 작동한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
+<span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>64
+</pre></div>
+</div>
+</div>
+</div>
+<p>벡터의 합이 이제 지원된다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[7, 9, 13]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id13">
+<h2><span class="section-number">3.5. </span>연습문제<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h2>
+<p>참고: <a class="reference external" href="https://colab.research.google.com/github/codingalzi/pybook/blob/master/practices/practice-inheritance.ipynb">(실습) 상속</a></p>
+</div>
+<div class="section" id="id14">
+<h2><span class="section-number">3.6. </span>연습문제<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h2>
 <p><strong>문제 1</strong></p>
 <p><code class="docutils literal notranslate"><span class="pre">f1</span></code>, <code class="docutils literal notranslate"><span class="pre">f2</span></code>가 아래와 같이 정의된다.</p>
 <div class="cell docutils container">
@@ -964,7 +1378,7 @@ True
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;__main__.Fraction at 0x7fe0a039f430&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;__main__.Fraction at 0x7f8550424ee0&gt;
 </pre></div>
 </div>
 </div>
@@ -1008,8 +1422,8 @@ False
 <p><strong>문제 5</strong></p>
 <p><strong>문제 6</strong></p>
 </div>
-<div class="section" id="id10">
-<h2><span class="section-number">3.3. </span>프로그래밍 과제<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id15">
+<h2><span class="section-number">3.7. </span>프로그래밍 과제<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h2>
 <ol class="simple">
 <li><p>Implement the simple methods <code class="docutils literal notranslate"><span class="pre">get_num</span></code> and <code class="docutils literal notranslate"><span class="pre">get_den</span></code> that will
 return the numerator and denominator of a fraction.</p></li>
