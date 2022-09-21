@@ -463,7 +463,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;__main__.Fraction object at 0x7f33440bec70&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;__main__.Fraction object at 0x7f73387c7550&gt;
 </pre></div>
 </div>
 </div>
@@ -1321,6 +1321,19 @@ True
 
         <span class="k">return</span> <span class="nb">sum</span>
     
+    <span class="c1"># append() 와 pop() 메서드는 재정의 필요. </span>
+    <span class="c1"># 이유는 벡터의 길이가 달라지기 때문임.</span>
+
+    <span class="c1"># 항목이 1개 늘어남</span>
+    <span class="k">def</span> <span class="nf">append</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_item</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">len</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_item</span><span class="p">)</span>
+
+    <span class="c1"># 항목이 1개 줄어듬</span>
+    <span class="k">def</span> <span class="nf">pop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">len</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span>
+    
     <span class="c1"># 벡터 합 메서드</span>
     <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -1395,7 +1408,7 @@ True
 <div class="section" id="id13">
 <h2><span class="section-number">3.4. </span>연습문제<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h2>
 <ol class="simple">
-<li><p><a class="reference external" href="https://colab.research.google.com/github/codingalzi/algopy/blob/master/excs/class_inheritance.ipynb">(실습) 클래스와 상속</a></p></li>
+<li><p><a class="reference external" href="https://colab.research.google.com/github/codingalzi/algopy/blob/master/excs/python_basic_3.ipynb">(실습) 파이썬 기초 3부: 클래스와 상속</a></p></li>
 </ol>
 </div>
 </div>
