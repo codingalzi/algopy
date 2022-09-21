@@ -595,38 +595,39 @@ class Vector(list):
         super().__init__(items)
         
         # 속성 추가
-        self.len = self.__len__()  # 벡터의 차원(길이)
-            
+        self.dim = self.__len__()  # 벡터의 차원(길이)
+        
     # 내적 메서드
     def dot(self, other):
         """
-        두 벡터의 내적 계산
+        벡터 내적 계산
         """
 
         # 벡터의 길이가 다르면 실행 오류 발생
-        if self.len != other.len:
+        if self.dim != other.dim:
             raise RuntimeError("두 벡터의 길이가 달라요!")
 
         # 내적 계산: 각 항목들의 곱의 합
         # 리스트를 상속하기에 인덱싱 사용 가능
         sum = 0
-        for i in range(self.len):
+        for i in range(self.dim):
             sum += self[i] * other[i]
 
         return sum
-
+    
     # append() 와 pop() 메서드는 재정의 필요. 
     # 이유는 벡터의 길이가 달라지기 때문임.
 
     # 항목이 1개 늘어남
     def append(self, new_item):
-        self.len += 1
-        return super().append(new_item)
+        super().append(new_item)
+        self.dim = self.__len__()
 
     # 항목이 1개 줄어듬
     def pop(self, idx=-1):
-        self.len -= 1
-        return super().pop(idx)
+        removed_item = super().pop(idx)
+        self.dim = self.__len__()
+        return removed_item
 
 
 # 두 개의 벡터를 생성하자.
@@ -669,7 +670,7 @@ x
 # In[36]:
 
 
-x.len
+x.dim
 
 
 # * `pop()` 메서드
@@ -684,7 +685,7 @@ x
 # In[38]:
 
 
-x.len
+x.dim
 
 
 # * 인덱싱
@@ -703,17 +704,9 @@ x[0]
 x[::2]
 
 
-# 새로이 추가된 `len` 속성도 이제 활용 가능하다.
-
-# In[41]:
-
-
-x.len
-
-
 # 벡터 내적도 잘 작동한다.
 
-# In[42]:
+# In[41]:
 
 
 x.dot(y)
@@ -725,7 +718,7 @@ x.dot(y) == 2 * 5 + 3 * 6 + 4 * 9
 
 # `str()` 함수는 인자의 자료형에 속한 `__str__()` 메서드를 활용한다.
 
-# In[43]:
+# In[42]:
 
 
 str(x) == x.__str__()
@@ -734,7 +727,7 @@ str(x) == x.__str__()
 # 이처럼 벡터의 내적을 자주 활용한다면 클래스 외부의 함수로 지정해서 사용하면 편리하다.
 # 아래 `dot()` 함수는 벡터 인자에 대해서만 작동하도록 구현되었다.
 
-# In[44]:
+# In[43]:
 
 
 def dot(x, y):
@@ -743,7 +736,7 @@ def dot(x, y):
     return x.dot(y)
 
 
-# In[45]:
+# In[44]:
 
 
 dot(x, y) == x.dot(y)
@@ -755,7 +748,7 @@ dot(x, y) == x.dot(y)
 # 반면에 벡터의 덧셈은 동일한 위치의 항목들의 합으로 이루어진 벡터를 계산한다.
 # 이런 벡터 연산을 지원하며려 `__add__()` 메서드를 재정의하면 된다.
 
-# In[46]:
+# In[45]:
 
 
 class Vector(list):
@@ -770,8 +763,8 @@ class Vector(list):
         super().__init__(items)
         
         # 속성 추가
-        self.len = self.__len__()  # 벡터의 차원(길이)
-            
+        self.dim = self.__len__()  # 벡터의 차원(길이)
+        
     # 내적 메서드
     def dot(self, other):
         """
@@ -779,13 +772,13 @@ class Vector(list):
         """
 
         # 벡터의 길이가 다르면 실행 오류 발생
-        if self.len != other.len:
+        if self.dim != other.dim:
             raise RuntimeError("두 벡터의 길이가 달라요!")
 
         # 내적 계산: 각 항목들의 곱의 합
         # 리스트를 상속하기에 인덱싱 사용 가능
         sum = 0
-        for i in range(self.len):
+        for i in range(self.dim):
             sum += self[i] * other[i]
 
         return sum
@@ -795,13 +788,14 @@ class Vector(list):
 
     # 항목이 1개 늘어남
     def append(self, new_item):
-        self.len += 1
-        return super().append(new_item)
+        super().append(new_item)
+        self.dim = self.__len__()
 
     # 항목이 1개 줄어듬
     def pop(self, idx=-1):
-        self.len -= 1
-        return super().pop(idx)
+        removed_item = super().pop(idx)
+        self.dim = self.__len__()
+        return removed_item
     
     # 벡터 합 메서드
     def __add__(self, other):
@@ -810,13 +804,13 @@ class Vector(list):
         """
 
         # 벡터의 길이가 다르면 실행 오류 발생
-        if self.len != other.len:
+        if self.dim != other.dim:
             raise RuntimeError("두 벡터의 길이가 달라요!")
 
         # 벡터 합 계산: 각 항목들의 합으로 이루어진 벡터
         new_list = []
         
-        for i in range(self.len):
+        for i in range(self.dim):
             item = self[i] + other[i]
             new_list.append(item)
 
@@ -825,7 +819,7 @@ class Vector(list):
 
 # `dot()` 함수도 새로 정의해야 한다.
 
-# In[47]:
+# In[46]:
 
 
 def dot(x, y):
@@ -837,7 +831,7 @@ def dot(x, y):
 # 클래스를 수정하면 인스턴스를 새로 생성해야
 # 변경된 내용이 반영된다.
 
-# In[48]:
+# In[47]:
 
 
 x = Vector([2, 3, 4])
@@ -846,7 +840,7 @@ y = Vector([5, 6, 9])
 
 # 벡터 내적은 동일하게 작동한다.
 
-# In[49]:
+# In[48]:
 
 
 dot(x, y)
@@ -854,7 +848,7 @@ dot(x, y)
 
 # 벡터의 합이 이제 지원된다.
 
-# In[50]:
+# In[49]:
 
 
 x + y
