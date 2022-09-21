@@ -696,4 +696,4 @@ def infinite_monkey():
 
 # ## 연습문제
 
-# 1. [(실습) 파이썬 프로그래밍 기초 2부](https://colab.research.google.com/github/codingalzi/algopy/blob/master/excs/python_basic_2.ipynb)
+# 1. [(실습) 파이썬 기초 2부: 제어 구조와 함수](https://colab.research.google.com/github/codingalzi/algopy/blob/master/excs/python_basic_2.ipynb)
