@@ -22,7 +22,7 @@ x.__hidden1
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mAttributeError[0m                            Traceback (most recent call last)
-[0;32m/tmp/ipykernel_285/334723752.py[0m in [0;36m<module>[0;34m[0m
+[0;32m/tmp/ipykernel_710/334723752.py[0m in [0;36m<module>[0;34m[0m
 [0;32m----> 1[0;31m [0mx[0m[0;34m.[0m[0m__hidden1[0m[0;34m[0m[0;34m[0m[0m
 [0m
 [0;31mAttributeError[0m: 'MSDie' object has no attribute '__hidden1'
