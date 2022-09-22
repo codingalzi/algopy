@@ -635,7 +635,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p><code class="docutils literal notranslate"><span class="pre">__str__()</span></code> 대 <code class="docutils literal notranslate"><span class="pre">__repr__()</span></code></p></li>
 <li><p>비교 가능 클래스</p></li>
 <li><p>공개 여부</p></li>
-<li><p>모음 추상 자료형</p></li>
+<li><p>컨테이너 클래스</p></li>
 <li><p>이터레이터와 제너레이터</p></li>
 </ul>
 <div class="section" id="id2">
@@ -713,11 +713,11 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;__main__.MSDie object at 0x7fba0dd63310&gt; 6
-&lt;__main__.MSDie object at 0x7fba0dd63310&gt; 3
-&lt;__main__.MSDie object at 0x7fba0dd63310&gt; 3
-&lt;__main__.MSDie object at 0x7fba0dd63310&gt; 1
-&lt;__main__.MSDie object at 0x7fba0dd63310&gt; 4
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;__main__.MSDie object at 0x7f278c13e760&gt; 6
+&lt;__main__.MSDie object at 0x7f278c13e760&gt; 1
+&lt;__main__.MSDie object at 0x7f278c13e760&gt; 1
+&lt;__main__.MSDie object at 0x7f278c13e760&gt; 5
+&lt;__main__.MSDie object at 0x7f278c13e760&gt; 5
 </pre></div>
 </div>
 </div>
@@ -765,11 +765,11 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(MSDie(6), 6) 6
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(MSDie(6), 3) 3
+(MSDie(6), 3) 3
 (MSDie(6), 3) 3
 (MSDie(6), 2) 2
-(MSDie(6), 6) 6
-(MSDie(6), 4) 4
+(MSDie(6), 5) 5
 </pre></div>
 </div>
 </div>
@@ -784,7 +784,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;__main__.MSDie object at 0x7fba0c4ebbb0&gt;, &lt;__main__.MSDie object at 0x7fba0c4eb640&gt;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;__main__.MSDie object at 0x7f27880aac40&gt;, &lt;__main__.MSDie object at 0x7f27880aa400&gt;]
 </pre></div>
 </div>
 </div>
@@ -830,7 +830,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[MSDie(6): 4, MSDie(20): 13]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[MSDie(6): 5, MSDie(20): 2]
 </pre></div>
 </div>
 </div>
@@ -875,11 +875,11 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MSDie(6): 1 1
-MSDie(6): 3 3
-MSDie(6): 3 3
-MSDie(6): 2 2
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MSDie(6): 6 6
 MSDie(6): 5 5
+MSDie(6): 6 6
+MSDie(6): 2 2
+MSDie(6): 2 2
 </pre></div>
 </div>
 </div>
@@ -892,7 +892,7 @@ MSDie(6): 5 5
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[MSDie(6): 4, MSDie(20): 1]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[MSDie(6): 4, MSDie(20): 6]
 </pre></div>
 </div>
 </div>
@@ -1177,7 +1177,7 @@ True
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
 </pre></div>
 </div>
 </div>
@@ -1335,7 +1335,7 @@ True
 <li><p><code class="docutils literal notranslate"><span class="pre">for</span></code> 반복문 지원</p></li>
 <li><p>대괄호 (<code class="docutils literal notranslate"><span class="pre">[]</span></code>) 인덱싱 지원</p></li>
 </ul>
-<p>모음 자료형 객체가 속하는 클래스를 일명 __컨테이너 클래스__라 하며,
+<p>모음 자료형 객체가 속하는 클래스를 일명 <strong>컨테이너 클래스</strong>라 하며,
 앞으로 스택, 큐, 그래프, 트리 등을 다룰 때 중요한 역할을 수행한다.
 여기서는 앞서 언급한 요소들이 필요한 경우에
 사용되는 매직 메서드들을 알아본다.</p>
@@ -2220,7 +2220,7 @@ True
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;generator object &lt;genexpr&gt; at 0x7fba0c4cf040&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;generator object &lt;genexpr&gt; at 0x7f278808f040&gt;
 </pre></div>
 </div>
 </div>
