@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # 파이썬 기초 4부: 클래스 기본 사항
+# # 파이썬 기초 4부: 클래스 기본 요소
 
 # **소스코드**
 # 
@@ -19,7 +19,7 @@
 
 # ## 클래스 일반
 
-# 클래스를 선언할 때 일반적으로 아래 사항들이 지원되도록 해야 한다. 
+# 클래스를 선언할 때 기본적으로 아래 요소들이 지원되도록 해야 한다. 
 # 
 # * 문서화: **문서화 문자열**(독스트링, docstring) 기능을 이용하여 해당 클래스의 기능과 사용법을 설명한다.
 #     세 개의 큰 따옴표(`"""`)로 감싸인 문장으로 작성한다.
@@ -313,18 +313,6 @@ print(x>=y)
 print(x != y)
 
 
-# 동등성(equality)과 동일성(identity)는 다르게 작동한다.
-
-# In[14]:
-
-
-x.current_value = 6
-y.current_value = 6
-
-print(x == y)    # 동등성
-print(x is y)    # 동일성
-
-
 # ## 공개 여부
 
 # 자바 언어의 클래스 선언에 사용되는 private, default, protected, public 등과 같은
@@ -339,7 +327,7 @@ print(x is y)    # 동일성
 # 수정된 내용은 주사위를 굴렸을 때 나온 값에 `__hidden1`을 곱한 후에 `_hidden2`로 
 # 나눈 결과를 `current_value`로 가리키도록 하였다.
 
-# In[15]:
+# In[14]:
 
 
 import random
@@ -354,7 +342,7 @@ class MSDie:
     """
 
     def __init__(self, num_sides):
-        self.__hidden1 = 3                  # 네임 맹글링
+        self.__hidden1 = 3                  # 이름 뒤섞기
         self._hidden2 = 7
         self.num_sides = num_sides
         self.current_value = self.roll()    # 주사위 굴리기 먼저 실행
@@ -365,13 +353,13 @@ class MSDie:
         return self.current_value
 
 
-# In[16]:
+# In[15]:
 
 
 x = MSDie(6)
 
 
-# In[17]:
+# In[16]:
 
 
 x.current_value
@@ -390,7 +378,7 @@ x.current_value
 
 # 반면에 하나의 밑줄로 시작하는 `_hidden2` 속성은 인스턴스 변수로 값이 확인된다.
 
-# In[18]:
+# In[17]:
 
 
 x._hidden2
@@ -401,7 +389,7 @@ x._hidden2
 # 객체 `x`가 갖는 인스턴스 속성을 확인하면 다음과 같이 
 # 속성 변수와 해당 속성값으로 이루어진 사전을 얻는다.
 
-# In[19]:
+# In[18]:
 
 
 x.__dict__
@@ -409,10 +397,10 @@ x.__dict__
 
 # 그런데 `__hidden1` 변수 대신에 `_MSDie__hidden1`과 속성값이 확인된다.
 # 이처럼 두 개의 밑줄로 시작하는 변수의 이름이 내부적으로 클래스 이름이 붙는 방식으로 변경된다.
-# 이를 __네임 맹글링__(name mangling)이라 한다. 
+# 이를 **이름 뒤섞기**(name mangling)라 한다. 
 # 변경된 이름을 이용하면 속성이 확인된다.
 
-# In[20]:
+# In[19]:
 
 
 x._MSDie__hidden1
@@ -429,7 +417,7 @@ x._MSDie__hidden1
 # 아래 코드는 `current_value`를 지정하고 확인하는 세터와 게터,
 # 그리고 `_hidden2`를 지정하는 세터를 선언한다.
 
-# In[21]:
+# In[20]:
 
 
 import random
@@ -464,46 +452,46 @@ class MSDie:
         self._hidden2 = num
 
 
-# In[22]:
+# In[21]:
 
 
 x = MSDie(6)
 
 
-# In[23]:
+# In[22]:
 
 
 x.current_value
 
 
-# In[24]:
+# In[23]:
 
 
 x.set_current_value(5)
 x.get_current_value()
 
 
-# In[25]:
+# In[24]:
 
 
 x.set_current_value(8)
 x.get_current_value()
 
 
-# In[26]:
+# In[25]:
 
 
 x.set_hidden2(11)
 
 
-# In[27]:
+# In[26]:
 
 
 x.set_current_value(5)
 x.get_current_value()
 
 
-# In[28]:
+# In[27]:
 
 
 x.set_current_value(8)
@@ -514,7 +502,7 @@ x.get_current_value()
 
 # 객체의 모든 속성과 메서드를 확인하기 위해 아래와 같이 실행한다. 
 
-# In[29]:
+# In[28]:
 
 
 x.__dir__()
@@ -522,7 +510,7 @@ x.__dir__()
 
 # 예를 들어, `__class__` 변수는 객체가 속하는 클래스 이름을 속성값으로 갖는다.
 
-# In[30]:
+# In[29]:
 
 
 x.__class__
@@ -570,7 +558,7 @@ x.__class__
 # 아래 코드는 1차원 넘파이 어레이에 해당하는 자료형을 리스트를 이용하여 직접 구현한다. 
 # 일반 리스트의 경우와는 달리 1차원 어레이에 대한 덧셈 연산이 항목별로 이루어진다.
 
-# In[31]:
+# In[30]:
 
 
 class OneDArray:
@@ -606,7 +594,7 @@ oneD2 = OneDArray([11, 22, 33])
 
 # 덧셈 연산이 항목별로 이루어진다. 
 
-# In[32]:
+# In[31]:
 
 
 oneD1 + oneD2
@@ -627,7 +615,7 @@ oneD1 + oneD2
 
 # `len()` 함수가 사용되려면 `__len()__` 메서드가 적절하게 선언되어야 한다.
 
-# In[33]:
+# In[32]:
 
 
 class OneDArray:
@@ -663,7 +651,7 @@ oneD1 = OneDArray([2, 3, 4])
 oneD2 = OneDArray([11, 22, 33])
 
 
-# In[34]:
+# In[33]:
 
 
 len(oneD1)
@@ -674,7 +662,7 @@ len(oneD1)
 # `len()` 함수를 이용하여 넘파이 어레이 객체가 제공하는 다양한 메서드를 구현할 수 있다.
 # 예를 들어 아래 코드는 항목들의 평균값을 계산하는 메서드를 제공한다.
 
-# In[35]:
+# In[34]:
 
 
 class OneDArray:
@@ -721,13 +709,13 @@ oneD2 = OneDArray([11, 22, 33])
 
 # 이제 평균값을 계산할 수 있다.
 
-# In[36]:
+# In[35]:
 
 
 oneD1.mean()
 
 
-# In[37]:
+# In[36]:
 
 
 oneD2.mean()
@@ -754,7 +742,7 @@ oneD2.mean()
 # - `__next__()` 메서드: 이터레이터에 포함되는 메서드이며 지정된 순서에 따라 항목을 반환함.
 #     - 함수 본체에서 사용되는 `count`, `max_repeats` 인스턴스 변수는 생성자에서 선언됨.
 
-# In[38]:
+# In[37]:
 
 
 class OneDArray:
@@ -813,13 +801,13 @@ oneD2 = OneDArray([11, 22, 33])
 
 # 이제 `for` 반복문이 지원된다.
 
-# In[39]:
+# In[38]:
 
 
 oneD3 = oneD1 + oneD2
 
 
-# In[40]:
+# In[39]:
 
 
 for x in oneD3:
@@ -828,7 +816,7 @@ for x in oneD3:
 
 # 그런데 `for` 반복문을 한 번만 사용할 수 있다.
 
-# In[41]:
+# In[40]:
 
 
 for x in oneD3:
@@ -857,7 +845,7 @@ for x in oneD3:
 
 # `for` 문을 다시 사용하려면 객체를 새로 생성해야 한다.
 
-# In[42]:
+# In[41]:
 
 
 oneD3 = oneD1 + oneD2
@@ -870,20 +858,20 @@ for x in oneD3:
 
 # 리스트의 경우 객체를 새로 생성하지 않아도 `for` 반복문을 계속해서 적용할 수 있다.
 
-# In[43]:
+# In[42]:
 
 
 numList = [1, 2, 3]
 
 
-# In[44]:
+# In[43]:
 
 
 for item in numList:
     print(item)
 
 
-# In[45]:
+# In[44]:
 
 
 for item in numList:
@@ -896,7 +884,7 @@ for item in numList:
 # 
 # 힌트: `count` 인스턴스 변수의 초기화를 적절한 위치에서 실행하도록 해야 한다.
 
-# In[46]:
+# In[45]:
 
 
 # 수정본 추가해야 함
@@ -931,7 +919,7 @@ for item in numList:
 # - `__getitem__()` 메서드: 대괄호 인덱싱 지원
 # - `__setitem__()` 메서드: 특정 인덱스 항목 업데이트
 
-# In[47]:
+# In[46]:
 
 
 class OneDArray:
@@ -992,19 +980,19 @@ oneD1 = OneDArray([2, 3, 4])
 oneD2 = OneDArray([11, 22, 33])
 
 
-# In[48]:
+# In[47]:
 
 
 oneD2[0]
 
 
-# In[49]:
+# In[48]:
 
 
 oneD2[0] = 100
 
 
-# In[50]:
+# In[49]:
 
 
 oneD2
@@ -1012,19 +1000,19 @@ oneD2
 
 # __슬라이싱__(slicing)도 지원한다.
 
-# In[51]:
+# In[50]:
 
 
 oneD2[1:3]
 
 
-# In[52]:
+# In[51]:
 
 
 oneD2[0:3]
 
 
-# In[53]:
+# In[52]:
 
 
 oneD2[0:3:2]
@@ -1036,7 +1024,7 @@ oneD2[0:3:2]
 # 아래에서 확인할 수 있듯이 `__iter__()` 와 `__next__()` 메서드가 없어도
 # `for` 반복문이 작동한다.
 
-# In[54]:
+# In[53]:
 
 
 class OneDArray:
@@ -1097,13 +1085,13 @@ oneD1 = OneDArray([2, 3, 4])
 oneD2 = OneDArray([11, 22, 33])
 
 
-# In[55]:
+# In[54]:
 
 
 oneD3 = oneD1 + oneD2
 
 
-# In[56]:
+# In[55]:
 
 
 for x in oneD3:
@@ -1112,7 +1100,7 @@ for x in oneD3:
 
 # 이와 더불어 객체를 새로 생성할 필요없이 반복문을 계속해서 활용할 수도 있다.
 
-# In[57]:
+# In[56]:
 
 
 for x in oneD3:
@@ -1158,7 +1146,7 @@ for x in oneD3:
 # - 한 번 실행될 때마다 지정된 순서로 특정 값을 생성함. 
 #     미리 모든 값을 생성하는 것이 아니기에 무한 리스트 등을 정의할 때 사용됨.
 
-# In[58]:
+# In[57]:
 
 
 def fib():
@@ -1172,13 +1160,13 @@ def fib():
 # 내부적으로는 `__next__()` 메서드가 사용된다.
 # 이런 의미에서 제너레이터를 하나의 객체로 선언하는 방식으로 사용한다.
 
-# In[59]:
+# In[58]:
 
 
 f = fib()
 
 
-# In[60]:
+# In[59]:
 
 
 for _ in range(10):
@@ -1187,7 +1175,7 @@ for _ in range(10):
 
 # `__next__()` 가 필요할 때 계속 작동함에 주의해야 한다.
 
-# In[61]:
+# In[60]:
 
 
 for _ in range(10):
@@ -1200,7 +1188,7 @@ for _ in range(10):
 # 하지만 __itertools__ 모듈의 __islice()__ 함수를 이용하면 인덱싱과 슬라이싱을 이용할 수 있다.
 # 여기서도 `__next__()` 가 필요할 때 계속 작동함에 주의해야 한다.
 
-# In[62]:
+# In[61]:
 
 
 from itertools import islice
@@ -1211,7 +1199,7 @@ for x in islice(f, 0, 10):
 
 # 처음부터 다시 생성하려면 다시 호출해야 한다.
 
-# In[63]:
+# In[62]:
 
 
 f = fib()
@@ -1222,7 +1210,7 @@ for x in islice(f, 0, 10):
 
 # `fib()` 제너레이터를 이터레이터 클래스로 선언하면 다음과 같다.
 
-# In[64]:
+# In[63]:
 
 
 class fib:
@@ -1240,13 +1228,13 @@ class fib:
         return value
 
 
-# In[65]:
+# In[64]:
 
 
 f = fib()
 
 
-# In[66]:
+# In[65]:
 
 
 for _ in range(10):
@@ -1257,7 +1245,7 @@ for _ in range(10):
 
 # 조건제시법을 이용하여 리스트를 아래와 같이 생성할 수 있다.
 
-# In[67]:
+# In[66]:
 
 
 numbers = [x for x in range(10)]
@@ -1267,7 +1255,7 @@ numbers
 
 # 리스트에 사용되는 대괄호(`[]`) 대신에 튜플에 사용되는 소괄호(`()`)를 사용하면 다르게 작동한다.
 
-# In[68]:
+# In[67]:
 
 
 lazy_squares = (x * x for x in numbers)
@@ -1283,13 +1271,13 @@ lazy_squares
 # __참고__: `range` 객체 또한 제너레이터이다. 
 # 반면에 리스트는 항상 모든 항목을 미리 생성해 놓으며, 따라서 제너레이터가 아니다.
 
-# In[69]:
+# In[68]:
 
 
 next(lazy_squares)
 
 
-# In[70]:
+# In[69]:
 
 
 list(lazy_squares)
