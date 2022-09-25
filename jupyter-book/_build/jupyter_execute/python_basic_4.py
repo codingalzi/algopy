@@ -41,7 +41,7 @@
 #     
 # 다면체 주사위 클래스를 이용하여 파이썬 클래스 선언에 기본적으로 필요한 요소들을 확인한다.
 
-# ### 예제: 주사위 클래스 `MSDie`
+# ### 다면체 주사위 클래스
 
 # 다면체 주사위 객체 생성에 사용되는 `MSDie` 클래스를 선언한 후에 한 단계씩 
 # 업데이트 하는 과정을 살펴본다. 
@@ -115,7 +115,7 @@ class MSDie:
         return self.current_value
 
     def __str__(self):
-        return f"(MSDie({self.num_sides}), {self.current_value})"
+        return f"MSDie({self.num_sides})"
 
 
 # In[4]:
@@ -124,25 +124,32 @@ class MSDie:
 my_die = MSDie(6)
 
 for i in range(5):
-    print(my_die, my_die.current_value)
+    print(my_die, "current value:", my_die.current_value)
     my_die.roll()    # 주사위 새로 굴리기
 
 
-# 하지만 다면체 주사위로 구성된 리스트를 출력하려고 시도하면
-# 여전히 원하는 대로 작동하지 않는다.
+# 하지만 `print()` 사용하지 않고 값을 확인하려 하면 제대로 작동하지 않는다.
 
 # In[5]:
+
+
+my_die
+
+
+# `print()` 함수를 사용하더라도 다면체 주사위로 구성된 리스트를 출력하려 하면
+# 원하는 대로 작동하지 않는다.
+# 즉, 리스트의 항목에 대해서는 `print()` 함수가 영향을 미치지 못한다.
+
+# In[6]:
 
 
 d_list = [MSDie(6), MSDie(20)]
 print(d_list)
 
 
-# 리스트의 항목에 대해서는 `print()` 함수가 영향을 미치지 못한다.
-# 이런 경우 객체를 적절하게 출력하도록 하려면 `__repr__()` 매직 메서드의 반환값을
-# 적절한 문자열로 지정해야 한다.
+# 이 문제를 해결하려면 `__repr__()` 매직 메서드의 반환값을 적절한 문자열로 지정해야 한다.
 
-# In[6]:
+# In[7]:
 
 
 import random
@@ -165,23 +172,25 @@ class MSDie:
         return self.current_value
 
     def __str__(self):
-        return f"(MSDie({self.num_sides}), {self.current_value})"
+        return f"MSDie({self.num_sides})"
 
     def __repr__(self):
-        return f"MSDie({self.num_sides}): {self.current_value}"
+        return f"MSDie({self.num_sides}):{self.current_value}"
 
 
-# In[7]:
+# In[8]:
 
 
 d_list = [MSDie(6), MSDie(20)]
 print(d_list)
 
 
-# `__str__()`과 `__repr__()`을 굳이 구분하지 않겠다면 `__repr__()` 만 정의해도 된다.
+# 앞서 보인 것처럼 `__str__()`과 `__repr__()`를 구분해서 각자의 역할에 따라 
+# 객체를 다른 식으로 보여준다. 
+# 하지만 굳이 구분하지 않겠다면 `__repr__()` 만 정의해도 된다.
 # 그러면 `__str__()`이 필요한 경우 `__repr__()`가 사용된다.
 
-# In[8]:
+# In[9]:
 
 
 import random
@@ -204,20 +213,20 @@ class MSDie:
         return self.current_value
 
     def __repr__(self):
-        return f"MSDie({self.num_sides}): {self.current_value}"
+        return f"MSDie({self.num_sides}):{self.current_value}"
 
 
-# In[9]:
+# In[10]:
 
 
 my_die = MSDie(6)
 
 for i in range(5):
-    print(my_die, my_die.current_value)
+    print(my_die)
     my_die.roll()    # 주사위 새로 굴리기
 
 
-# In[10]:
+# In[11]:
 
 
 d_list = [MSDie(6), MSDie(20)]
@@ -226,7 +235,7 @@ print(d_list)
 
 # ## 비교 가능 클래스
 
-# ### 비교 연산자
+# **비교 연산자**
 
 # 두 주사위 객체의 동등성(equality) 여부를 어떻게 판단할까? 
 # 두 주사위가 가리키는 값이 같을 때? 주사위 면의 수가 다르면?
@@ -239,10 +248,10 @@ print(d_list)
 # * `__le__`: 작거나 같다 연산자(`<=`) 지원
 # * `__ge__`: 크거나 같다 연산자(`>=`) 지원
 # * `__ne__`: 비동등성(`!=`) 지원
-# 
-# 여기서는 두 주사의 크기 비교를 주사위가 가리키는 값(`current_value`)만 이용하여 지정한다.
 
-# In[11]:
+# 먼저 두 주사의 크기 비교를 주사위가 가리키는 값(`current_value`)만 이용하여 지정한다.
+
+# In[12]:
 
 
 import random
@@ -286,7 +295,7 @@ class MSDie:
 # __eq__(self, other)
 # ```
 
-# In[12]:
+# In[13]:
 
 
 x = MSDie(6)
@@ -300,12 +309,12 @@ print(x < y)
 print(x <= y)
 
 
-# ### 최소로 필요한 비교 연산자
+# **최소로 필요한 비교 연산자**
 
 # 앞서 `__gt__()`, `__ge__()`, `__ne__()` 매직 메서드를 정의하지 않았지만
 # 자동으로 지원된다. 
 
-# In[13]:
+# In[14]:
 
 
 print(x > y)
@@ -313,21 +322,112 @@ print(x>=y)
 print(x != y)
 
 
+# **모양이 다른 다면체 비교**
+
+# 모양이 다른 다면체 사이의 비교는 무조건 거짓으로 정할 수도 있다.
+
+# In[15]:
+
+
+import random
+
+class MSDie:
+    """
+    다면체 주사위
+    
+    인스턴스 변수: 
+        num_sides: 면 개수
+        current_value: 주사위를 굴린 결과
+    """
+
+    def __init__(self, num_sides):
+        self.num_sides = num_sides
+        self.current_value = self.roll()   # 주사위 굴리기 먼저 실행
+
+    def roll(self):   # 주사위 굴리기
+        self.current_value = random.randrange(1, self.num_sides+1)
+        return self.current_value
+
+    def __repr__(self):
+        return "MSDie({}) : {}".format(self.num_sides, self.current_value)
+
+    # 크기 비교 연산자 지원
+    
+    def __eq__(self,other):
+        if self.num_sides == other.num_sides:
+            return self.current_value == other.current_value
+        else:
+            return False
+
+    def __lt__(self,other):
+        if self.num_sides == other.num_sides:
+            return self.current_value < other.current_value
+        else:
+            return False
+
+    def __le__(self, other):
+        if self.num_sides == other.num_sides:
+            return self.current_value <= other.current_value
+        else:
+            return False
+
+
+# 모양이 다른 다면체 두 개를 생성한다.
+
+# In[16]:
+
+
+x = MSDie(6)
+y = MSDie(7)
+
+
+# 이제 모든 비교는 거짓이 된다.
+
+# In[17]:
+
+
+x.current_value = 6
+y.current_value = 6
+
+print(x == y)
+
+
+# In[18]:
+
+
+x.current_value = 6
+y.current_value = 7
+
+print(x < y)
+
+
+# In[19]:
+
+
+x.current_value = 6
+y.current_value = 7
+
+print(x <= y)
+
+
 # ## 공개 여부
 
 # 자바 언어의 클래스 선언에 사용되는 private, default, protected, public 등과 같은
-# 접근 제어자는 파이썬이 지원하지 않으며 파이썬 클래스의 모든 것은 원칙적으로 공개(public)되며
+# 접근 제어자는 파이썬에서 지원되지 않는다.
+# 파이썬에서 클래스의 모든 것은 공개(public)되기에
 # 접근 및 수정될 수 있다.
-# 하지만 일부 변수와 메서드는 특별한 방식으로 이름을 지어 외부 노출을 최대한 줄인다. 
+# 
+# 그럼에도 불구하고 일부 변수와 메서드는 특별한 방식으로 이름을 지어 외부 노출을 최대한
+# 줄일 수 있다.
 # 
 # - 두 개의 밑줄(`__`)로 시작하기: 숨기고자 하는 속성 변수와 메서드 이름
 # - 한 개의 밑줄(`_`)로 시작하기: 굳이 사용자가 알 필요 없는 속성 변수와 메서드 이름
-# 
+
 # 아래 코드는 MSDie 클래스의 생성자를 조금 수정하였다.
 # 수정된 내용은 주사위를 굴렸을 때 나온 값에 `__hidden1`을 곱한 후에 `_hidden2`로 
 # 나눈 결과를 `current_value`로 가리키도록 하였다.
 
-# In[14]:
+# In[20]:
 
 
 import random
@@ -347,19 +447,22 @@ class MSDie:
         self.num_sides = num_sides
         self.current_value = self.roll()    # 주사위 굴리기 먼저 실행
 
+    def __randNum(self):
+        return random.randrange(1, self.num_sides+1)
+
     def roll(self):   # 주사위 굴리기
-        randNum = random.randrange(1, self.num_sides+1)
+        randNum = self.__randNum()
         self.current_value = (self.__hidden1 * randNum) % self._hidden2 
         return self.current_value
 
 
-# In[15]:
+# In[21]:
 
 
 x = MSDie(6)
 
 
-# In[16]:
+# In[22]:
 
 
 x.current_value
@@ -378,18 +481,30 @@ x.current_value
 
 # 반면에 하나의 밑줄로 시작하는 `_hidden2` 속성은 인스턴스 변수로 값이 확인된다.
 
-# In[17]:
+# In[23]:
 
 
 x._hidden2
 
 
-# ### `__dict__` 변수
+# 함수에 대해서도 동일하게 작동한다.
+# `__randNum()` 함수는 외부에 노출되지 않는다.
+
+# ```python
+# >>> x.__randNum()
+# AttributeError                            Traceback (most recent call last)
+# c:\Users\gslee\Documents\GitHub\algopy\jupyter-book\python_basic_4.ipynb 셀 56 in <cell line: 1>()
+# ----> 1 x.__randNum
+# 
+# AttributeError: 'MSDie' object has no attribute '__randNum'
+# ```
+
+# ### `__dict__` 속성 
 
 # 객체 `x`가 갖는 인스턴스 속성을 확인하면 다음과 같이 
 # 속성 변수와 해당 속성값으로 이루어진 사전을 얻는다.
 
-# In[18]:
+# In[24]:
 
 
 x.__dict__
@@ -400,24 +515,54 @@ x.__dict__
 # 이를 **이름 뒤섞기**(name mangling)라 한다. 
 # 변경된 이름을 이용하면 속성이 확인된다.
 
-# In[19]:
+# In[25]:
 
 
 x._MSDie__hidden1
 
 
-# ### 게터(getter)와 세터(setter)
+# ### `__dir__()` 매직 메서드 
 
-# 반면에 하나의 밑줄을 사용하는 `_hidden2`는 숨길 것 까지는 아니지만 클래스 내부에서만
+# 객체가 사용할 수 있는 모든 속성과 메서드를 리스트로 보려면
+# `__dir__()` 매직 메서드를 사용한다.
+
+# In[26]:
+
+
+x.__dir__()
+
+
+# `dir()` 함수는 `__dir__()` 메서드를 활용한다.
+
+# In[27]:
+
+
+dir(x)
+
+
+# 위 리스트에서 확인할 수 있듯이 `_MSDie__randNum`가 목록에 포함되어 있으며 호출이 가능하다.
+
+# In[28]:
+
+
+x._MSDie__randNum()
+
+
+# 결론적으로 이름 뒤섞기는 일부 속성과 메서드의 이름이 외부로 쉽게 노출되지 않도록 하는 기법이다.
+# 단, 완전히 차단하는 것은 아니다.
+
+# ### 게터와 세터
+
+# 하나의 밑줄을 사용하는 `_hidden2`는 숨길 것 까지는 아니지만 클래스 내부에서만
 # 사용되는 것을 반영한 이름이다. 
-# 이런 변수와 메서드는 사용자가 직접 값을 수정하기 보다는 세터와 게터 메서드를 이용하여
-# 외부와 내부를 중개하는 역할을 수행하도록 하는 것이 좋다. 
+# 이런 변수와 메서드는 사용자가 직접 값을 수정하기 보다는 세터(setter)와 게터(getter) 메서드를 이용하여
+# 외부와 내부를 중개하도록 하는 것이 좋다. 
 # 이유는 사용자 입장에서 최소한의 정보를 이용하여 객체 속성 정보를 확인하고 이용하도록 만들기 위해서이다. 
 # 
 # 아래 코드는 `current_value`를 지정하고 확인하는 세터와 게터,
 # 그리고 `_hidden2`를 지정하는 세터를 선언한다.
 
-# In[20]:
+# In[29]:
 
 
 import random
@@ -432,16 +577,19 @@ class MSDie:
     """
 
     def __init__(self, num_sides):
-        self.__hidden1 = 3                  # 네임 맹글링
+        self.__hidden1 = 3                  # 이름 뒤섞기
         self._hidden2 = 7
         self.num_sides = num_sides
         self.current_value = self.roll()    # 주사위 굴리기 먼저 실행
 
+    def __randNum(self):
+        return random.randrange(1, self.num_sides+1)
+
     def roll(self):   # 주사위 굴리기
-        randNum = random.randrange(1, self.num_sides+1)
+        randNum = self.__randNum()
         self.current_value = (self.__hidden1 * randNum) % self._hidden2 
         return self.current_value
-        
+
     def get_current_value(self):
         return self.current_value
     
@@ -452,92 +600,51 @@ class MSDie:
         self._hidden2 = num
 
 
-# In[21]:
+# In[30]:
 
 
 x = MSDie(6)
 
 
-# In[22]:
+# In[31]:
 
 
 x.current_value
 
 
-# In[23]:
+# In[32]:
 
 
 x.set_current_value(5)
 x.get_current_value()
 
 
-# In[24]:
+# In[33]:
 
 
 x.set_current_value(8)
 x.get_current_value()
 
 
-# In[25]:
+# In[34]:
 
 
 x.set_hidden2(11)
 
 
-# In[26]:
+# In[35]:
 
 
 x.set_current_value(5)
 x.get_current_value()
 
 
-# In[27]:
+# In[36]:
 
 
 x.set_current_value(8)
 x.get_current_value()
 
-
-# ### `__dir__()`  매직 메서드
-
-# 객체의 모든 속성과 메서드를 확인하기 위해 아래와 같이 실행한다. 
-
-# In[28]:
-
-
-x.__dir__()
-
-
-# 예를 들어, `__class__` 변수는 객체가 속하는 클래스 이름을 속성값으로 갖는다.
-
-# In[29]:
-
-
-x.__class__
-
-
-# 기타 다른 매직 메서드들은 앞으로 필요할 때마다 설명된다.
-
-# ### 공개 변수/메서드 활용 예제
-
-# [1장 3부](https://codingalzi.github.io/algopy/notebooks/algopy01_Introduction_3.html)에서
-# 클래스 상속을 설명하기 위해 사용된 논리 회로를 구현하기 위해 사용된 `Connector` 클래스는 
-# `LogicGate` 클래스의 공개된 인스턴스 속성을 사실상 직접 수정한다.
-# 실제로 아래 `Connector` 클래스의 정의에서 볼 수 있듯이
-# 생성자 메서드에서 호출되는 `set_next_pin()` 메서드는
-# `tgate`, 즉 논리 게이트 클래스의 인스턴스에 속한 메서드이며,
-# 해당 메서드는 논리 게이트의 핀 값을 지정한다.
-
-# ```python
-# class Connector:
-#     def __init__(self, fgate, tgate):
-#         self.from_gate = fgate   # 입력 게이트 지정
-#         self.to_gate = tgate     # 출력 게이트 지정
-# 
-#         tgate.set_next_pin(self) # 출력 게이트의 핀 값으로 객체 자신을 지정
-#         
-#     # 기타 메서드
-# ```
 
 # ## 컨테이너 클래스
 
@@ -558,7 +665,7 @@ x.__class__
 # 아래 코드는 1차원 넘파이 어레이에 해당하는 자료형을 리스트를 이용하여 직접 구현한다. 
 # 일반 리스트의 경우와는 달리 1차원 어레이에 대한 덧셈 연산이 항목별로 이루어진다.
 
-# In[30]:
+# In[37]:
 
 
 class OneDArray:
@@ -594,7 +701,7 @@ oneD2 = OneDArray([11, 22, 33])
 
 # 덧셈 연산이 항목별로 이루어진다. 
 
-# In[31]:
+# In[38]:
 
 
 oneD1 + oneD2
@@ -615,7 +722,7 @@ oneD1 + oneD2
 
 # `len()` 함수가 사용되려면 `__len()__` 메서드가 적절하게 선언되어야 한다.
 
-# In[32]:
+# In[39]:
 
 
 class OneDArray:
@@ -651,7 +758,7 @@ oneD1 = OneDArray([2, 3, 4])
 oneD2 = OneDArray([11, 22, 33])
 
 
-# In[33]:
+# In[40]:
 
 
 len(oneD1)
@@ -662,7 +769,7 @@ len(oneD1)
 # `len()` 함수를 이용하여 넘파이 어레이 객체가 제공하는 다양한 메서드를 구현할 수 있다.
 # 예를 들어 아래 코드는 항목들의 평균값을 계산하는 메서드를 제공한다.
 
-# In[34]:
+# In[41]:
 
 
 class OneDArray:
@@ -709,13 +816,13 @@ oneD2 = OneDArray([11, 22, 33])
 
 # 이제 평균값을 계산할 수 있다.
 
-# In[35]:
+# In[42]:
 
 
 oneD1.mean()
 
 
-# In[36]:
+# In[43]:
 
 
 oneD2.mean()
@@ -742,7 +849,7 @@ oneD2.mean()
 # - `__next__()` 메서드: 이터레이터에 포함되는 메서드이며 지정된 순서에 따라 항목을 반환함.
 #     - 함수 본체에서 사용되는 `count`, `max_repeats` 인스턴스 변수는 생성자에서 선언됨.
 
-# In[37]:
+# In[44]:
 
 
 class OneDArray:
@@ -801,13 +908,13 @@ oneD2 = OneDArray([11, 22, 33])
 
 # 이제 `for` 반복문이 지원된다.
 
-# In[38]:
+# In[45]:
 
 
 oneD3 = oneD1 + oneD2
 
 
-# In[39]:
+# In[46]:
 
 
 for x in oneD3:
@@ -816,7 +923,7 @@ for x in oneD3:
 
 # 그런데 `for` 반복문을 한 번만 사용할 수 있다.
 
-# In[40]:
+# In[47]:
 
 
 for x in oneD3:
@@ -845,7 +952,7 @@ for x in oneD3:
 
 # `for` 문을 다시 사용하려면 객체를 새로 생성해야 한다.
 
-# In[41]:
+# In[48]:
 
 
 oneD3 = oneD1 + oneD2
@@ -858,20 +965,20 @@ for x in oneD3:
 
 # 리스트의 경우 객체를 새로 생성하지 않아도 `for` 반복문을 계속해서 적용할 수 있다.
 
-# In[42]:
+# In[49]:
 
 
 numList = [1, 2, 3]
 
 
-# In[43]:
+# In[50]:
 
 
 for item in numList:
     print(item)
 
 
-# In[44]:
+# In[51]:
 
 
 for item in numList:
@@ -884,7 +991,7 @@ for item in numList:
 # 
 # 힌트: `count` 인스턴스 변수의 초기화를 적절한 위치에서 실행하도록 해야 한다.
 
-# In[45]:
+# In[52]:
 
 
 # 수정본 추가해야 함
@@ -919,7 +1026,7 @@ for item in numList:
 # - `__getitem__()` 메서드: 대괄호 인덱싱 지원
 # - `__setitem__()` 메서드: 특정 인덱스 항목 업데이트
 
-# In[46]:
+# In[53]:
 
 
 class OneDArray:
@@ -980,19 +1087,19 @@ oneD1 = OneDArray([2, 3, 4])
 oneD2 = OneDArray([11, 22, 33])
 
 
-# In[47]:
+# In[54]:
 
 
 oneD2[0]
 
 
-# In[48]:
+# In[55]:
 
 
 oneD2[0] = 100
 
 
-# In[49]:
+# In[56]:
 
 
 oneD2
@@ -1000,19 +1107,19 @@ oneD2
 
 # __슬라이싱__(slicing)도 지원한다.
 
-# In[50]:
+# In[57]:
 
 
 oneD2[1:3]
 
 
-# In[51]:
+# In[58]:
 
 
 oneD2[0:3]
 
 
-# In[52]:
+# In[59]:
 
 
 oneD2[0:3:2]
@@ -1024,7 +1131,7 @@ oneD2[0:3:2]
 # 아래에서 확인할 수 있듯이 `__iter__()` 와 `__next__()` 메서드가 없어도
 # `for` 반복문이 작동한다.
 
-# In[53]:
+# In[60]:
 
 
 class OneDArray:
@@ -1085,13 +1192,13 @@ oneD1 = OneDArray([2, 3, 4])
 oneD2 = OneDArray([11, 22, 33])
 
 
-# In[54]:
+# In[61]:
 
 
 oneD3 = oneD1 + oneD2
 
 
-# In[55]:
+# In[62]:
 
 
 for x in oneD3:
@@ -1100,7 +1207,7 @@ for x in oneD3:
 
 # 이와 더불어 객체를 새로 생성할 필요없이 반복문을 계속해서 활용할 수도 있다.
 
-# In[56]:
+# In[63]:
 
 
 for x in oneD3:
@@ -1146,7 +1253,7 @@ for x in oneD3:
 # - 한 번 실행될 때마다 지정된 순서로 특정 값을 생성함. 
 #     미리 모든 값을 생성하는 것이 아니기에 무한 리스트 등을 정의할 때 사용됨.
 
-# In[57]:
+# In[64]:
 
 
 def fib():
@@ -1160,13 +1267,13 @@ def fib():
 # 내부적으로는 `__next__()` 메서드가 사용된다.
 # 이런 의미에서 제너레이터를 하나의 객체로 선언하는 방식으로 사용한다.
 
-# In[58]:
+# In[65]:
 
 
 f = fib()
 
 
-# In[59]:
+# In[66]:
 
 
 for _ in range(10):
@@ -1175,7 +1282,7 @@ for _ in range(10):
 
 # `__next__()` 가 필요할 때 계속 작동함에 주의해야 한다.
 
-# In[60]:
+# In[67]:
 
 
 for _ in range(10):
@@ -1188,7 +1295,7 @@ for _ in range(10):
 # 하지만 __itertools__ 모듈의 __islice()__ 함수를 이용하면 인덱싱과 슬라이싱을 이용할 수 있다.
 # 여기서도 `__next__()` 가 필요할 때 계속 작동함에 주의해야 한다.
 
-# In[61]:
+# In[68]:
 
 
 from itertools import islice
@@ -1199,7 +1306,7 @@ for x in islice(f, 0, 10):
 
 # 처음부터 다시 생성하려면 다시 호출해야 한다.
 
-# In[62]:
+# In[69]:
 
 
 f = fib()
@@ -1210,7 +1317,7 @@ for x in islice(f, 0, 10):
 
 # `fib()` 제너레이터를 이터레이터 클래스로 선언하면 다음과 같다.
 
-# In[63]:
+# In[70]:
 
 
 class fib:
@@ -1228,13 +1335,13 @@ class fib:
         return value
 
 
-# In[64]:
+# In[71]:
 
 
 f = fib()
 
 
-# In[65]:
+# In[72]:
 
 
 for _ in range(10):
@@ -1245,7 +1352,7 @@ for _ in range(10):
 
 # 조건제시법을 이용하여 리스트를 아래와 같이 생성할 수 있다.
 
-# In[66]:
+# In[73]:
 
 
 numbers = [x for x in range(10)]
@@ -1255,7 +1362,7 @@ numbers
 
 # 리스트에 사용되는 대괄호(`[]`) 대신에 튜플에 사용되는 소괄호(`()`)를 사용하면 다르게 작동한다.
 
-# In[67]:
+# In[74]:
 
 
 lazy_squares = (x * x for x in numbers)
@@ -1271,21 +1378,19 @@ lazy_squares
 # __참고__: `range` 객체 또한 제너레이터이다. 
 # 반면에 리스트는 항상 모든 항목을 미리 생성해 놓으며, 따라서 제너레이터가 아니다.
 
-# In[68]:
+# In[75]:
 
 
 next(lazy_squares)
 
 
-# In[69]:
+# In[76]:
 
 
 list(lazy_squares)
 
 
 # ## 연습문제
-
-# **문제**
 
 # `__ne__(), __gt__(), __ge__()`를 선언하면 `__eq__(), __lt__(), __le__()`가
 # 자동으로 지원되는지 확인하라.
