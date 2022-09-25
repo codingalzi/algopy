@@ -594,11 +594,13 @@ class MSDie:
         return self.current_value
     
     def set_current_value(self, num):
-        self.current_value = (self.__hidden1 * num) % self._hidden2
+        self.current_value = num
     
     def set_hidden2(self, num):
         self._hidden2 = num
 
+
+# 6면체 주사위 객체를 하나 생성한다.
 
 # In[30]:
 
@@ -606,11 +608,16 @@ class MSDie:
 x = MSDie(6)
 
 
+# 현재 가리키는 다음과 같다.
+
 # In[31]:
 
 
 x.current_value
 
+
+# 가리키는 값을 임의의 값으로 변경하려면
+# `set_current_value()` 메서드를 이용한다.
 
 # In[32]:
 
@@ -626,6 +633,8 @@ x.set_current_value(8)
 x.get_current_value()
 
 
+# `_hidden2` 속성도 유사하게 변경할 수 있다.
+
 # In[34]:
 
 
@@ -635,21 +644,13 @@ x.set_hidden2(11)
 # In[35]:
 
 
-x.set_current_value(5)
-x.get_current_value()
-
-
-# In[36]:
-
-
-x.set_current_value(8)
-x.get_current_value()
+x._hidden2
 
 
 # ## 컨테이너 클래스
 
 # 모음 자료형을 추상 자료형 클래스를 이용하여 정의하려면
-# 경우에 따라 아래 사항을 추가적으로 고려해야 한다.
+# 경우에 따라 아래 사항들도 고려해야 한다.
 # 
 # - `len()` 함수 지원
 # - `for` 반복문 지원
@@ -657,15 +658,16 @@ x.get_current_value()
 
 # 모음 자료형 객체가 속하는 클래스를 일명 **컨테이너 클래스**라 하며,
 # 앞으로 스택, 큐, 그래프, 트리 등을 다룰 때 중요한 역할을 수행한다.
-# 여기서는 앞서 언급한 요소들이 필요한 경우에
-# 사용되는 매직 메서드들을 알아본다.
+# 여기서는 앞서 언급한 요소들을 구현하는 과정을 살펴본다.
 
-# __예제: 1차원 넘파이 어레이 구현__
+# **1차원 넘파이 어레이**
 # 
-# 아래 코드는 1차원 넘파이 어레이에 해당하는 자료형을 리스트를 이용하여 직접 구현한다. 
+# 아래 코드는 벡터, 즉 1차원 넘파이 어레이에 해당하는 자료형을 리스트를 이용하여 직접 구현한다. 
 # 일반 리스트의 경우와는 달리 1차원 어레이에 대한 덧셈 연산이 항목별로 이루어진다.
+# 
+# **참고:** [파이썬 기초 3부: 클래스와 상속](https://codingalzi.github.io/algopy/python_basic_3.html)에서 정의된 `Vector` 클래스와는 다르게 상속을 사용하지 않는다.
 
-# In[37]:
+# In[36]:
 
 
 class OneDArray:
@@ -701,7 +703,7 @@ oneD2 = OneDArray([11, 22, 33])
 
 # 덧셈 연산이 항목별로 이루어진다. 
 
-# In[38]:
+# In[37]:
 
 
 oneD1 + oneD2
@@ -722,7 +724,7 @@ oneD1 + oneD2
 
 # `len()` 함수가 사용되려면 `__len()__` 메서드가 적절하게 선언되어야 한다.
 
-# In[39]:
+# In[38]:
 
 
 class OneDArray:
@@ -752,13 +754,13 @@ class OneDArray:
         return OneDArray(main_object)
 
     def __len__(self):
-        return len(self.items)
+        return len(self.items) # self.items가 리스트이기 때문에 작동함
     
 oneD1 = OneDArray([2, 3, 4])
 oneD2 = OneDArray([11, 22, 33])
 
 
-# In[40]:
+# In[39]:
 
 
 len(oneD1)
@@ -769,7 +771,7 @@ len(oneD1)
 # `len()` 함수를 이용하여 넘파이 어레이 객체가 제공하는 다양한 메서드를 구현할 수 있다.
 # 예를 들어 아래 코드는 항목들의 평균값을 계산하는 메서드를 제공한다.
 
-# In[41]:
+# In[40]:
 
 
 class OneDArray:
@@ -816,13 +818,13 @@ oneD2 = OneDArray([11, 22, 33])
 
 # 이제 평균값을 계산할 수 있다.
 
-# In[42]:
+# In[41]:
 
 
 oneD1.mean()
 
 
-# In[43]:
+# In[42]:
 
 
 oneD2.mean()
@@ -830,7 +832,7 @@ oneD2.mean()
 
 # ### `for` 반복문 지원
 
-# 포함된 항목들을 대상으로 반복문을 실행할 수 없다.
+# 아직은 포함된 항목들을 대상으로 반복문을 실행할 수 없다.
 
 # ```python
 # >>> for x in oneD1:
@@ -847,9 +849,9 @@ oneD2.mean()
 # 
 # - `__iter__()` 메서드: 반복적으로 항목을 생성할 수 있는 객체인 이터레이터(iterator) 생성
 # - `__next__()` 메서드: 이터레이터에 포함되는 메서드이며 지정된 순서에 따라 항목을 반환함.
-#     - 함수 본체에서 사용되는 `count`, `max_repeats` 인스턴스 변수는 생성자에서 선언됨.
+#     함수 본체에서 사용되는 `count`, `max_repeats` 인스턴스 변수는 생성자에서 선언되도록 함.
 
-# In[44]:
+# In[43]:
 
 
 class OneDArray:
@@ -908,13 +910,13 @@ oneD2 = OneDArray([11, 22, 33])
 
 # 이제 `for` 반복문이 지원된다.
 
-# In[45]:
+# In[44]:
 
 
 oneD3 = oneD1 + oneD2
 
 
-# In[46]:
+# In[45]:
 
 
 for x in oneD3:
@@ -923,7 +925,7 @@ for x in oneD3:
 
 # 그런데 `for` 반복문을 한 번만 사용할 수 있다.
 
-# In[47]:
+# In[46]:
 
 
 for x in oneD3:
@@ -952,49 +954,13 @@ for x in oneD3:
 
 # `for` 문을 다시 사용하려면 객체를 새로 생성해야 한다.
 
-# In[48]:
+# In[47]:
 
 
 oneD3 = oneD1 + oneD2
 
 for x in oneD3:
     print(x)
-
-
-# **예제**
-
-# 리스트의 경우 객체를 새로 생성하지 않아도 `for` 반복문을 계속해서 적용할 수 있다.
-
-# In[49]:
-
-
-numList = [1, 2, 3]
-
-
-# In[50]:
-
-
-for item in numList:
-    print(item)
-
-
-# In[51]:
-
-
-for item in numList:
-    print(item)
-
-
-# 반면에 `OneDArray` 객체는 앞서 살펴 보았듯이 그렇지 않다.
-# `OneDArray` 객체가 리스트처럼 작동하도록 `__next__()` 메서드를
-# 적절하게 수정해야 한다.
-# 
-# 힌트: `count` 인스턴스 변수의 초기화를 적절한 위치에서 실행하도록 해야 한다.
-
-# In[52]:
-
-
-# 수정본 추가해야 함
 
 
 # ### 인덱싱 지원
@@ -1026,7 +992,7 @@ for item in numList:
 # - `__getitem__()` 메서드: 대괄호 인덱싱 지원
 # - `__setitem__()` 메서드: 특정 인덱스 항목 업데이트
 
-# In[53]:
+# In[48]:
 
 
 class OneDArray:
@@ -1087,19 +1053,19 @@ oneD1 = OneDArray([2, 3, 4])
 oneD2 = OneDArray([11, 22, 33])
 
 
-# In[54]:
+# In[49]:
 
 
 oneD2[0]
 
 
-# In[55]:
+# In[50]:
 
 
 oneD2[0] = 100
 
 
-# In[56]:
+# In[51]:
 
 
 oneD2
@@ -1107,31 +1073,31 @@ oneD2
 
 # __슬라이싱__(slicing)도 지원한다.
 
-# In[57]:
+# In[52]:
 
 
 oneD2[1:3]
 
 
-# In[58]:
+# In[53]:
 
 
 oneD2[0:3]
 
 
-# In[59]:
+# In[54]:
 
 
 oneD2[0:3:2]
 
 
-# #### 이터러블 자료형과 `__getitem__()` 메서드
+# **이터러블 자료형과 `__getitem__()` 메서드**
 
 # `__getitem_()` 메서드를 지원하는 클래스는 자동으로 이터레이터가 된다. 
 # 아래에서 확인할 수 있듯이 `__iter__()` 와 `__next__()` 메서드가 없어도
 # `for` 반복문이 작동한다.
 
-# In[60]:
+# In[55]:
 
 
 class OneDArray:
@@ -1192,13 +1158,13 @@ oneD1 = OneDArray([2, 3, 4])
 oneD2 = OneDArray([11, 22, 33])
 
 
-# In[61]:
+# In[56]:
 
 
 oneD3 = oneD1 + oneD2
 
 
-# In[62]:
+# In[57]:
 
 
 for x in oneD3:
@@ -1207,20 +1173,20 @@ for x in oneD3:
 
 # 이와 더불어 객체를 새로 생성할 필요없이 반복문을 계속해서 활용할 수도 있다.
 
-# In[63]:
+# In[58]:
 
 
 for x in oneD3:
     print(x)
 
 
-# ### 이터레이터와 제너레이터
+# ## 이터레이터와 제너레이터
 
 # __참고__: 아래 내용은 Vicent Driessen의 
 # [Iterables vs. Iterators vs. Generators](https://nvie.com/posts/iterators-vs-generators/)
 # 블로그 내용을 참조합니다.
 
-# #### 이터러블 자료형과 이터레이터
+# ### 이터러블 자료형과 이터레이터
 
 # __이터러블__(iterable) 자료형은 `__iter__()` 메서드를 지원하는 자료형이다.
 # `__iter__()` 메서드는 이터러블 객체의 항목들을 지정된 순서대로
@@ -1231,7 +1197,7 @@ for x in oneD3:
 # 
 # 그림 출처: [Iterables vs. Iterators vs. Generators](https://nvie.com/posts/iterators-vs-generators/)
 
-# #### 제너레이터
+# ### 제너레이터
 
 # __제너레이터__(generator)는 간단한 방식으로 구현할 수 있는 이터레이터이며,
 # 크게 두 가지 방식으로 생성된다.
@@ -1245,7 +1211,7 @@ for x in oneD3:
 # 
 # 그림 출처: [Iterables vs. Iterators vs. Generators](https://nvie.com/posts/iterators-vs-generators/)
 
-# ##### 제너레이터 함수
+# ### 제너레이터 함수
 
 # 아래 코드는 피보나찌 수열을 무한정 생성하는 제너레이터를 정의한다.
 # 
@@ -1253,7 +1219,7 @@ for x in oneD3:
 # - 한 번 실행될 때마다 지정된 순서로 특정 값을 생성함. 
 #     미리 모든 값을 생성하는 것이 아니기에 무한 리스트 등을 정의할 때 사용됨.
 
-# In[64]:
+# In[59]:
 
 
 def fib():
@@ -1267,13 +1233,13 @@ def fib():
 # 내부적으로는 `__next__()` 메서드가 사용된다.
 # 이런 의미에서 제너레이터를 하나의 객체로 선언하는 방식으로 사용한다.
 
-# In[65]:
+# In[60]:
 
 
 f = fib()
 
 
-# In[66]:
+# In[61]:
 
 
 for _ in range(10):
@@ -1282,20 +1248,20 @@ for _ in range(10):
 
 # `__next__()` 가 필요할 때 계속 작동함에 주의해야 한다.
 
-# In[67]:
+# In[62]:
 
 
 for _ in range(10):
     print(next(f))
 
 
-# ##### __islice()__ 함수
+# **__islice()__ 함수**
 
 # 제너레이터 자체는 인덱싱과 슬라이싱을 지원하지 않는다.
 # 하지만 __itertools__ 모듈의 __islice()__ 함수를 이용하면 인덱싱과 슬라이싱을 이용할 수 있다.
 # 여기서도 `__next__()` 가 필요할 때 계속 작동함에 주의해야 한다.
 
-# In[68]:
+# In[63]:
 
 
 from itertools import islice
@@ -1306,7 +1272,7 @@ for x in islice(f, 0, 10):
 
 # 처음부터 다시 생성하려면 다시 호출해야 한다.
 
-# In[69]:
+# In[64]:
 
 
 f = fib()
@@ -1317,7 +1283,7 @@ for x in islice(f, 0, 10):
 
 # `fib()` 제너레이터를 이터레이터 클래스로 선언하면 다음과 같다.
 
-# In[70]:
+# In[65]:
 
 
 class fib:
@@ -1335,24 +1301,24 @@ class fib:
         return value
 
 
-# In[71]:
+# In[66]:
 
 
 f = fib()
 
 
-# In[72]:
+# In[67]:
 
 
 for _ in range(10):
     print(next(f))
 
 
-# ##### 제너레이터 표현식
+# **제너레이터 표현식**
 
 # 조건제시법을 이용하여 리스트를 아래와 같이 생성할 수 있다.
 
-# In[73]:
+# In[68]:
 
 
 numbers = [x for x in range(10)]
@@ -1362,7 +1328,7 @@ numbers
 
 # 리스트에 사용되는 대괄호(`[]`) 대신에 튜플에 사용되는 소괄호(`()`)를 사용하면 다르게 작동한다.
 
-# In[74]:
+# In[69]:
 
 
 lazy_squares = (x * x for x in numbers)
@@ -1378,13 +1344,13 @@ lazy_squares
 # __참고__: `range` 객체 또한 제너레이터이다. 
 # 반면에 리스트는 항상 모든 항목을 미리 생성해 놓으며, 따라서 제너레이터가 아니다.
 
-# In[75]:
+# In[70]:
 
 
 next(lazy_squares)
 
 
-# In[76]:
+# In[71]:
 
 
 list(lazy_squares)
@@ -1392,5 +1358,4 @@ list(lazy_squares)
 
 # ## 연습문제
 
-# `__ne__(), __gt__(), __ge__()`를 선언하면 `__eq__(), __lt__(), __le__()`가
-# 자동으로 지원되는지 확인하라.
+# 1. [(실습) 파이썬 기초 4부: 클래스 기본 요소](https://colab.research.google.com/github/codingalzi/algopy/blob/master/excs/python_basic_4.ipynb)
