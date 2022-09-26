@@ -699,7 +699,7 @@ x._hidden2
 # 반면에 5행 6열에 위치한 7은 게터가 해당 위치에 저장된 값을 읽어서 
 # 그래픽 요소를 담당하는 API에 전달한다.
 
-# <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/ch04-sudoku.jpg" width="50%"></div>
+# <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/ch04-sudoku.jpg" width="70%"></div>
 
 # ## 컨테이너 클래스
 
