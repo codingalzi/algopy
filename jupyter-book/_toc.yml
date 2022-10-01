@@ -11,3 +11,12 @@ chapters:
 - file: python_basic_2
 - file: python_basic_3
 - file: python_basic_4
+- file: time_complexity
+- file: python_list_dict
+- file: stacks
+- file: queues
+- file: deques
+- file: linked_lists
+- file: ordered_lists
+- file: recursion_1
+- file: recursion_2

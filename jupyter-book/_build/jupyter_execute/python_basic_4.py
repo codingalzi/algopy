@@ -1316,9 +1316,9 @@ for x in oneD3:
 # 
 # 그림 출처: [Iterables vs. Iterators vs. Generators](https://nvie.com/posts/iterators-vs-generators/)
 
-# ### 제너레이터 함수
+# **제너레이터 함수**
 
-# 아래 코드는 피보나찌 수열을 무한정 생성하는 제너레이터를 정의한다.
+# 아래 코드는 자연수를 무한정 생성하는 제너레이터를 정의한다.
 # 
 # - `yield`: `return` 키워드와 유사한 역할 수행.
 #     `__next__()` 메서드 반환해야 하는 값을 생성.
@@ -1329,11 +1329,11 @@ for x in oneD3:
 # In[65]:
 
 
-def fib():
-    prev, curr = 0, 1
+def nat():
+    n = 1
     while True:
-        yield curr
-        prev, curr = curr, prev + curr
+        yield n
+        n += 1
 
 
 # 제너레이터 함수를 실행하면 제너레이터가 하나 생성된다.
@@ -1345,10 +1345,10 @@ def fib():
 # In[66]:
 
 
-f = fib()
+f = nat()
 
 
-# 아래 코드는 `next()` 함수를 이용하여 피보나찌 수열의 첫 10개 항목을 생성한다.
+# 아래 코드는 `next()` 함수를 이용하여 자연수 10개를 생성한다.
 
 # In[67]:
 
@@ -1358,7 +1358,7 @@ for _ in range(10):
 
 
 # 동일한 코드를 실행하더라도 이어지는 항목,
-# 즉 11번째에서 20번째 피보나찌 수를 생성한다.
+# 즉 11에서 20까지의 자연수를 생성한다.
 
 # In[68]:
 
@@ -1387,43 +1387,41 @@ for x in islice(f, 0, 10):
 # In[70]:
 
 
-f = fib()
+f = nat()
 
 for x in islice(f, 0, 10):
     print(x)
 
 
-# `fib()` 제너레이터를 이터레이터 클래스로 선언하면 다음과 같다.
+# `nat()` 제너레이터를 이터레이터 클래스로 선언하면 다음과 같다.
 
 # In[71]:
 
 
-class fib:
+class nat_class:
     def __init__(self):
-        self.prev = 0
-        self.curr = 1
+        self.n = 0
 
     def __iter__(self):
         return self
 
     def __next__(self):
-        value = self.curr
-        self.curr += self.prev
-        self.prev = value
+        value = self.n
+        self.n += 1
         return value
 
 
 # In[72]:
 
 
-f = fib()
+g = nat_class()
 
 
 # In[73]:
 
 
 for _ in range(10):
-    print(next(f))
+    print(next(g))
 
 
 # **제너레이터 표현식**
@@ -1433,9 +1431,9 @@ for _ in range(10):
 # In[74]:
 
 
-numbers = [x for x in range(10)]
+squares = [x**2 for x in range(10)]
 
-numbers
+squares
 
 
 # 리스트에 사용되는 대괄호(`[]`) 대신에 튜플에 사용되는 소괄호(`()`)를 사용하면 다르게 작동한다.
@@ -1443,7 +1441,7 @@ numbers
 # In[75]:
 
 
-lazy_squares = (x**2 for x in numbers)
+lazy_squares = (x**2 for x in range(10))
 
 lazy_squares
 
@@ -1475,9 +1473,15 @@ next(lazy_squares)
 next(lazy_squares)
 
 
+# In[79]:
+
+
+next(lazy_squares)
+
+
 # 이제 리스트로 변환하면 앞서 사용된 값들은 포함되지 않는다.
 
-# In[79]:
+# In[80]:
 
 
 list(lazy_squares)

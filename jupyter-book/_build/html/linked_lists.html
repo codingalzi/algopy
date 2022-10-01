@@ -1,0 +1,1415 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>10. 기초 추상 자료형 구현 4부: 연결 리스트 &#8212; 문제해결 알고리즘</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="11. 기초 추상 자료형 구현 5부: 정렬 리스트" href="ordered_lists.html" />
+    <link rel="prev" title="9. 기초 추상 자료형 구현 3부: 덱" href="deques.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">문제해결 알고리즘</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="python_basic_1.html">
+   1. 파이썬 기초 1부: 자료형
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="python_basic_2.html">
+   2. 파이썬 기초 2부: 제어 구조와 함수
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="python_basic_3.html">
+   3. 파이썬 기초 3부: 클래스와 상속
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="python_basic_4.html">
+   4. 파이썬 기초 4부: 클래스 기본 요소
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="time_complexity.html">
+   5. 알고리즘 분석 1부: 시간 복잡도
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="python_list_dict.html">
+   6. 알고리즘 분석 2부: 파이썬 모음 자료형 분석
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="stacks.html">
+   7. 기초 추상 자료형 1부: 스택
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="queues.html">
+   8. 기초 추상 자료형 구현 2부: 큐
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="deques.html">
+   9. 기초 추상 자료형 구현 3부: 덱
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   10. 기초 추상 자료형 구현 4부: 연결 리스트
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ordered_lists.html">
+   11. 기초 추상 자료형 구현 5부: 정렬 리스트
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="recursion_1.html">
+   12. 재귀 1부: 재귀 함수
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="recursion_2.html">
+   13. 재귀 2부: 하노이의 탑과 미로게임
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/codingalzi/algopy/master?urlpath=tree/jupyter-book/linked_lists.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/codingalzi/algopy"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/codingalzi/algopy/issues/new?title=Issue%20on%20page%20%2Flinked_lists.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/linked_lists.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lists">
+   10.1. 4.19 Lists
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-unordered-list-abstract-data-type">
+   10.2. 4.20 The Unordered List Abstract Data Type
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#implementing-an-unordered-list-linked-lists">
+   10.3. 4.21 Implementing an Unordered List: Linked Lists
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-node-class">
+     10.3.1. 4.21 The
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       Node
+      </span>
+     </code>
+     Class
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#discussion-questions">
+     10.3.2. Discussion Questions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     10.3.3. 프로그래밍 실습 문제
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>기초 추상 자료형 구현 4부: 연결 리스트</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lists">
+   10.1. 4.19 Lists
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-unordered-list-abstract-data-type">
+   10.2. 4.20 The Unordered List Abstract Data Type
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#implementing-an-unordered-list-linked-lists">
+   10.3. 4.21 Implementing an Unordered List: Linked Lists
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-node-class">
+     10.3.1. 4.21 The
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       Node
+      </span>
+     </code>
+     Class
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#discussion-questions">
+     10.3.2. Discussion Questions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     10.3.3. 프로그래밍 실습 문제
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1><span class="section-number">10. </span>기초 추상 자료형 구현 4부: 연결 리스트<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h1>
+<p>Copyright (C)  Brad Miller, David Ranum.
+This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy of this license, visit <a class="reference external" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">http://creativecommons.org/licenses/by-nc-sa/4.0/</a>.</p>
+<section id="lists">
+<h2><span class="section-number">10.1. </span>4.19 Lists<a class="headerlink" href="#lists" title="Permalink to this headline">#</a></h2>
+<p>Throughout the discussion of basic data structures, we have used Python
+lists to implement the abstract data types presented. The list is a
+powerful, yet simple, collection mechanism that provides the programmer
+with a wide variety of operations. However, not all programming
+languages include a list collection. In these cases, the notion of a
+list must be implemented by the programmer.</p>
+<p>A <strong>list</strong> is a collection of items where each item holds a relative
+position with respect to the others. More specifically, we will refer to
+this type of list as an unordered list. We can consider the list as
+having a first item, a second item, a third item, and so on. We can also
+refer to the beginning of the list (the first item) or the end of the
+list (the last item). For simplicity we will assume that lists cannot
+contain duplicate items.</p>
+<p>For example, the collection of integers 54, 26, 93, 17, 77, and 31 might
+represent a simple unordered list of exam scores. Note that we have
+written them as comma-delimited values, a common way of showing the list
+structure. Of course, Python would show this list as
+<code class="docutils literal notranslate"><span class="pre">[54,</span> <span class="pre">26,</span> <span class="pre">93,</span> <span class="pre">17,</span> <span class="pre">77,</span> <span class="pre">31]</span></code>.</p>
+</section>
+<section id="the-unordered-list-abstract-data-type">
+<h2><span class="section-number">10.2. </span>4.20 The Unordered List Abstract Data Type<a class="headerlink" href="#the-unordered-list-abstract-data-type" title="Permalink to this headline">#</a></h2>
+<p>The structure of an unordered list, as described above, is a collection
+of items where each item holds a relative position with respect to the
+others. Some possible unordered list operations are given below.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">List()</span></code> creates a new list that is empty. It needs no parameters
+and returns an empty list.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">add(item)</span></code> adds a new item to the list. It needs the item and
+returns nothing. Assume the item is not already in the list.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">remove(item)</span></code> removes the item from the list. It needs the item
+and modifies the list. Raise an error if the item is not present in the list.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">search(item)</span></code> searches for the item in the list. It needs the item
+and returns a boolean value.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">is_empty()</span></code> tests to see whether the list is empty. It needs no
+parameters and returns a boolean value.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">size()</span></code> returns the number of items in the list. It needs no
+parameters and returns an integer.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">append(item)</span></code> adds a new item to the end of the list making it the
+last item in the collection. It needs the item and returns nothing.
+Assume the item is not already in the list.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">index(item)</span></code> returns the position of item in the list. It needs
+the item and returns the index. Assume the item is in the list.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">insert(pos,</span> <span class="pre">item)</span></code> adds a new item to the list at position pos. It
+needs the item and returns nothing. Assume the item is not already in
+the list and there are enough existing items to have position pos.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pop()</span></code> removes and returns the last item in the list. It needs
+nothing and returns an item. Assume the list has at least one item.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pop(pos)</span></code> removes and returns the item at position pos. It needs
+the position and returns the item. Assume the item is in the list.</p></li>
+</ul>
+</section>
+<section id="implementing-an-unordered-list-linked-lists">
+<h2><span class="section-number">10.3. </span>4.21 Implementing an Unordered List: Linked Lists<a class="headerlink" href="#implementing-an-unordered-list-linked-lists" title="Permalink to this headline">#</a></h2>
+<p>In order to implement an unordered list, we will construct what is
+commonly known as a <strong>linked list</strong>. Recall that we need to be sure that
+we can maintain the relative positioning of the items. However, there is
+no requirement that we maintain that positioning in contiguous memory.
+For example, consider the collection of items shown in
+:ref:<code class="docutils literal notranslate"><span class="pre">Figure</span> <span class="pre">1</span> <span class="pre">&lt;fig_idea&gt;</span></code>. It appears that these values have been placed
+randomly. If we can maintain some explicit information in each item,
+namely the location of the next item (see :ref:<code class="docutils literal notranslate"><span class="pre">Figure</span> <span class="pre">2</span> <span class="pre">&lt;fig_idea2&gt;</span></code>), then the
+relative position of each item can be expressed by simply following the
+link from one item to the next.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.. figure:: Figures/idea.png
+   :align: center
+
+   Figure 1: Items Not Constrained in Their Physical Placement
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.. figure:: Figures/idea2.png
+   :align: center
+
+   Figure 2: Relative Positions Maintained by Explicit Links.
+</pre></div>
+</div>
+<p>It is important to note that the location of the first item of the list
+must be explicitly specified. Once we know where the first item is, the
+first item can tell us where the second is, and so on. The external
+reference is often referred to as the <strong>head</strong> of the list. Similarly,
+the last item needs to know that there is no next item.</p>
+<section id="the-node-class">
+<h3><span class="section-number">10.3.1. </span>4.21 The <code class="docutils literal notranslate"><span class="pre">Node</span></code> Class<a class="headerlink" href="#the-node-class" title="Permalink to this headline">#</a></h3>
+<p>The basic building block for the linked list implementation is the
+<strong>node</strong>. Each node object must hold at least two pieces of information.
+First, the node must contain the list item itself. We will call this the
+<strong>data field</strong> of the node. In addition, each node must hold a reference
+to the next node. :ref:<code class="docutils literal notranslate"><span class="pre">Listing</span> <span class="pre">1</span> <span class="pre">&lt;lst_nodeclass&gt;</span></code> shows the Python
+implementation. To construct a node, you need to supply the initial data
+value for the node. Evaluating the assignment statement below will yield
+a node object containing the value 93 (see :ref:<code class="docutils literal notranslate"><span class="pre">Figure</span> <span class="pre">3</span> <span class="pre">&lt;fig_node&gt;</span></code>). You
+should note that we will typically represent a node object as shown in
+:ref:<code class="docutils literal notranslate"><span class="pre">Figure</span> <span class="pre">4</span> <span class="pre">&lt;fig_node2&gt;</span></code>. Hidden fields <code class="docutils literal notranslate"><span class="pre">_data</span></code> and <code class="docutils literal notranslate"><span class="pre">_next</span></code> of the <code class="docutils literal notranslate"><span class="pre">Node</span></code> class
+are turned into properties and can be accessed as <code class="docutils literal notranslate"><span class="pre">data</span></code> and <code class="docutils literal notranslate"><span class="pre">next</span></code> respectively.</p>
+<p><strong>Listing 1</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Node</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;A node of a linked list&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_data</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="n">node_data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_next</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get node data&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span>
+
+    <span class="k">def</span> <span class="nf">set_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_data</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set node data&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="n">node_data</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_data</span><span class="p">,</span> <span class="n">set_data</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_next</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get next node&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_next</span>
+
+    <span class="k">def</span> <span class="nf">set_next</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_next</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set next node&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_next</span> <span class="o">=</span> <span class="n">node_next</span>
+
+    <span class="nb">next</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_next</span><span class="p">,</span> <span class="n">set_next</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;String&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We create <code class="docutils literal notranslate"><span class="pre">Node</span></code> objects in the usual way.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">temp</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="mi">93</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">temp</span><span class="o">.</span><span class="n">data</span>
+<span class="go">93</span>
+</pre></div>
+</div>
+<p>The special Python reference value <code class="docutils literal notranslate"><span class="pre">None</span></code> will play an important role
+in the <code class="docutils literal notranslate"><span class="pre">Node</span></code> class and later in the linked list itself. A reference
+to <code class="docutils literal notranslate"><span class="pre">None</span></code> will denote the fact that there is no next node. Note in the
+constructor that a node is initially created with <code class="docutils literal notranslate"><span class="pre">next</span></code> set to
+<code class="docutils literal notranslate"><span class="pre">None</span></code>. Since this is sometimes referred to as “grounding the node,”
+we will use the standard ground symbol to denote a reference that is
+referring to <code class="docutils literal notranslate"><span class="pre">None</span></code>. It is always a good idea to explicitly assign
+<code class="docutils literal notranslate"><span class="pre">None</span></code> to your initial next reference values.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.. figure:: Figures/node.png
+   :align: center
+
+   Figure 3: A Node Object Contains the Item and a Reference to the Next Node
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.. figure:: Figures/node2.png
+   :align: center
+
+   Figure 4: A Typical Representation for a Node
+</pre></div>
+</div>
+<p>4.21.2 The <code class="docutils literal notranslate"><span class="pre">Unordered</span> <span class="pre">List</span></code> Class</p>
+<p>As we suggested above, the unordered list will be built from a
+collection of nodes, each linked to the next by explicit references. As
+long as we know where to find the first node (containing the first
+item), each item after that can be found by successively following the
+next links. With this in mind, the <code class="docutils literal notranslate"><span class="pre">UnorderedList</span></code> class must maintain
+a reference to the first node. :ref:<code class="docutils literal notranslate"><span class="pre">Listing</span> <span class="pre">2</span> <span class="pre">&lt;lst_listclass&gt;</span></code> shows the
+constructor. Note that each list object will maintain a single reference
+to the head of the list.</p>
+<p><strong>Listing 2</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">UnorderedList</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">=</span> <span class="kc">None</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Initially when we construct a list, there are no items. The assignment
+statement</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">my_list</span> <span class="o">=</span> <span class="n">UnorderedList</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>creates the linked list representation shown in
+:ref:<code class="docutils literal notranslate"><span class="pre">Figure</span> <span class="pre">5</span> <span class="pre">&lt;fig_initlinkedlist&gt;</span></code>. As we discussed in the <code class="docutils literal notranslate"><span class="pre">Node</span></code> class, the
+special reference <code class="docutils literal notranslate"><span class="pre">None</span></code> will again be used to state that the head of
+the list does not refer to anything. Eventually, the example list given
+earlier will be represented by a linked list as shown in
+:ref:<code class="docutils literal notranslate"><span class="pre">Figure</span> <span class="pre">6</span> <span class="pre">&lt;fig_linkedlist&gt;</span></code>. The head of the list refers to the first node
+which contains the first item of the list. In turn, that node holds a
+reference to the next node (the next item) and so on. It is very
+important to note that the list class itself does not contain any node
+objects. Instead it contains a single reference to only the first node
+in the linked structure.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.. figure:: Figures/initlinkedlist.png
+   :align: center
+
+   Figure 5: An Empty List
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.. figure:: Figures/linkedlist.png
+   :align: center
+
+   Figure 6: A Linked List of Integers
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">is_empty</span></code> method, shown in :ref:<code class="docutils literal notranslate"><span class="pre">Listing</span> <span class="pre">3</span> <span class="pre">&lt;lst_isempty&gt;</span></code>, simply checks to
+see if the head of the list is a reference to <code class="docutils literal notranslate"><span class="pre">None</span></code>. The result of
+the boolean expression <code class="docutils literal notranslate"><span class="pre">self.head</span> <span class="pre">==</span> <span class="pre">None</span></code> will only be true if there
+are no nodes in the linked list. Since a new list is empty, the
+constructor and the check for empty must be consistent with one another.
+This shows the advantage to using the reference <code class="docutils literal notranslate"><span class="pre">None</span></code> to denote the
+“end” of the linked structure. In Python, <code class="docutils literal notranslate"><span class="pre">None</span></code> can be compared to
+any reference. Two references are equal if they both refer to the same
+object. We will use this often in our remaining methods.</p>
+<p><strong>Listing 3</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">is_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">==</span> <span class="kc">None</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>So, how do we get items into our list? We need to implement the <code class="docutils literal notranslate"><span class="pre">add</span></code>
+method. However, before we can do that, we need to address the important
+question of where in the linked list to place the new item. Since this
+list is unordered, the specific location of the new item with respect to
+the other items already in the list is not important. The new item can
+go anywhere. With that in mind, it makes sense to place the new item in
+the easiest location possible.</p>
+<p>Recall that the linked list structure provides us with only one entry
+point, the head of the list. All of the other nodes can only be reached
+by accessing the first node and then following <code class="docutils literal notranslate"><span class="pre">next</span></code> links. This
+means that the easiest place to add the new node is right at the head,
+or beginning, of the list. In other words, we will make the new item the
+first item of the list and the existing items will need to be linked to
+this new first item so that they follow.</p>
+<p>The linked list shown in :ref:<code class="docutils literal notranslate"><span class="pre">Figure</span> <span class="pre">6</span> <span class="pre">&lt;fig_linkedlist&gt;</span></code> was built by calling
+the <code class="docutils literal notranslate"><span class="pre">add</span></code> method a number of times.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">my_list</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">31</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">my_list</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">77</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">my_list</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">my_list</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">93</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">my_list</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">26</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">my_list</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">54</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Note that since 31 is the first item added to the list, it will
+eventually be the last node on the linked list as every other item is
+added ahead of it. Also, since 54 is the last item added, it will become
+the data value in the first node of the linked list.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">add</span></code> method is shown in :ref:<code class="docutils literal notranslate"><span class="pre">Listing</span> <span class="pre">4</span> <span class="pre">&lt;lst_add&gt;</span></code>. Each item of the list
+must reside in a node object. Line 2 creates a new node and places the
+item as its data. Now we must complete the process by linking the new
+node into the existing structure. This requires two steps as shown in
+:ref:<code class="docutils literal notranslate"><span class="pre">Figure</span> <span class="pre">7</span> <span class="pre">&lt;fig_addtohead&gt;</span></code>. Step 1 (line 3) changes the <code class="docutils literal notranslate"><span class="pre">next</span></code> reference
+of the new node to refer to the old first node of the list. Now that the
+rest of the list has been properly attached to the new node, we can
+modify the head of the list to refer to the new node. The assignment
+statement in line 4 sets the head of the list.</p>
+<p>The order of the two steps described above is very important. What
+happens if the order of line 3 and line 4 is reversed? If the
+modification of the head of the list happens first, the result can be
+seen in :ref:<code class="docutils literal notranslate"><span class="pre">Figure</span> <span class="pre">8</span> <span class="pre">&lt;fig_wrongorder&gt;</span></code>. Since the head was the only external
+reference to the list nodes, all of the original nodes are lost and can
+no longer be accessed.</p>
+<p><strong>Listing 4</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+    <span class="n">temp</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+    <span class="n">temp</span><span class="o">.</span><span class="n">set_next</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">head</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">=</span> <span class="n">temp</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.. figure:: Figures/addtohead.png
+   :align: center
+
+   Figure 7: Adding a New Node is a Two-Step Process
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.. figure:: Figures/wrongorder.png
+   :align: center
+
+   Figure 8: Result of Reversing the Order of the Two Steps
+</pre></div>
+</div>
+<p>The next methods that we will implement–<code class="docutils literal notranslate"><span class="pre">size</span></code>, <code class="docutils literal notranslate"><span class="pre">search</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">remove</span></code>–are all based on a technique known as <strong>linked list
+traversal</strong>. Traversal refers to the process of systematically visiting
+each node. To do this we use an external reference that starts at the
+first node in the list. As we visit each node, we move the reference to
+the next node by “traversing” the next reference.</p>
+<p>To implement the <code class="docutils literal notranslate"><span class="pre">size</span></code> method, we need to traverse the linked list
+and keep a count of the number of nodes that occurred.
+:ref:<code class="docutils literal notranslate"><span class="pre">Listing</span> <span class="pre">5</span> <span class="pre">&lt;lst_length&gt;</span></code> shows the Python code for counting the number of
+nodes in the list. The external reference is called <code class="docutils literal notranslate"><span class="pre">current</span></code> and is
+initialized to the head of the list in line 2. At the start of the
+process we have not seen any nodes so the count is set to :math:<code class="docutils literal notranslate"><span class="pre">0</span></code>.
+Lines 4–6 actually implement the traversal. As long as the current
+reference has not seen the end of the list (<code class="docutils literal notranslate"><span class="pre">None</span></code>), we move current
+along to the next node via the assignment statement in line 6. Again,
+the ability to compare a reference to <code class="docutils literal notranslate"><span class="pre">None</span></code> is very useful. Every
+time current moves to a new node, we add :math:<code class="docutils literal notranslate"><span class="pre">1</span></code> to <code class="docutils literal notranslate"><span class="pre">count</span></code>.
+Finally, <code class="docutils literal notranslate"><span class="pre">count</span></code> gets returned after the iteration stops.
+:ref:<code class="docutils literal notranslate"><span class="pre">Figure</span> <span class="pre">9</span> <span class="pre">&lt;fig_traversal&gt;</span></code> shows this process as it proceeds down the list.</p>
+<p><strong>Listing 5</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">current</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="n">count</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">next</span>
+
+    <span class="k">return</span> <span class="n">count</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.. figure:: Figures/traversal.png
+   :align: center
+
+   Figure 9: Traversing the Linked List from the Head to the End
+</pre></div>
+</div>
+<p>Searching for a value in a linked list implementation of an unordered
+list also uses the traversal technique. As we visit each node in the
+linked list we will ask whether the data stored there matches the item
+we are looking for. In this case, however, we may not have to traverse
+all the way to the end of the list. In fact, if we do get to the end of
+the list, that means that the item we are looking for must not be
+present. Also, if we do find the item, there is no need to continue.</p>
+<p>:ref:<code class="docutils literal notranslate"><span class="pre">Listing</span> <span class="pre">6</span> <span class="pre">&lt;lst_search&gt;</span></code> shows the implementation for the <code class="docutils literal notranslate"><span class="pre">search</span></code> method.
+As in the <code class="docutils literal notranslate"><span class="pre">size</span></code> method, the traversal is initialized to start at
+the head of the list (line 2). We continue to iterate over the list as long as there are
+more nodes to visit. The question in line 4 asks whether
+the data item is present in the current node. If so, we return <code class="docutils literal notranslate"><span class="pre">True</span></code> immediately.</p>
+<p><strong>Listing 6</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+    <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span>
+    <span class="k">while</span> <span class="n">current</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">current</span><span class="o">.</span><span class="n">data</span> <span class="o">==</span> <span class="n">item</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">next</span>
+
+    <span class="k">return</span> <span class="kc">False</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>As an example, consider invoking the <code class="docutils literal notranslate"><span class="pre">search</span></code> method looking for the
+item 17.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">my_list</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<p>Since 17 is in the list, the traversal process needs to move only to the
+node containing 17. At that point, the condition in line 4 becomes <code class="docutils literal notranslate"><span class="pre">True</span></code> and
+we return the result of the search.
+This process can be seen in :ref:<code class="docutils literal notranslate"><span class="pre">Figure</span> <span class="pre">10</span> <span class="pre">&lt;fig_searchpic&gt;</span></code>.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.. figure:: Figures/search.png
+   :align: center
+
+   Figure 10: Successful Search for the Value 17
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">remove</span></code> method requires two logical steps. First, we need to
+traverse the list looking for the item we want to remove. Once we find
+the item , we must remove it. If the item is not in the list, our method
+should raise a <code class="docutils literal notranslate"><span class="pre">ValueError</span></code>.</p>
+<p>The first step is very similar to <code class="docutils literal notranslate"><span class="pre">search</span></code>. Starting with an external
+reference set to the head of the list, we traverse the links until we
+discover the item we are looking for.</p>
+<p>When the item is found and we break out of the loop, <code class="docutils literal notranslate"><span class="pre">current</span></code> will be a reference to the
+node containing the item to be removed. But how do we remove it? One
+possibility would be to replace the value of the item with some marker
+that suggests that the item is no longer present. The problem with this
+approach is the number of nodes will no longer match the number of
+items. It would be much better to remove the item by removing the entire
+node.</p>
+<p>In order to remove the node containing the item, we need to modify the
+link in the previous node so that it refers to the node that comes after
+<code class="docutils literal notranslate"><span class="pre">current</span></code>. Unfortunately, there is no way to go backward in the linked
+list. Since <code class="docutils literal notranslate"><span class="pre">current</span></code> refers to the node ahead of the node where we
+would like to make the change, it is too late to make the necessary
+modification.</p>
+<p>The solution to this dilemma is to use two external references as we
+traverse down the linked list. <code class="docutils literal notranslate"><span class="pre">current</span></code> will behave just as it did
+before, marking the current location of the traverse. The new reference,
+which we will call <code class="docutils literal notranslate"><span class="pre">previous</span></code>, will always travel one node behind
+<code class="docutils literal notranslate"><span class="pre">current</span></code>. That way, when <code class="docutils literal notranslate"><span class="pre">current</span></code> stops at the node to be removed,
+<code class="docutils literal notranslate"><span class="pre">previous</span></code> will be referring to the proper place in the linked list
+for the modification.</p>
+<p>:ref:<code class="docutils literal notranslate"><span class="pre">Listing</span> <span class="pre">7</span> <span class="pre">&lt;lst_remove&gt;</span></code> shows the complete <code class="docutils literal notranslate"><span class="pre">remove</span></code> method. Lines 2–3
+assign initial values to the two references. Note that <code class="docutils literal notranslate"><span class="pre">current</span></code>
+starts out at the list head as in the other traversal examples.
+<code class="docutils literal notranslate"><span class="pre">previous</span></code>, however, is assumed to always travel one node behind
+current. For this reason, <code class="docutils literal notranslate"><span class="pre">previous</span></code> starts out with a value of
+<code class="docutils literal notranslate"><span class="pre">None</span></code> since there is no node before the head (see
+:ref:<code class="docutils literal notranslate"><span class="pre">Figure</span> <span class="pre">11</span> <span class="pre">&lt;fig_removeinit&gt;</span></code>).</p>
+<p>In lines 6–7 we ask whether the item stored in the current node is the
+item we wish to remove. If so, we break out of the loop. If we
+do not find the item, <code class="docutils literal notranslate"><span class="pre">previous</span></code> and <code class="docutils literal notranslate"><span class="pre">current</span></code> must both be moved
+one node ahead. Again, the order of these two statements is crucial.
+<code class="docutils literal notranslate"><span class="pre">previous</span></code> must first be moved one node ahead to the location of
+<code class="docutils literal notranslate"><span class="pre">current</span></code>. At that point, <code class="docutils literal notranslate"><span class="pre">current</span></code> can be moved. This process is
+often referred to as “inch-worming” as <code class="docutils literal notranslate"><span class="pre">previous</span></code> must catch up to
+<code class="docutils literal notranslate"><span class="pre">current</span></code> before <code class="docutils literal notranslate"><span class="pre">current</span></code> moves ahead. :ref:<code class="docutils literal notranslate"><span class="pre">Figure</span> <span class="pre">12</span> <span class="pre">&lt;fig_prevcurr&gt;</span></code> shows
+the movement of <code class="docutils literal notranslate"><span class="pre">previous</span></code> and <code class="docutils literal notranslate"><span class="pre">current</span></code> as they progress down the
+list looking for the node containing the value 17.</p>
+<p><strong>Listing 7</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+    <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span>
+    <span class="n">previous</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">while</span> <span class="n">current</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">current</span><span class="o">.</span><span class="n">data</span> <span class="o">==</span> <span class="n">item</span><span class="p">:</span>
+            <span class="k">break</span>
+        <span class="n">previous</span> <span class="o">=</span> <span class="n">current</span>
+        <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">next</span>
+
+    <span class="k">if</span> <span class="n">current</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> is not in the list&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">item</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">previous</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">next</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">previous</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">next</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.. figure:: Figures/removeinit.png
+   :align: center
+
+   Figure 11: Initial Values for the ``previous`` and ``current`` References
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.. figure:: Figures/prevcurr.png
+   :align: center
+
+   Figure 12: ``previous`` and ``current`` Move Down the List
+</pre></div>
+</div>
+<p>Once the searching step of the <code class="docutils literal notranslate"><span class="pre">remove</span></code> has been completed, we need to
+remove the node from the linked list. :ref:<code class="docutils literal notranslate"><span class="pre">Figure</span> <span class="pre">13</span> <span class="pre">&lt;fig_removepic1&gt;</span></code> shows the
+link that must be modified. However, there is a special case that needs
+to be addressed. If the item to be removed happens to be the first item
+in the list, then <code class="docutils literal notranslate"><span class="pre">current</span></code> will reference the first node in the
+linked list. This also means that <code class="docutils literal notranslate"><span class="pre">previous</span></code> will be <code class="docutils literal notranslate"><span class="pre">None</span></code>. We said
+earlier that <code class="docutils literal notranslate"><span class="pre">previous</span></code> would be referring to the node whose next
+reference needs to be modified in order to complete the remove. In this
+case, it is not <code class="docutils literal notranslate"><span class="pre">previous</span></code> but rather the head of the list that needs
+to be changed (see :ref:<code class="docutils literal notranslate"><span class="pre">Figure</span> <span class="pre">14</span> <span class="pre">&lt;fig_removehead&gt;</span></code>). Another special case occurs if
+the item is not in the list. In that case <code class="docutils literal notranslate"><span class="pre">current</span> <span class="pre">is</span> <span class="pre">None</span></code> evaluates to <code class="docutils literal notranslate"><span class="pre">True</span></code>
+and an error is raised.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.. figure:: Figures/remove.png
+   :align: center
+
+   Figure 13: Removing an Item from the Middle of the List
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.. figure:: Figures/remove2.png
+   :align: center
+
+   Figure 14: Removing the First Node from the List
+</pre></div>
+</div>
+<p>Line 13 allows us to check whether we are dealing with the special case
+described above. If <code class="docutils literal notranslate"><span class="pre">previous</span></code> did not move, it will still have the
+value <code class="docutils literal notranslate"><span class="pre">None</span></code> when the loop breaks. In that case
+(line 14) the head of the list is modified to refer to the node after
+the current node, in effect removing the first node from the linked
+list. However, if previous is not <code class="docutils literal notranslate"><span class="pre">None</span></code>, the node to be removed is
+somewhere down the linked list structure. In this case the previous
+reference is providing us with the node whose next reference must be
+changed. Line 16 modifies the <code class="docutils literal notranslate"><span class="pre">next</span></code> property of the <code class="docutils literal notranslate"><span class="pre">previous</span></code> to
+accomplish the removal. Note that in both cases the destination of the
+reference change is <code class="docutils literal notranslate"><span class="pre">current.next</span></code>. One question that often
+arises is whether the two cases shown here will also handle the
+situation where the item to be removed is in the last node of the linked
+list. We leave that for you to consider.</p>
+<p>You can try out the <code class="docutils literal notranslate"><span class="pre">UnorderedList</span></code> class in ActiveCode 1.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.. activecode:: unorderedlistcomplete
+    :caption: The Complete UnorderedList Class
+    :hidecode:
+    :nocodelens:
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Node</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;A node of a linked list&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_data</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="n">node_data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_next</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get node data&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span>
+
+    <span class="k">def</span> <span class="nf">set_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_data</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set node data&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="n">node_data</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_data</span><span class="p">,</span> <span class="n">set_data</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_next</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get next node&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_next</span>
+
+    <span class="k">def</span> <span class="nf">set_next</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_next</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set next node&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_next</span> <span class="o">=</span> <span class="n">node_next</span>
+
+    <span class="nb">next</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_next</span><span class="p">,</span> <span class="n">set_next</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;String&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">UnorderedList</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">is_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">==</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+        <span class="n">temp</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+        <span class="n">temp</span><span class="o">.</span><span class="n">set_next</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">head</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">=</span> <span class="n">temp</span>
+
+    <span class="k">def</span> <span class="nf">size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="n">current</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">count</span> <span class="o">=</span> <span class="n">count</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">next</span>
+
+        <span class="k">return</span> <span class="n">count</span>
+
+    <span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+        <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span>
+        <span class="k">while</span> <span class="n">current</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">current</span><span class="o">.</span><span class="n">data</span> <span class="o">==</span> <span class="n">item</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">True</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">next</span>
+
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+        <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span>
+        <span class="n">previous</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">while</span> <span class="n">current</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">current</span><span class="o">.</span><span class="n">data</span> <span class="o">==</span> <span class="n">item</span><span class="p">:</span>
+                <span class="k">break</span>
+            <span class="n">previous</span> <span class="o">=</span> <span class="n">current</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">next</span>
+
+        <span class="k">if</span> <span class="n">current</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> is not in the list&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">item</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">previous</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">next</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">previous</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">next</span>
+
+
+<span class="n">my_list</span> <span class="o">=</span> <span class="n">UnorderedList</span><span class="p">()</span>
+
+<span class="n">my_list</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">31</span><span class="p">)</span>
+<span class="n">my_list</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">77</span><span class="p">)</span>
+<span class="n">my_list</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span>
+<span class="n">my_list</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">93</span><span class="p">)</span>
+<span class="n">my_list</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">26</span><span class="p">)</span>
+<span class="n">my_list</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">54</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">my_list</span><span class="o">.</span><span class="n">size</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">my_list</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="mi">93</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">my_list</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>
+
+<span class="n">my_list</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">my_list</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">my_list</span><span class="o">.</span><span class="n">size</span><span class="p">())</span>
+
+<span class="n">my_list</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="mi">54</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">my_list</span><span class="o">.</span><span class="n">size</span><span class="p">())</span>
+<span class="n">my_list</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="mi">93</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">my_list</span><span class="o">.</span><span class="n">size</span><span class="p">())</span>
+<span class="n">my_list</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="mi">31</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">my_list</span><span class="o">.</span><span class="n">size</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">my_list</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="mi">93</span><span class="p">))</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">my_list</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="mi">27</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">ve</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">ve</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6
+True
+False
+True
+7
+6
+5
+4
+False
+27 is not in the list
+</pre></div>
+</div>
+</div>
+</div>
+<p>The remaining methods <code class="docutils literal notranslate"><span class="pre">append</span></code>, <code class="docutils literal notranslate"><span class="pre">insert</span></code>, <code class="docutils literal notranslate"><span class="pre">index</span></code>, and <code class="docutils literal notranslate"><span class="pre">pop</span></code> are
+left as exercises. Remember that each of these must take into account
+whether the change is taking place at the head of the list or someplace
+else. Also, <code class="docutils literal notranslate"><span class="pre">insert</span></code>, <code class="docutils literal notranslate"><span class="pre">index</span></code>, and <code class="docutils literal notranslate"><span class="pre">pop</span></code> require that we name the
+positions of the list. We will assume that position names are integers
+starting with 0.</p>
+<p><strong>Self Check</strong></p>
+<p>Part I:  Implement the append method for UnorderedList.  What is the time complexity of the method you created?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Node</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;A node of a linked list&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_data</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="n">node_data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_next</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get node data&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span>
+
+    <span class="k">def</span> <span class="nf">set_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_data</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set node data&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="n">node_data</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_data</span><span class="p">,</span> <span class="n">set_data</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_next</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get next node&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_next</span>
+
+    <span class="k">def</span> <span class="nf">set_next</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_next</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set next node&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_next</span> <span class="o">=</span> <span class="n">node_next</span>
+
+    <span class="nb">next</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_next</span><span class="p">,</span> <span class="n">set_next</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;String&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">UnorderedList</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">is_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">==</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+        <span class="n">temp</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+        <span class="n">temp</span><span class="o">.</span><span class="n">set_next</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">head</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">=</span> <span class="n">temp</span>
+
+    <span class="k">def</span> <span class="nf">size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="n">current</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">count</span> <span class="o">=</span> <span class="n">count</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">next</span>
+
+        <span class="k">return</span> <span class="n">count</span>
+
+    <span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+        <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span>
+        <span class="k">while</span> <span class="n">current</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">current</span><span class="o">.</span><span class="n">data</span> <span class="o">==</span> <span class="n">item</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">True</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">next</span>
+
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+        <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span>
+        <span class="n">previous</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">while</span> <span class="n">current</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">current</span><span class="o">.</span><span class="n">data</span> <span class="o">==</span> <span class="n">item</span><span class="p">:</span>
+                <span class="k">break</span>
+            <span class="n">previous</span> <span class="o">=</span> <span class="n">current</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">next</span>
+
+        <span class="k">if</span> <span class="n">current</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> is not in the list&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">item</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">previous</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">next</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">previous</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">next</span>
+
+
+<span class="n">my_list</span> <span class="o">=</span> <span class="n">UnorderedList</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Part II:  In the previous problem, you most likely created an append method that was :math:<code class="docutils literal notranslate"><span class="pre">O(n)</span></code>  If you add an instance variable to the UnorderedList class you can create an append method that is :math:<code class="docutils literal notranslate"><span class="pre">O(1)</span></code>.  Modify your append method to be :math:<code class="docutils literal notranslate"><span class="pre">O(1)</span></code>  Be Careful!  To really do this correctly you will need to consider a couple of special cases that may require you to make a modification to the add method as well.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Node</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;A node of a linked list&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_data</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="n">node_data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_next</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get node data&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span>
+
+    <span class="k">def</span> <span class="nf">set_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_data</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set node data&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="n">node_data</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_data</span><span class="p">,</span> <span class="n">set_data</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_next</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get next node&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_next</span>
+
+    <span class="k">def</span> <span class="nf">set_next</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_next</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set next node&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_next</span> <span class="o">=</span> <span class="n">node_next</span>
+
+    <span class="nb">next</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_next</span><span class="p">,</span> <span class="n">set_next</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;String&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">UnorderedList</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">is_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">==</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+        <span class="n">temp</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+        <span class="n">temp</span><span class="o">.</span><span class="n">set_next</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">head</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">=</span> <span class="n">temp</span>
+
+    <span class="k">def</span> <span class="nf">size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="n">current</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">count</span> <span class="o">=</span> <span class="n">count</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">next</span>
+
+        <span class="k">return</span> <span class="n">count</span>
+
+    <span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+        <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span>
+        <span class="k">while</span> <span class="n">current</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">current</span><span class="o">.</span><span class="n">data</span> <span class="o">==</span> <span class="n">item</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">True</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">next</span>
+
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+        <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span>
+        <span class="n">previous</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">while</span> <span class="n">current</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">current</span><span class="o">.</span><span class="n">data</span> <span class="o">==</span> <span class="n">item</span><span class="p">:</span>
+                <span class="k">break</span>
+            <span class="n">previous</span> <span class="o">=</span> <span class="n">current</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">next</span>
+
+        <span class="k">if</span> <span class="n">current</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> is not in the list&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">item</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">previous</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">next</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">previous</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">next</span>
+
+
+<span class="n">my_list</span> <span class="o">=</span> <span class="n">UnorderedList</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="discussion-questions">
+<h3><span class="section-number">10.3.2. </span>Discussion Questions<a class="headerlink" href="#discussion-questions" title="Permalink to this headline">#</a></h3>
+<ol class="simple">
+<li><p>What is the result of carrying out both steps of the linked list
+<code class="docutils literal notranslate"><span class="pre">add</span></code> method in reverse order? What kind of reference results? What
+types of problems may result?</p></li>
+<li><p>Explain how the linked list <code class="docutils literal notranslate"><span class="pre">remove</span></code> method works when the item to
+be removed is in the last node.</p></li>
+<li><p>Explain how the <code class="docutils literal notranslate"><span class="pre">remove</span></code> method works when the item is in the
+<em>only</em> node in the linked list.</p></li>
+</ol>
+</section>
+<section id="id2">
+<h3><span class="section-number">10.3.3. </span>프로그래밍 실습 문제<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
+<ol class="simple">
+<li><p>To implement the <code class="docutils literal notranslate"><span class="pre">size</span></code> method, we counted the number of nodes in
+the list. An alternative strategy would be to store the number of
+nodes in the list as an additional piece of data in the head of the
+list. Modify the <code class="docutils literal notranslate"><span class="pre">UnorderedList</span></code> class to include this information
+and rewrite the <code class="docutils literal notranslate"><span class="pre">size</span></code> method.</p></li>
+<li><p>Implement the <code class="docutils literal notranslate"><span class="pre">remove</span></code> method so that it works correctly in the
+case where the item is not in the list.</p></li>
+<li><p>Modify the list classes to allow duplicates. Which methods will be
+impacted by this change?</p></li>
+<li><p>Implement the <code class="docutils literal notranslate"><span class="pre">__str__</span></code> method in the UnorderedList class. What
+would be a good string representation for a list?</p></li>
+<li><p>Implement <code class="docutils literal notranslate"><span class="pre">__str__</span></code> method so that lists are displayed the
+Python way (with square brackets).</p></li>
+<li><p>Implement the remaining operations defined in the UnorderedList ADT
+(append, index, pop, insert).</p></li>
+<li><p>Implement a slice method for the <code class="docutils literal notranslate"><span class="pre">UnorderedList</span></code> class. It should
+take two parameters, <code class="docutils literal notranslate"><span class="pre">start</span></code> and <code class="docutils literal notranslate"><span class="pre">stop</span></code>, and return a copy of the
+list starting at the <code class="docutils literal notranslate"><span class="pre">start</span></code> position and going up to but not
+including the <code class="docutils literal notranslate"><span class="pre">stop</span></code> position.</p></li>
+<li><p>Implement a stack using linked lists.</p></li>
+<li><p>Implement a queue using linked lists.</p></li>
+<li><p>Implement a deque using linked lists.</p></li>
+<li><p>Design and implement an experiment that will compare the performance
+of a Python list with a list implemented as a linked list.</p></li>
+<li><p>Design and implement an experiment that will compare the performance
+of the Python list based stack and queue with the linked list
+implementation.</p></li>
+<li><p>The linked list implementation given above is called a singly linked
+list because each node has a single reference to the next node in
+sequence. An alternative implementation is known as a doubly linked
+list. In this implementation, each node has a reference to the next
+node (commonly called next) as well as a reference to the preceding
+node (commonly called back). The head reference also contains two
+references, one to the first node in the linked list and one to the
+last. Code this implementation in Python.</p></li>
+</ol>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="deques.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">9. </span>기초 추상 자료형 구현 3부: 덱</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="ordered_lists.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">11. </span>기초 추상 자료형 구현 5부: 정렬 리스트</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By 코딩알지<br/>
+  
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
