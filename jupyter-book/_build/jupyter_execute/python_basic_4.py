@@ -687,7 +687,7 @@ x.set_hidden2(11)
 x._hidden2
 
 
-# **예제: 수도쿠**
+# **예제: 수도쿠 게임서의 게터와 세터 활용**
 
 # 수도쿠를 구현할 때 빈칸에 넣을 숫자를 입력하면 (눈에 보이는) 앱의 백엔드에서
 # 일종의 세터가 작동해서 지정된 위치한 사용자 입력한 값을 지정한다.
@@ -821,10 +821,10 @@ oneD2 = OneDArray([11, 22, 33])
 len(oneD1)
 
 
-# **`mean()` 메서드 지원**
+# **평균값과 표준편차**
 
 # `len()` 함수를 이용하여 넘파이 어레이 객체가 제공하는 다양한 메서드를 구현할 수 있다.
-# 예를 들어 아래 코드는 항목들의 평균값을 계산하는 메서드를 제공한다.
+# 예를 들어 아래 코드는 항목들의 평균값과 표준편차를 계산하는 메서드를 제공한다.
 
 # In[44]:
 
@@ -867,11 +867,21 @@ class OneDArray:
             
         return sum/len(self)
     
+    def std(self):
+        """항목들의 표준편차"""
+        sum = 0
+        for item in self.items:
+            sum += (item - self.mean())**2
+
+        return (sum/len(self))**(1/2)
+    
 oneD1 = OneDArray([2, 3, 4])
 oneD2 = OneDArray([11, 22, 33])
 
 
-# 이제 평균값을 계산할 수 있다.
+# 이제 평균값과 표준편차를 계산할 수 있다.
+
+# - 평균값
 
 # In[45]:
 
@@ -883,6 +893,20 @@ oneD1.mean()
 
 
 oneD2.mean()
+
+
+# - 표준편차
+
+# In[47]:
+
+
+oneD1.std()
+
+
+# In[48]:
+
+
+oneD2.std()
 
 
 # ### `for` 반복문 지원
@@ -902,11 +926,11 @@ oneD2.mean()
 
 # 아래에서 처럼 `__iter__()`와 `__next__()` 메서드가 적절하게 선언되어야 한다.
 # 
-# - `__iter__()` 메서드: 반복적으로 항목을 생성할 수 있는 객체인 이터레이터(iterator) 생성
-# - `__next__()` 메서드: 이터레이터에 포함되는 메서드이며 지정된 순서에 따라 항목을 반환함.
+# - `__iter__()` 메서드: 반복적으로 항목을 생성할 수 있는 객체인 **이터레이터**(iterator) 생성
+# - `__next__()` 메서드: **이터레이터에 기본으로 포함되는 메서드**이며 지정된 순서에 따라 항목을 반환함.
 #     함수 본체에서 사용되는 `count`, `max_repeats` 인스턴스 변수는 생성자에서 선언되도록 함.
 
-# In[47]:
+# In[49]:
 
 
 class OneDArray:
@@ -948,6 +972,14 @@ class OneDArray:
             
         return sum/len(self)
     
+    def std(self):
+        """항목들의 표준편차"""
+        sum = 0
+        for item in self.items:
+            sum += (item - self.mean())**2
+
+        return (sum/len(self))**(1/2)
+
     def __iter__(self):
         return self
     
@@ -965,13 +997,13 @@ oneD2 = OneDArray([11, 22, 33])
 
 # 이제 `for` 반복문이 지원된다.
 
-# In[48]:
+# In[50]:
 
 
 oneD3 = oneD1 + oneD2
 
 
-# In[49]:
+# In[51]:
 
 
 for x in oneD3:
@@ -980,7 +1012,7 @@ for x in oneD3:
 
 # 그런데 `for` 반복문을 한 번만 사용할 수 있다.
 
-# In[50]:
+# In[52]:
 
 
 for x in oneD3:
@@ -1009,7 +1041,7 @@ for x in oneD3:
 
 # `for` 문을 다시 사용하려면 객체를 새로 생성해야 한다.
 
-# In[51]:
+# In[53]:
 
 
 oneD3 = oneD1 + oneD2
@@ -1047,7 +1079,7 @@ for x in oneD3:
 # - `__getitem__()` 메서드: 대괄호 인덱싱 지원
 # - `__setitem__()` 메서드: 특정 인덱스 항목 업데이트
 
-# In[52]:
+# In[54]:
 
 
 class OneDArray:
@@ -1087,6 +1119,14 @@ class OneDArray:
             
         return sum/len(self)
     
+    def std(self):
+        """항목들의 표준편차"""
+        sum = 0
+        for item in self.items:
+            sum += (item - self.mean())**2
+
+        return (sum/len(self))**(1/2)
+
     def __iter__(self):
         return self
     
@@ -1108,19 +1148,23 @@ oneD1 = OneDArray([2, 3, 4])
 oneD2 = OneDArray([11, 22, 33])
 
 
-# In[53]:
+# 인덱싱이 작동한다.
+
+# In[55]:
 
 
 oneD2[0]
 
 
-# In[54]:
+# 항목 업데이트도 된다.
+
+# In[56]:
 
 
 oneD2[0] = 100
 
 
-# In[55]:
+# In[57]:
 
 
 oneD2
@@ -1128,19 +1172,19 @@ oneD2
 
 # __슬라이싱__(slicing)도 지원한다.
 
-# In[56]:
+# In[58]:
 
 
 oneD2[1:3]
 
 
-# In[57]:
+# In[59]:
 
 
 oneD2[0:3]
 
 
-# In[58]:
+# In[60]:
 
 
 oneD2[0:3:2]
@@ -1149,10 +1193,11 @@ oneD2[0:3:2]
 # **이터러블 자료형과 `__getitem__()` 메서드**
 
 # `__getitem_()` 메서드를 지원하는 클래스는 자동으로 이터레이터가 된다. 
+# 즉, `__iter__()` 메서드가 자동으로 지원된다.
 # 아래에서 확인할 수 있듯이 `__iter__()` 와 `__next__()` 메서드가 없어도
 # `for` 반복문이 작동한다.
 
-# In[59]:
+# In[61]:
 
 
 class OneDArray:
@@ -1213,22 +1258,23 @@ oneD1 = OneDArray([2, 3, 4])
 oneD2 = OneDArray([11, 22, 33])
 
 
-# In[60]:
+# In[62]:
 
 
 oneD3 = oneD1 + oneD2
 
 
-# In[61]:
+# In[63]:
 
 
 for x in oneD3:
     print(x)
 
 
-# 이와 더불어 객체를 새로 생성할 필요없이 반복문을 계속해서 활용할 수도 있다.
+# `__iter__()` 와 `__next__()`를 사용하는 경우와는 다르게
+# 객체를 새로 생성할 필요없이 반복문을 계속해서 활용할 수도 있다.
 
-# In[62]:
+# In[64]:
 
 
 for x in oneD3:
@@ -1239,14 +1285,17 @@ for x in oneD3:
 
 # __참고__: 아래 내용은 Vicent Driessen의 
 # [Iterables vs. Iterators vs. Generators](https://nvie.com/posts/iterators-vs-generators/)
-# 블로그 내용을 참조합니다.
+# 내용을 참고합니다.
 
 # ### 이터러블 자료형과 이터레이터
 
 # __이터러블__(iterable) 자료형은 `__iter__()` 메서드를 지원하는 자료형이다.
-# `__iter__()` 메서드는 이터러블 객체의 항목들을 지정된 순서대로
-# 반환할 수 있는 능력을 갖춘 `__next__()` 메서드를 지원하는 __이터레이터__(iterator)를 
-# 필요할 때 내부적으로 생성해서 반복문에 활용한다(아래 그림 참조).
+# `__iter__()` 메서드를 실행하면 
+# 항목들을 지정된 순서대로 반환할 수 있는 능력을 갖춘 `__next__()` 메서드가
+# 포함된 __이터레이터__(iterator) 객체가 생성된다(아래 그림 참고).
+# 
+# - `__iter__()` 메서드는 `for` 반복문을 실행할 때 자동 실행되어 `__next__()` 메서드를 생성한다.
+# - 생성된 `__next__()` 메서드는 이터러블 객체에 포함된 항목을 하나씩 반환하는 작업을 수행한다.
 
 # <div align="center"><img src="https://nvie.com/img/iterable-vs-iterator.png" style="width:600px;"></div>
 # 
@@ -1254,15 +1303,16 @@ for x in oneD3:
 
 # ### 제너레이터
 
-# __제너레이터__(generator)는 간단한 방식으로 구현할 수 있는 이터레이터이며,
-# 크게 두 가지 방식으로 생성된다.
+# **제너레이터**(generator)는 특별한 이터레이터이며,
+# 다음 두 가지 방식으로 생성된다.
 # 
 # - 제너레이터 함수 활용
 # - 제너레이터 표현식 활용
 # 
 # 이터러블, 이터레이터, 제너레이터 사이의 관계는 다음과 같다.
 
-# <div align="center"><img src="https://nvie.com/img/relationships.png" style="width:700px;"></div>
+# 
+# <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/ch04-iterables-relationships.png" style="width:700px;"></div>
 # 
 # 그림 출처: [Iterables vs. Iterators vs. Generators](https://nvie.com/posts/iterators-vs-generators/)
 
@@ -1270,11 +1320,13 @@ for x in oneD3:
 
 # 아래 코드는 피보나찌 수열을 무한정 생성하는 제너레이터를 정의한다.
 # 
-# - `yield`: `return` 키워드 역할 수행. 하지만 실행을 멈추게 하지는 않음.
-# - 한 번 실행될 때마다 지정된 순서로 특정 값을 생성함. 
-#     미리 모든 값을 생성하는 것이 아니기에 무한 리스트 등을 정의할 때 사용됨.
+# - `yield`: `return` 키워드와 유사한 역할 수행.
+#     `__next__()` 메서드 반환해야 하는 값을 생성.
+# - 하지만 미리 모든 값을 생성하는 것이 아니고 요청이 있을 때만 작동함.
+# - 무한히 많은 수열을 사용하는 피보나찌 수열처럼 무한 리스트 등을 
+#     프로그래밍으로 정의할 때 사용됨.
 
-# In[63]:
+# In[65]:
 
 
 def fib():
@@ -1284,26 +1336,31 @@ def fib():
         prev, curr = curr, prev + curr
 
 
+# 제너레이터 함수를 실행하면 제너레이터가 하나 생성된다.
 # 제너레이터의 항목을 구하려면 `next()` 함수를 이용한다. 
 # 내부적으로는 `__next__()` 메서드가 사용된다.
-# 이런 의미에서 제너레이터를 하나의 객체로 선언하는 방식으로 사용한다.
 
-# In[64]:
+# 제너레이터 객체 생성은 함수 호출 방식과 동일하다.
+
+# In[66]:
 
 
 f = fib()
 
 
-# In[65]:
+# 아래 코드는 `next()` 함수를 이용하여 피보나찌 수열의 첫 10개 항목을 생성한다.
+
+# In[67]:
 
 
 for _ in range(10):
     print(next(f))
 
 
-# `__next__()` 가 필요할 때 계속 작동함에 주의해야 한다.
+# 동일한 코드를 실행하더라도 이어지는 항목,
+# 즉 11번째에서 20번째 피보나찌 수를 생성한다.
 
-# In[66]:
+# In[68]:
 
 
 for _ in range(10):
@@ -1316,7 +1373,7 @@ for _ in range(10):
 # 하지만 __itertools__ 모듈의 __islice()__ 함수를 이용하면 인덱싱과 슬라이싱을 이용할 수 있다.
 # 여기서도 `__next__()` 가 필요할 때 계속 작동함에 주의해야 한다.
 
-# In[67]:
+# In[69]:
 
 
 from itertools import islice
@@ -1327,7 +1384,7 @@ for x in islice(f, 0, 10):
 
 # 처음부터 다시 생성하려면 다시 호출해야 한다.
 
-# In[68]:
+# In[70]:
 
 
 f = fib()
@@ -1338,7 +1395,7 @@ for x in islice(f, 0, 10):
 
 # `fib()` 제너레이터를 이터레이터 클래스로 선언하면 다음과 같다.
 
-# In[69]:
+# In[71]:
 
 
 class fib:
@@ -1356,13 +1413,13 @@ class fib:
         return value
 
 
-# In[70]:
+# In[72]:
 
 
 f = fib()
 
 
-# In[71]:
+# In[73]:
 
 
 for _ in range(10):
@@ -1373,7 +1430,7 @@ for _ in range(10):
 
 # 조건제시법을 이용하여 리스트를 아래와 같이 생성할 수 있다.
 
-# In[72]:
+# In[74]:
 
 
 numbers = [x for x in range(10)]
@@ -1383,29 +1440,44 @@ numbers
 
 # 리스트에 사용되는 대괄호(`[]`) 대신에 튜플에 사용되는 소괄호(`()`)를 사용하면 다르게 작동한다.
 
-# In[73]:
+# In[75]:
 
 
-lazy_squares = (x * x for x in numbers)
+lazy_squares = (x**2 for x in numbers)
 
 lazy_squares
 
 
 # 이유는 리스트 조건제시법은 이터레이터인 리스트를 생성하는 반면에
 # 소괄호를 사용하면 제너레이터를 생성한다.
+# 
 # 제너레이터는 리스트와는 달리 항목을 모두 미리 생성하지는 않고 필요할 때 
-# 하나씩 `__next__()` 메서드를 활용하여 생성한다.
+# 하나씩 `__next__()` 메서드를 활용하여 생성하기에 항목을 미리 보여줄 수 없다.
 # 
 # __참고__: `range` 객체 또한 제너레이터이다. 
 # 반면에 리스트는 항상 모든 항목을 미리 생성해 놓으며, 따라서 제너레이터가 아니다.
 
-# In[74]:
+# In[76]:
 
 
 next(lazy_squares)
 
 
-# In[75]:
+# In[77]:
+
+
+next(lazy_squares)
+
+
+# In[78]:
+
+
+next(lazy_squares)
+
+
+# 이제 리스트로 변환하면 앞서 사용된 값들은 포함되지 않는다.
+
+# In[79]:
 
 
 list(lazy_squares)
@@ -1413,4 +1485,4 @@ list(lazy_squares)
 
 # ## 연습문제
 
-# 1. [(실습) 파이썬 기초 4부: 클래스 기본 요소](https://colab.research.google.com/github/codingalzi/algopy/blob/master/excs/python_basic_4.ipynb)
+# 1. [(실습) 파이썬 기초 4부: 클래스 기본 요소](https://colab.research.google.com/github/codingalzi/algopy/blob/master/excs/exc-python_basic_4.ipynb)

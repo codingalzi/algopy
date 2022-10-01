@@ -618,15 +618,13 @@ class Vector(list):
     # append() 와 pop() 메서드는 재정의 필요. 
     # 이유는 벡터의 길이가 달라지기 때문임.
 
-    # 항목이 1개 늘어남
     def append(self, new_item):
         super().append(new_item)
-        self.dim = self.__len__()
+        self.dim = self.__len__() # 항목이 1개 늘어남
 
-    # 항목이 1개 줄어듬
     def pop(self, idx=-1):
         removed_item = super().pop(idx)
-        self.dim = self.__len__()
+        self.dim = self.__len__() # 항목이 1개 줄어듬
         return removed_item
 
 
@@ -856,4 +854,4 @@ x + y
 
 # ## 연습문제
 
-# 1. [(실습) 파이썬 기초 3부: 클래스와 상속](https://colab.research.google.com/github/codingalzi/algopy/blob/master/excs/python_basic_3.ipynb)
+# 1. [(실습) 파이썬 기초 3부: 클래스와 상속](https://colab.research.google.com/github/codingalzi/algopy/blob/master/excs/exc-python_basic_3.ipynb)
