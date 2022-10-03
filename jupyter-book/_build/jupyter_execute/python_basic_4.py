@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # 파이썬 기초 4부: 클래스 기본 요소
+# # 클래스 기본 요소
 
 # **소스코드**
 # 
@@ -1306,8 +1306,8 @@ for x in oneD3:
 # **제너레이터**(generator)는 특별한 이터레이터이며,
 # 다음 두 가지 방식으로 생성된다.
 # 
-# - 제너레이터 함수 활용
 # - 제너레이터 표현식 활용
+# - 제너레이터 함수 활용
 # 
 # 이터러블, 이터레이터, 제너레이터 사이의 관계는 다음과 같다.
 
@@ -1316,8 +1316,172 @@ for x in oneD3:
 # 
 # 그림 출처: [Iterables vs. Iterators vs. Generators](https://nvie.com/posts/iterators-vs-generators/)
 
+# **제너레이터 표현식**
+
+# 0부터 19까지의 정수의 제곱으로 구성된 리스트를
+# 조건제시법을 이용하여 아래와 같이 생성할 수 있다.
+
+# In[65]:
+
+
+squares = [x**2 for x in range(20)]
+
+squares
+
+
+# 리스트에 사용되는 대괄호(`[]`) 대신에 튜플에 사용되는 소괄호(`()`)를 사용하면 다르게 작동한다.
+
+# In[66]:
+
+
+lazy_squares = (x**2 for x in range(20))
+
+lazy_squares
+
+
+# 이유는 리스트 조건제시법은 이터레이터인 리스트를 생성하는 반면에
+# 소괄호를 사용하면 제너레이터를 생성한다.
+# 
+# 제너레이터는 리스트와는 달리 항목을 모두 미리 생성하지는 않고 필요할 때 
+# 하나씩 `__next__()` 메서드를 활용하여 생성하기에 항목을 미리 보여줄 수 없다.
+# 
+# __참고__: `range` 객체 또한 제너레이터이다. 
+# 반면에 리스트는 항상 모든 항목을 미리 생성해 놓으며, 따라서 제너레이터가 아니다.
+
+# In[67]:
+
+
+next(lazy_squares)
+
+
+# In[68]:
+
+
+next(lazy_squares)
+
+
+# In[69]:
+
+
+next(lazy_squares)
+
+
+# In[70]:
+
+
+next(lazy_squares)
+
+
+# 이제 리스트로 변환하면 앞서 사용된 값들은 포함되지 않는다.
+
+# In[71]:
+
+
+list(lazy_squares)
+
+
 # **제너레이터 함수**
 
+# 제너레이터 함수는 제너레이터를 생성하는 함수를 가리킨다.
+# 여기서는 두 예제를 이용하여 제너레이터 함수의 활용법을 소개한다.
+
+# **예제:** `enumerator()` 함수 구현
+
+# 이뉴머레이터 함수 `enumerator()`는 순차 모음 자료형(sequential)의 
+# 항목과 해당 항목의 인덱스로
+# 이루어진 `enumerate`라는 이터레이터를 생성한다.
+
+# In[72]:
+
+
+abcde_enum = enumerate('abcde')
+
+
+# In[73]:
+
+
+type(abcde_enum)
+
+
+# `__iter__()`와 `__next__()` 모두 포함된다.
+
+# In[74]:
+
+
+hasattr(abcde_enum, '__iter__')
+
+
+# In[75]:
+
+
+hasattr(abcde_enum, '__next__')
+
+
+# 하지만 항목들을 바로 확인할 수는 없다.
+
+# In[76]:
+
+
+print(abcde_enum)
+
+
+# 반면에 `for` 문을 이용하여 항목을 확인할 수 있다.
+
+# In[77]:
+
+
+for index, letter in abcde_enum:
+    print(f"인덱스: {index}, 항목: {letter}")
+
+
+# 여기서 직접 `enumerate` 자료형과 동일하게 작동하는 
+# 이터레이터 클래스 `MyEnum`를 구현하면 다음과 같다.
+
+# In[78]:
+
+
+class MyEnum():
+    def __init__(self, sequential):
+        self.sequential = sequential
+        self.index = 0
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.index >= len(self.sequential):
+            raise StopIteration
+        index_item = (self.index, self.sequential[self.index])
+        self.index += 1
+        return index_item
+
+
+# 이제 `enumerate()` 함수와 동일하게 작동하는 함수 `myEnumerate()` 함수를 
+# 다음과 같이 정의할 수 있다.
+
+# In[79]:
+
+
+def myEnumerate(sequential):
+    return MyEnum(sequential)
+
+
+# In[80]:
+
+
+abcde_enum = myEnumerate('abcde')
+
+
+# In[81]:
+
+
+for index, letter in abcde_enum:
+    print(f"인덱스: {index}, 항목: {letter}")
+
+
+# **예제:** 자연수 집합 구현
+
+# 제너레이터 함수를 이용하여 무한 리스트를 어느 정도 다를 수 있다.
 # 아래 코드는 자연수를 무한정 생성하는 제너레이터를 정의한다.
 # 
 # - `yield`: `return` 키워드와 유사한 역할 수행.
@@ -1326,7 +1490,7 @@ for x in oneD3:
 # - 무한히 많은 수열을 사용하는 피보나찌 수열처럼 무한 리스트 등을 
 #     프로그래밍으로 정의할 때 사용됨.
 
-# In[65]:
+# In[82]:
 
 
 def nat():
@@ -1342,7 +1506,7 @@ def nat():
 
 # 제너레이터 객체 생성은 함수 호출 방식과 동일하다.
 
-# In[66]:
+# In[83]:
 
 
 f = nat()
@@ -1350,7 +1514,7 @@ f = nat()
 
 # 아래 코드는 `next()` 함수를 이용하여 자연수 10개를 생성한다.
 
-# In[67]:
+# In[84]:
 
 
 for _ in range(10):
@@ -1360,42 +1524,16 @@ for _ in range(10):
 # 동일한 코드를 실행하더라도 이어지는 항목,
 # 즉 11에서 20까지의 자연수를 생성한다.
 
-# In[68]:
+# In[85]:
 
 
 for _ in range(10):
     print(next(f))
 
 
-# **__islice()__ 함수**
-
-# 제너레이터 자체는 인덱싱과 슬라이싱을 지원하지 않는다.
-# 하지만 __itertools__ 모듈의 __islice()__ 함수를 이용하면 인덱싱과 슬라이싱을 이용할 수 있다.
-# 여기서도 `__next__()` 가 필요할 때 계속 작동함에 주의해야 한다.
-
-# In[69]:
-
-
-from itertools import islice
-
-for x in islice(f, 0, 10):
-    print(x)
-
-
-# 처음부터 다시 생성하려면 다시 호출해야 한다.
-
-# In[70]:
-
-
-f = nat()
-
-for x in islice(f, 0, 10):
-    print(x)
-
-
 # `nat()` 제너레이터를 이터레이터 클래스로 선언하면 다음과 같다.
 
-# In[71]:
+# In[86]:
 
 
 class nat_class:
@@ -1411,80 +1549,17 @@ class nat_class:
         return value
 
 
-# In[72]:
+# In[87]:
 
 
 g = nat_class()
 
 
-# In[73]:
+# In[88]:
 
 
 for _ in range(10):
     print(next(g))
-
-
-# **제너레이터 표현식**
-
-# 조건제시법을 이용하여 리스트를 아래와 같이 생성할 수 있다.
-
-# In[74]:
-
-
-squares = [x**2 for x in range(10)]
-
-squares
-
-
-# 리스트에 사용되는 대괄호(`[]`) 대신에 튜플에 사용되는 소괄호(`()`)를 사용하면 다르게 작동한다.
-
-# In[75]:
-
-
-lazy_squares = (x**2 for x in range(10))
-
-lazy_squares
-
-
-# 이유는 리스트 조건제시법은 이터레이터인 리스트를 생성하는 반면에
-# 소괄호를 사용하면 제너레이터를 생성한다.
-# 
-# 제너레이터는 리스트와는 달리 항목을 모두 미리 생성하지는 않고 필요할 때 
-# 하나씩 `__next__()` 메서드를 활용하여 생성하기에 항목을 미리 보여줄 수 없다.
-# 
-# __참고__: `range` 객체 또한 제너레이터이다. 
-# 반면에 리스트는 항상 모든 항목을 미리 생성해 놓으며, 따라서 제너레이터가 아니다.
-
-# In[76]:
-
-
-next(lazy_squares)
-
-
-# In[77]:
-
-
-next(lazy_squares)
-
-
-# In[78]:
-
-
-next(lazy_squares)
-
-
-# In[79]:
-
-
-next(lazy_squares)
-
-
-# 이제 리스트로 변환하면 앞서 사용된 값들은 포함되지 않는다.
-
-# In[80]:
-
-
-list(lazy_squares)
 
 
 # ## 연습문제

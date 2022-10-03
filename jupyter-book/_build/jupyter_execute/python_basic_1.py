@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # 파이썬 기초 1부: 자료형
+# # 기본 자료형
 
 # **소스코드**
 # 

@@ -6,17 +6,29 @@ root: intro
 options:
   numbered: True
 #  only_build_toc_files: true
-chapters:
-- file: python_basic_1
-- file: python_basic_2
-- file: python_basic_3
-- file: python_basic_4
-- file: time_complexity
-- file: python_list_dict
-- file: stacks
-- file: queues
-- file: deques
-- file: linked_lists
-- file: ordered_lists
-- file: recursion_1
-- file: recursion_2
+parts:
+    - caption: 파이썬 기초
+      numbered: True
+      chapters:
+      - file: python_basic_1
+      - file: python_basic_2
+      - file: python_basic_3
+      - file: python_basic_4
+    - caption: 알고리즘 시간 복잡도
+      numbered: True
+      chapters:
+      - file: time_complexity
+      - file: python_list_dict
+    - caption: 추상 모음 자료형
+      numbered: True
+      chapters:
+      - file: stacks
+      - file: queues
+      - file: deques
+      - file: linked_lists
+      - file: ordered_lists
+    - caption: 재귀
+      numbered: True
+      chapters:
+      - file: recursion_1
+      - file: recursion_2

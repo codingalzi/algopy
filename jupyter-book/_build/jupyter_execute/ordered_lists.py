@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # 기초 추상 자료형 구현 5부: 정렬 리스트
+# # 정렬 리스트
 
 # Copyright (C)  Brad Miller, David Ranum.
 # This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/.
