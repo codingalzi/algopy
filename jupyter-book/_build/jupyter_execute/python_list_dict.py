@@ -3,10 +3,10 @@
 
 # # 파이썬 모음 자료형 분석
 
-# Copyright (C)  Brad Miller, David Ranum.
-# This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/.
-
-# ## 3.5 파이썬 자료구조의 성능: 리스트와 사전
+# **주요 내용**
+# 
+# - 파이썬 리스트와 사전 자료형 메서드의 시간복잡도
+# - 자료형 클래스 정의 방식에 따른 알고리즘 복잡도 변화
 
 # 파이썬에서 기본으로 제공하는 두 개의 컨테이너 자료형인 리스트(`list`)와 사전(`dict`)
 # 두 자료형과 관련된
@@ -17,7 +17,7 @@
 # 하지만 나중에 리스트와 사전을 다른 방식으로 직접 구현해 보면서 구현방법에 따른 알고리즘 
 # 성능의 차이를 살펴볼 것이다. 
 
-# ## 3.6 리스트
+# ## 리스트
 
 # 파이썬과 관련된 많은 메서드(함수)들의 성능이 종류에 따라 다르다.
 # 기본적으로 가장 많이 사용되는 메서드일 수록 빠르며, 그렇지 않은 경우는 보다 느리다.
@@ -72,7 +72,7 @@ aList
 # 앞서 언급한 세 가지 연산자 이외에 비교를 위해 리스트 조건제시법과
 # `range` 객체를 이용하는 방법을 추가한다.
 
-# #### `timeit` 모듈 활용
+# **`timeit` 모듈 활용**
 
 # 알고리즘 실행시간의 공평한 측정을 위해 특정 운영체제나 개발환경에 의존하지 않는 
 # `timeit` 모듈을 활용한다. 
@@ -255,13 +255,13 @@ for i in range(100_000, 10_100_001, 1_000_000):
     print(f"{i:>10,}{pop_zero_t:>15.5f}{pop_end_t:>15.5f}")
 
 
-# 두 연산자의 실행시간을 비교하는 그래프는 다음과 같다.
+# 두 연산자의 실행시간을 비교하는 그래프는 다음과 같다. 
 
 # <figure>
 # <div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/poptime.png" width="70%"></div>
 # </figure>
 
-# ## 3.7 사전
+# ## 사전
 
 # 사전 객체는 항목을 위치가 아닌 키(key)로 접근하는데
 # 시간복잡도가 $O(1)$이다. 
@@ -356,60 +356,4 @@ for i in range(10_000, 1_010_001, 100_000):
 
 # ## 연습문제
 
-# 문제 1. 아래 코드의 시간복잡도를 Big-O 로 나타내라.
-# 
-# ```python
-# for i in range(n):
-#     for j in range(n):
-#         k = 2 + 2
-# ```
-
-# 문제 2. 아래 코드의 시간복잡도를 Big-O 로 나타내라.
-# 
-# ```python
-# for i in range(n):
-#     k = 2 + 2
-# ```
-
-# 문제 3. 아래 코드의 시간복잡도를 Big-O 로 나타내라.
-# 
-# ```python
-# i = n
-# while i > 0:
-#     k = 2 + 2
-#     i = i // 2
-# ```
-
-# 문제 4. 아래 코드의 시간복잡도를 Big-O 로 나타내라.
-# 
-# ```python
-# for i in range(n):
-#     for j in range(n):
-#         for k in range(n):
-#             k = 2 + 2
-# ```
-
-# 문제 5. 아래 코드의 시간복잡도를 Big-O 로 나타내라.
-# 
-# ```python
-# for i in range(n):
-#     k = 2 + 2
-# for j in range(n):
-#     k = 2 + 2
-# for k in range(n):
-#     k = 2 + 2
-# ```
-
-# ## 프로그래밍 과제
-
-# 1. 리스트의 인덱싱 연산의 시간복잡도가 $O(1)$임을 입증하는 코드를 구현하라.
-# 
-# 1. 키(key)를 이용한 사전 항목 확인과 값(value) 대체 연산의 
-#     시간복잡도가 $O(1)$임을 입증하는 코드를 구현하라.
-# 
-# 1. 리스트와 사전 각각에 대해 `del` 연산의 실행시간을 비교하는 코드를 구현하라.
-# 
-# 1. 무작위로 섞인 $n$개의 정수로 이루어진 리스트가 주어졌을 때 $k$번째로 작은 항목을 찾는 알고리즘을 구현하라.
-#     단, 알고리즘의 시간복잡도는 $O(n\log(n))$이어야 한다.
-# 
-# 1. 이전 문제에서 구현된 알고리즘을 $O(n)$이 되도록 개선할 수 있는지 여부를 판단하고 그 이유를 설명하라.
+# 1. [(실습) 파이썬 모음 자료형 분석](https://colab.research.google.com/github/codingalzi/algopy/blob/master/excs/exc-python_list_dict.ipynb)
