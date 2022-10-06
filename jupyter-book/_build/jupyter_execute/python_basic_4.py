@@ -1290,12 +1290,13 @@ for x in oneD3:
 # ### 이터러블 자료형과 이터레이터
 
 # __이터러블__(iterable) 자료형은 `__iter__()` 메서드를 지원하는 자료형이다.
-# `__iter__()` 메서드를 실행하면 
-# 항목들을 지정된 순서대로 반환할 수 있는 능력을 갖춘 `__next__()` 메서드가
-# 포함된 __이터레이터__(iterator) 객체가 생성된다(아래 그림 참고).
+# `__iter__()` 메서드는 항목들을 지정된 순서대로 반환할 수 있는 능력을 갖춘 
+# `__next__()` 메서드를 포함한 __이터레이터__(iterator) 객체를 생성해야 한다(아래 그림 참고).
 # 
-# - `__iter__()` 메서드는 `for` 반복문을 실행할 때 자동 실행되어 `__next__()` 메서드를 생성한다.
-# - 생성된 `__next__()` 메서드는 이터러블 객체에 포함된 항목을 하나씩 반환하는 작업을 수행한다.
+# - 이터러블 객체가 `for` 반복문에 사용되면 `__iter__()` 메서드에 의해 
+#     `__next__()` 메서드를 포함한 객체가 생성되거나 있는 기존의 `__next__()` 메서드가
+#     활용된다.
+# - `__next__()` 메서드는 이터러블 객체에 포함된 항목을 하나씩 반환하는 작업을 수행한다.
 
 # <div align="center"><img src="https://nvie.com/img/iterable-vs-iterator.png" style="width:600px;"></div>
 # 
@@ -1344,9 +1345,6 @@ lazy_squares
 # 
 # 제너레이터는 리스트와는 달리 항목을 모두 미리 생성하지는 않고 필요할 때 
 # 하나씩 `__next__()` 메서드를 활용하여 생성하기에 항목을 미리 보여줄 수 없다.
-# 
-# __참고__: `range` 객체 또한 제너레이터이다. 
-# 반면에 리스트는 항상 모든 항목을 미리 생성해 놓으며, 따라서 제너레이터가 아니다.
 
 # In[67]:
 
@@ -1380,6 +1378,30 @@ next(lazy_squares)
 list(lazy_squares)
 
 
+# __참고__: `range` 객체는 이터러블이지만 이터레이터는 아니다.
+# 
+# ```python
+# TypeError                                 Traceback (most recent call last)
+# c:\Users\gslee\Documents\GitHub\algopy\jupyter-book\python_basic_4.ipynb 셀 171 in <cell line: 1>()
+# ----> 1 next(range(20))
+# 
+# TypeError: 'range' object is not an iterator
+# ```
+
+# 실제로 `__next__()` 메서드를 포함하지 않는다.
+
+# In[72]:
+
+
+hasattr(range(20), '__iter__')
+
+
+# In[73]:
+
+
+hasattr(range(20), '__next__')
+
+
 # **제너레이터 함수**
 
 # 제너레이터 함수는 제너레이터를 생성하는 함수를 가리킨다.
@@ -1391,13 +1413,13 @@ list(lazy_squares)
 # 항목과 해당 항목의 인덱스로
 # 이루어진 `enumerate`라는 이터레이터를 생성한다.
 
-# In[72]:
+# In[74]:
 
 
-abcde_enum = enumerate('abcde')
+abcde_enum = enumerate(['a', 'b', 'c', 'd', 'e'])
 
 
-# In[73]:
+# In[75]:
 
 
 type(abcde_enum)
@@ -1405,13 +1427,13 @@ type(abcde_enum)
 
 # `__iter__()`와 `__next__()` 모두 포함된다.
 
-# In[74]:
+# In[76]:
 
 
 hasattr(abcde_enum, '__iter__')
 
 
-# In[75]:
+# In[77]:
 
 
 hasattr(abcde_enum, '__next__')
@@ -1419,7 +1441,7 @@ hasattr(abcde_enum, '__next__')
 
 # 하지만 항목들을 바로 확인할 수는 없다.
 
-# In[76]:
+# In[78]:
 
 
 print(abcde_enum)
@@ -1427,7 +1449,7 @@ print(abcde_enum)
 
 # 반면에 `for` 문을 이용하여 항목을 확인할 수 있다.
 
-# In[77]:
+# In[79]:
 
 
 for index, letter in abcde_enum:
@@ -1437,7 +1459,7 @@ for index, letter in abcde_enum:
 # 여기서 직접 `enumerate` 자료형과 동일하게 작동하는 
 # 이터레이터 클래스 `MyEnum`를 구현하면 다음과 같다.
 
-# In[78]:
+# In[80]:
 
 
 class MyEnum():
@@ -1459,25 +1481,81 @@ class MyEnum():
 # 이제 `enumerate()` 함수와 동일하게 작동하는 함수 `myEnumerate()` 함수를 
 # 다음과 같이 정의할 수 있다.
 
-# In[79]:
+# In[81]:
 
 
 def myEnumerate(sequential):
     return MyEnum(sequential)
 
 
-# In[80]:
+# In[82]:
 
 
-abcde_enum = myEnumerate('abcde')
+abcde_enum = myEnumerate(['a', 'b', 'c', 'd', 'e'])
 
 
-# In[81]:
+# In[83]:
 
 
 for index, letter in abcde_enum:
     print(f"인덱스: {index}, 항목: {letter}")
 
+
+# **예제:** `enumerator()` 함수 구현 (다른 방식)
+
+# `__iter__()`와 `__next__()` 를 서로 다른 클래스에서 정의할 수도 있다.
+
+# In[84]:
+
+
+class MyEnum():
+    def __init__(self, sequential):
+        self.sequential = sequential
+
+    def __iter__(self):
+        return MyEnumIterator(self.sequential)
+
+class MyEnumIterator():
+    def __init__(self, sequential):
+        self.sequential = sequential
+        self.index = 0
+
+    def __next__(self):
+        if self.index >= len(self.sequential):
+            raise StopIteration
+        index_item = (self.index, self.sequential[self.index])
+        self.index += 1
+        return index_item
+
+
+# 이제 `enumerate()` 함수와 동일하게 작동하는 함수 `myEnumerate()` 함수를 
+# 다음과 같이 정의할 수 있다.
+
+# In[85]:
+
+
+def myEnumerate(sequential):
+    return MyEnum(sequential)
+
+
+# In[86]:
+
+
+abcde_enum = myEnumerate(['a', 'b', 'c', 'd', 'e'])
+
+for index, letter in abcde_enum:
+    print(f"인덱스: {index}, 항목: {letter}")
+
+
+# In[87]:
+
+
+abcde_enum = myEnumerate(['a', 'b', 'c', 'd', 'e'])
+
+
+# **참고:** 특별한 경우가 아니라면 `__iter__()`와 `__next__()` 를
+# 별도의 클래스에서 구현하는 것 보다는 동일한 클래스에서 함께 정의하는 게
+# 보다 편리하다.
 
 # **예제:** 자연수 집합 구현
 
@@ -1490,7 +1568,7 @@ for index, letter in abcde_enum:
 # - 무한히 많은 수열을 사용하는 피보나찌 수열처럼 무한 리스트 등을 
 #     프로그래밍으로 정의할 때 사용됨.
 
-# In[82]:
+# In[88]:
 
 
 def nat():
@@ -1506,7 +1584,7 @@ def nat():
 
 # 제너레이터 객체 생성은 함수 호출 방식과 동일하다.
 
-# In[83]:
+# In[89]:
 
 
 f = nat()
@@ -1514,7 +1592,7 @@ f = nat()
 
 # 아래 코드는 `next()` 함수를 이용하여 자연수 10개를 생성한다.
 
-# In[84]:
+# In[90]:
 
 
 for _ in range(10):
@@ -1524,7 +1602,7 @@ for _ in range(10):
 # 동일한 코드를 실행하더라도 이어지는 항목,
 # 즉 11에서 20까지의 자연수를 생성한다.
 
-# In[85]:
+# In[91]:
 
 
 for _ in range(10):
@@ -1533,7 +1611,7 @@ for _ in range(10):
 
 # `nat()` 제너레이터를 이터레이터 클래스로 선언하면 다음과 같다.
 
-# In[86]:
+# In[92]:
 
 
 class nat_class:
@@ -1549,13 +1627,13 @@ class nat_class:
         return value
 
 
-# In[87]:
+# In[93]:
 
 
 g = nat_class()
 
 
-# In[88]:
+# In[94]:
 
 
 for _ in range(10):
