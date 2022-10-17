@@ -336,18 +336,23 @@ const thebe_selector_output = ".output, .cell_output"
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id10">
-     5.3.1. 예제: 어구전철
+     5.3.1. 순차 탐색
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id11">
-     5.3.2. 공간 복잡도 문제
+     5.3.2. 어구전철
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id12">
+     5.3.3. 공간 복잡도 문제
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id12">
+  <a class="reference internal nav-link" href="#id13">
    5.4. 연습문제
   </a>
  </li>
@@ -422,18 +427,23 @@ const thebe_selector_output = ".output, .cell_output"
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id10">
-     5.3.1. 예제: 어구전철
+     5.3.1. 순차 탐색
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id11">
-     5.3.2. 공간 복잡도 문제
+     5.3.2. 어구전철
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id12">
+     5.3.3. 공간 복잡도 문제
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id12">
+  <a class="reference internal nav-link" href="#id13">
    5.4. 연습문제
   </a>
  </li>
@@ -649,7 +659,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1부터 10000까지 더하는데 평균적으로 0.00051초 걸림.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1부터 10000까지 더하는데 평균적으로 0.00045초 걸림.
 </pre></div>
 </div>
 </div>
@@ -669,7 +679,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1부터 100000까지 더하는데 평균적으로 0.00487초 걸림.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1부터 100000까지 더하는데 평균적으로 0.00481초 걸림.
 </pre></div>
 </div>
 </div>
@@ -689,7 +699,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1부터 1000000까지 더하는데 평균적으로 0.04623초 걸림.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1부터 1000000까지 더하는데 평균적으로 0.05044초 걸림.
 </pre></div>
 </div>
 </div>
@@ -709,7 +719,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1부터 10000000까지 더하는데 평균적으로 0.48312초 걸림.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1부터 10000000까지 더하는데 평균적으로 0.50352초 걸림.
 </pre></div>
 </div>
 </div>
@@ -748,10 +758,10 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1부터    10000까지 더하는데 평균적으로 0.0000002384185791초 걸림.
-1부터   100000까지 더하는데 평균적으로 0.0000003099441528초 걸림.
-1부터  1000000까지 더하는데 평균적으로 0.0000002622604370초 걸림.
-1부터 10000000까지 더하는데 평균적으로 0.0000003099441528초 걸림.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1부터    10000까지 더하는데 평균적으로 0.0000002861022949초 걸림.
+1부터   100000까지 더하는데 평균적으로 0.0000002861022949초 걸림.
+1부터  1000000까지 더하는데 평균적으로 0.0000002384185791초 걸림.
+1부터 10000000까지 더하는데 평균적으로 0.0000001430511475초 걸림.
 </pre></div>
 </div>
 </div>
@@ -886,7 +896,7 @@ T(n) \in O(n^2)
 \]</div>
 <p>아래 그림은 언급된 세 개의 항(term)이 <span class="math notranslate nohighlight">\(n\)</span>이 커질 때 증가하는 속도의 차이를 잘 보여준다.</p>
 <figure>
-<div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/newplot2.png" width="50%"></div>
+<div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/newplot2.png" width="70%"></div>
 </figure><p><strong>예제</strong>: <span class="math notranslate nohighlight">\(T(n)=\frac{1}{1000}n \log n + 3n + 205\)</span></p>
 <p><span class="math notranslate nohighlight">\(\frac{1}{1000}n \log n + 3n + 205\)</span>에서 <span class="math notranslate nohighlight">\(n\)</span>이 커질 때 가장 중요한 역할은
 <span class="math notranslate nohighlight">\(\frac{1}{1000}n \log n\)</span>이 수행한다.
@@ -1082,10 +1092,14 @@ T(n) \in O(1)
 <h2><span class="section-number">5.3. </span>최선, 최악, 평균 시간복잡도<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
 <p>알고리즘의 시간복잡도가 입력 크기뿐만 아니라
 알고리즘의 입력값 자체에 의존하기도 한다.
-예를 들어, 주어진 리스트에서 특정 값의 포함 여부를 판단할 때
+이런 경우엔 일정 시간복잡도 계산이 불가능하며, 대신에 최선, 최악, 평균 시간복잡도를 계산한다.</p>
+<p>순차 탐색과 어구전철 확인 두 예제를 이용하여 최선, 최악, 평균 시간복잡도를 설명한다.</p>
+<div class="section" id="id10">
+<h3><span class="section-number">5.3.1. </span>순차 탐색<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<p>주어진 리스트에서 특정 값의 포함 여부를 판단할 때
 인덱스를 따라가면서 해당 항목을 확인할 수 있다.
-이를 <strong>순차 검색</strong>이라 하며 다음 그림처럼 작동한다.</p>
-<div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds/_images/seqsearch.png" width="50%"></div><p>순차 검색 알고리즘을 아래 함수로 구현할 수 있다.</p>
+이를 <strong>순차 탐색</strong>이라 하며 다음 그림처럼 작동한다.</p>
+<div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds/_images/seqsearch.png" width="70%"></div><p>순차 탐색 알고리즘을 아래 함수로 구현할 수 있다.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">alist</span></code>: 주어진 리스트</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">item</span></code>: 탐색 대상 값</p></li>
@@ -1170,8 +1184,9 @@ False
 \[B(n) \le A(n) \le W(n)\]</div>
 </li>
 </ul>
-<div class="section" id="id10">
-<h3><span class="section-number">5.3.1. </span>예제: 어구전철<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="id11">
+<h3><span class="section-number">5.3.2. </span>어구전철<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
 <p><strong>어구전철</strong>은 단어를 구성하는 문자의 순서를 바꾸어 새로운 단어를 생성하는 것을 나타내며,
 영어로 <strong>애너그램</strong>(anagram)이라 한다.
 예를 들어 “heart”와 “earth”, “python”과 “typhon” 등이 어구전철 관계를 갖는다.
@@ -1274,7 +1289,7 @@ T(n) &amp;= \sum_{i=1}^{n} i \\
 </li>
 <li><p>최악: 첫째 문자열 <code class="docutils literal notranslate"><span class="pre">s1</span></code>의 마지막 문자가 리스트 <code class="docutils literal notranslate"><span class="pre">s2_list</span></code>에 포함되지 않은 경우에
 어구전철이 아니라고 판단된다.
-처음 <span class="math notranslate nohighlight">\(n-1\)</span>개의 문자를 확인하는데 걸리는 최악 시간은</p>
+처음 <span class="math notranslate nohighlight">\((n-1)\)</span>개의 문자를 확인하는데 걸리는 최악 시간은</p>
 <div class="math notranslate nohighlight">
 \[
         2 + 3 + \cdots + n
@@ -1435,8 +1450,8 @@ False
 T(n) = 2n + 26 \in O(n)
 \]</div>
 </div>
-<div class="section" id="id11">
-<h3><span class="section-number">5.3.2. </span>공간 복잡도 문제<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id12">
+<h3><span class="section-number">5.3.3. </span>공간 복잡도 문제<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
 <p>알고리즘 <code class="docutils literal notranslate"><span class="pre">anagram_solution_4()</span></code>의 시간복잡도는 이전 세 알고리즘에 비해 훨씬 좋다.
 하지만 그 대신에 보다 빈도수 리스트를 새로 생성하기 위해 보다 많은 메모리를 사용한다.
 여기서는 겨우 길이가 26인 리스트 두 개를 생성하기에 별 문제가 아니지만
@@ -1445,15 +1460,15 @@ T(n) = 2n + 26 \in O(n)
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">anagram_solution_1()</span></code>: 문자열 <code class="docutils literal notranslate"><span class="pre">s2</span></code>를 리스트로 변환한 값</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">anagram_solution_2()</span></code>: 두 문자열을 리스트로 형변환한 후 정렬.
-그리고 정렬 과정에서 추가 메몰리 사용 가능.</p></li>
+그리고 정렬 과정에서 추가 메모리 사용 가능.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">anagram_solution_3()</span></code>: 실제로 알고리즘을 구현하면 모든 가능한 조합을 생성하거나 저장할 때
 추가 메모리 요구될 것임.</p></li>
 </ul>
 <p>따라서 어떤 알고리즘을 사용하는 게 좋을지 환경과 상황에 따라 결정해야 한다.</p>
 </div>
 </div>
-<div class="section" id="id12">
-<h2><span class="section-number">5.4. </span>연습문제<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id13">
+<h2><span class="section-number">5.4. </span>연습문제<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h2>
 <ol class="simple">
 <li><p><a class="reference external" href="https://colab.research.google.com/github/codingalzi/algopy/blob/master/excs/exc-time_complexity.ipynb">(실습) 시간 복잡도</a></p></li>
 </ol>
