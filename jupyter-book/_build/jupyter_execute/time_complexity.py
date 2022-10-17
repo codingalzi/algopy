@@ -404,7 +404,7 @@ def no_meaning(n):
 # 아래 그림은 언급된 세 개의 항(term)이 $n$이 커질 때 증가하는 속도의 차이를 잘 보여준다.
 
 # <figure>
-# <div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/newplot2.png" width="50%"></div>
+# <div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/newplot2.png" width="70%"></div>
 # </figure>
 
 # **예제**: $T(n)=\frac{1}{1000}n \log n + 3n + 205$
@@ -481,13 +481,19 @@ def no_meaning(n):
 
 # 알고리즘의 시간복잡도가 입력 크기뿐만 아니라
 # 알고리즘의 입력값 자체에 의존하기도 한다.
-# 예를 들어, 주어진 리스트에서 특정 값의 포함 여부를 판단할 때
+# 이런 경우엔 일정 시간복잡도 계산이 불가능하며, 대신에 최선, 최악, 평균 시간복잡도를 계산한다.
+# 
+# 순차 탐색과 어구전철 확인 두 예제를 이용하여 최선, 최악, 평균 시간복잡도를 설명한다.
+
+# ### 순차 탐색
+
+# 주어진 리스트에서 특정 값의 포함 여부를 판단할 때
 # 인덱스를 따라가면서 해당 항목을 확인할 수 있다.
-# 이를 **순차 검색**이라 하며 다음 그림처럼 작동한다.
+# 이를 **순차 탐색**이라 하며 다음 그림처럼 작동한다.
 
-# <div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds/_images/seqsearch.png" width="50%"></div>
+# <div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds/_images/seqsearch.png" width="70%"></div>
 
-# 순차 검색 알고리즘을 아래 함수로 구현할 수 있다.
+# 순차 탐색 알고리즘을 아래 함수로 구현할 수 있다.
 # 
 # - `alist`: 주어진 리스트
 # - `item`: 탐색 대상 값
@@ -552,7 +558,7 @@ print(sequentialSearch(testlist, 3))
 # 
 #     $$B(n) \le A(n) \le W(n)$$
 
-# ### 예제: 어구전철
+# ### 어구전철
 
 # **어구전철**은 단어를 구성하는 문자의 순서를 바꾸어 새로운 단어를 생성하는 것을 나타내며,
 # 영어로 **애너그램**(anagram)이라 한다.
@@ -645,7 +651,7 @@ print(anagram_solution_1("abcd", "dcda"))    # False
 #         
 #     - 최악: 첫째 문자열 `s1`의 마지막 문자가 리스트 `s2_list`에 포함되지 않은 경우에 
 #         어구전철이 아니라고 판단된다.
-#         처음 $n-1$개의 문자를 확인하는데 걸리는 최악 시간은 
+#         처음 $(n-1)$개의 문자를 확인하는데 걸리는 최악 시간은 
 #         
 #         $$
 #         2 + 3 + \cdots + n
@@ -806,7 +812,7 @@ print(anagram_solution_4("abcd", "dcda"))    # False
 # 
 # - `anagram_solution_1()`: 문자열 `s2`를 리스트로 변환한 값
 # - `anagram_solution_2()`: 두 문자열을 리스트로 형변환한 후 정렬. 
-#     그리고 정렬 과정에서 추가 메몰리 사용 가능.
+#     그리고 정렬 과정에서 추가 메모리 사용 가능.
 # - `anagram_solution_3()`: 실제로 알고리즘을 구현하면 모든 가능한 조합을 생성하거나 저장할 때
 #     추가 메모리 요구될 것임.
 # 
