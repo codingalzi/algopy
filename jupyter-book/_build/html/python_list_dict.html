@@ -572,7 +572,7 @@ const thebe_selector_output = ".output, .cell_output"
 extend() 메서드:	 0.08 초
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>리스트 연결 연산자:	 1.15 초
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>리스트 연결 연산자:	 1.14 초
 조건제시법:		 0.03 초
 range 객체:		 0.01 초
 </pre></div>
@@ -635,7 +635,7 @@ range 객체:		 0.01 초
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>append() 메서드:	 0.16 초
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>extend() 메서드:	 0.24 초
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>extend() 메서드:	 0.23 초
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>리스트 연결 연산자:	 10.54 초
@@ -738,49 +738,49 @@ range 객체:		 0.04 초
 
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;n&#39;</span><span class="si">:</span><span class="s2">&gt;10s</span><span class="si">}{</span><span class="s1">&#39;pop(0)&#39;</span><span class="si">:</span><span class="s2">&gt;15s</span><span class="si">}{</span><span class="s1">&#39;pop()&#39;</span><span class="si">:</span><span class="s2">&gt;15s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100_000</span><span class="p">,</span> <span class="mi">10_100_001</span><span class="p">,</span> <span class="mi">1_000_000</span><span class="p">):</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100_000</span><span class="p">,</span> <span class="mi">10_100_001</span><span class="p">,</span> <span class="mi">1_000_000</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
     
     <span class="n">pop_zero_t</span> <span class="o">=</span> <span class="n">pop_zero</span><span class="o">.</span><span class="n">timeit</span><span class="p">(</span><span class="n">number</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
     <span class="n">pop_end_t</span> <span class="o">=</span> <span class="n">pop_end</span><span class="o">.</span><span class="n">timeit</span><span class="p">(</span><span class="n">number</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
     
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="si">:</span><span class="s2">&gt;10,</span><span class="si">}{</span><span class="n">pop_zero_t</span><span class="si">:</span><span class="s2">&gt;15.5f</span><span class="si">}{</span><span class="n">pop_end_t</span><span class="si">:</span><span class="s2">&gt;15.5f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">n</span><span class="si">:</span><span class="s2">&gt;10,</span><span class="si">}{</span><span class="n">pop_zero_t</span><span class="si">:</span><span class="s2">&gt;15.5f</span><span class="si">}{</span><span class="n">pop_end_t</span><span class="si">:</span><span class="s2">&gt;15.5f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>         n         pop(0)          pop()
-   100,000        0.03054        0.00004
+   100,000        0.03123        0.00005
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 1,100,000        0.31072        0.00004
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 1,100,000        0.31122        0.00004
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 2,100,000        0.67562        0.00004
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 2,100,000        0.63763        0.00004
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 3,100,000        1.28824        0.00004
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 3,100,000        1.26534        0.00004
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 4,100,000        1.83050        0.00004
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 4,100,000        1.82765        0.00004
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 5,100,000        2.45643        0.00004
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 5,100,000        2.40084        0.00004
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 6,100,000        3.07286        0.00004
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 6,100,000        3.03531        0.00004
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 7,100,000        4.02785        0.00004
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 7,100,000        3.65017        0.00006
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 8,100,000        4.49400        0.00004
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 8,100,000        4.16803        0.00004
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 9,100,000        4.90657        0.00004
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 9,100,000        4.79702        0.00004
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10,100,000        5.77920        0.00004
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10,100,000        5.70050        0.00004
 </pre></div>
 </div>
 </div>
@@ -905,54 +905,54 @@ range 객체:		 0.04 초
 
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;n&#39;</span><span class="si">:</span><span class="s2">&gt;9s</span><span class="si">}{</span><span class="s1">&#39;list&#39;</span><span class="si">:</span><span class="s2">&gt;10s</span><span class="si">}{</span><span class="s1">&#39;dict&#39;</span><span class="si">:</span><span class="s2">&gt;10s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10_000</span><span class="p">,</span> <span class="mi">1_010_001</span><span class="p">,</span> <span class="mi">100_000</span><span class="p">):</span>
-    <span class="n">t</span> <span class="o">=</span> <span class="n">timeit</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;random.randrange(</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">) in x&quot;</span><span class="p">,</span> <span class="s2">&quot;from __main__ import random, x&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10_000</span><span class="p">,</span> <span class="mi">1_010_001</span><span class="p">,</span> <span class="mi">100_000</span><span class="p">):</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">timeit</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;random.randrange(</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2">) in x&quot;</span><span class="p">,</span> <span class="s2">&quot;from __main__ import random, x&quot;</span><span class="p">)</span>
     
     <span class="c1"># 리스트 생성 및 무작위로 생성된 값의 항목 여부 확인</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
     <span class="n">lst_time</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">timeit</span><span class="p">(</span><span class="n">number</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
     
     <span class="c1"># 사전 생성 및 무작위로 생성된 값의 항목 여부 확인</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="p">{</span><span class="n">j</span><span class="p">:</span> <span class="kc">True</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">)}</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="p">{</span><span class="n">j</span><span class="p">:</span> <span class="kc">True</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)}</span>
     <span class="n">dict_time</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">timeit</span><span class="p">(</span><span class="n">number</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
     
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="si">:</span><span class="s2">&gt;9,</span><span class="si">}{</span><span class="n">lst_time</span><span class="si">:</span><span class="s2">&gt;10.3f</span><span class="si">}{</span><span class="n">dict_time</span><span class="si">:</span><span class="s2">&gt;10.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">n</span><span class="si">:</span><span class="s2">&gt;9,</span><span class="si">}{</span><span class="n">lst_time</span><span class="si">:</span><span class="s2">&gt;10.3f</span><span class="si">}{</span><span class="n">dict_time</span><span class="si">:</span><span class="s2">&gt;10.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>        n      list      dict
-   10,000     0.055     0.001
+   10,000     0.053     0.001
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  110,000     0.583     0.001
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  110,000     0.590     0.001
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  210,000     1.140     0.001
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  210,000     1.187     0.001
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  310,000     1.733     0.001
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  310,000     1.624     0.001
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  410,000     2.351     0.001
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  410,000     2.240     0.001
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  510,000     2.872     0.001
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  510,000     2.861     0.001
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  610,000     3.419     0.001
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  610,000     3.394     0.001
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  710,000     4.067     0.001
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  710,000     3.937     0.001
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  810,000     4.610     0.001
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  810,000     4.596     0.001
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  910,000     5.173     0.001
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  910,000     5.088     0.001
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1,010,000     6.016     0.001
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1,010,000     5.758     0.001
 </pre></div>
 </div>
 </div>

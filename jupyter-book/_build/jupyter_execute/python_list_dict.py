@@ -250,13 +250,13 @@ pop_end = Timer("x.pop()", "from __main__ import x")
 
 print(f"{'n':>10s}{'pop(0)':>15s}{'pop()':>15s}")
 
-for i in range(100_000, 10_100_001, 1_000_000):
-    x = list(range(i))
+for n in range(100_000, 10_100_001, 1_000_000):
+    x = list(range(n))
     
     pop_zero_t = pop_zero.timeit(number=1000)
     pop_end_t = pop_end.timeit(number=1000)
     
-    print(f"{i:>10,}{pop_zero_t:>15.5f}{pop_end_t:>15.5f}")
+    print(f"{n:>10,}{pop_zero_t:>15.5f}{pop_end_t:>15.5f}")
 
 
 # 두 연산자의 실행시간을 비교하는 그래프는 다음과 같다. 
@@ -334,18 +334,18 @@ import random
 
 print(f"{'n':>9s}{'list':>10s}{'dict':>10s}")
 
-for i in range(10_000, 1_010_001, 100_000):
-    t = timeit.Timer(f"random.randrange({i}) in x", "from __main__ import random, x")
+for n in range(10_000, 1_010_001, 100_000):
+    t = timeit.Timer(f"random.randrange({n}) in x", "from __main__ import random, x")
     
     # 리스트 생성 및 무작위로 생성된 값의 항목 여부 확인
-    x = list(range(i))
+    x = list(range(n))
     lst_time = t.timeit(number=1000)
     
     # 사전 생성 및 무작위로 생성된 값의 항목 여부 확인
-    x = {j: True for j in range(i)}
+    x = {j: True for j in range(n)}
     dict_time = t.timeit(number=1000)
     
-    print(f"{i:>9,}{lst_time:>10.3f}{dict_time:>10.3f}")
+    print(f"{n:>9,}{lst_time:>10.3f}{dict_time:>10.3f}")
 
 
 # 사전 경우 실행시간의 변화가 거의 없다. 
