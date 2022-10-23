@@ -19,10 +19,11 @@ parts:
       chapters:
       - file: time_complexity
       - file: python_list_dict
-    - caption: 추상 모음 자료형
+    - caption: 선형 자료구조
       numbered: True
       chapters:
       - file: stacks
+      - file: infix_prefix_postfix
       - file: queues
       - file: deques
       - file: linked_lists
@@ -30,5 +31,11 @@ parts:
     - caption: 재귀
       numbered: True
       chapters:
-      - file: recursion_1
-      - file: recursion_2
+      - file: recursive_functions
+      - file: hanoi_tower
+    - caption: 탐색과 정렬
+      numbered: True
+      chapters:
+      - file: sort_search_1
+      - file: sort_search_2
+      - file: sort_search_3

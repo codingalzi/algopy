@@ -3,10 +3,7 @@
 
 # # 덱
 
-# Copyright (C)  Brad Miller, David Ranum.
-# This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/.
-
-# ## 덱(deque)
+# ## 덱의 정의
 
 # **덱**(deque)은 큐(queue)와 유사하게 작동하지만 큐와는 달리 항목의 추가와 삭제가
 # 머리와 꼬리 양쪽 끝 모두에서 처리된다. 

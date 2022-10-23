@@ -1,0 +1,1178 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>16. 순차/선택/합병/퀵 정렬 &#8212; 문제해결 알고리즘</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="17. 삽입 정렬, 쉘 정렬" href="sort_search_3.html" />
+    <link rel="prev" title="15. 탐색과 분할정복" href="sort_search_1.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">문제해결 알고리즘</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  파이썬 기초
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="python_basic_1.html">
+   1. 기본 자료형
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="python_basic_2.html">
+   2. 제어 구조와 함수
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="python_basic_3.html">
+   3. 클래스와 상속
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="python_basic_4.html">
+   4. 클래스 기본 요소
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  알고리즘 시간 복잡도
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="time_complexity.html">
+   5. 시간 복잡도
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="python_list_dict.html">
+   6. 파이썬 모음 자료형 분석
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  선형 자료구조
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="stacks.html">
+   7. 스택
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="infix_prefix_postfix.html">
+   8. 중위, 전위, 후위 표기법
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="queues.html">
+   9. 큐
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="deques.html">
+   10. 덱
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="linked_lists.html">
+   11. 연결 리스트
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ordered_lists.html">
+   12. 정렬 리스트
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  재귀
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="recursive_functions.html">
+   13. 재귀 함수
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="hanoi_tower.html">
+   14. 하노이의 탑과 미로게임
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  탐색과 정렬
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="sort_search_1.html">
+   15. 탐색과 분할정복
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   16. 순차/선택/합병/퀵 정렬
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="sort_search_3.html">
+   17. 삽입 정렬, 쉘 정렬
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/codingalzi/algopy/master?urlpath=tree/jupyter-book/sort_search_2.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/codingalzi/algopy"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/codingalzi/algopy/issues/new?title=Issue%20on%20page%20%2Fsort_search_2.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/sort_search_2.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   16.1. 버블 정렬
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   16.2. 선택 정렬
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id4">
+   16.3. 합병 정렬
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id5">
+   16.4. 퀵 정렬
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id6">
+   16.5. 연습문제
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     16.5.1. 프로그래밍 실습 문제
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>순차/선택/합병/퀵 정렬</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   16.1. 버블 정렬
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   16.2. 선택 정렬
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id4">
+   16.3. 합병 정렬
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id5">
+   16.4. 퀵 정렬
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id6">
+   16.5. 연습문제
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     16.5.1. 프로그래밍 실습 문제
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1><span class="section-number">16. </span>순차/선택/합병/퀵 정렬<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h1>
+<p><strong>소스코드</strong></p>
+<p>아래 내용을
+<a class="reference external" href="https://colab.research.google.com/github/codingalzi/algopy/blob/master/jupyter-book/sort_search_2.ipynb">(구글 코랩) 순차 정렬, 선택 정렬, 합병 정렬, 퀵 정렬</a>에서
+직접 실행할 수 있다.</p>
+<p><strong>주요 내용</strong></p>
+<ul class="simple">
+<li><p>버블정렬</p></li>
+<li><p>선택정렬</p></li>
+<li><p>합병정렬</p></li>
+<li><p>퀵정렬</p></li>
+</ul>
+<p><strong>정렬</strong>(sorting)은 모음 객체에 포함된 항목들을 특정 크기 기준에 따라
+오름차순 또는 내림차순으로 순서대로 위치하도록 하는 과정을 가리킨다.
+예를 들어, 문자열들로 이루어진 리스트의 항목을 알파벳 순서대로 정렬하거나,
+도시들의 리스트를 인구, 면적, 또는 우편번호 등으로 정렬할 수 있다.
+어구전철(anagram) 관계 확인, 이진탐색 등에서 정렬된 리스트가 얼마나 유용하게 활용되는지
+확인했었다.</p>
+<p>정렬 문제가 매우 중요하고 유용한가는 다양한 종류의 알고리즘이 있다는 사실에서 알 수 있다.
+하지만 어떤 정렬 알고리즘은 큰 데이터셋에 대해서는 유용하지만
+복잡한 알고리즘으로 인해 적은 데이터셋에 대해서는 효용성이 떨어지기도 한다.
+여기서는 다양한 알고리즘을 소개하고 장단점을 비교한다.</p>
+<p>정렬 알고리즘의 시간복잡도 분석에 사용되는 기본 단위연산은 다음 두 가지가
+일반적으로 사용된다.</p>
+<ul class="simple">
+<li><p>두 값의 크기 비교: 두 항목의 크기를 서로 비교할 수 있어야 함.</p></li>
+<li><p>두 항목의 자리 교환: 예를 들어, 보다 작은 값을 보다 큰 값보다 왼편에 위치하도록 해야 함.</p></li>
+</ul>
+<section id="id2">
+<h2><span class="section-number">16.1. </span>버블 정렬<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
+<p><strong>버블 정렬</strong>(bubble sort)은 연속된 두 수를 비교하여
+필요한 경우 작은 값은 왼쪽으로, 큰 값은 오른쪽으로 자리를 바꾸는 일을
+리스트 끝까지 반복하는 <strong>패스</strong>(pass) 과정을 리스트가 정렬될 때까지 반복하는 알고리즘이다.</p>
+<p>아래 그림은 첫째 패스 과정을 묘사하며
+첫째 패스가 끝나면 가장 큰 항목에 맨 오른쪽으로 이동한다.
+이후 둘째 패스를 실행하면 두 번째로 큰 항목은 오른쪽에서 둘째 자리에 위치한다.
+따라서 이 패스 과정을 길이가 <span class="math notranslate nohighlight">\(n\)</span>인 리스트에 대해 <span class="math notranslate nohighlight">\((n-1)\)</span> 번 적용하면
+최종적으로 오름차순으로 정렬된 리스트를 얻게 된다.
+이유는 가장 작은 항목은 자동으로 맨 왼편에 위치하게될 것이기 때문이다.</p>
+<p><strong>참고</strong>: 거품이 뽀글뽀글 위로 올라가(bubble up)는 거에 비유해서 버블 정렬이라 부른다.</p>
+<figure>
+<div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/bubblepass.png" width="60%"></div>
+</figure><p>아래 이미지는 버블정렬의 전체 패스가 작동하는 과정을 보여준다.</p>
+<figure>
+<div align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/5/54/Sorting_bubblesort_anim.gif" width="50%"></div>
+</figure><p>다음 <code class="docutils literal notranslate"><span class="pre">bubble_sort()</span></code> 함수가 리스트를 버블정렬한다.
+이주 <code class="docutils literal notranslate"><span class="pre">for</span></code> 반복문을 사용하며 각 반복문에서 사용되는 변수들의 역할은 다음과 같다.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">i</span></code>: 하나의 패스를 가리킴. 동시에 두 항목의 크기비교 및 자리교환 최대 횟수도 지정함.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">j</span></code>: 패스 별 크기비교 및 자리교환 수행</p></li>
+</ul>
+<p><strong>참고</strong>: <a class="reference external" href="https://pythontutor.com/visualize.html#code=def%20bubble_sort%28a_list%29%3A%0A%20%20%20%20for%20i%20in%20range%28len%28a_list%29%20-%201,%200,%20-1%29%3A%20%20%0A%20%20%20%20%20%20%20%20for%20j%20in%20range%28i%29%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20if%20a_list%5Bj%5D%20%3E%20a_list%5Bj%20%2B%201%5D%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20temp%20%3D%20a_list%5Bj%5D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20a_list%5Bj%5D%20%3D%20a_list%5Bj%20%2B%201%5D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20a_list%5Bj%20%2B%201%5D%20%3D%20temp%0A%0Aa_list%20%3D%20%5B26,%2054,%2093,%2017,%2077,%2031,%2044,%2055,%2020%5D%0Abubble_sort%28a_list%29&amp;cumulative=false&amp;curInstr=0&amp;heapPrimitives=nevernest&amp;mode=display&amp;origin=opt-frontend.js&amp;py=3&amp;rawInputLstJSON=%5B%5D&amp;textReferences=false">PythonTutor - 버블정렬</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">bubble_sort</span><span class="p">(</span><span class="n">a_list</span><span class="p">):</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">a_list</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>  <span class="c1"># 패스</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>                   <span class="c1"># 패스 별 크기비교 및 자리교환</span>
+            
+            <span class="k">if</span> <span class="n">a_list</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">a_list</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]:</span>    <span class="c1"># 크기비교 및 자리교환: 중간저장소 활용</span>
+                <span class="n">temp</span> <span class="o">=</span> <span class="n">a_list</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+                <span class="n">a_list</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">a_list</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+                <span class="n">a_list</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">54</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">93</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">77</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">20</span><span class="p">]</span>
+
+<span class="n">bubble_sort</span><span class="p">(</span><span class="n">a_list</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a_list</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[17, 20, 26, 31, 44, 54, 55, 77, 93]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>다중할당</strong></p>
+<p>대부분의 프로그래밍언어는 두 변수가 가리키는 값을 교환할 때 중간저장소를 이용한다.
+하지만 파이썬은 <strong>다중할당</strong>(multiple assignment)을 이용하여 중간저장소 없이
+두 변수가 가리키는 값을 동시에 변경할 수 있다(아래 코드 참조).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">bubble_sort</span><span class="p">(</span><span class="n">a_list</span><span class="p">):</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">a_list</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>  
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+            
+            <span class="k">if</span> <span class="n">a_list</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">a_list</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]:</span>    <span class="c1"># 크기비교 및 자리교환: 다중할당</span>
+                <span class="n">a_list</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">a_list</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">a_list</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="n">a_list</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">54</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">93</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">77</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">20</span><span class="p">]</span>
+
+<span class="n">bubble_sort</span><span class="p">(</span><span class="n">a_list</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a_list</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[17, 20, 26, 31, 44, 54, 55, 77, 93]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>버블정렬 시간복잡도 분석</strong></p>
+<p>항목들의 비교 횟수는 1부터 (n-1)까지의 합임을 쉽게 알 수 있다.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:center head"><p><strong>패      스</strong></p></th>
+<th class="text-align:center head"><p><strong>비교 횟수</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(n-1\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(2\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(n-2\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(3\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(n-3\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(\vdots\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(\vdots\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(n-1\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<p>따라서 총 비교 횟수는 다음과 같이 <span class="math notranslate nohighlight">\(O(n^2)\)</span>의 시간복잡도를 갖는다.</p>
+<div class="math notranslate nohighlight">
+\[
+1 + 2 + \cdots + (n-1) = \frac{n (n-1)}{2} = \frac{1}{2} n^2 - \frac{1}{2} n \in O(n^2)
+\]</div>
+<p>반면에 자리교환은 최소 0, 최대 비교횟수와 동일하게 발생하며, 평균적으로 비교횟수의 절반정도 발생한다.
+따라서 최선, 최악, 평균 시간복잡도 모두 <span class="math notranslate nohighlight">\(O(n^2)\)</span>의 시간복잡도를 갖는다.</p>
+<p><strong>버블정렬 조기종료</strong></p>
+<p>앞으로 보겠지만 버블정렬은 다른 정렬 기법에 비해 비효율적이다.
+이유는 경우에 따라 자리교환을 여러 번 해야하는 항목이 많이 발생하기 때문이다.
+하지만 바로 이 이유때문에 타 정렬 알고리즘은 지원하지 않는
+조기종료 기능을 추가할 수 있다.</p>
+<p>버블정렬을 실행하면서 특정 패스에서 자리교환이 한 번도 발생하지 않는다면
+해당 리스트는 이미 정렬되었음을 의미한다.
+따라서 그때 바로 실행을 종료해도 된다.
+다음 <code class="docutils literal notranslate"><span class="pre">bubble_sort_short()</span></code> 함수는 조기종료를 지원하는 버블정렬 알고리즘을 구현한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">bubble_sort_short</span><span class="p">(</span><span class="n">a_list</span><span class="p">):</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">a_list</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">exchanges</span> <span class="o">=</span> <span class="kc">False</span>    <span class="c1"># 패스 기간 내 자리교환 발생 여부 저장</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">a_list</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">a_list</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]:</span>
+                <span class="n">exchanges</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="n">a_list</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">a_list</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">a_list</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="n">a_list</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">exchanges</span><span class="p">:</span>   <span class="c1"># 패스 기간 동안 자리교환이 발생하지 않은 경우 조기종료</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;조기종료!&quot;</span><span class="p">)</span>
+            <span class="k">break</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">110</span><span class="p">]</span>
+<span class="n">bubble_sort_short</span><span class="p">(</span><span class="n">a_list</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a_list</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>조기종료!
+[20, 30, 40, 50, 60, 70, 80, 90, 100, 110]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>퀴즈</strong></p>
+<p>리스트 <code class="docutils literal notranslate"><span class="pre">[19,</span> <span class="pre">1,</span> <span class="pre">9,</span> <span class="pre">7,</span> <span class="pre">3,</span> <span class="pre">10,</span> <span class="pre">13,</span> <span class="pre">15,</span> <span class="pre">8,</span> <span class="pre">12]</span></code>에 대해 버블정렬을 진행할 때
+세 번의 패스가 완성된 후의 리스트는 어떤 모습인가?</p>
+<p>정답: <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">3,</span> <span class="pre">7,</span> <span class="pre">9,</span> <span class="pre">10,</span> <span class="pre">8,</span> <span class="pre">12,</span> <span class="pre">13,</span> <span class="pre">15,</span> <span class="pre">19]</span></code></p>
+</section>
+<section id="id3">
+<h2><span class="section-number">16.2. </span>선택 정렬<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h2>
+<p><strong>선택 정렬</strong>(selection sort)은 버블정렬의 단점인 자리교환 횟수를 패스당 최대 한 번만
+수행하도록 개선한 기법이다.
+즉, 작동과정은 기본적으로 버블정렬과 동일하다.
+다만 자리교환을 바로 실행하는 게 아니라 패스 별로 최댓값을 확인한 다음에
+최종적으로 한 번 자리교환을 실행한다.</p>
+<p>아래 그림은 길이가 9인 리스트를 8번의 패스를 실행한 후 최종적으로
+오름차순으로 정렬된 리스트가 생성됨을 보여준다.</p>
+<figure>
+<div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/selectionsortnew.png" width="60%"></div>
+</figure><p>다음 <code class="docutils literal notranslate"><span class="pre">selection_sort()</span></code> 함수가 리스트를 선택정렬한다.
+이주 <code class="docutils literal notranslate"><span class="pre">for</span></code> 반복문을 사용하며 각 반복문에서 사용되는 변수들의 역할은 다음과 같다.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">i</span></code>: 하나의 패스를 가리킴. 동시에 패스 별 최댓값이 자리할 위치를 지정함.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_idx</span></code>: 패스 별로 탐색된 최댓값의 위치</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">j</span></code>: 패스 별 크기비교 수행</p></li>
+</ul>
+<p><strong>참고</strong>: <a class="reference external" href="https://pythontutor.com/visualize.html#code=def%20selection_sort%28a_list%29%3A%0A%20%20%20%20for%20i%20in%20range%28len%28a_list%29-1,%200,%20-1%29%3A%0A%20%20%20%20%20%20%20%20max_idx%20%3D%200%0A%20%20%20%20%20%20%20%20for%20j%20in%20range%280,%20i%29%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20if%20a_list%5Bj%5D%20%3E%20a_list%5Bmax_idx%5D%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20max_idx%20%3D%20j%0A%20%20%20%20%20%20%20%20if%20max_idx%20%21%3D%20i%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20a_list%5Bmax_idx%5D,%20a_list%5Bi%5D%20%3D%20a_list%5Bi%5D,%20a_list%5Bmax_idx%5D%0A%0Aa_list%20%3D%20%5B26,%2054,%2093,%2017,%2077,%2031,%2044,%2055,%2020%5D%0Aselection_sort%28a_list%29&amp;cumulative=false&amp;curInstr=0&amp;heapPrimitives=nevernest&amp;mode=display&amp;origin=opt-frontend.js&amp;py=3&amp;rawInputLstJSON=%5B%5D&amp;textReferences=false">PythonTutor - 선택정렬</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">selection_sort</span><span class="p">(</span><span class="n">a_list</span><span class="p">):</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">a_list</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">max_idx</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">a_list</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">a_list</span><span class="p">[</span><span class="n">max_idx</span><span class="p">]:</span>
+                <span class="n">max_idx</span> <span class="o">=</span> <span class="n">j</span>
+        
+        <span class="n">a_list</span><span class="p">[</span><span class="n">max_idx</span><span class="p">],</span> <span class="n">a_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">a_list</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">a_list</span><span class="p">[</span><span class="n">max_idx</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">26</span><span class="p">,</span> <span class="mi">54</span><span class="p">,</span> <span class="mi">93</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">77</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">20</span><span class="p">]</span>
+<span class="n">selection_sort</span><span class="p">(</span><span class="n">a_list</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a_list</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[17, 20, 26, 44, 31, 54, 55, 77, 93]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>선택정렬 시간복잡도 분석</strong></p>
+<p>크기비교는 버블정렬의 경우와 동일하게 발생하여
+시간복잡도는 <span class="math notranslate nohighlight">\(O(n^2)\)</span>이다.
+다만 자리교환 횟수가 최대 <span class="math notranslate nohighlight">\(n-1\)</span> 번 발생해서
+버블정렬의 경우보다 선택정렬의 좀 더 빠르다.</p>
+<p><strong>퀴즈</strong></p>
+<p>리스트 <code class="docutils literal notranslate"><span class="pre">[11,</span> <span class="pre">7,</span> <span class="pre">12,</span> <span class="pre">14,</span> <span class="pre">19,</span> <span class="pre">1,</span> <span class="pre">6,</span> <span class="pre">18,</span> <span class="pre">8,</span> <span class="pre">20]</span></code>에 대해
+선택정렬을 진행할 때
+세 번의 패스가 완성된 후의 리스트는 어떤 모습인가?</p>
+<p>정답: <code class="docutils literal notranslate"><span class="pre">[11,</span> <span class="pre">7,</span> <span class="pre">12,</span> <span class="pre">14,</span> <span class="pre">8,</span> <span class="pre">1,</span> <span class="pre">6,</span> <span class="pre">18,</span> <span class="pre">19,</span> <span class="pre">20]</span></code></p>
+</section>
+<section id="id4">
+<h2><span class="section-number">16.3. </span>합병 정렬<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h2>
+<p>분할과 정복 기법을 이용하는 두 가지 정렬 알고리즘을 설명할 것이며,
+분할과 정복 기법을 사용하기에 두 알고리즘 모두 재귀를 적용하여 구현한다.</p>
+<p><strong>합병 정렬</strong>(merge sort)에 사용되는
+분할과 정복은 다음과 같다.</p>
+<ul class="simple">
+<li><p>분할: 리스트를 반복적으로 이등분해서 생성된 모든 리스트의 길이가 1이되도록 한다.</p></li>
+<li><p>정복: 길이가 1인 리스트는 이미 정렬되어 있으므로, 그런 리스트 두 개를 합쳐서 새로운 정렬 리스트를 만들며,
+이 과정을 반복해서 최종적으로 원래 리스트에 포함된 항목을 정렬시킨 새로운 리스트를 얻게 된다.</p></li>
+</ul>
+<p><strong>분할 과정</strong></p>
+<p>분할 과정은 쉽다. 재귀적으로 리스트의 길이가 1이 될 때까지 이등분을 반복하도록 한다.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">merge_sort</span><span class="p">(</span><span class="n">a_list</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">a_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">mid</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">a_list</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="n">left_half</span> <span class="o">=</span> <span class="n">a_list</span><span class="p">[:</span><span class="n">mid</span><span class="p">]</span>
+        <span class="n">right_half</span> <span class="o">=</span> <span class="n">a_list</span><span class="p">[</span><span class="n">mid</span><span class="p">:]</span>
+
+        <span class="n">merge_sort</span><span class="p">(</span><span class="n">left_half</span><span class="p">)</span>
+        <span class="n">merge_sort</span><span class="p">(</span><span class="n">right_half</span><span class="p">)</span>
+</pre></div>
+</div>
+<figure>
+<div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/mergesortA.png" width="60%"></div>
+</figure><p><strong>합병 과정</strong></p>
+<p>합병 과정은 보다 어렵다. 이미 정렬된 두 개의 리스트를 합쳐서 정렬된 새 리스트를 만들어야 한다.
+이를 위해 사용되는 알고리즘은 두 리스트의 항목을 하나씩 비교해서 작은 수를 먼저 새로운 리스트에 추가하는
+형식으로 진행된다.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+<span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">left_half</span><span class="p">)</span> <span class="ow">and</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">right_half</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">left_half</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">right_half</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
+        <span class="n">a_list</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">left_half</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">a_list</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">right_half</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<figure>
+<div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/mergesortB.png" width="60%"></div>
+</figure><p>위 합병 과정이 끝난 후 한 쪽 리스트에 항목이 남아 있다면 그대로 그 항목들이 더 큰 값들이기에 이어서 추가해주면 된다.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">left_half</span><span class="p">):</span>
+    <span class="n">a_list</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">left_half</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="k">while</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">right_half</span><span class="p">):</span>
+    <span class="n">a_list</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">right_half</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>하나의 코드로 정리하면 다음과 같다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">merge_sort</span><span class="p">(</span><span class="n">a_list</span><span class="p">):</span>
+    <span class="c1"># 분할 과정</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;분할&quot;</span><span class="p">,</span> <span class="n">a_list</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">a_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">mid</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">a_list</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="n">left_half</span> <span class="o">=</span> <span class="n">a_list</span><span class="p">[:</span><span class="n">mid</span><span class="p">]</span>
+        <span class="n">right_half</span> <span class="o">=</span> <span class="n">a_list</span><span class="p">[</span><span class="n">mid</span><span class="p">:]</span>
+
+        <span class="n">merge_sort</span><span class="p">(</span><span class="n">left_half</span><span class="p">)</span>
+        <span class="n">merge_sort</span><span class="p">(</span><span class="n">right_half</span><span class="p">)</span>
+        
+        <span class="c1"># 합병 과정</span>
+        <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">left_half</span><span class="p">)</span> <span class="ow">and</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">right_half</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">left_half</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">right_half</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
+                <span class="n">a_list</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">left_half</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">a_list</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">right_half</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+                <span class="n">j</span> <span class="o">=</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="n">k</span> <span class="o">=</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span>
+
+        <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">left_half</span><span class="p">):</span>
+            <span class="n">a_list</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">left_half</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="n">k</span> <span class="o">=</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span>
+
+        <span class="k">while</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">right_half</span><span class="p">):</span>
+            <span class="n">a_list</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">right_half</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+            <span class="n">j</span> <span class="o">=</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="n">k</span> <span class="o">=</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;합병&quot;</span><span class="p">,</span> <span class="n">a_list</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">54</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">93</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">77</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">20</span><span class="p">]</span>
+<span class="n">merge_sort</span><span class="p">(</span><span class="n">a_list</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a_list</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>분할 [54, 26, 93, 17, 77, 31, 44, 55, 20]
+분할 [54, 26, 93, 17]
+분할 [54, 26]
+분할 [54]
+합병 [54]
+분할 [26]
+합병 [26]
+합병 [26, 54]
+분할 [93, 17]
+분할 [93]
+합병 [93]
+분할 [17]
+합병 [17]
+합병 [17, 93]
+합병 [17, 26, 54, 93]
+분할 [77, 31, 44, 55, 20]
+분할 [77, 31]
+분할 [77]
+합병 [77]
+분할 [31]
+합병 [31]
+합병 [31, 77]
+분할 [44, 55, 20]
+분할 [44]
+합병 [44]
+분할 [55, 20]
+분할 [55]
+합병 [55]
+분할 [20]
+합병 [20]
+합병 [20, 55]
+합병 [20, 44, 55]
+합병 [20, 31, 44, 55, 77]
+합병 [17, 20, 26, 31, 44, 54, 55, 77, 93]
+[17, 20, 26, 31, 44, 54, 55, 77, 93]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>합병정렬 시간복잡도 분석</strong></p>
+<p>분할과 합병에 필요한 시간을 분리해서 계산한다.
+입력 리스트의 크기 <span class="math notranslate nohighlight">\(n\)</span>을 입력 크기로 사용한다.</p>
+<ul class="simple">
+<li><p>분할 과정: <span class="math notranslate nohighlight">\(\log n\)</span> 번 분할 발생.</p></li>
+<li><p>합병 과정: 두 개의 리스트를 합쳐서 길이가 <span class="math notranslate nohighlight">\(m\)</span> 인 리스트를 생성할 때 필요한 연산은 두 항목의 비교와 항목 업데이트이며,
+이는 <span class="math notranslate nohighlight">\(O(m)\)</span>의 시간복잡도를 갖는다. 따라서 최정적으로 길이가 <span class="math notranslate nohighlight">\(n\)</span>인 리스트를 합병하여 생성하기에
+두 항목의 비교와 항목 업데이트에 필요한 시간은 <span class="math notranslate nohighlight">\(O(n)\)</span>이다.
+하지만 <span class="math notranslate nohighlight">\((\log n)\)</span> 번 합병 과정을 진행해야 하기에 최정적으로 <span class="math notranslate nohighlight">\(O(n \log n)\)</span>의 시간복잡도를 갖는다.</p></li>
+</ul>
+<p>분할과 합병 두 과정의 시간복잡도는 따라서 <span class="math notranslate nohighlight">\(O(n \log n)\)</span>이다.</p>
+<p><strong>슬라이싱과 추가 메모리 사용</strong></p>
+<p>위 코드의 분할 과정에 사용된 재귀는 슬라이싱을 이용하기 때문에
+실제 시간복잡도는 <span class="math notranslate nohighlight">\(O(n^2 \log n)\)</span>이다.
+이유는 길이가 <span class="math notranslate nohighlight">\(k\)</span>인 부분 리스트를 슬라이싱을 이용하여 생성하는 알고리즘의 시간복잡도가 <span class="math notranslate nohighlight">\(O(k)\)</span>이기 때문이다.
+하지만, 슬라이싱을 직접 사용하는 대신 구간을 지정하는 기술을 적용하면
+분할 알고리즘의 시간복잡도를 <span class="math notranslate nohighlight">\(O(n \log n)\)</span>으로 만들 수 있다(실습 문제 참조).</p>
+<p>하지만 슬라이싱 대신 구간을 사용하여 분할 과정을 추가 메모리 없이 진행하면
+합병 과정에서 기존 리스트와의 충돌 방지를 위해 추가 메모리를 사용할 수 밖에 없다.
+따라서 어떤 방식이든 <span class="math notranslate nohighlight">\(O(n)\)</span>의 공간복잡도에 해당하는 메모리를 추가로 사용해야 한다.</p>
+<p><strong>퀴즈</strong></p>
+<p>리스트
+<code class="docutils literal notranslate"><span class="pre">[21,</span> <span class="pre">1,</span> <span class="pre">26,</span> <span class="pre">45,</span> <span class="pre">29,</span> <span class="pre">28,</span> <span class="pre">2,</span> <span class="pre">9,</span> <span class="pre">16,</span> <span class="pre">49,</span> <span class="pre">39,</span> <span class="pre">27,</span> <span class="pre">43,</span> <span class="pre">34,</span> <span class="pre">46,</span> <span class="pre">40]</span></code>에 대해
+<code class="docutils literal notranslate"><span class="pre">mergesort()</span></code> 함수를 3 번 적용했을 때 정렬 대상 리스트는 무엇인가?</p>
+<p>정답: <code class="docutils literal notranslate"><span class="pre">[21,1]</span></code></p>
+<p><strong>퀴즈</strong></p>
+<p>리스트
+<code class="docutils literal notranslate"><span class="pre">[21,</span> <span class="pre">1,</span> <span class="pre">26,</span> <span class="pre">45,</span> <span class="pre">29,</span> <span class="pre">28,</span> <span class="pre">2,</span> <span class="pre">9,</span> <span class="pre">16,</span> <span class="pre">49,</span> <span class="pre">39,</span> <span class="pre">27,</span> <span class="pre">43,</span> <span class="pre">34,</span> <span class="pre">46,</span> <span class="pre">40]</span></code>에 대해
+가장 먼저 합병되어야 할 두 리스트는 무엇인가?</p>
+<p>정답: <code class="docutils literal notranslate"><span class="pre">[21]</span></code>과 <code class="docutils literal notranslate"><span class="pre">[1]</span></code></p>
+</section>
+<section id="id5">
+<h2><span class="section-number">16.4. </span>퀵 정렬<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h2>
+<p><strong>퀵 정렬</strong>(merge sort) 또한 분할과 정복 기법을 활용한다.
+하지만 합병정렬과는 달리 분할 과정이 경우에 따라 이등분이 아닌 한쪽으로 치우치는 방식으로
+진행될 수 있으며, 그렇게 되면 알고리즘이 최악의 경우 <span class="math notranslate nohighlight">\(O(n^2)\)</span> 시간 복잡도로 실행될 수 있다.
+하지만 평균적으로 <span class="math notranslate nohighlight">\(O(n \log n)\)</span>의 시간복잡도를 보이며,
+무엇보다도 추가 메모리를 전혀 사용하지 않는다는 측면에서 합병정렬에 비해
+공간 시간복잡도 측면에서 큰 장점을 갖는다.</p>
+<p>퀵정렬은 분할과 정복을 동시에 진행한다.
+피벗(기준값)으로 지정된 값보다 작은 값들은 피벗 왼쪽으로,
+같거나 큰 값듯은 피벗 오른쪽으로 이동시킨다.
+피벗으로 사용된 값의 위치를 기준으로 좌우 두 개의 부분 리스트로 분할한 후
+동일 과정을 재귀적으로 반복한다.</p>
+<p><strong>피벗 지정</strong></p>
+<p>피벗은 리스트의 임의의 값을 사용해도 되지만
+여기서는 맨 왼편에 위치한 값을 사용한다.
+경우에 따라 양끝과 중앙에 위치한 세 값의 중앙값을 사용하거나
+오론쪽 맨 끝, 또는 중앙에 위치한 값 등도 사용된다.
+하지만 성능 차이는 기본적으로 없지만,
+입력 사례에 따라 성능차이가 발생할 수는 있다.</p>
+<figure>
+<div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/firstsplit.png" width="60%"></div>
+</figure><p><strong>분할 정복</strong></p>
+<p>분할과 정복을 동시에 진행하며,
+한 번의 분할과정을 통해 두 개의 보다 작은 리스트로 분할한 후에
+분할 된 두 개의 리스트에 대해 분할과 정복을 재귀적으로 진행한다.</p>
+<figure>
+<div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/partitionA.png" width="60%"></div>
+</figure><p>아래 <code class="docutils literal notranslate"><span class="pre">partition()</span></code> 함수는 주어진 리스트에 대해 분할과 정복을 수행한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 분할과 정복. 피벗은 맨 왼편 항목. 반환값은 피벗의 최종 자리 위치</span>
+<span class="k">def</span> <span class="nf">partition</span><span class="p">(</span><span class="n">a_list</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">last</span><span class="p">):</span>
+    <span class="n">pivot_val</span> <span class="o">=</span> <span class="n">a_list</span><span class="p">[</span><span class="n">first</span><span class="p">]</span>   <span class="c1"># 피벗</span>
+    <span class="n">left_mark</span> <span class="o">=</span> <span class="n">first</span> <span class="o">+</span> <span class="mi">1</span>       <span class="c1"># 탐색 구간 시작</span>
+    <span class="n">right_mark</span> <span class="o">=</span> <span class="n">last</span>           <span class="c1"># 탐색 구간 끝</span>
+    <span class="n">done</span> <span class="o">=</span> <span class="kc">False</span>                <span class="c1"># 탐색 종료여부 확인</span>
+
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">done</span><span class="p">:</span>
+        <span class="k">while</span> <span class="n">left_mark</span> <span class="o">&lt;=</span> <span class="n">right_mark</span> <span class="ow">and</span> <span class="n">a_list</span><span class="p">[</span><span class="n">left_mark</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">pivot_val</span><span class="p">:</span>
+            <span class="n">left_mark</span> <span class="o">=</span> <span class="n">left_mark</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">while</span> <span class="n">left_mark</span> <span class="o">&lt;=</span> <span class="n">right_mark</span> <span class="ow">and</span> <span class="n">a_list</span><span class="p">[</span><span class="n">right_mark</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">pivot_val</span><span class="p">:</span>
+            <span class="n">right_mark</span> <span class="o">=</span> <span class="n">right_mark</span> <span class="o">-</span> <span class="mi">1</span>
+        
+        <span class="c1"># 자리 교환</span>
+        <span class="k">if</span> <span class="n">right_mark</span> <span class="o">&lt;</span> <span class="n">left_mark</span><span class="p">:</span>
+            <span class="n">done</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">a_list</span><span class="p">[</span><span class="n">left_mark</span><span class="p">],</span> <span class="n">a_list</span><span class="p">[</span><span class="n">right_mark</span><span class="p">]</span> <span class="o">=</span> <span class="n">a_list</span><span class="p">[</span><span class="n">right_mark</span><span class="p">],</span> <span class="n">a_list</span><span class="p">[</span><span class="n">left_mark</span><span class="p">]</span>
+            
+    <span class="c1"># 피벗 자리 교환</span>
+    <span class="n">a_list</span><span class="p">[</span><span class="n">first</span><span class="p">],</span> <span class="n">a_list</span><span class="p">[</span><span class="n">right_mark</span><span class="p">]</span> <span class="o">=</span> <span class="n">a_list</span><span class="p">[</span><span class="n">right_mark</span><span class="p">],</span> <span class="n">a_list</span><span class="p">[</span><span class="n">first</span><span class="p">]</span>
+
+    <span class="c1"># 피벗 위치 반환</span>
+    <span class="k">return</span> <span class="n">right_mark</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>재귀</strong></p>
+<p>재귀는 <code class="docutils literal notranslate"><span class="pre">partition()</span></code> 함수를 재귀적으로 활용하는 방법만을 지정한다.</p>
+<figure>
+<div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/partitionB.png" width="60%"></div>
+</figure><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 재귀 보조함수: 리스트의 지정된 구간에 대해 partion() 함수 재귀적으로 활용</span>
+
+<span class="k">def</span> <span class="nf">quick_sort_helper</span><span class="p">(</span><span class="n">a_list</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">last</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">first</span> <span class="o">&lt;</span> <span class="n">last</span><span class="p">:</span>
+        <span class="n">split</span> <span class="o">=</span> <span class="n">partition</span><span class="p">(</span><span class="n">a_list</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">last</span><span class="p">)</span>
+
+        <span class="n">quick_sort_helper</span><span class="p">(</span><span class="n">a_list</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">split</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">quick_sort_helper</span><span class="p">(</span><span class="n">a_list</span><span class="p">,</span> <span class="n">split</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">last</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>아래 <code class="docutils literal notranslate"><span class="pre">quick_sort()</span></code> 함수는 <code class="docutils literal notranslate"><span class="pre">quick_sort_helper()</span></code> 함수를
+구간 지정과 함께 호출한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 재귀 함수</span>
+<span class="k">def</span> <span class="nf">quick_sort</span><span class="p">(</span><span class="n">a_list</span><span class="p">):</span>
+    <span class="n">quick_sort_helper</span><span class="p">(</span><span class="n">a_list</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">a_list</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>예제</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">54</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">93</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">77</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">20</span><span class="p">]</span>
+<span class="n">quick_sort</span><span class="p">(</span><span class="n">a_list</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a_list</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[17, 20, 26, 31, 44, 54, 55, 77, 93]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>퀵정렬 시간복잡도 분석</strong></p>
+<p>피벗을 기준으로 분할할 때 이상적인 경우 기존의 리스트를 거의 이등분한다.
+이 경우 분할 횟수는 <span class="math notranslate nohighlight">\(\log n\)</span> 이다. 여기서 <span class="math notranslate nohighlight">\(n\)</span>은 입력 리스트의 길이를 나타낸다.
+그리고 한 번 분할할 때마다 피벗과 나머지 값들이 비교되고 필요에 따라 자리교환이 발생하는데
+이에 대한 시간복잡도는 <span class="math notranslate nohighlight">\(n\)</span> 이다.
+따라서 퀵정렬 알고리즘의 최선 시간복잡도는 <span class="math notranslate nohighlight">\(O(n \log n)\)</span>이다.</p>
+<p>하지만 최악의 경우 분할이 한쪽으로 쏠리도록 이뤄질 수 있다.
+예를 들어, 거의 정렬이 되어있는 리스트일 경우 피벗을 기준으로 1대 (n-1) 개의 부분 리스트로
+분할될 수 있다.
+이런 경우가 많이 발생하면, 즉 <span class="math notranslate nohighlight">\(n\)</span> 번에 가까운 분할이 필요하면
+시간복잡도는 최악의 경우 <span class="math notranslate nohighlight">\(O(n^2)\)</span>이 나온다.</p>
+<p><strong>합병정렬 대 퀵정렬</strong></p>
+<p>합병정렬이 퀵정렬에 비해 시간복잡도 측면에서 이론적으로 좋기는 하지만
+공간복잡도와 자리교환(swapping) 횟수 측면에서는 비효율적이다.
+또한 퀵정렬이 대부분의 운영체제와 프로그래밍언어에서 최적화되는 데에 용이하기에
+기본 정렬 알고리즘으로 활용된다.</p>
+<p><strong>퀴즈</strong></p>
+<p>리스트
+<code class="docutils literal notranslate"><span class="pre">[14,</span> <span class="pre">17,</span> <span class="pre">13,</span> <span class="pre">15,</span> <span class="pre">19,</span> <span class="pre">10,</span> <span class="pre">3,</span> <span class="pre">16,</span> <span class="pre">9,</span> <span class="pre">12]</span></code>에 대해
+<code class="docutils literal notranslate"><span class="pre">partition()</span></code> 함수를 두 번 적용한 중간 결과는 무엇인가?</p>
+<p>정답: <code class="docutils literal notranslate"><span class="pre">[9,</span> <span class="pre">3,</span> <span class="pre">10,</span> <span class="pre">13,</span> <span class="pre">12,</span> <span class="pre">14,</span> <span class="pre">19,</span> <span class="pre">16,</span> <span class="pre">15,</span> <span class="pre">17]</span></code></p>
+<p><strong>퀴즈</strong></p>
+<p>리스트
+<code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">20,</span> <span class="pre">11,</span> <span class="pre">5,</span> <span class="pre">2,</span> <span class="pre">9,</span> <span class="pre">16,</span> <span class="pre">14,</span> <span class="pre">13,</span> <span class="pre">19]</span></code>에 대해
+median of 3 기법을 적용한 수는 무엇인가?</p>
+<p>정답: 9</p>
+</section>
+<section id="id6">
+<h2><span class="section-number">16.5. </span>연습문제<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h2>
+<p>아래 세 개의 리스트 각각에 대해
+버블정렬, 선택정렬, 합병정렬, 퀵정렬 알고리즘이 적용되는 과정을 묘사하라.</p>
+<ol class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[8,</span> <span class="pre">1,</span> <span class="pre">2,</span> <span class="pre">7,</span> <span class="pre">3,</span> <span class="pre">6,</span> <span class="pre">10,</span> <span class="pre">5,</span> <span class="pre">4,</span> <span class="pre">9]</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">4,</span> <span class="pre">5,</span> <span class="pre">6,</span> <span class="pre">7,</span> <span class="pre">8,</span> <span class="pre">9,</span> <span class="pre">10]</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[10,</span> <span class="pre">9,</span> <span class="pre">8,</span> <span class="pre">7,</span> <span class="pre">6,</span> <span class="pre">5,</span> <span class="pre">4,</span> <span class="pre">3,</span> <span class="pre">2,</span> <span class="pre">1]</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[&quot;P&quot;,</span> <span class="pre">&quot;Y&quot;,</span> <span class="pre">&quot;T&quot;,</span> <span class="pre">&quot;H&quot;,</span> <span class="pre">&quot;O&quot;,</span> <span class="pre">&quot;N&quot;]</span></code></p></li>
+</ol>
+<section id="id7">
+<h3><span class="section-number">16.5.1. </span>프로그래밍 실습 문제<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h3>
+<ol>
+<li><p><code class="docutils literal notranslate"><span class="pre">mergesort()</span></code> 함수에 사용된 알고리즘을 수정하여
+재귀에 사용된 슬라이싱 대신 구간 지정방식을 사용하는 재귀 합병 알고리즘을 구현하라.</p>
+<p>힌트: 합병을 담당하는 함수를 따로 정의해서 분할 재귀함수에 활용한다.</p>
+</li>
+<li><p>정수 500개를 무작위로 생성한 후 소개된 네 개의 정렬 알고리즘의
+실행시간을 평가하는 모의실험을 수행하라.</p></li>
+<li><p>버블정렬 알고리즘을 패스별로 최댓값을 오른편으로 보내는 것과
+최솟값을 왼편으로 보내는 과정을 번갈아 실행하도록 수정하라.</p></li>
+<li><p>퀵정렬 알고리즘의 피벗 선택을 달리하는 알고리즘을 구현하라.
+또한 달라진 피벗 선택이 보다 효율적으로 작동하는 경우에 대한 기준을 설명하라.</p>
+<ol class="simple">
+<li><p>중앙에 위치한 값 선택</p></li>
+<li><p>처음, 끝, 중앙에 위치한 값들의 중앙값 선택</p></li>
+</ol>
+</li>
+</ol>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="sort_search_1.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">15. </span>탐색과 분할정복</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="sort_search_3.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">17. </span>삽입 정렬, 쉘 정렬</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By 코딩알지<br/>
+  
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

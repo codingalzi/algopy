@@ -3,10 +3,7 @@
 
 # # 큐
 
-# Copyright (C)  Brad Miller, David Ranum.
-# This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/.
-
-# ## 큐
+# ## 큐의 정의
 
 # 항목 추가는 **꼬리**(rear, tail)에서, 항목 삭제는 **머리**(front, head)에서
 # 이루어지며, 입력된 순서대로 머리에서부터 하나씩 삭제되는 모음 자료형을 **큐**(queue)라 부른다. 
