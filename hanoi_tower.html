@@ -1,0 +1,1103 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>14. 하노이의 탑과 미로게임 &#8212; 문제해결 알고리즘</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="15. 탐색과 분할정복" href="sort_search_1.html" />
+    <link rel="prev" title="13. 재귀 함수" href="recursive_functions.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">문제해결 알고리즘</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  파이썬 기초
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="python_basic_1.html">
+   1. 기본 자료형
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="python_basic_2.html">
+   2. 제어 구조와 함수
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="python_basic_3.html">
+   3. 클래스와 상속
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="python_basic_4.html">
+   4. 클래스 기본 요소
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  알고리즘 시간 복잡도
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="time_complexity.html">
+   5. 시간 복잡도
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="python_list_dict.html">
+   6. 파이썬 모음 자료형 분석
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  선형 자료구조
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="stacks.html">
+   7. 스택
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="infix_prefix_postfix.html">
+   8. 중위, 전위, 후위 표기법
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="queues.html">
+   9. 큐
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="deques.html">
+   10. 덱
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="linked_lists.html">
+   11. 연결 리스트
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ordered_lists.html">
+   12. 정렬 리스트
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  재귀
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="recursive_functions.html">
+   13. 재귀 함수
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   14. 하노이의 탑과 미로게임
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  탐색과 정렬
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="sort_search_1.html">
+   15. 탐색과 분할정복
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="sort_search_2.html">
+   16. 순차/선택/합병/퀵 정렬
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="sort_search_3.html">
+   17. 삽입 정렬, 쉘 정렬
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/codingalzi/algopy/master?urlpath=tree/jupyter-book/hanoi_tower.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/codingalzi/algopy"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/codingalzi/algopy/issues/new?title=Issue%20on%20page%20%2Fhanoi_tower.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/hanoi_tower.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   14.1. 5.6 하노이의 탑
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     14.1.1. 재귀 알고리즘
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     14.1.2. 머리와 꼬리
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id5">
+   14.2. 5.7 미로 탐색
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     14.2.1. 미로 설계도
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#maze">
+     14.2.2. 미로 시각화:
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       Maze
+      </span>
+     </code>
+     클래스 활용
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     14.2.3. 미로 탐색 알고리즘
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     14.2.4. 머리와 꼬리
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id9">
+   14.3. 5.8 프로그래밍 연습 문제
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id10">
+     14.3.1. 하노이의 탑
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id11">
+     14.3.2. 미로 탐색
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id12">
+     14.3.3. 기타
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>하노이의 탑과 미로게임</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   14.1. 5.6 하노이의 탑
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     14.1.1. 재귀 알고리즘
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     14.1.2. 머리와 꼬리
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id5">
+   14.2. 5.7 미로 탐색
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     14.2.1. 미로 설계도
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#maze">
+     14.2.2. 미로 시각화:
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       Maze
+      </span>
+     </code>
+     클래스 활용
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     14.2.3. 미로 탐색 알고리즘
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     14.2.4. 머리와 꼬리
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id9">
+   14.3. 5.8 프로그래밍 연습 문제
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id10">
+     14.3.1. 하노이의 탑
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id11">
+     14.3.2. 미로 탐색
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id12">
+     14.3.3. 기타
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1><span class="section-number">14. </span>하노이의 탑과 미로게임<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h1>
+<p>Copyright (C)  Brad Miller, David Ranum.
+This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy of this license, visit <a class="reference external" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">http://creativecommons.org/licenses/by-nc-sa/4.0/</a>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">for</span></code>, <code class="docutils literal notranslate"><span class="pre">while</span></code> 반복문을 이용하여 해결하기 어려운 문제를
+재귀 알고리즘으로 상대적으로 훨씬 간단하게 해결하는 예제 두 개를 다룬다.</p>
+<section id="id2">
+<h2><span class="section-number">14.1. </span>5.6 하노이의 탑<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
+<p>하노이의 탑(Tower of Hanoi) 문제는 세 개의 기둥 중에
+하나의 기둥에 쌓여 있는 다양한 크기의 원판들을 다른 기둥으로 옮기는 게임이다.
+단, 원판 이동 중에 아래 제한조건들을 반드시 지켜야 한다.</p>
+<ul class="simple">
+<li><p>한 번에 한개의 원판만 옮긴다.</p></li>
+<li><p>큰 원판이 그보다 작은 원판 위에 위치할 수 없다.</p></li>
+</ul>
+<figure>
+<div align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/6/60/Tower_of_Hanoi_4.gif" width="45%"></div>
+</figure>
+<p>&lt;그림 출처: <a class="reference external" href="https://ko.wikipedia.org/wiki/%ED%95%98%EB%85%B8%EC%9D%B4%EC%9D%98_%ED%83%91">위키백과: 하노이의 탑</a>&gt;</p>
+<p><strong>참고</strong>: 일반적으로 원판이 <span class="math notranslate nohighlight">\(n\)</span>개 일 때, <span class="math notranslate nohighlight">\(2^n - 1\)</span>번의 이동으로 원판을 모두 옮길 수 있다.
+참고로 64개의 원판을 옮기는 데 총 <span class="math notranslate nohighlight">\(2^{64}-1\)</span> 번 원판을 움직여야 하고,
+1초에 하나의 원판을 옮긴다고 가정했을 때 5,849억년 정도 걸린다.</p>
+<section id="id3">
+<h3><span class="section-number">14.1.1. </span>재귀 알고리즘<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
+<p>4개의 원판을 옮겨야 한다고 가정하자.
+아래 연속된 그림에서 볼 수 있듯이 3개의 원판을 옮기는 과정을 두 번 반복하면 된다.</p>
+<figure>
+<div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/notebooks/_images/hanoi-tower-1.png" width="50%"></div>
+</figure><figure>
+<div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/notebooks/_images/hanoi-tower-2.png" width="50%"></div>
+</figure><figure>
+<div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/notebooks/_images/hanoi-tower-3.png" width="50%"></div>
+</figure><figure>
+<div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/notebooks/_images/hanoi-tower-4.png" width="50%"></div>
+</figure><p>위 설명을 임의의 양의 정수 <code class="docutils literal notranslate"><span class="pre">n</span></code>에 대해 일반화하면 다음과 같다.</p>
+<ol class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">n-1</span></code> 개의 원판을 중간 지점의 위치에 옮긴다.</p></li>
+<li><p>가장 큰 원판을 목적지로 옮긴다.</p></li>
+<li><p>중간 지점에 위치한 <code class="docutils literal notranslate"><span class="pre">n-1</span></code> 개의 원판을 목적지로 옮긴다.</p></li>
+</ol>
+<p>위 재귀 알고리즘의 종료조건은 <code class="docutils literal notranslate"><span class="pre">n=1</span></code>일 때이며, 이때는 하나의 원판을
+목적지로 옮기기만 하면 된다.
+이를 코드로 구현하면 다음과 같다.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">height</span></code>: 원판 개수</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">from_pole</span></code>: 출발 기둥</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">with_pole</span></code>: 중간 지점 기둥</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">to_pole</span></code>: 목적지 기둥</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">move_tower</span><span class="p">(</span><span class="n">height</span><span class="p">,</span> <span class="n">from_pole</span><span class="p">,</span> <span class="n">to_pole</span><span class="p">,</span> <span class="n">with_pole</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">height</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">move_tower</span><span class="p">(</span><span class="n">height</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">from_pole</span><span class="p">,</span> <span class="n">with_pole</span><span class="p">,</span> <span class="n">to_pole</span><span class="p">)</span>
+        <span class="n">move_disk</span><span class="p">(</span><span class="n">from_pole</span><span class="p">,</span> <span class="n">to_pole</span><span class="p">)</span>                           <span class="c1"># 탑 원판 옮기기</span>
+        <span class="n">move_tower</span><span class="p">(</span><span class="n">height</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">with_pole</span><span class="p">,</span> <span class="n">to_pole</span><span class="p">,</span> <span class="n">from_pole</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">move_disk</span><span class="p">(</span><span class="n">from_p</span><span class="p">,</span> <span class="n">to_p</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">from_p</span><span class="si">}</span><span class="s2">에서 </span><span class="si">{</span><span class="n">to_p</span><span class="si">}</span><span class="s2">로 탑 원판 옮기기&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">move_tower</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A에서 C로 탑 원판 옮기기
+A에서 B로 탑 원판 옮기기
+C에서 B로 탑 원판 옮기기
+A에서 C로 탑 원판 옮기기
+B에서 A로 탑 원판 옮기기
+B에서 C로 탑 원판 옮기기
+A에서 C로 탑 원판 옮기기
+A에서 B로 탑 원판 옮기기
+C에서 B로 탑 원판 옮기기
+C에서 A로 탑 원판 옮기기
+B에서 A로 탑 원판 옮기기
+C에서 B로 탑 원판 옮기기
+A에서 C로 탑 원판 옮기기
+A에서 B로 탑 원판 옮기기
+C에서 B로 탑 원판 옮기기
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id4">
+<h3><span class="section-number">14.1.2. </span>머리와 꼬리<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h3>
+<p>하노이의 탑 알고리즘에서 머리와 꼬리는 다음과 같다.</p>
+<ul class="simple">
+<li><p>머리: 바닥에 위치한 원판. 지정된 목적지로 이동하면 끝.</p></li>
+<li><p>꼬리: 머리를 제외한 나머지 원판으로 이루어진 탑. 따라서 하나의 꼬리에 대한 두 번의 재귀호출이 이뤄짐.</p></li>
+</ul>
+</section>
+</section>
+<section id="id5">
+<h2><span class="section-number">14.2. </span>5.7 미로 탐색<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h2>
+<p>아래 그림은 거북이가 미로를 탈출하기 위해 가능한 모든 경로를 탐색하는 과정을 보여준다.</p>
+<ul class="simple">
+<li><p>노랑 벽: 거북이가 통과하지 못하는 벽</p></li>
+<li><p>형광 점: 탈출 경로</p></li>
+<li><p>빨강 점: 갔다가 길이 막혀서 되돌아온 경로</p></li>
+</ul>
+<figure>
+<div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/notebooks/_images/maze2.png" width="50%"></div>
+</figure><section id="id6">
+<h3><span class="section-number">14.2.1. </span>미로 설계도<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h3>
+<p>미로 설계도는 덧셈 기호(<code class="docutils literal notranslate"><span class="pre">+</span></code>)와 공백으로 이루어진 문자열로 주어진다.
+아래 설계도는 11개의 행과 22개의 열로 이루어진 2차원 어레이 모양을 갖는 설계도이다.</p>
+<ul class="simple">
+<li><p>덧셈 기호(<code class="docutils literal notranslate"><span class="pre">+</span></code>): 벽돌을 의미함.</p></li>
+<li><p>공백: 이동 가능 공간을 의미함.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">S</span></code>: 거북이의 초기 위치를 지점함.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">maze2</span> <span class="o">=</span> <span class="s2">&quot;++++++++++++++++++++++</span><span class="se">\n\</span>
+<span class="s2">+   +   ++ ++        +</span><span class="se">\n\</span>
+<span class="s2">    +     ++++++++++  </span><span class="se">\n\</span>
+<span class="s2">+ +    ++  ++++ +++ ++</span><span class="se">\n\</span>
+<span class="s2">+ +   + + ++    +++  +</span><span class="se">\n\</span>
+<span class="s2">+          ++  ++  + +</span><span class="se">\n\</span>
+<span class="s2">+++++ + +      ++  + +</span><span class="se">\n\</span>
+<span class="s2">+++++ +++  + +  ++   +</span><span class="se">\n\</span>
+<span class="s2">+          + + S+ +  +</span><span class="se">\n\</span>
+<span class="s2">+++++ +  + + +     + +</span><span class="se">\n\</span>
+<span class="s2">++++++++++++++++++++++</span><span class="se">\n</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>즉, 아래와 같이 생긴 미로를 설계한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">maze2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>++++++++++++++++++++++
++   +   ++ ++        +
+    +     ++++++++++  
++ +    ++  ++++ +++ ++
++ +   + + ++    +++  +
++          ++  ++  + +
++++++ + +      ++  + +
++++++ +++  + +  ++   +
++          + + S+ +  +
++++++ +  + + +     + +
+++++++++++++++++++++++
+</pre></div>
+</div>
+</div>
+</div>
+<p>먼저 설계도를 파일로 저장한다.</p>
+<p><strong>참고</strong>: 이 과정 대신 직접 2차원 리스트로 변환할 수 있다.
+하지만 여기서는 파일로 저장한 후에 저장된 설계도 파일을 읽어
+2차원 어레이 형식의 설계도를 생성하는 방식을 사용한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;maze2.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">maze2_file</span><span class="p">:</span>
+    <span class="n">maze2_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">maze2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="maze">
+<h3><span class="section-number">14.2.2. </span>미로 시각화: <code class="docutils literal notranslate"><span class="pre">Maze</span></code> 클래스 활용<a class="headerlink" href="#maze" title="Permalink to this headline">#</a></h3>
+<p>거북이 모듈을 이용하여 거북이가 움직일 수 있는 미로를 시각화 한다.
+이를 위해 <code class="docutils literal notranslate"><span class="pre">Maze</span></code> 클래스를 선언하며
+미로 그리기, 거북이 이동, 위치 업데이트 하기, 이동경로 기억하기 등의 기능을 추가한다.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">__init__()</span></code> 메서드: 미로 설계도 읽어오기. 거북이의 출발위치 확인.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">draw_maze()</span></code> 메서드: 설계도에 따라 미로 그리기.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">draw_centered_box()</span></code> 메서드: 미로에 필요한 블록 그리기</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">update_position()</span></code> 메서드: 지정된 위치로 이동 및 이동경로 표시</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">move_turtle()</span></code> 메서드: 지정된 위치로 이동</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">drop_bread_crumb()</span></code> 메서드: 이동 경로 표시. 색상으로 구분.</p>
+<ul>
+<li><p>검정: 지나간 경로(최종적으로 빨강 또는 초록으로 대체됨)</p></li>
+<li><p>빨강: 막혀서 되돌아간 경로</p></li>
+<li><p>초록: 탈출 경로</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">is_exit()</span></code> 메서드: 미로 경계를 벗어나는 지점 여부 확인</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__getitem__()</span></code> 메서드: 미로 상의 위치 확인용.
+2차원 어레이 모양의 리스트에 필요한 인덱스 기능 지원.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">turtle</span>
+
+<span class="n">PART_OF_PATH</span> <span class="o">=</span> <span class="s2">&quot;O&quot;</span>
+<span class="n">TRIED</span> <span class="o">=</span> <span class="s2">&quot;.&quot;</span>
+<span class="n">OBSTACLE</span> <span class="o">=</span> <span class="s2">&quot;+&quot;</span>
+<span class="n">DEAD_END</span> <span class="o">=</span> <span class="s2">&quot;-&quot;</span>
+
+
+<span class="k">class</span> <span class="nc">Maze</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">maze_filename</span><span class="p">):</span>
+        <span class="n">rows_in_maze</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">columns_in_maze</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">maze_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">maze_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">maze_filename</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
+        <span class="n">rows_in_maze</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">maze_file</span><span class="p">:</span>
+            <span class="n">row_list</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">col</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">for</span> <span class="n">ch</span> <span class="ow">in</span> <span class="n">line</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+                <span class="n">row_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ch</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">ch</span> <span class="o">==</span> <span class="s2">&quot;S&quot;</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">start_row</span> <span class="o">=</span> <span class="n">rows_in_maze</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">start_col</span> <span class="o">=</span> <span class="n">col</span>
+                <span class="n">col</span> <span class="o">=</span> <span class="n">col</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="n">rows_in_maze</span> <span class="o">=</span> <span class="n">rows_in_maze</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">maze_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row_list</span><span class="p">)</span>
+            <span class="n">columns_in_maze</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">row_list</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">rows_in_maze</span> <span class="o">=</span> <span class="n">rows_in_maze</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">columns_in_maze</span> <span class="o">=</span> <span class="n">columns_in_maze</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x_translate</span> <span class="o">=</span> <span class="o">-</span><span class="n">columns_in_maze</span> <span class="o">/</span> <span class="mi">2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">y_translate</span> <span class="o">=</span> <span class="n">rows_in_maze</span> <span class="o">/</span> <span class="mi">2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">t</span> <span class="o">=</span> <span class="n">turtle</span><span class="o">.</span><span class="n">Turtle</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="s2">&quot;turtle&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wn</span> <span class="o">=</span> <span class="n">turtle</span><span class="o">.</span><span class="n">Screen</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wn</span><span class="o">.</span><span class="n">setworldcoordinates</span><span class="p">(</span>
+            <span class="o">-</span><span class="p">(</span><span class="n">columns_in_maze</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">,</span>
+            <span class="o">-</span><span class="p">(</span><span class="n">rows_in_maze</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">,</span>
+            <span class="p">(</span><span class="n">columns_in_maze</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">,</span>
+            <span class="p">(</span><span class="n">rows_in_maze</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">draw_maze</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">speed</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wn</span><span class="o">.</span><span class="n">tracer</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rows_in_maze</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">columns_in_maze</span><span class="p">):</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">maze_list</span><span class="p">[</span><span class="n">y</span><span class="p">][</span><span class="n">x</span><span class="p">]</span> <span class="o">==</span> <span class="n">OBSTACLE</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">draw_centered_box</span><span class="p">(</span>
+                        <span class="n">x</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">x_translate</span><span class="p">,</span> <span class="o">-</span><span class="n">y</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_translate</span><span class="p">,</span> <span class="s2">&quot;orange&quot;</span>
+                    <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">color</span><span class="p">(</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">fillcolor</span><span class="p">(</span><span class="s2">&quot;blue&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wn</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wn</span><span class="o">.</span><span class="n">tracer</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">draw_centered_box</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">up</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">goto</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">y</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">color</span><span class="p">(</span><span class="n">color</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">fillcolor</span><span class="p">(</span><span class="n">color</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">setheading</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">down</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">begin_fill</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">end_fill</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">move_turtle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">up</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">setheading</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">towards</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">x_translate</span><span class="p">,</span> <span class="o">-</span><span class="n">y</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_translate</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">goto</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">x_translate</span><span class="p">,</span> <span class="o">-</span><span class="n">y</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_translate</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">drop_bread_crumb</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">color</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">color</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">update_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">,</span> <span class="n">val</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">val</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">maze_list</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">move_turtle</span><span class="p">(</span><span class="n">col</span><span class="p">,</span> <span class="n">row</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">val</span> <span class="o">==</span> <span class="n">PART_OF_PATH</span><span class="p">:</span>
+            <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;green&quot;</span>
+        <span class="k">elif</span> <span class="n">val</span> <span class="o">==</span> <span class="n">OBSTACLE</span><span class="p">:</span>
+            <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;red&quot;</span>
+        <span class="k">elif</span> <span class="n">val</span> <span class="o">==</span> <span class="n">TRIED</span><span class="p">:</span>
+            <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;black&quot;</span>
+        <span class="k">elif</span> <span class="n">val</span> <span class="o">==</span> <span class="n">DEAD_END</span><span class="p">:</span>
+            <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;red&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">color</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">if</span> <span class="n">color</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">drop_bread_crumb</span><span class="p">(</span><span class="n">color</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">is_exit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="n">row</span> <span class="o">==</span> <span class="mi">0</span>
+            <span class="ow">or</span> <span class="n">row</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">rows_in_maze</span> <span class="o">-</span> <span class="mi">1</span>
+            <span class="ow">or</span> <span class="n">col</span> <span class="o">==</span> <span class="mi">0</span>
+            <span class="ow">or</span> <span class="n">col</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns_in_maze</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">maze_list</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id7">
+<h3><span class="section-number">14.2.3. </span>미로 탐색 알고리즘<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h3>
+<p>미로의 임의의 위치에서 출발하는 거북이가 탈출 경로를 탐색하는 알고리즘은 다음과 같다.</p>
+<p><strong>참고</strong>: <code class="docutils literal notranslate"><span class="pre">or</span></code> 부울 연산자의 기능에 주의해야 한다.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">True</span> <span class="pre">or</span> <span class="pre">B</span></code>: <code class="docutils literal notranslate"><span class="pre">B</span></code>를 확인하지 않고 <code class="docutils literal notranslate"><span class="pre">True</span></code>로 처리됨</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">False</span> <span class="pre">or</span> <span class="pre">B</span></code>: <code class="docutils literal notranslate"><span class="pre">B</span></code>를 확인함.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">search_from</span><span class="p">(</span><span class="n">maze</span><span class="p">,</span> <span class="n">start_row</span><span class="p">,</span> <span class="n">start_column</span><span class="p">):</span>
+    <span class="c1"># 지정된 위치로 이동 및 상태 업데이트</span>
+    <span class="n">maze</span><span class="o">.</span><span class="n">update_position</span><span class="p">(</span><span class="n">start_row</span><span class="p">,</span> <span class="n">start_column</span><span class="p">)</span>
+
+    <span class="c1"># 종료 조건</span>
+    <span class="c1">#  1. 벽에 막히는 경우</span>
+    <span class="k">if</span> <span class="n">maze</span><span class="p">[</span><span class="n">start_row</span><span class="p">][</span><span class="n">start_column</span><span class="p">]</span> <span class="o">==</span> <span class="n">OBSTACLE</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    
+    <span class="c1">#  2. 이미 탐색한 경로인 경우</span>
+    <span class="k">if</span> <span class="p">(</span>
+        <span class="n">maze</span><span class="p">[</span><span class="n">start_row</span><span class="p">][</span><span class="n">start_column</span><span class="p">]</span> <span class="o">==</span> <span class="n">TRIED</span>
+        <span class="ow">or</span> <span class="n">maze</span><span class="p">[</span><span class="n">start_row</span><span class="p">][</span><span class="n">start_column</span><span class="p">]</span> <span class="o">==</span> <span class="n">DEAD_END</span>
+    <span class="p">):</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    
+    <span class="c1"># 3. 탈출구를 찾은 경우</span>
+    <span class="k">if</span> <span class="n">maze</span><span class="o">.</span><span class="n">is_exit</span><span class="p">(</span><span class="n">start_row</span><span class="p">,</span> <span class="n">start_column</span><span class="p">):</span>
+        <span class="n">maze</span><span class="o">.</span><span class="n">update_position</span><span class="p">(</span><span class="n">start_row</span><span class="p">,</span> <span class="n">start_column</span><span class="p">,</span> <span class="n">PART_OF_PATH</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    
+    <span class="c1"># 종료 조건이 아닌 경우: 해당 위치를 `TRIED`로 표시</span>
+    <span class="n">maze</span><span class="o">.</span><span class="n">update_position</span><span class="p">(</span><span class="n">start_row</span><span class="p">,</span> <span class="n">start_column</span><span class="p">,</span> <span class="n">TRIED</span><span class="p">)</span>
+
+    <span class="c1"># 이후 북, 남, 서, 동 방향의 순서로 모든 가능성을 재귀적으로 탐색</span>
+    <span class="c1"># 주의: or 연산자의 기능에 유의할 것.</span>
+    <span class="n">found</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">search_from</span><span class="p">(</span><span class="n">maze</span><span class="p">,</span> <span class="n">start_row</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">start_column</span><span class="p">)</span>
+        <span class="ow">or</span> <span class="n">search_from</span><span class="p">(</span><span class="n">maze</span><span class="p">,</span> <span class="n">start_row</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">start_column</span><span class="p">)</span>
+        <span class="ow">or</span> <span class="n">search_from</span><span class="p">(</span><span class="n">maze</span><span class="p">,</span> <span class="n">start_row</span><span class="p">,</span> <span class="n">start_column</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="ow">or</span> <span class="n">search_from</span><span class="p">(</span><span class="n">maze</span><span class="p">,</span> <span class="n">start_row</span><span class="p">,</span> <span class="n">start_column</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="p">)</span>
+    
+    <span class="c1"># 모든 가능성이 없을 때까지 이동한 후 두 가지 가능성 존재</span>
+    <span class="c1"># 1. 탈출구를 찾은 경우</span>
+    <span class="k">if</span> <span class="n">found</span><span class="p">:</span>
+        <span class="c1"># 탈출구를 찾은 다음 되돌아가지 않도록 하기 위해서는 아래코드 실행</span>
+        <span class="c1"># return True</span>
+        <span class="n">maze</span><span class="o">.</span><span class="n">update_position</span><span class="p">(</span><span class="n">start_row</span><span class="p">,</span> <span class="n">start_column</span><span class="p">,</span> <span class="n">PART_OF_PATH</span><span class="p">)</span>
+    
+    <span class="c1"># 2. 왔던 길로 되돌아가야 하는 경우</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">maze</span><span class="o">.</span><span class="n">update_position</span><span class="p">(</span><span class="n">start_row</span><span class="p">,</span> <span class="n">start_column</span><span class="p">,</span> <span class="n">DEAD_END</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">found</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>이제 아래 코드를 실행하면 최종적으로 앞서 본 미로그림이 완성된다.</p>
+<p><strong>참고</strong>: 온라인 상에서 거북이 코드실행은
+<a class="reference external" href="https://trinket.io/turtle/1579371d4a">Trinket: 미로 탐색</a>에서 확인할 수 있다.
+아니면 개인 컴퓨터에서 파이썬을 설치한 후 실행하면 된다.
+구글 코랩에서는 기본적으로 지원되지 않는다.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">my_maze</span> <span class="o">=</span> <span class="n">Maze</span><span class="p">(</span><span class="s2">&quot;maze2.txt&quot;</span><span class="p">)</span>
+<span class="n">my_maze</span><span class="o">.</span><span class="n">draw_maze</span><span class="p">()</span>
+<span class="n">my_maze</span><span class="o">.</span><span class="n">update_position</span><span class="p">(</span><span class="n">my_maze</span><span class="o">.</span><span class="n">start_row</span><span class="p">,</span> <span class="n">my_maze</span><span class="o">.</span><span class="n">start_col</span><span class="p">)</span>
+
+<span class="n">search_from</span><span class="p">(</span><span class="n">my_maze</span><span class="p">,</span> <span class="n">my_maze</span><span class="o">.</span><span class="n">start_row</span><span class="p">,</span> <span class="n">my_maze</span><span class="o">.</span><span class="n">start_col</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id8">
+<h3><span class="section-number">14.2.4. </span>머리와 꼬리<a class="headerlink" href="#id8" title="Permalink to this headline">#</a></h3>
+<p>미로 탐색 알고리즘의 머리와 꼬리는 다음과 같다.</p>
+<ul class="simple">
+<li><p>머리: 이동 후 벽에 막히거나 탈출구에 위치한 경우</p></li>
+<li><p>꼬리: 북, 남, 서, 동으로 이동한 후 동일한 탐색 과정 반복. 즉 4 개의 꼬리 사용.</p></li>
+</ul>
+</section>
+</section>
+<section id="id9">
+<h2><span class="section-number">14.3. </span>5.8 프로그래밍 연습 문제<a class="headerlink" href="#id9" title="Permalink to this headline">#</a></h2>
+<section id="id10">
+<h3><span class="section-number">14.3.1. </span>하노이의 탑<a class="headerlink" href="#id10" title="Permalink to this headline">#</a></h3>
+<ol>
+<li><p>하노이의 탑을 해결하는 알고리즘을 세 개의 스택(stack)을 이용하여 시각화하라.
+turtle 모듈을 이용하는 방식은
+<a class="reference external" href="https://trinket.io/turtle/1579371d4a">Trinket: 미로 탐색</a>를 참고할 수 있다.</p>
+<p>힌트: 3 개의 거북이를 원, 사각형 모양 등으로 활용할 수 있다.</p>
+</li>
+</ol>
+</section>
+<section id="id11">
+<h3><span class="section-number">14.3.2. </span>미로 탐색<a class="headerlink" href="#id11" title="Permalink to this headline">#</a></h3>
+<ol class="simple">
+<li><p>미로 탐색 알고리즘 <code class="docutils literal notranslate"><span class="pre">search_from()</span></code>에 사용된 탐색경로를 수정하여 이전 알고리즘과의
+차이점을 확인하라.</p></li>
+</ol>
+</section>
+<section id="id12">
+<h3><span class="section-number">14.3.3. </span>기타<a class="headerlink" href="#id12" title="Permalink to this headline">#</a></h3>
+<ol class="simple">
+<li><p>Write a program to solve the following problem: You have two jugs: a
+4-gallon jug and a 3-gallon jug. Neither of the jugs have markings on
+them. There is a pump that can be used to fill the jugs with water.
+How can you get exactly two gallons of water in the 4-gallon jug?</p></li>
+<li><p>Generalize the problem above so that the parameters to your solution
+include the sizes of each jug and the final amount of water to be
+left in the larger jug.</p></li>
+<li><p>Write a program that solves the following problem: Three missionaries
+and three cannibals come to a river and find a boat that holds two
+people. Everyone must get across the river to continue on the
+journey. However, if the cannibals ever outnumber the missionaries on
+either bank, the missionaries will be eaten. Find a series of
+crossings that will get everyone safely to the other side of the
+river.</p></li>
+</ol>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="recursive_functions.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">13. </span>재귀 함수</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="sort_search_1.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">15. </span>탐색과 분할정복</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By 코딩알지<br/>
+  
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
