@@ -1,189 +1,114 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # 스택 활용: 중위, 전위, 후위 표기법
+# # 스택 활용: 중위/전위/후위 표기법
 
-# ## Infix, Prefix, and Postfix Expressions
-
-# **참고**
+# **소스코드**
 # 
-# 아래 내용은 차후 번역될 예정임.
+# 아래 내용을 
+# [(구글 코랩) 중위/전위/후위 표기법](https://colab.research.google.com/github/codingalzi/algopy/blob/master/jupyter-book/infix_prefix_postfix.ipynb)에서 
+# 직접 실행할 수 있다.
 
-# When you write an arithmetic expression such as B \* C, the form of the
-# expression provides you with information so that you can interpret it
-# correctly. In this case we know that the variable B is being multiplied
-# by the variable C since the multiplication operator \* appears between
-# them in the expression. This type of notation is referred to as
-# **infix** since the operator is *in between* the two operands that it is
-# working on.
+# **주요 내용**
 # 
-# Consider another infix example, A + B \* C. The operators + and \* still
-# appear between the operands, but there is a problem. Which operands do
-# they work on? Does the + work on A and B or does the \* take B and C?
-# The expression seems ambiguous.
+# - 중위 표기법
+# - 전위 표기법
+# - 후위 표기법
+
+# ## 중위/전위/중위 표기법
+
+# ### 중위 표기법
+
+# 아래 두 수식에 사용되는 덧셈 연산자(`+`)와 
+# 곱셈 연산자(`*`)는 더해지거나 곱해지는 두 수의 사이에 위치한다.
 # 
-# In fact, you have been reading and writing these types of expressions
-# for a long time and they do not cause you any problem. The reason for
-# this is that you know something about the operators + and \*. Each
-# operator has a **precedence** level. Operators of higher precedence are
-# used before operators of lower precedence. The only thing that can
-# change that order is the presence of parentheses. The precedence order
-# for arithmetic operators places multiplication and division above
-# addition and subtraction. If two operators of equal precedence appear,
-# then a left-to-right ordering or associativity is used.
+# ```python
+# x + y
+# 2 + 3 * 6
+# ```
 # 
-# Let’s interpret the troublesome expression A + B \* C using operator
-# precedence. B and C are multiplied first, and A is then added to that
-# result. (A + B) \* C would force the addition of A and B to be done
-# first before the multiplication. In expression A + B + C, by precedence
-# (via associativity), the leftmost + would be done first.
-
-# Although all this may be obvious to you, remember that computers need to
-# know exactly what operators to perform and in what order. One way to
-# write an expression that guarantees there will be no confusion with
-# respect to the order of operations is to create what is called a **fully
-# parenthesized** expression. This type of expression uses one pair of
-# parentheses for each operator. The parentheses dictate the order of
-# operations; there is no ambiguity. There is also no need to remember any
-# precedence rules.
+# 이렇게 연산자를 두 인자의 사이에 위치시키는 방식을 
+# **중위 표기법**<font size='2'>infix notation</font>이라 한다.
 # 
-# The expression A + B \* C + D can be rewritten as ((A + (B \* C)) + D)
-# to show that the multiplication happens first, followed by the leftmost
-# addition. A + B + C + D can be written as (((A + B) + C) + D) since the
-# addition operations associate from left to right.
+# 중위 표기법으로 작성된 수식을 해석할 때 연산자들의 우선순위를 잘 고려해야 한다.
+# 예를 들어 `2 + 3 * 6`는 `2 + (3 * 6)`로 해석되어 최종적으로 20으로 계산된다.
+# 이유는 덧셈 보다 곱셈의 **우선순위**가 높기 때문이다.
+# 반면에 `(2 + 3) * 6` 처럼 연산자의 우선순위와 다르게 연산을 강요하려면
+# 괄호를 사용해야 한다. 그러면 괄호에 의해 `5 * 6`, 즉 30으로 계산된다. 
 # 
-# There are two other very important expression formats that may not seem
-# obvious to you at first. Consider the infix expression A + B. What would
-# happen if we moved the operator before the two operands? The resulting
-# expression would be + A B. Likewise, we could move the operator to the
-# end. We would get A B +. These look a bit strange.
+# 또한 `4 - x + 7`와 `2 / x * y` 처럼 동일한 우선순위가 동일한 연산자가 사용되었을 경우엔
+# 왼쪽에 위치한 연산자부터 계산한다. 
+# 즉, `4 - x + 7`는 `(4 - x) + 7`로, `2 / x * y`는 `(2 / x) * y` 로 계산된다.
+# `4 - (x + 7)` 또는 `2 / (x * y)` 는 다른 값을 가리킴에 주의해야 한다.
+
+# ### 전위/후기 표기법
+
+# 이처럼 중위 표기법을 사용하는 표현식은 의도된 계산을 명확하기 위해 괄호를 사용해야 한다.
+# 그런데 **전위 표기법**<font size='2'>prefix notation</font> 
+# 또는 **후기 표기법**<font size='2'>postfix notation</font>을 
+# 사용하면 괄호를 전혀 사용하지 않으면서 원하고자 하는 값을 유일한 방식으로 나타낼 수 있다.
+
+# 예를 들어 `x + y`를 전위 표기법과 후기 표기법으로 표현하면 다음과 같다.
 # 
-# These changes to the position of the operator with respect to the
-# operands create two new expression formats, **prefix** and **postfix**.
-# Prefix expression notation requires that all operators precede the two
-# operands that they work on. Postfix, on the other hand, requires that
-# its operators come after the corresponding operands. A few more examples
-# should help to make this a bit clearer (see :ref:`Table 2 <tbl_example1>`).
+# | 중위 표기법 | 전위 표기법 | 후위 표기법 |
+# | :---: | :---: | :---: |
+# | `x + y` | `+ x y` | `x y +` |
+
+# 전위 표기법을 사용하면 모든 연산자가 모든 피연산자(연산자의 인자)의 왼쪽에 위치하며,
+# 피연산자는 연산자 오른쪽에 차례대로 위치한다.
+# 후위 표기법을 사용하면 모든 연산자가 모든 피연산자(연산자의 인자)의 오른쪽에 위치하며,
+# 피연산자는 연산자 왼쪽에 차례대로 위치한다.
+
+# `x + y * z` 처럼 여러 개의 연산자가 사용되는 경우엔 
+# 피연산자에 대해 동일한 규칙을 적용한다. 
 # 
-# A + B \* C would be written as + A \* B C in prefix. The multiplication
-# operator comes immediately before the operands B and C, denoting that \*
-# has precedence over +. The addition operator then appears before the A
-# and the result of the multiplication.
+# | 중위 표기법 | 전위 표기법 | 후위 표기법 |
+# | :---: | :---: | :---: |
+# | `x + y * z` | `+ x * y z` | `x y z * +` |
+
+# 반면에 `(x + y) * z` 를 전위와 하위 표기법으로 나타내면 다음과 같다.
 # 
-# In postfix, the expression would be A B C \* +. Again, the order of
-# operations is preserved since the \* appears immediately after the B and
-# the C, denoting that \* has precedence, with + coming after. Although
-# the operators moved and now appear either before or after their
-# respective operands, the order of the operands stayed exactly the same
-# relative to one another.
+# | 중위 표기법 | 전위 표기법 | 후위 표기법 |
+# | :---: | :---: | :---: |
+# | `(x + y) * z` | `* + x y z` | `x y + z *` |
 
-# **Table 2: Examples of Infix, Prefix, and Postfix**
+# 이처럼 전위 또는 후위 표기법을 사용하면 괄호가 없어도 모든 표현식이 유일한 값을 가리킨다.
+# 아래 표는 보다 많은 예제를 보여준다.
 
-#     ============================ ======================= ========================
-#             **Infix Expression**   **Prefix Expression**   **Postfix Expression**
-#     ============================ ======================= ========================
-#                            A + B                  \+ A B                    A B +
-#                       A + B \* C             \+ A \* B C               A B C \* +
-#     ============================ ======================= ========================
-
-# Now consider the infix expression (A + B) \* C. Recall that in this
-# case, infix requires the parentheses to force the performance of the
-# addition before the multiplication. However, when A + B was written in
-# prefix, the addition operator was simply moved before the operands, + A
-# B. The result of this operation becomes the first operand for the
-# multiplication. The multiplication operator is moved in front of the
-# entire expression, giving us \* + A B C. Likewise, in postfix A B +
-# forces the addition to happen first. The multiplication can be done to
-# that result and the remaining operand C. The proper postfix expression
-# is then A B + C \*.
+# 반면에 `(x + y) * z` 를 전위와 하위 표기법으로 나타내면 다음과 같다.
 # 
-# Consider these three expressions again (see :ref:`Table 3 <tbl_parexample>`).
-# Something very important has happened. Where did the parentheses go? Why
-# don’t we need them in prefix and postfix? The answer is that the
-# operators are no longer ambiguous with respect to the operands that they
-# work on. Only infix notation requires the additional symbols. The order
-# of operations within prefix and postfix expressions is completely
-# determined by the position of the operator and nothing else. In many
-# ways, this makes infix the least desirable notation to use.
+# | 중위 표기법 | 전위 표기법 | 후위 표기법 |
+# | :---: | :---: | :---: |
+# | `x + y * z + v` | `+ + x * y z v` | `x y z * + v +` |
+# | `(x + y) * (z + v)` | `* + x y + z v` | `x y + z v + *` |
+# | `x * y + z * v` | `+ * x y * z v` | `x y * z v * +` |
+# | `x + y + z + v` | `+ + + x y z v` | `x y + z + v +` |
 
-# **Table 3: An Expression with Parentheses**
+# ## 표기법 변환
 
-#     ============================ ======================= ========================
-#             **Infix Expression**   **Prefix Expression**   **Postfix Expression**
-#     ============================ ======================= ========================
-#                     (A + B) \* C              \* + A B C               A B + C \*
-#     ============================ ======================= ========================
+# ### 괄호를 사용한 중위 표기법 변환
 
-# :ref:`Table 4 <tbl_example3>` shows some additional examples of infix expressions and
-# the equivalent prefix and postfix expressions. Be sure that you
-# understand how they are equivalent in terms of the order of the
-# operations being performed.
-
-# **Table 4: Additional Examples of Infix, Prefix, and Postfix**
-
-#     ============================ ======================= ========================
-#             **Infix Expression**   **Prefix Expression**   **Postfix Expression**
-#     ============================ ======================= ========================
-#                   A + B \* C + D        \+ \+ A \* B C D           A B C \* + D +
-#               (A + B) \* (C + D)          \* + A B + C D           A B + C D + \*
-#                  A \* B + C \* D        \+ \* A B \* C D          A B \* C D \* +
-#                    A + B + C + D          \+ + + A B C D            A B + C + D +
-#     ============================ ======================= ========================
-
-# ### Conversion of Infix Expressions to Prefix and Postfix
-
-# So far, we have used ad hoc methods to convert between infix expressions
-# and the equivalent prefix and postfix expression notations. As you might
-# expect, there are algorithmic ways to perform the conversion that allow
-# any expression of any complexity to be correctly transformed.
+# `A + B * C` 표현식의 의미는 `(A + (B * C))` 와 동일하다.
+# 그리고 `(A + (B * C))`처럼 사용되는 모든 연산자를 대상으로 괄호가 사용된
+# 표현식을 전위 또는 후위 표기법으로 변환하는 일은 어렵지 않다.
+# 이유는 여는 괄호는 표현식의 시작을 의미하고, 
+# 바로 옆에는 첫째 피연산자가, 그 다음엔 (중위) 연산자가,
+# 그 다음엔 둘째 피연산자가 위치하며,
+# 마지막의 닫는 괄호는 표현식의 끝을 의미하기 때문이다.
 # 
-# The first technique that we will consider uses the notion of a fully
-# parenthesized expression that was discussed earlier. Recall that A + B
-# \* C can be written as (A + (B \* C)) to show explicitly that the
-# multiplication has precedence over the addition. On closer observation,
-# however, you can see that each parenthesis pair also denotes the
-# beginning and the end of an operand pair with the corresponding operator
-# in the middle.
+# 결국 `(B * C)` 와 같은 표현식을 `* B C` 또는 `B C *` 로 변환하는 
+# 과정을 반복하기만 하면 아무리 복잡한 표현식이라도 
+# 간단하게 전위 또는 후위 표기법으로 변환할 수 있다.
+
+# **예제**
 # 
-# Look at the right parenthesis in the subexpression (B \* C) above. If we
-# were to move the multiplication symbol to that position and remove the
-# matching left parenthesis, giving us B C \*, we would in effect have
-# converted the subexpression to postfix notation. If the addition
-# operator were also moved to its corresponding right parenthesis position
-# and the matching left parenthesis were removed, the complete postfix
-# expression would result (see :ref:`Figure 6 <fig_moveright>`).
+# `(A + B) * C - (D - E) * (F + G)` 를 중위/후위 표기법으로 표현하는 과정은 다음과 같다.
 
-#     .. figure:: Figures/moveright.png
-#        :align: center
-# 
-#        Figure 6: Moving Operators to the Right for Postfix Notation
+# <figure>
+# <div align="center"><img src="https://runestone.academy/ns/books/published/pythonds3/_images/complexmove.png" width="80%"></div>
+# </figure>
 
-# If we do the same thing but instead of moving the symbol to the position
-# of the right parenthesis, we move it to the left, we get prefix notation
-# (see :ref:`Figure 7 <fig_moveleft>`). The position of the parenthesis pair is
-# actually a clue to the final position of the enclosed operator.
-
-#     .. figure:: Figures/moveleft.png
-#        :align: center
-# 
-#        Figure 7: Moving Operators to the Left for Prefix Notation
-
-# So in order to convert an expression, no matter how complex, to either
-# prefix or postfix notation, fully parenthesize the expression using the
-# order of operations. Then move the enclosed operator to the position of
-# either the left or the right parenthesis depending on whether you want
-# prefix or postfix notation.
-# 
-# Here is a more complex expression: (A + B) \* C - (D - E) \* (F + G).
-# :ref:`Figure 8 <fig_complexmove>` shows the conversion to postfix and prefix
-# notations.
-
-#     .. figure:: Figures/complexmove.png
-#        :align: center
-# 
-#        Figure 8: Converting a Complex Expression to Prefix and Postfix Notations
-
-# ### General Infix-to-Postfix Conversion
+# ### 후위 표기법으로의 변환 알고리즘 일반화
 
 # We need to develop an algorithm to convert any infix expression to a
 # postfix expression. To do this we will look closer at the conversion
@@ -267,10 +192,9 @@
 # of the infix expression the stack is popped twice, removing both
 # operators and placing + as the last operator in the postfix expression.
 
-#     .. figure:: Figures/intopost.png
-#        :align: center
-# 
-#        Figure 9: Converting A \* B + C \* D to Postfix Notation
+# <figure>
+# <div align="center"><img src="https://runestone.academy/ns/books/published/pythonds3/_images/intopost.png" width="80%"></div>
+# </figure>
 
 # In order to code the algorithm in Python, we will use a dictionary
 # called ``prec`` to hold the precedence values for the operators. This
@@ -282,9 +206,6 @@
 # Line 15 defines the operands to be any upper-case character or digit.
 # The complete conversion function is
 # shown in :ref:`ActiveCode 1 <lst_intopost>`.
-
-#     :caption: Converting Infix Expressions to Postfix Expressions
-#     :nocodelens:
 
 # In[1]:
 
@@ -336,7 +257,7 @@ print(infix_to_postfix("( A + B ) * C - ( D - E ) * ( F + G )"))
 # >>>
 # ```
 
-# ### Postfix Evaluation
+# ## 후위 표기법 표현식 계산
 
 # As a final stack example, we will consider the evaluation of an
 # expression that is already in postfix notation. In this case, a stack is
@@ -366,10 +287,9 @@ print(infix_to_postfix("( A + B ) * C - ( D - E ) * ( F + G )"))
 # :ref:`Figure 10 <fig_evalpost1>` shows the stack contents as this entire example
 # expression is being processed.
 
-#     .. figure:: Figures/evalpostfix1.png
-#        :align: center
-# 
-#        Figure 10: Stack Contents During Evaluation
+# <figure>
+# <div align="center"><img src="https://runestone.academy/ns/books/published/pythonds3/_images/evalpostfix1.png" width="55%"></div>
+# </figure>
 
 # :ref:`Figure 11 <fig_evalpost2>` shows a slightly more complex example, 7 8 + 3 2
 # + /. There are two things to note in this example. First, the stack size
@@ -382,10 +302,9 @@ print(infix_to_postfix("( A + B ) * C - ( D - E ) * ( F + G )"))
 # :math:`15/5` is not the same as :math:`5/15`, we must be sure that
 # the order of the operands is not switched.
 
-#     .. figure:: Figures/evalpostfix2.png
-#        :align: center
-# 
-#        Figure 11: A More Complex Example of Evaluation
+# <figure>
+# <div align="center"><img src="https://runestone.academy/ns/books/published/pythonds3/_images/evalpostfix2.png" width="60%"></div>
+# </figure>
 
 # Assume the postfix expression is a string of tokens delimited by spaces.
 # The operators are \*, /, +, and - and the operands are assumed to be

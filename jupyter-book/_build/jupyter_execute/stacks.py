@@ -18,8 +18,8 @@
 # 
 # **선형 자료구조**<font size='2'>linear structures</font>는 
 # 여러 개의 값을 선형적으로 포함하는 모음 자료구조이다.
-# 선형 자료구조는 두 개의 끝을 가지며 양 끝에 항목을 더하거나 삭제할 수 있는 기능을 제공하며,
-# 항목 추가/삭제 방식에 따라 아래 6가지 종류가 많이 활용된다.
+# 선형 자료구조는 두 개의 끝을 가지며 양 끝에 항목을 더하거나 삭제할 수 있는 기능을 제공한다.
+# 항목의 추가/삭제 방식에 따라 선형 자료구조가 다르게 작동하며 일반적으로 아래 6종류의 선형 자료구조가 활용된다.
 # 
 # - 스택<font size='2'>stack</font>
 # - 큐<font size='2'>queue</font>
@@ -40,7 +40,7 @@
 # - 탑: 가장 나중에 추가된 항목이며 동시에 가장 먼저 삭제될 대상을 가리킨다.
 
 # <figure>
-# <div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/primitive.png" width="50%"></div>
+# <div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/primitive.png" width="60%"></div>
 # </figure>
 
 # **후입선출**<font size='2'>last-in first-out(LIFO)</font>
@@ -48,7 +48,7 @@
 # 아래 그림에서 설명된 것처럼 들어온 순서 역순으로 삭제되는 것을 의미한다.
 
 # <figure>
-# <div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/simplereversal.png" width="70%"></div>
+# <div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/simplereversal.png" width="75%"></div>
 # </figure>
 
 # **활용 예제**: 인터넷 브라우저의 '뒤로가기'<font size='2'>Back</font> 버튼
@@ -59,7 +59,7 @@
 # ## `Stack` 추상 자료형
 
 # 스택 추상 자료형을 구체적인 파이썬 자료구조로
-# 구현하려면 갖추어야 하는 기본 속성과 기능은 다음과 같다.
+# 구현하기 위해 구비해야 하는 기본 속성과 기능은 다음과 같다.
 
 # -  `Stack()`: 비어 있는 스택 생성. 생성작의 역할.
 # -  `push(item)`: 새로운 항목을 탑(top)으로 추가
@@ -68,7 +68,7 @@
 # -  `is_empty()`: 스택이 비었는 여부 판단. 부울값 반환.
 # -  `size()`:  항목 개수 반환.
 
-# 아래 테이블은 스택 생성과 함께 다양한 스택 관련 연산의 작동법을 소개한다.
+# 아래 테이블은 스택을 생성하과 활용하는 과정을 간단하게 소개한다.
 
 # | 스택 연산| 스택 항목 | 반환값 |
 # | --- | --- | --- |
@@ -88,10 +88,10 @@
 # ## 스택 자료구조 구현
 
 # 스택 자료구조를 `Stack` 클래스로 구현하기 위해 
-# 리스트를 항목들의 저장 장치로 활용하며,
+# 리스트를 항목들의 저장 장치로 활용한다.
 # 앞서 소개한 기능들은 모두 메서드로 정의한다.
 # 스택의 탑 역할은 리스트의 오른쪽 끝(마지막 항목)이 수행하도록 한다. 
-# 그러면 리스트의 `pop()`와 `append()`를 잘 활용할 수 있다.
+# 이유는 알고리즘의 시간복잡도 성능이 좋은 리스트의 `pop()`와 `append()`를 활용하기 위해서이다.
 
 # In[1]:
 
@@ -128,7 +128,7 @@ class Stack:
         return len(self._items)
 
 
-# 위 그림을 코드로 구현하면 다음과 같다.
+# 앞서 살펴본 그림을 코드로 구현하면 다음과 같다.
 
 # In[2]:
 
@@ -148,7 +148,7 @@ print(s.pop())
 print(s.size())
 
 
-# **참고**: 스택의 탑을 리스트의 첫째 항목으로 정하면 `pop(0)`와 `insert(0, item)`을 사용해야 한다. 
+# 스택의 탑을 리스트의 첫째 항목으로 정하면 `pop(0)`와 `insert(0, item)`을 사용해야 하는 데 그러면 시간복잡도가 커진다.
 
 # In[3]:
 
@@ -202,6 +202,11 @@ m.push("x")
 m.push("y")
 m.pop()
 m.push("z")
+
+
+# In[6]:
+
+
 m.peek()
 
 
@@ -209,7 +214,7 @@ m.peek()
 # 
 # 스택에 항목이 없으면 탑 항목을 확인하려 할 때 오류가 발생한다.
 
-# In[6]:
+# In[7]:
 
 
 m = Stack()
@@ -256,7 +261,7 @@ while not m.is_empty():
 # 
 #     (()((())()))
 
-# 예를 들어, 아래 예제는 짝이 맞는 않는 괄호가 존재한다.
+# 예를 들어, 아래 예제는 짝이 맞지 않는 괄호가 존재한다.
 
 #     ((((((())
 # 
@@ -295,7 +300,7 @@ while not m.is_empty():
 # <div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/simpleparcheck.png" width="40%"></div>
 # </figure>
 
-# In[7]:
+# In[8]:
 
 
 def par_checker(symbol_string):
@@ -313,7 +318,7 @@ def par_checker(symbol_string):
     return s.is_empty()
 
 
-# In[8]:
+# In[9]:
 
 
 print(par_checker("((()))"))
@@ -349,7 +354,7 @@ print(par_checker(")("))
 # 이전 코드를 조금 수정하면 일반화된 짝맞추기 문제를 해결할 수 있다. 
 # 다만, 닫는 괄호를 처리할 때 동일한 종류인지 여부를 추가로 확인해야 한다.
 
-# In[9]:
+# In[10]:
 
 
 def balance_checker(symbol_string):
@@ -370,7 +375,7 @@ def matches(sym_left, sym_right):
     return all_lefts.index(sym_left) == all_rights.index(sym_right)
 
 
-# In[10]:
+# In[11]:
 
 
 print(balance_checker('{({([][])}())}'))
@@ -390,6 +395,25 @@ print(balance_checker('[{()]'))
 # \end{align*}
 # $$
 
+# **참고** 
+# 
+# 파이썬의 `bin()` 함수가 이진법으로 변환해준다.
+# 이진수는 `0b`로 시작한다.
+
+# In[12]:
+
+
+bin(233)
+
+
+# 십진법으로 변환은 자동으로 진행된다.
+
+# In[13]:
+
+
+0b11101001
+
+
 # 십진법으로 표기된 정수의 이진법 표기를 찾는 알고리즘은 아래 그림과 같다. 
 # 
 # - 2로 나눈 후 나머지를 스택에 추가
@@ -400,7 +424,7 @@ print(balance_checker('[{()]'))
 # <div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/dectobin.png" width="60%"></div>
 # </figure>
 
-# In[11]:
+# In[14]:
 
 
 def divide_by_2(decimal_num):
@@ -418,7 +442,7 @@ def divide_by_2(decimal_num):
     return bin_string
 
 
-# In[12]:
+# In[15]:
 
 
 print(divide_by_2(42))
@@ -451,7 +475,7 @@ print(divide_by_2(31))
 # - `pop()` 활용: 10부터 15까지의 나머지에 대해 A부터 F 까지 대신 사용항여 문자열 생성.
 #     이를 위해 `digits` 변수에 할당된 문자열의 인덱싱 활용.
 
-# In[13]:
+# In[16]:
 
 
 def base_converter(decimal_num, base):
@@ -472,12 +496,29 @@ def base_converter(decimal_num, base):
     return new_string
 
 
-# In[14]:
+# In[17]:
 
 
 print(base_converter(25, 2))
 print(base_converter(623, 8))
 print(base_converter(828375, 16))
+
+
+# **참고** 
+# 
+# 파이썬의 `oct()` 함수와 `hex()` 함수가 각각 8진법과 16진법으로 변환해준다.
+# 8진수는 `0o`로, 16진수는 `0x`로 시작한다.
+
+# In[18]:
+
+
+oct(233)
+
+
+# In[19]:
+
+
+hex(233)
 
 
 # ## 연습 문제
