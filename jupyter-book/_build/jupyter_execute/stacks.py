@@ -395,25 +395,6 @@ print(balance_checker('[{()]'))
 # \end{align*}
 # $$
 
-# **참고** 
-# 
-# 파이썬의 `bin()` 함수가 이진법으로 변환해준다.
-# 이진수는 `0b`로 시작한다.
-
-# In[12]:
-
-
-bin(233)
-
-
-# 십진법으로 변환은 자동으로 진행된다.
-
-# In[13]:
-
-
-0b11101001
-
-
 # 십진법으로 표기된 정수의 이진법 표기를 찾는 알고리즘은 아래 그림과 같다. 
 # 
 # - 2로 나눈 후 나머지를 스택에 추가
@@ -424,7 +405,7 @@ bin(233)
 # <div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/dectobin.png" width="60%"></div>
 # </figure>
 
-# In[14]:
+# In[12]:
 
 
 def divide_by_2(decimal_num):
@@ -442,11 +423,30 @@ def divide_by_2(decimal_num):
     return bin_string
 
 
-# In[15]:
+# In[13]:
 
 
 print(divide_by_2(42))
 print(divide_by_2(31))
+
+
+# **참고** 
+# 
+# 파이썬의 `bin()` 함수가 이진법으로 변환해준다.
+# 이진수는 `0b`로 시작한다.
+
+# In[14]:
+
+
+bin(233)
+
+
+# 십진법으로 변환은 자동으로 진행된다.
+
+# In[15]:
+
+
+0b11101001
 
 
 # ### 진법 변환
