@@ -27,10 +27,11 @@
 # 2 + 3 * 6
 # ```
 # 
-# 이렇게 연산자를 두 인자의 사이에 위치시키는 방식을 
+# 이렇게 연산자를 두 인자의 사이에 위치시켜 표현식을 작성하는 방법을
 # **중위 표기법**<font size='2'>infix notation</font>이라 한다.
+# 중위 표기법으로 작성된 표현식은 간단하게 중위 표현식이라 부른다.
 # 
-# 중위 표기법으로 작성된 수식을 해석할 때 연산자들의 우선순위를 잘 고려해야 한다.
+# 중위 표현식을 해석할 때 연산자들의 우선순위를 잘 고려해야 한다.
 # 예를 들어 `2 + 3 * 6`는 `2 + (3 * 6)`로 해석되어 최종적으로 20으로 계산된다.
 # 이유는 덧셈 보다 곱셈의 **우선순위**가 높기 때문이다.
 # 반면에 `(2 + 3) * 6` 처럼 연산자의 우선순위와 다르게 연산을 강요하려면
@@ -108,115 +109,128 @@
 # <div align="center"><img src="https://runestone.academy/ns/books/published/pythonds3/_images/complexmove.png" width="80%"></div>
 # </figure>
 
-# ### 후위 표기법으로의 변환 알고리즘 일반화
+# ### 표기법 변환 알고리즘 일반화
 
-# We need to develop an algorithm to convert any infix expression to a
-# postfix expression. To do this we will look closer at the conversion
-# process.
-# 
-# Consider once again the expression A + B \* C. As shown above,
-# A B C \* + is the postfix equivalent. We have already noted that the
-# operands A, B, and C stay in their relative positions. It is only the
-# operators that change position. Let’s look again at the operators in the
-# infix expression. The first operator that appears from left to right is
-# +. However, in the postfix expression, + is at the end since the next
-# operator, \*, has precedence over addition. The order of the operators
-# in the original expression is reversed in the resulting postfix
-# expression.
-# 
-# As we process the expression, the operators have to be saved somewhere
-# since their corresponding right operands are not seen yet. Also, the
-# order of these saved operators may need to be reversed due to their
-# precedence. This is the case with the addition and the multiplication in
-# this example. Since the addition operator comes before the
-# multiplication operator and has lower precedence, it needs to appear
-# after the multiplication operator is used. Because of this reversal of
-# order, it makes sense to consider using a stack to keep the operators
-# until they are needed.
+# 중위 표현식을 후위 표현식으로 변환하는 알고리즘을 구현하려 한다.
 
-# What about (A + B) \* C? Recall that A B + C \* is the postfix
-# equivalent. Again, processing this infix expression from left to right,
-# we see + first. In this case, when we see \*, + has already been placed
-# in the result expression because it has precedence over \* by virtue of
-# the parentheses. We can now start to see how the conversion algorithm
-# will work. When we see a left parenthesis, we will save it to denote
-# that another operator of high precedence will be coming. That operator
-# will need to wait until the corresponding right parenthesis appears to
-# denote its position (recall the fully parenthesized technique). When
-# that right parenthesis does appear, the operator can be popped from the
-# stack.
-# 
-# As we scan the infix expression from left to right, we will use a stack
-# to keep the operators. This will provide the reversal that we noted in
-# the first example. The top of the stack will always be the most recently
-# saved operator. Whenever we read a new operator, we will need to
-# consider how that operator compares in precedence with the operators, if
-# any, already on the stack.
-# 
-# Assume the infix expression is a string of tokens delimited by spaces.
-# The operator tokens are \*, /, +, and -, along with the left and right
-# parentheses, ( and ). The operand tokens are the single-character
-# identifiers A, B, C, and so on. The following steps will produce a
-# string of tokens in postfix order.
+# 표현식이 앞서 설명한 것처럼 모든 이항 연산에 대해 괄호를 철저하게 사용하였다면 아주 쉽게 변환할 수 있다.
+# 하지만 일반적으로는 반드시 필요하지 않다면 괄호를 생략하고 연산자의
+# 우선순위에 따라 계산되도록 한다. 
+# 예를 들어, `A + B * C` 는 후위 표기법으로 `A B C * +` 로 변환되지만
+# `(A + B) * C`는 후위 표기법으로 `A B + C *`로 변환된다.
 
-# 1. Create an empty stack called ``op_stack`` for keeping operators.
-#    Create an empty list for output.
+# 따라서 중위 표현식을 후위 표현식으로 변환할 때 피연산자의 순서는 그대로 유지되지만
+# 연산자의 순서는 연산자의 우선순위와 괄호에 의한 연산자 실행 순서에 의해 달라짐을 알 수 있다.
+# 이 성질을 이용하여 표기법 변환 알고리즘을 작성한다.
 # 
-# 1. Convert the input infix string to a list by using the string method
-#    ``split``.
-# 
-# 1. Scan the token list from left to right.
-# 
-#    -  If the token is an operand, append it to the end of the output
-#       list.
-# 
-#    -  If the token is a left parenthesis, push it on the ``op_stack``.
-# 
-#    -  If the token is a right parenthesis, pop the ``op_stack`` until the
-#       corresponding left parenthesis is removed. Append each operator to
-#       the end of the output list.
-# 
-#    -  If the token is an operator, \*, /, +, or -, push it on the
-#       ``op_stack``. However, first remove any operators already on the
-#       ``op_stack`` that have higher or equal precedence and append them
-#       to the output list.
-# 
-# 1. When the input expression has been completely processed, check the
-#    ``op_stack``. Any operators still on the stack can be removed and
-#    appended to the end of the output list.
+# - 중위 표기법 표현식을 왼쪽에서부터 차례대로 사용된 피연산자와 연산자를 확인한다.
+# - 피연산자가 확인되면 그대로 후위 표기법 표현식에 추가한다.
+# - 연산자의 경우엔 별도로 준비된 스택(stack)에 추가한다.
+#     단, 해당 연산자의 우선순위와 괄호의 사용 여부에 따라 스택을 먼저 
+#     관리한 다음에 추가한다.
 
-# :ref:`Figure 9 <fig_intopost>` shows the conversion algorithm working on the
-# expression A \* B + C \* D. Note that the first \* operator is removed
-# upon seeing the + operator. Also, + stays on the stack when the second
-# \* occurs, since multiplication has precedence over addition. At the end
-# of the infix expression the stack is popped twice, removing both
-# operators and placing + as the last operator in the postfix expression.
+# 연산자들을 스택으로 관리하는 이유는 먼저 스택에 추가된 연산자보다 낮은 우선순위의 연산자를
+# 만나는 순간 스택에 포함된 보다 높거나 같은 우선순위의 연산자를 먼저 후위 표기법의 표현식에
+# 추가할 수 있기 때문이다. 
+# 또한 `(A + B) * C`의 경우처럼 괄호가 포함되면 여는 괄호도 스택에 추가한다.
+# 반면에 여는 괄호를 만나는 순간 스택에 여는 괄호를 만날 때까지 스택을 비우면서
+# 후위 표기법 표현식을 완성해 나간다.
+
+# 이런 점들을 고려하면서 알고리즘을 묘사하면 다음과 같다.
+# 먼저, 중위 표현식에 사용된 모든 연산자, 피연산, 괄호 등은 모두 공백(space)로
+# 구분된 문자열로 주어진다고 가정한다.
+
+# 1. 연산자와 여는 괄호를 쌓아 둘 스택 `op_stack`을 준비해 놓는다.
+#    또한 후위 표현식에 사용될 기호를 차례대로 저장할 빈 리스트 `postfix_list`도 준비한다.
+# 
+#    ```python
+#    op_stack = Stack()
+#    postfix_list = []
+#    ```
+# 
+# 1. 문자열로 입력된 중위 표현식을 `split()` 메서드를 이용하여 리스트로 변환한다.
+# 
+# 1. 리스트의 항목(토큰, token)의 종류에 따라 아래 과정을 처리한다.
+#    - 피연산자인 경우: `postfix_list`에 추가한다.
+#    - 여는 괄호인 경우: `op_stack`에 추가한다.
+#    - 닫는 괄호인 경우: `op_stack`에서 여는 괄호를 만날 때까지 탑을 빼서 `postfix_list`에 추가한다.
+#    - 연산자(`*`, `/`, `+`, `-`)인 경우: `op_stack`에 추가한다. 
+#       단, 먼저 `op_stack`으로부터 우선순위가 높거나 같은 연산자를 모두 탑에서 빼서 `postfix_list`에 추가해야 한다.
+# 
+# 1. 입력된 중위 표현식에 사용된 모든 기호를 처리했다면 `op_stack`에 남아있는 모든 연산자를 빼서
+#    `postfix_list`에 추가한다.
+
+# 아래 그림은 `A * B + C * D`를 후위 표기법으로 변환하는 과정을 잘 보여준다.
 
 # <figure>
 # <div align="center"><img src="https://runestone.academy/ns/books/published/pythonds3/_images/intopost.png" width="80%"></div>
 # </figure>
 
-# In order to code the algorithm in Python, we will use a dictionary
-# called ``prec`` to hold the precedence values for the operators. This
-# dictionary will map each operator to an integer that can be compared
-# against the precedence levels of other operators (we have arbitrarily
-# used the integers 3, 2, and 1). The left parenthesis will receive the
-# lowest value possible. This way any operator that is compared against it
-# will have higher precedence and will be placed on top of it.
-# Line 15 defines the operands to be any upper-case character or digit.
-# The complete conversion function is
-# shown in :ref:`ActiveCode 1 <lst_intopost>`.
+# 위 알고리즘을 파이썬 코드로 구현하려면 먼저 스택 자료형이 필요하며,
+# 여기서는 이전에 구현한 `Stack` 클래스를 이용한다.
 
 # In[1]:
 
 
+class Stack:
+    """리스트를 활용한 스택 구현"""
+
+    def __init__(self):
+        """새로운 스택 생성"""
+        self._items = []
+
+    def __repr__(self):
+        """스택 표기법: <[1, 2, 3]> 등등"""
+        return f"<{self._items}>"
+        
+    def is_empty(self):
+        """비었는지 여부 확인"""
+        return not bool(self._items)
+
+    def push(self, item):
+        """새 항목 추가"""
+        self._items.append(item)
+
+    def pop(self):
+        """항목 제거"""
+        return self._items.pop()
+
+    def peek(self):
+        """탑 항목 반환"""
+        return self._items[-1]
+
+    def size(self):
+        """항목 개수 반환"""
+        return len(self._items)
+
+
+# 후위 표현식으로 변환 알고리즘에서 사용될 연산자들의 우선순위는 `prec` 이라는 사전으로 관리한다.
+
+# In[2]:
+
+
+prec = {}
+prec["*"] = 3
+prec["/"] = 3
+prec["+"] = 2
+prec["-"] = 2
+prec["("] = 1
+
+
+# In[3]:
+
+
+prec
+
+
+# 연는 괄호에도 우선순위를 부여한다. 하지만 다른 연산자들에 비해 가장 낮다.
+# 이유는 닫는 괄호가 아닌 다른 연산자에 의해 `op_stack`에서 제거되지 않도록 
+# 하기 위해서이다. 
+
+# In[4]:
+
+
 def infix_to_postfix(infix_expr):
-    prec = {}
-    prec["*"] = 3
-    prec["/"] = 3
-    prec["+"] = 2
-    prec["-"] = 2
-    prec["("] = 1
     op_stack = Stack()
     postfix_list = []
     token_list = infix_expr.split()
@@ -241,21 +255,38 @@ def infix_to_postfix(infix_expr):
 
     return " ".join(postfix_list)
 
-print(infix_to_postfix("A * B + C * D"))
-print(infix_to_postfix("( A + B ) * C - ( D - E ) * ( F + G )"))
+
+# **예제**
+
+# In[5]:
 
 
-# A few more examples of execution in the Python shell are shown below.
+infix_to_postfix("A * B + C * D")
 
-# ```python
-# >>> infix_to_postfix("( A + B ) * ( C + D )")
-# 'A B + C D + *'
-# >>> infix_to_postfix("( A + B ) * C")
-# 'A B + C *'
-# >>> infix_to_postfix("A + B * C")
-# 'A B C * +'
-# >>>
-# ```
+
+# In[6]:
+
+
+infix_to_postfix("( A + B ) * C - ( D - E ) * ( F + G )")
+
+
+# In[7]:
+
+
+infix_to_postfix("( A + B ) * ( C + D )")
+
+
+# In[8]:
+
+
+infix_to_postfix("( A + B ) * C")
+
+
+# In[9]:
+
+
+infix_to_postfix("A + B * C")
+
 
 # ## 후위 표기법 표현식 계산
 
@@ -337,7 +368,7 @@ print(infix_to_postfix("( A + B ) * C - ( D - E ) * ( F + G )"))
 #         :caption: Postfix Evaluation
 #         :nocodelens:
 
-# In[2]:
+# In[10]:
 
 
 def postfix_eval(postfix_expr):

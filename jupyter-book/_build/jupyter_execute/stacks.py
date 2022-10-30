@@ -153,7 +153,7 @@ print(s.size())
 # In[3]:
 
 
-class Stack:
+class Stack_left:
     def __init__(self):
         self.items = []
 
@@ -181,7 +181,7 @@ class Stack:
 # In[4]:
 
 
-s = Stack()
+s = Stack_left()
 s.push("hello")
 s.push("true")
 print(s.pop())
