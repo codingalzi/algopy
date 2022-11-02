@@ -3,13 +3,27 @@
 
 # # 큐
 
+# **소스코드**
+# 
+# 아래 내용을 
+# [(구글 코랩) 큐](https://colab.research.google.com/github/codingalzi/algopy/blob/master/jupyter-book/queues.ipynb)에서 
+# 직접 실행할 수 있다.
+
+# **주요 내용**
+# 
+# - 큐 자료구조
+# - 큐 활용
+
 # ## 큐의 정의
 
-# 항목 추가는 **꼬리**(rear, tail)에서, 항목 삭제는 **머리**(front, head)에서
-# 이루어지며, 입력된 순서대로 머리에서부터 하나씩 삭제되는 모음 자료형을 **큐**(queue)라 부른다. 
-# 즉, 먼저 들어온 항목이 먼저 나간다는 **FIFO**(First In, First Out) 원리를 따르며,
+# 항목 추가는 **꼬리**<font size='2'>rear, tail</font>에서, 항목 삭제는 
+# **머리**<font size='2'>front, head</font>에서
+# 이루어지며, 입력된 순서대로 머리에서부터 하나씩 삭제되는 모음 자료형을 
+# **큐**<font size='2'>queue</font>라 부른다. 
+# 
+# 아래 그림에서 보여지는 것처럼 먼저 들어온 항목이 먼저 나간다는 **선입선출**<font size='2'>first in, first out</font>(FIFO) 원리를 따르며,
 # 항목들의 추가와 삭제는 입력 순서에 따라 한쪽 방향으로 이동하는 방식이
-# 철저하게 지켜진다. 아래 그림 참조.
+# 철저하게 지켜진다.
 
 # <figure>
 # <div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/basicqueue.png" width="55%"></div>
@@ -35,17 +49,16 @@ help(print)
 # 이중에 `end` 키워드는 지정된 문자열 출력후 기본적으로 줄바꿈을 실행하도록 되어 있다.
 # 그런데 예를 들어 아래 코드의 `end=' '` 처럼 기본값을 변경하면 버퍼(buffer)에 출력할 값들을
 # 보관한 다음 마지막에 한꺼번에 쏟아내어 화면에 출력하도록 한다.
-# 
-# **주의사항**: 아래 이미지는 repl.it 사이트의 실행과정을 보여준다.
-# 동일한 코드를 파이참, 주피터 노트북 등에서 출력하면 다르게 작동하는데 이는 편집기의 설정문제로 보인다.
 
-# <figure>
-# <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/notebooks/_images/print_buffer_1.gif" width="55%"></div>
-# </figure>
+# ```python
+# import time
 # 
-# <이미지 출처: [janeljs.log](https://velog.io/@janeljs/python-print-sep-end-file-flush)>
+# for i in range(10):
+#     print(i, end=' ')
+#     time.sleep(1)
+# ```
 
-# 아래 이미지는 터미널에서 동일한 코드를 실행한 결과를 보여준다.
+# 아래 이미지는 터미널에서 위 코드를 실행한 결과를 보여준다.
 
 # <figure>
 # <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/notebooks/_images/print_buffer_2.gif" width="55%"></div>
@@ -58,24 +71,14 @@ help(print)
 # 
 # **참고**: `flush=False`가 기본값이다.
 
-# In[2]:
-
-
-import time
-
-for i in range(10):
-    print(i, end=' ', flush=True)
-    time.sleep(1)
-
-
-# ### `Queue` 추상 자료형
+# ## `Queue` 추상 자료형
 
 # 큐 추상 자료형을 구체적인 파이썬 자료구조(data structure)로 
-# 구현하려면 갖추어야 하는 기본 속성과 기능은 다음과 같다.
+# 구현할 때 요구되눈 기본 속성과 기능은 다음과 같다.
 # 
 # -  `Queue()`: 비어 있는 큐 생성. 생성작의 역할.
 # -  `enqueue(item)`: 새로운 항목을 꼬리(rear, tail)에 추가. 반환값 없음.
-# -  `dequeue()`: 머리 항목 삭제. 삭제된 항목 반환.
+# -  `dequeue()`: 머리(head, front) 항목 삭제. 삭제된 항목 반환.
 # -  `is_empty()`: 큐가 비었는지 여부 판단. 부울값 반환.
 # -  `size()`:  항목 개수 반환.
 # 
@@ -97,7 +100,7 @@ for i in range(10):
 # | `q.dequeue()` | `[8.4, True]` | `'dog'` |
 # | `q.size()`  | `[8.4, True]` | `2` |
 
-# ### 큐 자료구조 구현
+# ## 큐 자료구조 구현
 
 # 리스트를 활용할 때 중요한 것은 머리와 꼬리를 어디로 설정하는가이다. 
 # 앞서 본 것처럼 꼬리는 리스트의 시작, 머리는 리스트의 오른편 끝으로 정하며,
@@ -105,7 +108,7 @@ for i in range(10):
 # `insert()`와 `pop()` 메서드를 활용한다. 
 # 따라서 `enqueue()`와 `dequeue()`는 각각 $O(n)$과 $O(1)$의 시간복잡도를 갖는다.
 
-# In[3]:
+# In[2]:
 
 
 class Queue:
@@ -136,7 +139,7 @@ class Queue:
         return len(self._items)
 
 
-# In[4]:
+# In[3]:
 
 
 q = Queue()
@@ -155,7 +158,7 @@ print(q.size())
 print(q)
 
 
-# ### 실전 예제 1: 폭탄 돌리기
+# ## 실전 예제 1: 폭탄 돌리기
 
 # **게임 소개**
 
@@ -186,7 +189,7 @@ print(q)
 # 
 # **참고**: '폭탄 돌리기' 게임을 영어로 'Hot Potato' 게임이라 한다.
 
-# In[5]:
+# In[4]:
 
 
 def hot_potato(name_list, num):
@@ -210,20 +213,20 @@ def hot_potato(name_list, num):
 
 # 아래 코드는 폭탄을 7번 돌릴 때마다 탈락자를 정한다.
 
-# In[6]:
+# In[5]:
 
 
 print(hot_potato(["Bill", "David", "Susan", "Jane", "Kent", "Brad"], 7))
 
 
-# ### 실전 예제 2:  프린터 출력
+# ##  실전 예제 2: 프린터 출력
 
 # 여러 명이 함께 사용하는 실혐실 공용 프린터 한 대가 무작위적으로 입력되는 프린팅 작업을 수행할 때 
 # 벌어지는 일을 모의실험한다. 
 # 모의실험의 목적은 사용자가 프린팅 명령을 내리고 출력물을 받을 때까지 평균적으로 걸리는 시간을 
 # 계산하는 일이다. 
 
-# #### 필요한 객체
+# **필요한 객체 확인**
 # 
 # 세 개의 객체를 사용한다.
 #     
@@ -248,7 +251,7 @@ print(hot_potato(["Bill", "David", "Susan", "Jane", "Kent", "Brad"], 7))
 # - 사람들이 무작위적으로 시간 당 20건 프린팅 과제 출력 실행
 # - 하나의 프린팅 과제는 최대 20쪽까지 출력
 
-# #### 180분의 1의 확률
+# **180분의 1의 확률**
 
 # 위 전제조건은 확률적으로 180초에 한 번 프린팅 과제가 생성된다는 것을 의미한다.
 
@@ -265,7 +268,7 @@ print(hot_potato(["Bill", "David", "Susan", "Jane", "Kent", "Brad"], 7))
 # 지정된 구간에서 임의로 정수 하나를 선택하는 `random.randrange()` 함수를 이용한다.
 # 예를 들어, 1에서 180까지의 정수 중에 무작위로 5개의 값을 생성하려면 다음과 같이 실행한다.
 
-# In[7]:
+# In[6]:
 
 
 import random
@@ -281,7 +284,7 @@ for _ in range(5):
 # 
 # - 1에서 180 사이에서 임의로 선택된 값이 180인 경우 `True` 반환.
 
-# In[8]:
+# In[7]:
 
 
 def new_print_task():
@@ -290,7 +293,7 @@ def new_print_task():
     return num == 180
 
 
-# #### 모의실험 단계
+# **모의실험 단계**
 
 # 모의실험은 아래 단계들로 이루어진다.
 # 
@@ -311,7 +314,7 @@ def new_print_task():
 #         - 해당 프린팅 과제가 완수되면 대기 상태로 전환
 # 1. 모든 프린팅 과제 수행 후 과제별 평균 대기시간 계산
 
-# #### `Printer` 클래스
+# **`Printer` 클래스**
 
 # 앞서 언급한 대로 `Printer` 클래스와 `Task` 클래스를 구현해야 한다. 
 # 먼저 `Printer` 클래스가 가져야 하는 속성과 메서드는 다음과 같다.
@@ -322,7 +325,7 @@ def new_print_task():
 # - 프린터 상태
 # - 다음 프린팅 과제 불러오기
 
-# In[9]:
+# In[8]:
 
 
 class Printer:
@@ -346,7 +349,7 @@ class Printer:
         self.time_remaining = new_task.get_pages() * 60 / self.page_rate    # 초 단위
 
 
-# #### `Task` 클래스
+# **`Task` 클래스**
 
 # `Task` 클래스가 가져야 하는 속성과 메서드는 다음과 같다.
 # 
@@ -354,7 +357,7 @@ class Printer:
 # - 프린팅 대상 페이지 수: 1~20 사이의 무작위 수
 # - 과제 생성 후 프린팅 시작까지 대기 시간
 
-# In[10]:
+# In[9]:
 
 
 import random
@@ -374,7 +377,7 @@ class Task:
         return current_time - self.timestamp
 
 
-# #### 모의실험 구현
+# **모의실험 구현**
 
 # 아래 `simulation()` 함수는 지정된 시간동안 프린팅 작업을 수행할 때
 # 프린팅 과제당 평균 대기 시간을 계산한다.
@@ -388,7 +391,7 @@ class Task:
 # - `new_print_task()`
 # - `tick()`
 
-# In[11]:
+# In[10]:
 
 
 import random
@@ -423,7 +426,7 @@ def simulation(num_seconds, pages_per_minute):
 
 # 아래 코드는 분당 5장을 출력하는 프린터를 1시간 동안 돌리는 모의실험을 100번 실행할 때의 결과를 보여준다.
 
-# In[12]:
+# In[11]:
 
 
 import numpy as np
@@ -438,7 +441,7 @@ print(f"평균 대기시간: {np.mean(average_wait_list):6.2f} 초")
 
 # 분당 출력 페이지수를 10장으로 하면 아래 결과를 얻는다.
 
-# In[13]:
+# In[12]:
 
 
 import numpy as np
@@ -453,7 +456,7 @@ print(f"평균 대기시간: {np.mean(average_wait_list):6.2f} 초")
 
 # 분당 출력 페이지수를 20장으로 하면 아래 결과를 얻는다.
 
-# In[14]:
+# In[13]:
 
 
 import numpy as np
@@ -466,7 +469,7 @@ for i in range(100):
 print(f"평균 대기시간: {np.mean(average_wait_list):6.2f} 초")
 
 
-# In[15]:
+# In[14]:
 
 
 import numpy as np
@@ -481,38 +484,6 @@ print(f"평균 대기시간: {np.mean(average_wait_list):6.2f} 초")
 
 # 프린터의 초당 출력 페이지 수를 2배 늘릴 때마다 평균 대기시간은 평균적으로 4배 줄어든다.
 
-# #### 연습문제: 함수 활용
+# ## 연습 문제
 
-# 프린터 사용자가 늘어나서 시간당 20건 이상의 출력과제가 생성되거나 출력 페이지 수가 평균적으로 이전보다 줄어들었을 경우 등을 대비하여 "시간당 출력과제 생성 수"와 "출력 페이지 수" 관련 설정을 매개변수로 받아 사용자의 평균 대기시간을 계산하는 함수를 구현하라.
-
-# ### 프로그래밍 실습 문제
-
-# #### 큐 활용
-
-# 1. `Queue` 클래스를 구현할 때 큐의 꼬리를 리스트의 마지막 항목으로 상용하도록 하라.
-# 
-# 1. 서로 다르게 구현된 두 `Queue`의 성능을 비교 분석할 수 있는 실험장치를 고안하라.
-# 
-# 1. `enque()`와 `deque()` 모두 **평균** 시간복잡도가 $O(1)$이 되도록 구현할 수 있는가?
-#     즉, 대부분의 경우 두 함수 모두 $O(1)$ 시간복잡도로 실행되지만 특별한 경우에만 
-#     `deque()` 함수가 $O(n)$ 시간복잡도로 실행되어야 한다. 
-#     
-# 1. 큐가 활용될 수 있는 실제 상황을 모의실험하라. 
-#     예를 들어, 다음 경우를 살펴볼 수 있다.
-#     
-#     - 세차장
-#     - 마트 계산대
-#     - 비행기 활주로
-#     - 은행 창구
-#     
-#     실제 상황에서 벌어질 수 있는 일들을 묘사하고 묘사한 대로 구현해야 한다. 
-#     
-# 1. '폭탄 돌리기' 게임에서 폭탄을 돌리는 횟수를 무작위적으로 변경할 수 있도록 
-#     코드를 수정하라.
-#     
-
-# #### 기수 정렬(radix sorting)
-
-# 1. 기수 정렬(radix sorting)를 실행하는 함수 `radix_sort()`를 구현하라.
-#     기수 정렬의 정의는 [정렬 알고리즘 - 기수정렬](https://lktprogrammer.tistory.com/48)을 
-#     참조한다.
+# 1. [(실습) 큐](https://colab.research.google.com/github/codingalzi/algopy/blob/master/excs/exc-queues.ipynb)

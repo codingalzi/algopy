@@ -43,7 +43,7 @@
 # <div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/primitive.png" width="60%"></div>
 # </figure>
 
-# **후입선출**<font size='2'>last-in first-out(LIFO)</font>
+# **후입선출**<font size='2'>last-in first-out</font>(LIFO)
 # 
 # 아래 그림에서 설명된 것처럼 들어온 순서 역순으로 삭제되는 것을 의미한다.
 
@@ -523,4 +523,4 @@ hex(233)
 
 # ## 연습 문제
 
-# 1. [(실습) 선형 자료구조: 스택](https://colab.research.google.com/github/codingalzi/algopy/blob/master/excs/exc-stacks.ipynb)
+# 1. [(실습) 스택](https://colab.research.google.com/github/codingalzi/algopy/blob/master/excs/exc-stacks.ipynb)
