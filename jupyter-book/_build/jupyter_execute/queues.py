@@ -186,8 +186,7 @@ print(q)
 # </figure>
 
 # 위 알고리즘을 함수로 구현하면 다음과 같다.
-# 
-# **참고**: '폭탄 돌리기' 게임을 영어로 'Hot Potato' 게임이라 한다.
+# 참고로, 폭탄 돌리기 게임을 영어로 Hot Potato 게임이라 한다.
 
 # In[4]:
 
@@ -211,12 +210,13 @@ def hot_potato(name_list, num):
     return sim_queue.dequeue()    # 마지막 남은 사람
 
 
-# 아래 코드는 폭탄을 7번 돌릴 때마다 탈락자를 정한다.
+# 아래 코드는 폭탄을 7번 돌릴 때마다 탈락자를 정할 때
+# 마지막에 '은혜'가 남는다.
 
 # In[5]:
 
 
-print(hot_potato(["Bill", "David", "Susan", "Jane", "Kent", "Brad"], 7))
+print(hot_potato(["형택", "진서", "은혜", "민규", "정은", "청용"], 7))
 
 
 # ##  실전 예제 2: 프린터 출력
