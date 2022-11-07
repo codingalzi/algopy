@@ -52,6 +52,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -1278,6 +1280,10 @@ node (commonly called back). The head reference also contains two
 references, one to the first node in the linked list and one to the
 last. Code this implementation in Python.</p></li>
 </ol>
+<p><strong>문제 3</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">enque()</span></code>와 <code class="docutils literal notranslate"><span class="pre">deque()</span></code> 모두 <strong>평균</strong> 시간복잡도가 <span class="math notranslate nohighlight">\(O(1)\)</span>이 되도록 구현할 수 있는가?
+즉, 대부분의 경우 두 함수 모두 <span class="math notranslate nohighlight">\(O(1)\)</span> 시간복잡도로 실행되지만 특별한 경우에만
+<code class="docutils literal notranslate"><span class="pre">deque()</span></code> 함수가 <span class="math notranslate nohighlight">\(O(n)\)</span> 시간복잡도로 실행되어야 한다.</p>
 </div>
 </div>
 </div>
