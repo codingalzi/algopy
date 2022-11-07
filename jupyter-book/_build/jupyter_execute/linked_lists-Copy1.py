@@ -894,3 +894,9 @@ my_list = UnorderedList()
 #    node (commonly called back). The head reference also contains two
 #    references, one to the first node in the linked list and one to the
 #    last. Code this implementation in Python.
+
+# **문제 3**
+
+# `enque()`와 `deque()` 모두 **평균** 시간복잡도가 $O(1)$이 되도록 구현할 수 있는가?
+# 즉, 대부분의 경우 두 함수 모두 $O(1)$ 시간복잡도로 실행되지만 특별한 경우에만 
+# `deque()` 함수가 $O(n)$ 시간복잡도로 실행되어야 한다.
