@@ -437,7 +437,7 @@ const thebe_selector_output = ".output, .cell_output"
 <div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/basicqueue.png" width="55%"></div>
 </figure><p>큐의 활용은 다양하게 이루어진다.
 예를 들어, 은행 창구에서 번호표 배분하는 장치는 방문 순서대로 호출되며,
-프린터는 프린팅 과제가 생성된 순서대로 출력한다.
+프린터는 인쇄 과제가 생성된 순서대로 출력한다.
 또한 키보드를 이용하여 타이핑하면 버퍼(buffer)와 같은
 큐에 잠시 저장되어 있다가 순서대로 편집기에 표시되며,
 컴퓨터 CPU가 사용자가 내린 명령문을 처리하는 것 또한 특정 형식의 큐를 이용한다.</p>
@@ -743,16 +743,16 @@ False
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>89
-128
-68
-28
-25
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>110
+70
+55
+17
+14
 </pre></div>
 </div>
 </div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">randrange(1,181)</span></code>을 매 초마다 실행하여 생성된 값이 180인 경우에만 프린팅 과제를 생성하도록 하면
+<p><code class="docutils literal notranslate"><span class="pre">randrange(1,181)</span></code>을 매 초마다 실행하여 생성된 값이 180인 경우에만 인쇄 과제를 생성하도록 하면
 초당 180분의 1로 어떤 사건이 발생하는 것을 모의실험할 수 있다.
 아래 <code class="docutils literal notranslate"><span class="pre">new_print_task()</span></code> 함숙다 초당 180분의 1의 확률로 인쇄 명령을
 내리도록 한다.</p>
@@ -766,35 +766,8 @@ False
 </div>
 </div>
 </div>
-<p><strong>모의실험 단계</strong></p>
-<p>모의실험은 아래 단계들로 이루어진다.</p>
-<ol class="simple">
-<li><p>인쇄 과제 큐 생성: 비어있는 상태.</p></li>
-<li><p>모든 인쇄 과제의 대기시간을 담아둘 빈 리스트 생성.
-과제별 평균 대기시간 측정 용도.</p></li>
-<li><p>매 초당 아래 과제 수행</p>
-<ul class="simple">
-<li><p>초당 180분의 1의 확률로 인쇄 과제 생성</p>
-<ul>
-<li><p>생성된 시간 저장.
-나중에 프린터가 실행될 때의 시간을 확인하여 대기시간을 측정할 수 있도록 함.</p></li>
-<li><p>인쇄 과제 생성 후 바로 인쇄 과제 큐에 추가</p></li>
-</ul>
-</li>
-<li><p>프린터가 대기 상태이고 인쇄 과제 큐에 과제가 남아 있으면 아래 과제 수행</p>
-<ul>
-<li><p>인쇄 과제 큐의 헤드를 삭제하고 수행할 과제로 지정</p></li>
-<li><p>해당 과제의 대기 시간을 계산(현재 시간과 과제 생성시간의 차이)한 후에
-모든 과제의 대기 기간 리스트에 추가</p></li>
-<li><p>인쇄 과제의 인쇄 쪽 수를 확인한 후에 인쇄에 필요한 시간 계산.
-해당 시간 동안 프린터 상태가 <code class="docutils literal notranslate"><span class="pre">busy</span></code>로 표시되어 다음 인쇄 과제들은 큐에서 기다리게 됨.</p></li>
-<li><p>해당 인쇄 과제가 완수되면 대기 상태로 전환됨.</p></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>모든 인쇄 과제 수행 후 과제별 평균 대기시간 계산</p></li>
-</ol>
+<p><strong>모의실험</strong></p>
+<p>모의 실험에 두 개의 클래스가 필요하다.</p>
 <p><strong><code class="docutils literal notranslate"><span class="pre">Printer</span></code> 클래스</strong></p>
 <p>앞서 언급한 대로 <code class="docutils literal notranslate"><span class="pre">Printer</span></code> 클래스와 <code class="docutils literal notranslate"><span class="pre">Task</span></code> 클래스를 구현해야 한다.
 먼저 <code class="docutils literal notranslate"><span class="pre">Printer</span></code> 클래스가 가져야 하는 속성과 메서드는 다음과 같다.</p>
@@ -809,10 +782,10 @@ False
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Printer</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ppm</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">page_rate</span> <span class="o">=</span> <span class="n">ppm</span>                    <span class="c1"># 분당 출력 페이지 수</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">current_task</span> <span class="o">=</span> <span class="kc">None</span>                <span class="c1"># 수행 대상 프린팅 과제</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">time_remaining</span> <span class="o">=</span> <span class="mi">0</span>                 <span class="c1"># 수행 대상 프린팅 과제 수행 시간</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_task</span> <span class="o">=</span> <span class="kc">None</span>                <span class="c1"># 수행 대상 인쇄 과제</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">time_remaining</span> <span class="o">=</span> <span class="mi">0</span>                 <span class="c1"># 수행 대상 인쇄 과제 수행 시간</span>
 
-    <span class="c1"># 수행중인 프린팅 과제 남은 수행 시간동안 busy 상태 유지</span>
+    <span class="c1"># 수행중인 인쇄 과제 남은 수행 시간동안 busy 상태 유지</span>
     <span class="k">def</span> <span class="nf">tick</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_task</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>     
             <span class="bp">self</span><span class="o">.</span><span class="n">time_remaining</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_remaining</span> <span class="o">-</span> <span class="mi">1</span>
@@ -822,7 +795,7 @@ False
     <span class="k">def</span> <span class="nf">busy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>                              <span class="c1"># 프린터 상태</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_task</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
 
-    <span class="k">def</span> <span class="nf">start_next</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_task</span><span class="p">):</span>              <span class="c1"># 다음 프린팅 과제 불러오기</span>
+    <span class="k">def</span> <span class="nf">start_next</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_task</span><span class="p">):</span>              <span class="c1"># 다음 인쇄 과제 불러오기</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">current_task</span> <span class="o">=</span> <span class="n">new_task</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">time_remaining</span> <span class="o">=</span> <span class="n">new_task</span><span class="o">.</span><span class="n">get_pages</span><span class="p">()</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">page_rate</span>    <span class="c1"># 지정된 인쇄 과제 인쇄 시간 계산. 초단위.</span>
 </pre></div>
@@ -832,9 +805,9 @@ False
 <p><strong><code class="docutils literal notranslate"><span class="pre">Task</span></code> 클래스</strong></p>
 <p><code class="docutils literal notranslate"><span class="pre">Task</span></code> 클래스가 가져야 하는 속성과 메서드는 다음과 같다.</p>
 <ul class="simple">
-<li><p>프린팅 과제 생성 시간</p></li>
-<li><p>프린팅 대상 페이지 수: 1~20 사이의 무작위 수</p></li>
-<li><p>과제 생성 후 프린팅 시작까지 대기 시간</p></li>
+<li><p>인쇄 과제 생성 시간</p></li>
+<li><p>인쇄 대상 페이지 수: 1~20 사이의 무작위 수</p></li>
+<li><p>과제 생성 후 인쇄 시작까지 대기 시간</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -858,8 +831,28 @@ False
 </div>
 </div>
 <p><strong>모의실험 구현</strong></p>
-<p>아래 <code class="docutils literal notranslate"><span class="pre">simulation()</span></code> 함수는 지정된 시간동안 프린팅 작업을 수행할 때
-프린팅 과제당 평균 대기 시간을 계산한다.</p>
+<p>모의실험은 매 초당 아래 과제를 수행하는 것으로 이루어진다.</p>
+<ol class="simple">
+<li><p>초당 180분의 1의 확률로 인쇄 과제 생성</p>
+<ul class="simple">
+<li><p>생성된 시간 저장.
+나중에 프린터가 실행될 때의 시간을 확인하여 대기시간을 측정할 수 있도록 함.</p></li>
+<li><p>인쇄 과제 생성 후 바로 인쇄 과제 큐에 추가</p></li>
+</ul>
+</li>
+<li><p>프린터가 대기 상태이고 인쇄 과제 큐에 과제가 남아 있으면 아래 과제 수행</p>
+<ul class="simple">
+<li><p>인쇄 과제 큐의 헤드를 삭제하고 수행할 과제로 지정</p></li>
+<li><p>해당 과제의 대기 시간을 계산(현재 시간과 과제 생성시간의 차이)한 후에
+모든 과제의 대기 기간 리스트에 추가</p></li>
+<li><p>인쇄 과제의 인쇄 쪽 수를 확인한 후에 인쇄에 필요한 시간 계산.
+해당 시간 동안 프린터 상태가 <code class="docutils literal notranslate"><span class="pre">busy</span></code>로 표시되어 다음 인쇄 과제들은 큐에서 기다리게 됨.</p></li>
+<li><p>해당 인쇄 과제가 완수되면 대기 상태로 전환됨.</p></li>
+</ul>
+</li>
+</ol>
+<p>아래 <code class="docutils literal notranslate"><span class="pre">simulation()</span></code> 함수는 지정된 시간동안 인쇄 작업을 수행할 때
+인쇄 과제당 평균 대기 시간을 계산한다.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">num_seconds</span></code>: 프린터 작동 시간</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">pages_per_minutes</span></code>: 분당 출력 페이지 수</p></li>
@@ -877,17 +870,17 @@ False
 <span class="k">def</span> <span class="nf">simulation</span><span class="p">(</span><span class="n">num_seconds</span><span class="p">,</span> <span class="n">pages_per_minute</span><span class="p">):</span>
     
     <span class="n">lab_printer</span> <span class="o">=</span> <span class="n">Printer</span><span class="p">(</span><span class="n">pages_per_minute</span><span class="p">)</span>     <span class="c1"># 프린터 생성</span>
-    <span class="n">print_queue</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">()</span>                       <span class="c1"># 프린팅 큐 생성</span>
+    <span class="n">print_queue</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">()</span>                       <span class="c1"># 인쇄 과제 큐 생성</span>
     <span class="n">waiting_times</span> <span class="o">=</span> <span class="p">[]</span>                          <span class="c1"># 과제들의 대기시간 리스트</span>
 
     <span class="c1"># 모의실험 단계: 초당 수행 내용</span>
     <span class="k">for</span> <span class="n">current_second</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_seconds</span><span class="p">):</span>
-        <span class="c1"># 새 프린팅 과제 생성 여부 판단 </span>
+        <span class="c1"># 새 인쇄 과제 생성 여부 판단 </span>
         <span class="k">if</span> <span class="n">new_print_task</span><span class="p">():</span>
             <span class="n">task</span> <span class="o">=</span> <span class="n">Task</span><span class="p">(</span><span class="n">current_second</span><span class="p">)</span>
             <span class="n">print_queue</span><span class="o">.</span><span class="n">enqueue</span><span class="p">(</span><span class="n">task</span><span class="p">)</span>
 
-        <span class="c1"># 프린터가 대기 상태인 경우: 다음 프린팅 과제 지정, 대기 시간 계산, 과제 수행</span>
+        <span class="c1"># 프린터가 대기 상태인 경우: 다음 인쇄 과제 지정, 대기 시간 계산, 과제 수행</span>
         <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="n">lab_printer</span><span class="o">.</span><span class="n">busy</span><span class="p">())</span> <span class="ow">and</span> <span class="p">(</span><span class="ow">not</span> <span class="n">print_queue</span><span class="o">.</span><span class="n">is_empty</span><span class="p">()):</span> 
             <span class="n">nexttask</span> <span class="o">=</span> <span class="n">print_queue</span><span class="o">.</span><span class="n">dequeue</span><span class="p">()</span>
             <span class="n">waiting_times</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nexttask</span><span class="o">.</span><span class="n">waiting_time</span><span class="p">(</span><span class="n">current_second</span><span class="p">))</span>
@@ -896,7 +889,7 @@ False
         <span class="c1"># 수행중인 과제 남은 시간 확인 후 프린터 상태 지정: busy 및 대기</span>
         <span class="n">lab_printer</span><span class="o">.</span><span class="n">tick</span><span class="p">()</span>
 
-    <span class="c1"># 프린팅 과제 평균 대기 시간 반환</span>
+    <span class="c1"># 인쇄 과제 평균 대기 시간 반환</span>
     <span class="n">average_wait</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">waiting_times</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">waiting_times</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">average_wait</span>
@@ -919,7 +912,7 @@ False
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>평균 대기시간: 131.54 초
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>평균 대기시간: 117.64 초
 </pre></div>
 </div>
 </div>
@@ -939,7 +932,7 @@ False
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>평균 대기시간:  19.80 초
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>평균 대기시간:  17.28 초
 </pre></div>
 </div>
 </div>
@@ -959,7 +952,7 @@ False
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>평균 대기시간:   4.19 초
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>평균 대기시간:   3.83 초
 </pre></div>
 </div>
 </div>
@@ -978,7 +971,7 @@ False
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>평균 대기시간:   0.86 초
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>평균 대기시간:   0.91 초
 </pre></div>
 </div>
 </div>

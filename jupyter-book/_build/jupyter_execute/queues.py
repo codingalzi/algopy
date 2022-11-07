@@ -31,7 +31,7 @@
 
 # 큐의 활용은 다양하게 이루어진다. 
 # 예를 들어, 은행 창구에서 번호표 배분하는 장치는 방문 순서대로 호출되며, 
-# 프린터는 프린팅 과제가 생성된 순서대로 출력한다. 
+# 프린터는 인쇄 과제가 생성된 순서대로 출력한다. 
 # 또한 키보드를 이용하여 타이핑하면 버퍼(buffer)와 같은
 # 큐에 잠시 저장되어 있다가 순서대로 편집기에 표시되며,
 # 컴퓨터 CPU가 사용자가 내린 명령문을 처리하는 것 또한 특정 형식의 큐를 이용한다. 
@@ -277,7 +277,7 @@ for _ in range(5):
     print(random.randrange(1,181))
 
 
-# `randrange(1,181)`을 매 초마다 실행하여 생성된 값이 180인 경우에만 프린팅 과제를 생성하도록 하면
+# `randrange(1,181)`을 매 초마다 실행하여 생성된 값이 180인 경우에만 인쇄 과제를 생성하도록 하면
 # 초당 180분의 1로 어떤 사건이 발생하는 것을 모의실험할 수 있다.
 # 아래 `new_print_task()` 함숙다 초당 180분의 1의 확률로 인쇄 명령을
 # 내리도록 한다.
@@ -291,26 +291,9 @@ def new_print_task():
     return num == 180
 
 
-# **모의실험 단계**
+# **모의실험**
 
-# 모의실험은 아래 단계들로 이루어진다.
-# 
-# 1. 인쇄 과제 큐 생성: 비어있는 상태.
-# 1. 모든 인쇄 과제의 대기시간을 담아둘 빈 리스트 생성.
-#     과제별 평균 대기시간 측정 용도.
-# 1. 매 초당 아래 과제 수행
-#     - 초당 180분의 1의 확률로 인쇄 과제 생성
-#         - 생성된 시간 저장. 
-#             나중에 프린터가 실행될 때의 시간을 확인하여 대기시간을 측정할 수 있도록 함.
-#         - 인쇄 과제 생성 후 바로 인쇄 과제 큐에 추가
-#     - 프린터가 대기 상태이고 인쇄 과제 큐에 과제가 남아 있으면 아래 과제 수행
-#         - 인쇄 과제 큐의 헤드를 삭제하고 수행할 과제로 지정
-#         - 해당 과제의 대기 시간을 계산(현재 시간과 과제 생성시간의 차이)한 후에
-#             모든 과제의 대기 기간 리스트에 추가
-#         - 인쇄 과제의 인쇄 쪽 수를 확인한 후에 인쇄에 필요한 시간 계산.
-#             해당 시간 동안 프린터 상태가 `busy`로 표시되어 다음 인쇄 과제들은 큐에서 기다리게 됨.
-#         - 해당 인쇄 과제가 완수되면 대기 상태로 전환됨.
-# 1. 모든 인쇄 과제 수행 후 과제별 평균 대기시간 계산
+# 모의 실험에 두 개의 클래스가 필요하다.
 
 # **`Printer` 클래스**
 
@@ -328,10 +311,10 @@ def new_print_task():
 class Printer:
     def __init__(self, ppm):
         self.page_rate = ppm                    # 분당 출력 페이지 수
-        self.current_task = None                # 수행 대상 프린팅 과제
-        self.time_remaining = 0                 # 수행 대상 프린팅 과제 수행 시간
+        self.current_task = None                # 수행 대상 인쇄 과제
+        self.time_remaining = 0                 # 수행 대상 인쇄 과제 수행 시간
 
-    # 수행중인 프린팅 과제 남은 수행 시간동안 busy 상태 유지
+    # 수행중인 인쇄 과제 남은 수행 시간동안 busy 상태 유지
     def tick(self):
         if self.current_task is not None:     
             self.time_remaining = self.time_remaining - 1
@@ -341,7 +324,7 @@ class Printer:
     def busy(self):                              # 프린터 상태
         return self.current_task is not None
 
-    def start_next(self, new_task):              # 다음 프린팅 과제 불러오기
+    def start_next(self, new_task):              # 다음 인쇄 과제 불러오기
         self.current_task = new_task
         self.time_remaining = new_task.get_pages() * 60 / self.page_rate    # 지정된 인쇄 과제 인쇄 시간 계산. 초단위.
 
@@ -350,9 +333,9 @@ class Printer:
 
 # `Task` 클래스가 가져야 하는 속성과 메서드는 다음과 같다.
 # 
-# - 프린팅 과제 생성 시간
-# - 프린팅 대상 페이지 수: 1~20 사이의 무작위 수
-# - 과제 생성 후 프린팅 시작까지 대기 시간
+# - 인쇄 과제 생성 시간
+# - 인쇄 대상 페이지 수: 1~20 사이의 무작위 수
+# - 과제 생성 후 인쇄 시작까지 대기 시간
 
 # In[9]:
 
@@ -376,8 +359,22 @@ class Task:
 
 # **모의실험 구현**
 
-# 아래 `simulation()` 함수는 지정된 시간동안 프린팅 작업을 수행할 때
-# 프린팅 과제당 평균 대기 시간을 계산한다.
+# 모의실험은 매 초당 아래 과제를 수행하는 것으로 이루어진다.
+# 
+# 1. 초당 180분의 1의 확률로 인쇄 과제 생성
+#     - 생성된 시간 저장. 
+#         나중에 프린터가 실행될 때의 시간을 확인하여 대기시간을 측정할 수 있도록 함.
+#     - 인쇄 과제 생성 후 바로 인쇄 과제 큐에 추가
+# 1. 프린터가 대기 상태이고 인쇄 과제 큐에 과제가 남아 있으면 아래 과제 수행
+#     - 인쇄 과제 큐의 헤드를 삭제하고 수행할 과제로 지정
+#     - 해당 과제의 대기 시간을 계산(현재 시간과 과제 생성시간의 차이)한 후에
+#         모든 과제의 대기 기간 리스트에 추가
+#     - 인쇄 과제의 인쇄 쪽 수를 확인한 후에 인쇄에 필요한 시간 계산.
+#         해당 시간 동안 프린터 상태가 `busy`로 표시되어 다음 인쇄 과제들은 큐에서 기다리게 됨.
+#     - 해당 인쇄 과제가 완수되면 대기 상태로 전환됨.
+
+# 아래 `simulation()` 함수는 지정된 시간동안 인쇄 작업을 수행할 때
+# 인쇄 과제당 평균 대기 시간을 계산한다.
 # 
 # - `num_seconds`: 프린터 작동 시간
 # - `pages_per_minutes`: 분당 출력 페이지 수
@@ -396,17 +393,17 @@ import random
 def simulation(num_seconds, pages_per_minute):
     
     lab_printer = Printer(pages_per_minute)     # 프린터 생성
-    print_queue = Queue()                       # 프린팅 큐 생성
+    print_queue = Queue()                       # 인쇄 과제 큐 생성
     waiting_times = []                          # 과제들의 대기시간 리스트
 
     # 모의실험 단계: 초당 수행 내용
     for current_second in range(num_seconds):
-        # 새 프린팅 과제 생성 여부 판단 
+        # 새 인쇄 과제 생성 여부 판단 
         if new_print_task():
             task = Task(current_second)
             print_queue.enqueue(task)
 
-        # 프린터가 대기 상태인 경우: 다음 프린팅 과제 지정, 대기 시간 계산, 과제 수행
+        # 프린터가 대기 상태인 경우: 다음 인쇄 과제 지정, 대기 시간 계산, 과제 수행
         if (not lab_printer.busy()) and (not print_queue.is_empty()): 
             nexttask = print_queue.dequeue()
             waiting_times.append(nexttask.waiting_time(current_second))
@@ -415,7 +412,7 @@ def simulation(num_seconds, pages_per_minute):
         # 수행중인 과제 남은 시간 확인 후 프린터 상태 지정: busy 및 대기
         lab_printer.tick()
 
-    # 프린팅 과제 평균 대기 시간 반환
+    # 인쇄 과제 평균 대기 시간 반환
     average_wait = sum(waiting_times) / len(waiting_times)
 
     return average_wait
