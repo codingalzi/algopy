@@ -14,7 +14,7 @@
 # <div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/basicdeque.png" width="70%"></div>
 # </figure>
 
-# ### `Deque` 추상 자료형
+# ## `Deque` 추상 자료형
 
 # 덱 추상 자료형을 구체적인 파이썬 자료구조(data structure)로 
 # 구현하려면 갖추어야 하는 기본 속성과 기능은 다음과 같다.
@@ -45,7 +45,7 @@
 # | `d.remove_rear()` | `['dog', 4, 'cat', True]` | `8.4` |
 # | `d.remove_front()`  | `['dog', 4, 'cat']` | `True` |
 
-# ### 덱 자료구조 구현
+# ## 덱 자료구조 구현
 
 # 리스트를 활용할 때 중요한 것은 머리와 꼬리를 어디로 설정하는가이다. 
 # 큐의 경우처럼 꼬리는 리스트의 시작, 머리는 리스트의 오른편 끝으로 정하며
@@ -115,14 +115,17 @@ print(d.remove_front())
 print(d)
 
 
-# ### 실전 예제 1: 편집기의 'undo'와 'redo'
+# **예제: 편집기의 'undo'와 'redo'**
 
-# 1. 문서 작성중에 'undo' 버튼을 누르면 마지막에 추가된 항목(머리 항목)이 삭제되는 동시에
-#     꼬리 항목으로 추가된다.
-#     이후 `redo` 버튼이 눌리면 꼬리 항목이 삭제되어 다시 머리 항목으로 추가된다. 
-# 1. 웹브라우저의 'back'/'forward' 버튼도 유사하게 작동한다.
+# 문서 작성중에 'undo' 버튼을 누르면 마지막에 추가된 항목(머리 항목)이 삭제되는 동시에
+# 꼬리 항목으로 추가된다.
+# 이후 `redo` 버튼이 눌리면 꼬리 항목이 삭제되어 다시 머리 항목으로 추가된다.
 
-# ### 실전 예제 2: 회문(palindrome) 판별기
+# **예제: 웹브라우저의 'back'과 'forward'**
+
+# 웹브라우저의 'back'과 'forward'의 기능도 덱과 유사하게 작동한다.
+
+# ## 실전 예제: 회문<font size='2'>palindrome</font> 판별기
 
 # 'radar', 'toot', 'madam', '기러기', '실습실', '토마토' 등 앞으로 읽으나 뒤로 읽으나 동일한 단어가 되는 단어 또는 문장을 **회문**(palindrome)이라 부른다. 
 # 주어진 문자열의 회문 여부를 판별하려면 문자열을 덱(deque) 객체로 만든 다음에
@@ -184,7 +187,6 @@ print(pal_checker("토마토"))
 print(pal_checker("사이다"))
 
 
-# ### 프로그래밍 실습 문제
+# ## 연습문제
 
-# 1. "I PREFER PI", "찰진 의사의 진찰" 등 공백이 포함된 문장을 회문으로 판별하도록
-#     `pal_checker()` 함수를 수정하라.
+# 1. [(실습) 덱](https://colab.research.google.com/github/codingalzi/algopy/blob/master/excs/exc-deques.ipynb)
