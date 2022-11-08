@@ -1,24 +1,25 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # 재귀 함수
+# # 재귀
 
 # Copyright (C)  Brad Miller, David Ranum.
 # This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/.
 
-# ## 5.1 목표
+# **주요 내용**
 
 # - 재귀 함수 정의와 구현
 # - 재귀 함수 활용
 
-# ## 5.2 재귀 함수
+# ## 재귀 함수
 
 # **재귀**(recursion) 주어진 문제를 해결하기 위해 보다 작은 문제로 반복적으로 쪼개서 해결하는 문제 해결 기법이다. 재귀를 사용하지 않고 해결하려 할 때 매우 어려운 문제가 재귀를 이용하여 간단하게 해결되는 경우가 많다.
+# 재귀 함수는 재귀를 이용하여 정의된 함수를 의미한다.
 
-# ### 예제: 리스트 항목의 합 구하기
+# **예제: 리스트 항목의 합 구하기**
 
-# 리스트 `[1, 3, 5, 7, 9]`에 포함된 수들의 합을 구해보자.
-# 먼저, `for` 반복문을 이용하면 다음과 같다.
+# 정수들의 리스트가 주어졌을 때 모든 항목의 합을 구하는 함수를
+# `for` 반복문을 이용하여 구현하면 다음과 같다.
 # 
 # - 합을 0으로 시작.
 # - 각 항목을 확인하여 합에 더하기
@@ -80,7 +81,7 @@ print(list_sum([1, 3, 5, 7, 9]))
 
 # `the_sum`의 값이 업데이트되는 과정을 번호를 붙히면 다음을 얻는다.
 
-# $$
+# \begin{equation}
 # \begin{align*}
 # \text{the_sum}_5 & = 1 + \text{the_sum}_4 \\
 # \text{the_sum}_4 & = 3 + \text{the_sum}_3 \\
@@ -88,7 +89,7 @@ print(list_sum([1, 3, 5, 7, 9]))
 # \text{the_sum}_2 & = 7 + \text{the_sum}_1 \\
 # \text{the_sum}_1 & = 9
 # \end{align*}
-# $$
+# \end{equation}
 
 # **리스트의 머리와 꼬리 활용**
 
@@ -110,8 +111,6 @@ print(list_sum([1, 3, 5, 7, 9]))
 # <figure>
 # <div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/sumlistIn.png" width="50%"></div>
 # </figure>
-
-# ### 재귀 함수
 
 # 앞서 설명한 재귀를 함수로 구현하면 다음과 같다.
 
@@ -136,7 +135,7 @@ print(list_sum([1, 3, 5, 7, 9]))
 # 재귀 호출을 이용하여 구현된 알고리즘은 **재귀 알고리즘**(recursive algorithm), 
 # 재귀 알고리즘을 사용한 함수가 **재귀 함수**(recursive function)이다.
 
-# ## 5.3 재귀 알고리즘의 특징
+# ## 재귀 알고리즘의 특징
 
 # 재귀 알고리즘은 아래 세 가지 특징을 가져야 한다. 
 # 
@@ -221,9 +220,9 @@ collatz(1024)
 # 
 # <그림 출처: [위키백과: 콜라츠 추측](https://en.wikipedia.org/wiki/Collatz_conjecture)>
 
-# ### 재귀 함수 예제
+# ## 재귀 함수 예제
 
-# #### 예제 1: 계승(factorial) 함수
+# **예제: 계승(factorial) 함수**
 
 # 음이 아닌 정수 $n$이 주어졌을 때 $1$부터 $n$까지의 곱을 $n$의 계승이며, $n!$로 표기한다.
 # $n$의 계승을 계산하는 함수를 재귀를 이용하여 구현하면 다음과 같다.
@@ -240,7 +239,7 @@ def factorial(n):
         return n * factorial(n-1)        
 
 
-# #### 예제 2: 진법 변환
+# **예제: 진법 변환**
 
 # 정수를 특정 진법으로 변환된 문자열을 반환하는 함수를 회귀를 이용하여 구현한다.
 # 참고로 [4장 1부](https://codingalzi.github.io/algopy/notebooks/algopy04_BasicDataStructures_1.html)에서는 스택을 활용하였다.
@@ -303,7 +302,7 @@ print(to_str(46685, 8))
 print(to_str(46685, 16))
 
 
-# #### 예제 3: 문자열 뒤집기
+# **예제 3: 문자열 뒤집기**
 
 # 문자열을 받아 순서를 거꾸로 하는 문자열을 반환하는 회귀 함수는 다음과 같다.
 
@@ -325,7 +324,7 @@ print(reverse("l"))
 print(reverse("follow"))
 
 
-# #### 예제 4: 회문 판별기
+# **예제 4: 회문 판별기**
 
 # 회문(palindrome) 판별기를 재귀 함수로 구현하면 다음과 같다.
 # 단, 공백, 쉼표, 생략 기호, 마침표, 느낌표, 하이픈 등은 무시되며, 
@@ -414,7 +413,7 @@ is_pal("I am Sam.")
 is_pal("radar")
 
 
-# ## 5.4 콜 스택(Call Stack)
+# ## 콜 스택<font size='2'>Call Stack</font>
 
 # 재귀 함수가 실행되면 재귀 호출이 발생할 때마다 
 # 함수 호출의 실행을 관리하는 **프레임**(frame)이 
@@ -457,7 +456,7 @@ print(to_str(46685, 16))
 # <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/notebooks/_images/call_stack_1.png" width="50%"></div>
 # </figure>
 
-# ## 5.5 재귀 시각화
+# ## 재귀 시각화
 
 # 재귀를 이해하기 위해 재귀 알고리즘의 작동과정을 시각화햅보자.
 # 시각화를 위해 `turtle` 모듈을 이용한다.
@@ -490,7 +489,7 @@ print(to_str(46685, 16))
 # <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/notebooks/_images/draw_spiral.png" width="35%"></div>
 # </figure>
 
-# ### 예제: 프랙탈 트리
+# **예제: 프랙탈 트리**
 
 # 아래 이미지처럼 아무리 확대하더라도 항상 동일한 구조를 보여주는 사물이 **프랙탈**(fractal)이다.
 
@@ -557,7 +556,7 @@ print(to_str(46685, 16))
 # <div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/tree2.png" width="45%"></div>
 # </figure>
 
-# ### 꼬리와 재귀 일반화
+# ## 꼬리와 재귀 일반화
 
 # 리스트에 포함된 항목들의 합을 계산하는 `list_sum()`의 실행과정을 이해하기 
 # 위해 사용된 머리(head)와 꼬리(tail) 개념을 많은 재귀 알고리즘에 적용할 수 있다.
@@ -575,7 +574,7 @@ print(to_str(46685, 16))
 # <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/notebooks/_images/fractal_tree_1.png" width="35%"></div>
 # </figure>
 
-# ### 예제: 시에르핀스키 삼각형(Sierpinski Triangle)
+# **예제: 시에르핀스키 삼각형<font size='2'>Sierpinski Triangle</font>**
 
 # 정삼각형을 4등분한 후에 가장자리에 위치한 세 개의 삼각형을 대상으로 4등분하는 과정을 무한반복하여
 # 얻어지는 삼각형이 **시에르핀스키**(Sierpinski) 삼각형이며 이 또한 프랙탈이다.
@@ -653,129 +652,6 @@ print(to_str(46685, 16))
 # <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/notebooks/_images/stCallTree.png" width="50%"></div>
 # </figure>
 
-# ## 프로그래밍 실습 문제
+# ## 연습 문제
 
-# 1. 프랙탈 트리에 사용된 알고리즘을 이용하여 손으로 직접 프랙탈 트리를 종이에 그려보아라.
-#     예를 들어, `tree(75, 거북이손)`을 실행한다고 가정한다.
-# 1. 프랙탈 트리 알고리즘을 아래 사항들에 맞추어 수정하라.
-#     - `branch_len`이 줄어들면 나뭇가지의 두께 또한 점점 얇아지도록 하라.
-#     - 나뭇가지의 색상 또한 `branch_len`와 함께 달라져서 결국엔 나뭇잎 색깔이 되도록 하라.
-#     - 좌우 가지치기의 각도를 15도에서 45도 사이에서 임의로 변할 수 있도록 하라.
-#         단, 생성된 트리의 모양이 적절하게 보기 좋아야 한다. 
-#     - 나뭇가지의 길이가 일정하게 줄어드는 대신 가지치기 할 때마다 임의의 크기만큼 줄어들도록 하라.
-#         단, 적절한 범위 내에서 줄어들어야 하며, 최종적으로 자연스럽게 보여야 한다.
-# 
-# 1. Find or invent an algorithm for drawing a fractal mountain. Hint: One
-#    approach to this uses triangles again.
-# 
-# 1. Write a recursive function to compute the Fibonacci sequence. How
-#    does the performance of the recursive function compare to that of an
-#    iterative version?
-# 
-# 1. Using the turtle graphics module, write a recursive program to
-#    display a Hilbert curve.
-# 
-# 1. Using the turtle graphics module, write a recursive program to
-#    display a Koch snowflake.
-
-# **제너레이터 관련**
-
-# **문제**
-
-# 중첩 리스트를 1차원 리스트로 변환하기. 재귀 활용과 제너레이터 활용 비교.
-
-# In[30]:
-
-
-from typing import Iterable 
-#from collections import Iterable                            # < py38
-
-def flatten(items):
-    """Yield items from any nested iterable; see Reference."""
-    for x in items:
-        if isinstance(x, Iterable) and not isinstance(x, (str, bytes)):
-            for sub_x in flatten(x):
-                yield sub_x
-        else:
-            yield x
-
-
-# In[31]:
-
-
-from typing import Iterable 
-#from collections import Iterable                            # < py38
-
-def flatten(items):
-    """Yield items from any nested iterable; see Reference."""
-    for x in items:
-        if isinstance(x, Iterable) and not isinstance(x, (str, bytes)):
-            yield from flatten(x)
-        else:
-            yield x
-
-
-# In[32]:
-
-
-simple = [[1, 2, 3], [4, 5, 6], [7], [8, 9]]
-list(flatten(simple))
-
-
-# In[33]:
-
-
-complicated = [[1, [2]], (3, 4, {5, 6}, 7), 8, "9"]              # numbers, strs, nested & mixed
-list(flatten(complicated))
-
-
-# In[34]:
-
-
-simple
-
-
-# In[35]:
-
-
-simple[0:0] = 'a'
-
-
-# In[36]:
-
-
-simple
-
-
-# **참고**
-# 
-# `while` 문 활용 함수
-
-# In[37]:
-
-
-def flatten_list(list1):
-    out = []
-    inside = list1
-    while inside:
-        x = inside.pop(0)
-        if isinstance(x, list):
-            inside[0:0] = x
-        else:
-            out.append(x)
-    return out
-
-
-# In[38]:
-
-
-l = [[[1,2],3,[4,[[5,6],7],[8]]],[9,10,11]]
-flatten_list(l)
-# [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
-
-
-# In[ ]:
-
-
-
-
+# 1. [(실습) 재귀](https://colab.research.google.com/github/codingalzi/algopy/blob/master/excs/exc-recursive_functions.ipynb)

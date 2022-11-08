@@ -6,10 +6,12 @@
 # Copyright (C)  Brad Miller, David Ranum.
 # This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/.
 
+# **주요 내용**
+
 # `for`, `while` 반복문을 이용하여 해결하기 어려운 문제를
 # 재귀 알고리즘으로 상대적으로 훨씬 간단하게 해결하는 예제 두 개를 다룬다.
 
-# ## 5.6 하노이의 탑
+# ## 하노이의 탑
 
 # 하노이의 탑(Tower of Hanoi) 문제는 세 개의 기둥 중에
 # 하나의 기둥에 쌓여 있는 다양한 크기의 원판들을 다른 기둥으로 옮기는 게임이다.
@@ -28,7 +30,7 @@
 # 참고로 64개의 원판을 옮기는 데 총 $2^{64}-1$ 번 원판을 움직여야 하고, 
 # 1초에 하나의 원판을 옮긴다고 가정했을 때 5,849억년 정도 걸린다.
 
-# ### 재귀 알고리즘
+# **재귀 알고리즘**
 
 # 4개의 원판을 옮겨야 한다고 가정하자.
 # 아래 연속된 그림에서 볼 수 있듯이 3개의 원판을 옮기는 과정을 두 번 반복하면 된다.
@@ -83,14 +85,14 @@ def move_disk(from_p, to_p):
 move_tower(4, "A", "B", "C")
 
 
-# ### 머리와 꼬리
+# **머리와 꼬리**
 # 
 # 하노이의 탑 알고리즘에서 머리와 꼬리는 다음과 같다.
 # 
 # - 머리: 바닥에 위치한 원판. 지정된 목적지로 이동하면 끝.
 # - 꼬리: 머리를 제외한 나머지 원판으로 이루어진 탑. 따라서 하나의 꼬리에 대한 두 번의 재귀호출이 이뤄짐.
 
-# ## 5.7 미로 탐색
+# ## 미로 탐색
 
 # 아래 그림은 거북이가 미로를 탈출하기 위해 가능한 모든 경로를 탐색하는 과정을 보여준다.
 # 
@@ -102,7 +104,7 @@ move_tower(4, "A", "B", "C")
 # <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/notebooks/_images/maze2.png" width="50%"></div>
 # </figure>
 
-# ### 미로 설계도
+# **미로 설계도**
 
 # 미로 설계도는 덧셈 기호(`+`)와 공백으로 이루어진 문자열로 주어진다.
 # 아래 설계도는 11개의 행과 22개의 열로 이루어진 2차원 어레이 모양을 갖는 설계도이다.
@@ -138,7 +140,7 @@ with open("maze2.txt", "w") as maze2_file:
     maze2_file.write(maze2)
 
 
-# ### 미로 시각화: `Maze` 클래스 활용
+# **미로 시각화: `Maze` 클래스 활용**
 
 # 거북이 모듈을 이용하여 거북이가 움직일 수 있는 미로를 시각화 한다.
 # 이를 위해 `Maze` 클래스를 선언하며
@@ -268,7 +270,7 @@ class Maze:
         return self.maze_list[idx]
 
 
-# ### 미로 탐색 알고리즘
+# **미로 탐색 알고리즘**
 
 # 미로의 임의의 위치에서 출발하는 거북이가 탈출 경로를 탐색하는 알고리즘은 다음과 같다.
 # 
@@ -342,43 +344,14 @@ def search_from(maze, start_row, start_column):
 # search_from(my_maze, my_maze.start_row, my_maze.start_col)
 # ```
 
-# ### 머리와 꼬리
+# **머리와 꼬리**
+
 # 
 # 미로 탐색 알고리즘의 머리와 꼬리는 다음과 같다.
 # 
 # - 머리: 이동 후 벽에 막히거나 탈출구에 위치한 경우
 # - 꼬리: 북, 남, 서, 동으로 이동한 후 동일한 탐색 과정 반복. 즉 4 개의 꼬리 사용.
 
-# ## 5.8 프로그래밍 연습 문제
+# ## 연습 문제
 
-# ### 하노이의 탑
-
-# 1. 하노이의 탑을 해결하는 알고리즘을 세 개의 스택(stack)을 이용하여 시각화하라. 
-#     turtle 모듈을 이용하는 방식은 
-#     [Trinket: 미로 탐색](https://trinket.io/turtle/1579371d4a)를 참고할 수 있다.
-#     
-#     힌트: 3 개의 거북이를 원, 사각형 모양 등으로 활용할 수 있다.
-
-# ### 미로 탐색
-
-# 1. 미로 탐색 알고리즘 `search_from()`에 사용된 탐색경로를 수정하여 이전 알고리즘과의
-#     차이점을 확인하라.
-
-# ### 기타
-
-# 1. Write a program to solve the following problem: You have two jugs: a
-#    4-gallon jug and a 3-gallon jug. Neither of the jugs have markings on
-#    them. There is a pump that can be used to fill the jugs with water.
-#    How can you get exactly two gallons of water in the 4-gallon jug?
-# 
-# 1. Generalize the problem above so that the parameters to your solution
-#    include the sizes of each jug and the final amount of water to be
-#    left in the larger jug.
-# 
-# 1. Write a program that solves the following problem: Three missionaries
-#    and three cannibals come to a river and find a boat that holds two
-#    people. Everyone must get across the river to continue on the
-#    journey. However, if the cannibals ever outnumber the missionaries on
-#    either bank, the missionaries will be eaten. Find a series of
-#    crossings that will get everyone safely to the other side of the
-#    river.
+# 1. [(실습) 하노이의 탑과 미로게임](https://colab.research.google.com/github/codingalzi/algopy/blob/master/excs/exc-hanoi_tower.ipynb)
