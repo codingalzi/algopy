@@ -3,8 +3,11 @@
 
 # # 재귀
 
-# Copyright (C)  Brad Miller, David Ranum.
-# This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/.
+# **소스코드**
+# 
+# 아래 내용을 
+# [(구글 코랩) 재귀](https://colab.research.google.com/github/codingalzi/algopy/blob/master/jupyter-book/recursive_functions.ipynb)에서 
+# 직접 실행할 수 있다.
 
 # **주요 내용**
 

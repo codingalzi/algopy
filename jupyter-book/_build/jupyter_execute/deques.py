@@ -3,6 +3,12 @@
 
 # # 덱
 
+# **소스코드**
+# 
+# 아래 내용을 
+# [(구글 코랩) 덱](https://colab.research.google.com/github/codingalzi/algopy/blob/master/jupyter-book/deques.ipynb)에서 
+# 직접 실행할 수 있다.
+
 # ## 덱의 정의
 
 # **덱**(deque)은 큐(queue)와 유사하게 작동하지만 큐와는 달리 항목의 추가와 삭제가
