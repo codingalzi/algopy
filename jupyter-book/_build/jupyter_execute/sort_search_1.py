@@ -319,6 +319,8 @@ print(binary_search_rec(test_list, 54))
 
 # ## 연습 문제
 
+# 1. [(실습) 탐색과 분할정복](https://colab.research.google.com/github/codingalzi/algopy/blob/master/excs/exc-sort_search_1.ipynb)
+
 # 1. 정수들의 리스트를 이용하여 순차탐색과 이진탐색의 성능을 비교하는 
 #     모의실험을 구현하라.
 # 
