@@ -321,22 +321,20 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal nav-link" href="#id3">
    15.2. 순차 탐색
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id4">
-     15.2.1. 이진 탐색
-    </a>
-   </li>
-  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id4">
+   15.3. 이진 탐색
+  </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id5">
-   15.3. 분할정복
+   15.4. 분할정복
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id6">
-   15.4. 연습 문제
+   15.5. 연습 문제
   </a>
  </li>
 </ul>
@@ -368,22 +366,20 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal nav-link" href="#id3">
    15.2. 순차 탐색
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id4">
-     15.2.1. 이진 탐색
-    </a>
-   </li>
-  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id4">
+   15.3. 이진 탐색
+  </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id5">
-   15.3. 분할정복
+   15.4. 분할정복
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id6">
-   15.4. 연습 문제
+   15.5. 연습 문제
   </a>
  </li>
 </ul>
@@ -573,8 +569,9 @@ True
 <p>리스트 <code class="docutils literal notranslate"><span class="pre">[3,</span> <span class="pre">5,</span> <span class="pre">6,</span> <span class="pre">8,</span> <span class="pre">11,</span> <span class="pre">12,</span> <span class="pre">14,</span> <span class="pre">15,</span> <span class="pre">17,</span> <span class="pre">18]</span></code>에 13이 포함되었는지
 여부를 판단하는 데에 필요한 항목 비교 횟수는 얼마인가?</p>
 <p>정답: 7회</p>
+</div>
 <div class="section" id="id4">
-<h3><span class="section-number">15.2.1. </span>이진 탐색<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<h2><span class="section-number">15.3. </span>이진 탐색<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <p>정렬된 리스트를 대상으로 탐색할 때 순차탐색보다 훨씬 빠른 <strong>이진탐색</strong>(binary search)
 알고리즘을 사용할 수 있다.
 이진 탐색은 리스트의 중앙에 위치한 항목부터 비교를 시작하여
@@ -671,16 +668,15 @@ True
 하지만 (나중에 살펴보겠지만) 지금까지 알려진 정렬 알고리즘의
 최악 시간복잡도는 <span class="math notranslate nohighlight">\(O(n^2)\)</span>이기에
 정렬을 하고 이진탐색을 사용할지, 아니면 그냥 순차탐색을 사용할지
-판단해야 한다.
-한 번 정렬해 둔 다음에 탐색을 많이 활용한다면
-정렬 비용이 든다 하더라도 이후의 순차탐색 시간이 훨씬 좋아지므로
+판단해야 한다.</p>
+<p>한번 정렬해 둔 다음에 탐색을 많이 활용한다면
+정렬 비용이 든다 하더라도 이후의 이진탐색 시간이 훨씬 좋아지므로
 그럴 가치가 있다.
 하지만 리스트가 매우 긴 경우 정렬 시간이 매우 오래 걸리기에
 그냥 순차탐색을 활용하는 것이 보다 나을 수 있다.</p>
 </div>
-</div>
 <div class="section" id="id5">
-<h2><span class="section-number">15.3. </span>분할정복<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">15.4. </span>분할정복<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
 <p>앞서 살펴 본 이진탐색이 대표적인 분할정복 기법의 활용예제이다.
 <strong>분할정복</strong>(divide-and-conquer) 기법은 큰 입력사례의 해법을
 보다 작은 크기의 입력사례에서 찾는 기법을 말한다.
@@ -753,17 +749,9 @@ True
 <p>정답: 12, 17, 15</p>
 </div>
 <div class="section" id="id6">
-<h2><span class="section-number">15.4. </span>연습 문제<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">15.5. </span>연습 문제<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
 <ol class="simple">
 <li><p><a class="reference external" href="https://colab.research.google.com/github/codingalzi/algopy/blob/master/excs/exc-sort_search_1.ipynb">(실습) 탐색과 분할정복</a></p></li>
-</ol>
-<ol class="simple">
-<li><p>정수들의 리스트를 이용하여 순차탐색과 이진탐색의 성능을 비교하는
-모의실험을 구현하라.</p></li>
-<li><p>반복을 사용하는 이진탐색과 재귀 이진탐색 알고리즘의 성능을 비교하는
-모의실험을 구현하라.
-성능차이가 발생한다면 그 이유를 설명하라.</p></li>
-<li><p>슬라이싱을 사용하지 않는 재귀 이진탐색 알고리즘을 사용하는 함수를 구현하라.</p></li>
 </ol>
 </div>
 </div>
