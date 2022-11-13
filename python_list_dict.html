@@ -223,6 +223,84 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  동적계획법
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="dynamic_programming_1.html">
+   18. 최적화 문제와 동적계획법
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dynamic_programming_2.html">
+   19. 플로이드-워셜 최단경로 알고리즘
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dynamic_programming_3.html">
+   20. 외판원 문제
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  탐욕 기법
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="greedy_algorithm_1.html">
+   21. 최소비용 신장트리
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="greedy_algorithm_2.html">
+   22. 다익스트라 알고리즘
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="greedy_algorithm_3.html">
+   23. 탐욕 기법 대 동적계획법
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  되추적 기법과 제네릭 프로그래밍
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="back_tracking.html">
+   24. 되추적 기법
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="generic_programming.html">
+   25. 제네릭 프로그래밍
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  NP 이론 소개
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="np_theory_1.html">
+   26. 문제 해결 난이도
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="np_theory_2.html">
+   27. NP 이론
+  </a>
+ </li>
+</ul>
 
     </div>
 </nav></div>
@@ -775,14 +853,14 @@ range 객체:		 0.01 초
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>append() 메서드:	 0.07 초
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>append() 메서드:	 0.08 초
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>extend() 메서드:	 0.11 초
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>extend() 메서드:	 0.12 초
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>리스트 연결 연산자:	 5.81 초
-조건제시법:		 0.04 초
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>리스트 연결 연산자:	 5.89 초
+조건제시법:		 0.05 초
 range 객체:		 0.02 초
 </pre></div>
 </div>
@@ -893,37 +971,37 @@ range 객체:		 0.02 초
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>         n         pop(0)          pop()
-   100,000        0.00951        0.00002
+   100,000        0.01025        0.00002
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 1,100,000        0.16949        0.00002
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 1,100,000        0.18273        0.00002
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 2,100,000        0.32590        0.00002
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 2,100,000        0.74708        0.00002
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 3,100,000        0.77755        0.00002
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 3,100,000        1.37777        0.00003
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 4,100,000        1.69226        0.00002
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 4,100,000        2.27864        0.00002
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 5,100,000        2.21812        0.00002
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 5,100,000        2.95146        0.00002
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 6,100,000        2.95274        0.00002
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 6,100,000        3.56873        0.00002
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 7,100,000        3.65609        0.00002
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 7,100,000        4.22846        0.00002
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 8,100,000        4.26133        0.00002
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 8,100,000        4.87366        0.00003
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 9,100,000        4.89323        0.00002
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 9,100,000        5.95673        0.00003
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10,100,000        5.29579        0.00002
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10,100,000        6.87063        0.00002
 </pre></div>
 </div>
 </div>
@@ -1065,37 +1143,37 @@ range 객체:		 0.02 초
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>        n      list      dict
-   10,000     0.031     0.000
+   10,000     0.027     0.000
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  110,000     0.292     0.000
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  110,000     0.318     0.000
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  210,000     0.546     0.000
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  210,000     0.586     0.001
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  310,000     0.848     0.000
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  310,000     0.957     0.001
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  410,000     1.103     0.001
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  410,000     1.215     0.001
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  510,000     1.400     0.001
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  510,000     1.547     0.001
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  610,000     1.688     0.001
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  610,000     1.899     0.001
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  710,000     1.965     0.001
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  710,000     2.347     0.001
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  810,000     2.351     0.001
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  810,000     2.853     0.001
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  910,000     2.509     0.001
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  910,000     2.867     0.001
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1,010,000     3.011     0.001
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1,010,000     3.061     0.001
 </pre></div>
 </div>
 </div>

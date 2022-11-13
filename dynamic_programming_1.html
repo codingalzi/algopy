@@ -1,0 +1,1161 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>18. 최적화 문제와 동적계획법 &#8212; 문제해결 알고리즘</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="19. 플로이드-워셜 알고리즘" href="dynamic_programming_2.html" />
+    <link rel="prev" title="17. 삽입 정렬, 쉘 정렬" href="sort_search_3.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">문제해결 알고리즘</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  파이썬 기초
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="python_basic_1.html">
+   1. 기본 자료형
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="python_basic_2.html">
+   2. 제어 구조와 함수
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="python_basic_3.html">
+   3. 클래스와 상속
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="python_basic_4.html">
+   4. 클래스 기본 요소
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  알고리즘 시간 복잡도
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="time_complexity.html">
+   5. 시간 복잡도
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="python_list_dict.html">
+   6. 파이썬 모음 자료형 분석
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  선형 자료구조
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="stacks.html">
+   7. 스택
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="infix_prefix_postfix.html">
+   8. 중위, 전위, 후위 표기법
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="queues.html">
+   9. 큐
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="deques.html">
+   10. 덱
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="linked_lists.html">
+   11. 연결 리스트
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ordered_lists.html">
+   12. 정렬 리스트
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  재귀
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="recursive_functions.html">
+   13. 재귀
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="hanoi_tower.html">
+   14. 하노이의 탑과 미로게임
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  탐색과 정렬
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="sort_search_1.html">
+   15. 탐색과 분할정복
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="sort_search_2.html">
+   16. 버블/선택/합병/퀵 정렬
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="sort_search_3.html">
+   17. 삽입 정렬, 쉘 정렬
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  동적계획법
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   18. 최적화 문제와 동적계획법
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dynamic_programming_2.html">
+   19. 플로이드-워셜 알고리즘
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dynamic_programming_3.html">
+   20. 외판원 문제
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  탐욕 기법
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="greedy_algorithm_1.html">
+   21. 최소비용 신장트리
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="greedy_algorithm_2.html">
+   22. 다익스트라 알고리즘
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="greedy_algorithm_3.html">
+   23. 탐욕 기법 대 동적계획법
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  되추적 기법과 제네릭 프로그래밍
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="back_tracking.html">
+   24. 되추적 기법
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="generic_programming.html">
+   25. 제네릭 프로그래밍
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  NP 이론 소개
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="np_theory_1.html">
+   26. 문제 해결 난이도
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="np_theory_2.html">
+   27. NP 이론
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/codingalzi/algopy/master?urlpath=tree/jupyter-book/dynamic_programming_1.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/codingalzi/algopy"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/codingalzi/algopy/issues/new?title=Issue%20on%20page%20%2Fdynamic_programming_1.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/dynamic_programming_1.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   18.1. 최적화 문제
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   18.2. 잔돈 지불 문제
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id4">
+   18.3. 이항 계수
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id5">
+   18.4. 연습 문제
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>최적화 문제와 동적계획법</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   18.1. 최적화 문제
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   18.2. 잔돈 지불 문제
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id4">
+   18.3. 이항 계수
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id5">
+   18.4. 연습 문제
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1><span class="section-number">18. </span>최적화 문제와 동적계획법<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h1>
+<p><strong>소스코드</strong></p>
+<p>아래 내용을
+<a class="reference external" href="https://colab.research.google.com/github/codingalzi/algopy/blob/master/jupyter-book/dynamic_programming_1.ipynb">(구글 코랩) 최적화 문제와 동적계획법</a>에서
+직접 실행할 수 있다.</p>
+<p><strong>주요 내용</strong></p>
+<ul class="simple">
+<li><p>최적화 문제</p></li>
+<li><p>잔돈 지불 문제</p></li>
+<li><p>메모이제이션</p></li>
+<li><p>동적계획법</p></li>
+<li><p>이항 계수</p></li>
+</ul>
+<section id="id2">
+<h2><span class="section-number">18.1. </span>최적화 문제<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
+<p><strong>동적계획법</strong>(Dynamic programming)은 <strong>최적화 문제</strong>(optimization problem) 해결에
+사용되는 기법 중의 하나이다.</p>
+<p>최적화 문제는 여러 개의 해답 중에서 최적의 해답을 찾는 문제이다.
+최적의 기준은 문제에 따라 다르며 보통 특정 기준에 맞는 최댓값 또는 최솟값을 사용한다.</p>
+<p><strong>예제: 두 지점 사이의 최단 경로 찾기</strong></p>
+<p>아래 그림의 <span class="math notranslate nohighlight">\(v_1\)</span>에서 다른 지점으로 이동하는 가장 짧은 경로를 찾아야 한다.
+숫자는 두 지점 사이의 경로의 길이를 나타낸다.</p>
+<figure>
+<div align="center"><img src="https://raw.githubusercontent.com/codingrg-hknu/FoundationsOfAlgorithms/master/slides/images/algo04/algo04-07.png" width="40%"></div>
+</figure><p><strong>예제: 특정 기준을 만족시키는 사물들로 구성된 최대/최소 크기의 집합 찾기</strong></p>
+<p>디멘션(Dimension) 보드 게임에서  6장의 카드에 제시된 조건을 만족시키면서 최대 11개의
+구슬을 쌓아야 한다.</p>
+<figure>
+<div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/notebooks/_images/dimension.jpg" width="50%"></div>
+</figure>
+<p>&lt;그림 출처: <a class="reference external" href="https://acrosstheboardcafe.com/product/dimension/">디멘션 보드 게임(Across the Board Cafe)</a>&gt;</p>
+<p>최적화 문제를 해결하는 다양한 기법이 존재한다.
+여기서는 잔돈 지불 문제를 이용하여 다양한 해결책을 살펴보고
+각 해결책의 장단점을 알아본다.</p>
+</section>
+<section id="id3">
+<h2><span class="section-number">18.2. </span>잔돈 지불 문제<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h2>
+<p>1원, 5원, 10원, 25원짜리 동전만을 이용하여 잔돈을 지불하고자 한다.
+이때 63원을 지불하기 위해 필요한 최소한의 동전 개수는 얼마인가?</p>
+<p><strong>기법 1: 탐욕 기법</strong></p>
+<p><strong>탐욕 기법</strong>(greedy method)은 매 선택 순간에 정해진 기준에 따라 <strong>가장 좋은 것</strong>을 선택하는 기법이다.
+잔돈 지불 문제의 경우 가능한한 가장 큰 단위의 동전을 먼저 사용하는 것을 의미한다.
+따라서 63원을 잔돈으로 지불하려면 6개의 동전이 필요하다.</p>
+<ul class="simple">
+<li><p>25원 동전: 2개</p></li>
+<li><p>10원 동전: 1개</p></li>
+<li><p>1원 동전: 3개</p></li>
+</ul>
+<p>그런데 탐욕 알고리즘이 항상 최선의 해답을 제공하지는 않는다.
+만약에 21원짜리 동전이 추가된다면, 필요한 동전의 최소 개수는 21원 짜리 동전 3개이다.
+하지만 탐욕 기법은 이전과 동일하게 6개의 동전을 사용하는 해법을 제시한다.</p>
+<p><strong>기법 2: 완전 탐색</strong></p>
+<p>지정된 액수의 잔돈을 지불할 수 있는 최소한의 동전 개수를
+아래와 같이 재귀로 계산할 수 있다.
+즉, 지불액 지불에 필요한 최소한의 동전 개수는 지불액에서 1원, 5원, 10원, 25원을
+뺀 각각의 값을 지불하는 데에 필요한 최소한의 동전 개수로 계산한다.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\text{동전개수} =
+min
+\begin{cases}
+1 + \text{동전개수}(\text{지불액} - 1) \\
+1 + \text{동전개수}(\text{지불액} - 5) \\
+1 + \text{동전개수}(\text{지불액} - 10) \\
+1 + \text{동전개수}(\text{지불액} - 25)
+\end{cases}
+\end{split}\]</div>
+<p>이처럼 가능한 모든 경우를 고려하는 기법을 <strong>완전 탐색</strong>이라 하며
+영어로 <strong>부르트 포스</strong>(brute force) 기법이라 한다.
+<code class="docutils literal notranslate"><span class="pre">make_change_1()</span></code> 함수는 앞서 설명한 재귀 알고리즘을 구현한다.
+함수 선언에 사용된 변수들의 역할은 다음과 같다.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">coin_value_list</span></code>: 사용 가능한 동전들의 리스트</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">change</span></code>: 잔돈 지불액</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">min_coins</span></code>: 잔돈 지불에 필요한 최소 동전 개수</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">make_change_1</span><span class="p">(</span><span class="n">coin_value_list</span><span class="p">,</span> <span class="n">change</span><span class="p">):</span>
+    <span class="n">min_coins</span> <span class="o">=</span> <span class="n">change</span>                          <span class="c1"># 최소 동전 개수 초기화</span>
+
+    <span class="k">if</span> <span class="n">change</span> <span class="ow">in</span> <span class="n">coin_value_list</span><span class="p">:</span>               <span class="c1"># 종료 조건</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># 하나의 동전을 사용한 각각의 경우: 재귀 적용</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">coin_value_list</span> <span class="k">if</span> <span class="n">c</span> <span class="o">&lt;=</span> <span class="n">change</span><span class="p">]:</span>  
+            <span class="n">num_coins</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">make_change_1</span><span class="p">(</span><span class="n">coin_value_list</span><span class="p">,</span> <span class="n">change</span> <span class="o">-</span> <span class="n">i</span><span class="p">)</span>
+            
+            <span class="k">if</span> <span class="n">num_coins</span> <span class="o">&lt;</span> <span class="n">min_coins</span><span class="p">:</span>            <span class="c1"># 최소 동전 수 업데이트</span>
+                <span class="n">min_coins</span> <span class="o">=</span> <span class="n">num_coins</span>
+    
+    <span class="k">return</span> <span class="n">min_coins</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">make_change_1</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">],</span> <span class="mi">63</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>재귀 알고리즘의 기본 문제</strong></p>
+<p>재귀 알고리즘의 실행에 많은 시간이 걸린다.
+이유는 <code class="docutils literal notranslate"><span class="pre">make_change_1()</span></code> 함수가 63원의 잔돈 지불에
+필요한 최소 동전 수를 계산하기 위해 무려 67,716,925 번 호출되기 대문이다.</p>
+<p>아래 그림은 잔돈 26원을 지불하기에 필요한 최소한의 동전 수를 계산하는
+과정의 일부를 보여준다.
+그림에서 보면 예를 들어 <code class="docutils literal notranslate"><span class="pre">make_change_1(15)</span></code>가 최소 3번 이상 호출됨을 알 수 있다.
+실제로 <code class="docutils literal notranslate"><span class="pre">make_change_1(26)</span></code>을 실행하면 중간에
+<code class="docutils literal notranslate"><span class="pre">make_change_1(15)</span></code>가 52번 호출된다.
+즉, 동일한 인자를 사용하는 함수 호출이 반복적으로 너무 많이 발생한다.</p>
+<figure>
+<div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/notebooks/_images/callTree.png" width="70%"></div>
+</figure><p><strong>기법 3: 메모이제이션(Memoization)</strong></p>
+<p>언급된 동일 인자에 대한 반복 호출 문제는 <strong>메모이제이션</strong>(memoization) 기법으로
+간단하게 해결된다.
+메모이제이션은 한 번 호출되어 실행된 값을 기억해두고 필요한 경우
+다시 계산하는 대신 저장된 값을 재활용하는 기법이다.
+한 번 호출되어 반환된 값을 기억하기 위해
+여기서는 디폴트딕트(<code class="docutils literal notranslate"><span class="pre">defaultdict</span></code>) 객체를 활용한다.
+<strong>디폴트딕트</strong>(<code class="docutils literal notranslate"><span class="pre">defaultdict</span></code>) 객체는 사전과 거의 동일한 모음 자료형이다.
+사전 객체와는 달리 특정 키의 포함 여부를 미리 확인할 필요가 없다.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">aDict</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">aDict</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span>
+
+<span class="go">---------------------------------------------------------------------------</span>
+<span class="go">KeyError                                  Traceback (most recent call last)</span>
+<span class="go">&lt;ipython-input-24-f93551ca9406&gt; in &lt;module&gt;</span>
+<span class="go">      1 aDict = {}</span>
+<span class="go">----&gt; 2 aDict[10]</span>
+
+<span class="go">KeyError: 10</span>
+</pre></div>
+</div>
+<p>디폴트딕트 객체를 생성할 때 값들의 자료형을 명시하며, <code class="docutils literal notranslate"><span class="pre">int</span></code>의 경우 모든 키의 값이 0으로 초기화된다고
+생각할 수 있다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+
+<span class="n">aDict</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">aDict</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+</pre></div>
+</div>
+</div>
+</div>
+<p>아래 <code class="docutils literal notranslate"><span class="pre">make_change_2()</span></code> 함수는 재귀 호출이 발생할 때마다 그 결과를 디폴트딕트에 기억해두고,
+필요한 경우 재활용한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+
+<span class="k">def</span> <span class="nf">make_change_2</span><span class="p">(</span><span class="n">coin_value_list</span><span class="p">,</span> <span class="n">change</span><span class="p">,</span> <span class="n">known_results</span><span class="o">=</span><span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)):</span>    
+    <span class="n">min_coins</span> <span class="o">=</span> <span class="n">change</span>
+    
+    <span class="k">if</span> <span class="n">change</span> <span class="ow">in</span> <span class="n">coin_value_list</span><span class="p">:</span>
+        <span class="n">known_results</span><span class="p">[</span><span class="n">change</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    
+    <span class="c1"># 기존에 호출되었다면 저장된 값 재활용</span>
+    <span class="k">elif</span> <span class="n">known_results</span><span class="p">[</span><span class="n">change</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">known_results</span><span class="p">[</span><span class="n">change</span><span class="p">]</span>
+    
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">coin_value_list</span> <span class="k">if</span> <span class="n">c</span> <span class="o">&lt;=</span> <span class="n">change</span><span class="p">]:</span>
+            <span class="n">num_coins</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">make_change_2</span><span class="p">(</span><span class="n">coin_value_list</span><span class="p">,</span> <span class="n">change</span> <span class="o">-</span> <span class="n">i</span><span class="p">,</span> <span class="n">known_results</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">num_coins</span> <span class="o">&lt;</span> <span class="n">min_coins</span><span class="p">:</span>
+                <span class="n">min_coins</span> <span class="o">=</span> <span class="n">num_coins</span>
+            <span class="n">known_results</span><span class="p">[</span><span class="n">change</span><span class="p">]</span> <span class="o">=</span> <span class="n">min_coins</span>
+    <span class="k">return</span> <span class="n">min_coins</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">make_change_1()</span></code> 함수의 경우보다 훨씬 빠르게 계산한다.
+실제로 <code class="docutils literal notranslate"><span class="pre">make_change_2()</span></code> 함수의 재귀 호출 횟수는 206회에 불과하다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">make_change_2</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">],</span> <span class="mi">63</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>기법 4: 동적계획법(dynamic programming)</strong></p>
+<p>동적계획법은 <strong>재귀를 사용하지 않는 대신</strong> 종료조건에서 출발하여
+차례대로 필요한 인자에 해당하는 값까지 쌓아가는 기법이다.
+예를 들어 잔돈 63원을 지불해야 하는 경우 1원부터 출발해서
+63원까지 각각의 경우에 필요한 최소 동전 수를 계산한다.
+앞서 살펴 본 메모이제이션 기법을 거꾸로 적용하는 것과 유사하지만
+1원, 2원, 3원 등부터 63원까지 <strong>모든 경우</strong>에 대해 차례대로 필요한 최소 동전 수를
+저장하고 필요한 경우 재활용한다.</p>
+<p>아래 그림은 1원부터 11원까지 잔돈 지불에 필요한 최손 동전 수를 저장하는 과정을 보여준다.
+예를 들어, 11원을 지불하고자 하는 경우 아래 세 경우를 확인한 다음에 최솟값을 선택한다.</p>
+<ul class="simple">
+<li><p>1원 동전을 사용하는 경우: 10원 지불 방식에 1을 더한 값</p></li>
+<li><p>5원 동전을 사용하는 경우: 6원 지불 방식에 1을 더한 값</p></li>
+<li><p>10원 동전을 사용하는 경우: 1원 지불 방식에 1을 더한 값</p></li>
+</ul>
+<figure>
+<div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/notebooks/_images/changeTable.png" width="60%"></div>
+</figure><p>동적계획법을 이용하여 잔돈 지불 문제를 해결하는 알고리즘은 다음과 같다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+
+<span class="k">def</span> <span class="nf">make_change_3</span><span class="p">(</span><span class="n">coin_value_list</span><span class="p">,</span> <span class="n">change</span><span class="p">):</span>
+    <span class="n">min_coins</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    
+    <span class="c1"># 1원부터 차례대로 최소 동전 수 계산</span>
+    <span class="k">for</span> <span class="n">changeToMake</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">change</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">coin_count</span> <span class="o">=</span> <span class="n">changeToMake</span>
+        <span class="c1"># 사용 </span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">coin_value_list</span> <span class="k">if</span> <span class="n">c</span> <span class="o">&lt;=</span> <span class="n">changeToMake</span><span class="p">]:</span>
+            <span class="c1"># 하나의 동전을 사용한 각각의 경우: 이전에 계산되어 저장된 값 활용</span>
+            <span class="k">if</span> <span class="n">min_coins</span><span class="p">[</span><span class="n">changeToMake</span> <span class="o">-</span> <span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="n">coin_count</span><span class="p">:</span>
+                <span class="n">coin_count</span> <span class="o">=</span> <span class="n">min_coins</span><span class="p">[</span><span class="n">changeToMake</span> <span class="o">-</span> <span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+        
+        <span class="n">min_coins</span><span class="p">[</span><span class="n">changeToMake</span><span class="p">]</span> <span class="o">=</span> <span class="n">coin_count</span>
+    
+    <span class="c1"># 최종적으로 계산된 값 반환</span>
+    <span class="k">return</span> <span class="n">min_coins</span><span class="p">[</span><span class="n">change</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">make_change_3</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">],</span> <span class="mi">63</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6
+</pre></div>
+</div>
+</div>
+</div>
+<p>계산이 매우 빨라졌으며, 재귀 호출도 전혀 없다.
+하지만 위 알고리즘은 지불에 필요한 최소 동전 수만 계산할 뿐
+실제로 어떻게 지불해야하는가는 알려주지 않는다.
+이 문제를 해결하려면 <code class="docutils literal notranslate"><span class="pre">known_results</span></code>의 디폴트딕트를 업데이트 하면서
+동시에 마지막으로 사용된 동전이 무엇이었는지를 기억해야 한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+
+<span class="k">def</span> <span class="nf">make_change_4</span><span class="p">(</span><span class="n">coin_value_list</span><span class="p">,</span> <span class="n">change</span><span class="p">):</span>
+    <span class="n">min_coins</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">coins_used</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    
+    <span class="c1"># 1원부터 차례대로 최소 동전 수 계산</span>
+    <span class="k">for</span> <span class="n">changeToMake</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">change</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">coin_count</span> <span class="o">=</span> <span class="n">changeToMake</span>
+        <span class="n">new_coin</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="c1"># 사용 </span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">coin_value_list</span> <span class="k">if</span> <span class="n">c</span> <span class="o">&lt;=</span> <span class="n">changeToMake</span><span class="p">]:</span>
+            <span class="c1"># 하나의 동전을 사용한 각각의 경우: 이전에 계산되어 저장된 값 활용</span>
+            <span class="k">if</span> <span class="n">min_coins</span><span class="p">[</span><span class="n">changeToMake</span> <span class="o">-</span> <span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="n">coin_count</span><span class="p">:</span>
+                <span class="n">coin_count</span> <span class="o">=</span> <span class="n">min_coins</span><span class="p">[</span><span class="n">changeToMake</span> <span class="o">-</span> <span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+                <span class="n">new_coin</span> <span class="o">=</span> <span class="n">j</span>
+        
+        <span class="n">min_coins</span><span class="p">[</span><span class="n">changeToMake</span><span class="p">]</span> <span class="o">=</span> <span class="n">coin_count</span>
+        <span class="n">coins_used</span><span class="p">[</span><span class="n">changeToMake</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_coin</span>
+    
+    <span class="c1"># 최종적으로 계산된 값 반환</span>
+    <span class="k">return</span> <span class="n">min_coins</span><span class="p">[</span><span class="n">change</span><span class="p">],</span> <span class="n">coins_used</span>
+
+<span class="k">def</span> <span class="nf">print_coins</span><span class="p">(</span><span class="n">coins_used</span><span class="p">,</span> <span class="n">change</span><span class="p">):</span>
+    <span class="n">coin</span> <span class="o">=</span> <span class="n">change</span>
+    <span class="k">while</span> <span class="n">coin</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">this_coin</span> <span class="o">=</span> <span class="n">coins_used</span><span class="p">[</span><span class="n">coin</span><span class="p">]</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">this_coin</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+        <span class="n">coin</span> <span class="o">=</span> <span class="n">coin</span> <span class="o">-</span> <span class="n">this_coin</span>
+    <span class="nb">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">amount</span> <span class="o">=</span> <span class="mi">63</span>
+<span class="n">coin_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">]</span>
+
+<span class="n">num_coins</span><span class="p">,</span> <span class="n">coins_used</span> <span class="o">=</span> <span class="n">make_change_4</span><span class="p">(</span><span class="n">coin_list</span><span class="p">,</span> <span class="n">amount</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;잔돈 </span><span class="si">{</span><span class="n">amount</span><span class="si">}</span><span class="s2"> 센트를 지불하기 위해 다음 </span><span class="si">{</span><span class="n">num_coins</span><span class="si">}</span><span class="s2"> 개의 동전 필요:&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+<span class="n">print_coins</span><span class="p">(</span><span class="n">coins_used</span><span class="p">,</span> <span class="n">amount</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>잔돈 63 센트를 지불하기 위해 다음 6 개의 동전 필요: 1 1 1 10 25 25 
+</pre></div>
+</div>
+</div>
+</div>
+<p>21원 동전이 추가되면 21원 동전 3개가 필요함을 확인해준다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">amount</span> <span class="o">=</span> <span class="mi">63</span>
+<span class="n">coin_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">25</span><span class="p">]</span>
+
+<span class="n">num_coins</span><span class="p">,</span> <span class="n">coins_used</span> <span class="o">=</span> <span class="n">make_change_4</span><span class="p">(</span><span class="n">coin_list</span><span class="p">,</span> <span class="n">amount</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;잔돈 </span><span class="si">{</span><span class="n">amount</span><span class="si">}</span><span class="s2"> 센트를 지불하기 위해 다음 </span><span class="si">{</span><span class="n">num_coins</span><span class="si">}</span><span class="s2"> 개의 동전 필요:&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+<span class="n">print_coins</span><span class="p">(</span><span class="n">coins_used</span><span class="p">,</span> <span class="n">amount</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>잔돈 63 센트를 지불하기 위해 다음 3 개의 동전 필요: 21 21 21 
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id4">
+<h2><span class="section-number">18.3. </span>이항 계수<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h2>
+<p><strong>파스칼의 삼각형</strong></p>
+<p><strong>파스칼의 삼각형</strong>은 이전 행의 두 원소를 더해 새로운 원소를 추가하는
+과정을 반복해서 생성하는 삼각형이다.</p>
+<div align="center"><img src="https://raw.githubusercontent.com/codingrg-hknu/FoundationsOfAlgorithms/master/slides/images/algo03/algo03-01.gif" width="250"/></div>
+<p>&lt;출처: <a class="reference external" href="https://en.wikipedia.org/wiki/Pascal%27s_triangle">파스칼의 삼각형(위키피디아)</a>&gt;</p>
+<p><strong>이항 계수</strong></p>
+<p>파스칼의 삼각형의 n 행, k 번째 값은 <strong>이항 계수</strong>(binomial coefficients)</p>
+<div class="math notranslate nohighlight">
+\[
+{n\choose k} = \frac{n!}{k! \, (n-k)!}    
+\]</div>
+<p>와 동일하다.
+이항 계수의 의미는 아래 등식에서 유래한다.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+(a + b)^n &amp;= a^n + {n\choose 1}a^{n-1}b + {n\choose 2}a^{n-2}b^2 + \cdots + {n\choose n-1} ab^{n-1} + b^n \\
+&amp;= \sum_{k=0}^{n} {n\choose k}a^{n-k} b^{k}
+\end{align*}
+\end{split}\]</div>
+<p>또한 이항 계수는 서로 다른 <span class="math notranslate nohighlight">\(n\)</span> 개의 구술에서 임의로 서로 다른 <span class="math notranslate nohighlight">\(k\)</span>개의 구술을
+선택하는 방법을 의미하기도 한다.
+실제로 다음이 성립한다.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+{n\choose k} = 
+\begin{cases}
+{n-1 \choose k-1} + {n-1\choose k} &amp; , 0 &lt; k &lt; n\\
+&amp; \\
+1 &amp; , k \in \{0, n\}
+\end{cases}
+\end{split}\]</div>
+<p>이 성질을 이용하여 파스칼의 삼각형의 n 행, k 번째 값, 즉 이항 계수 <span class="math notranslate nohighlight">\({n \choose k}\)</span>
+를 계산하는 함수를 구현해보자.</p>
+<p><strong>재귀 활용</strong></p>
+<p>위 식을 그대로 재귀로 구현하면 다음과 같다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">bin</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+    <span class="c1"># 종료조건</span>
+    <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">k</span> <span class="o">==</span> <span class="n">n</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    
+    <span class="c1"># 재귀</span>
+    <span class="k">else</span><span class="p">:</span>    
+        <span class="k">return</span> <span class="nb">bin</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="nb">bin</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">make_change1()</span></code> 함수의 경우처럼 매우 비효율적인 알고리즘이다.
+실제로 <code class="docutils literal notranslate"><span class="pre">bin(n,</span> <span class="pre">k)</span></code> 계산을 위해 필요한 <code class="docutils literal notranslate"><span class="pre">bin()</span></code> 함수 호출 횟수는 다음과 같다.</p>
+<div class="math notranslate nohighlight">
+\[
+2{n\choose k} -1
+\]</div>
+<p>기본적으로 지수함수 정도의 나쁜 시간복잡도를 갖는다.</p>
+<div class="math notranslate nohighlight">
+\[
+{n\choose k} \approx \frac{n^k}{k!}
+\]</div>
+<p><strong>동적계획법 적용</strong></p>
+<p><span class="math notranslate nohighlight">\({n \choose k}\)</span>를 구하기 위해 아래 그림과 같이 2차원 행렬 <span class="math notranslate nohighlight">\(B\)</span>의 항목을 채워나가야 함.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(B[0][0]\)</span> 에서 시작</p></li>
+<li><p>위에서 아래로 재귀 관계식을 적용하여 파스칼의 삼각형을 완성해 나감</p></li>
+</ul>
+<figure>
+<div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/notebooks/_images/pascalTriangle.png" width="40%"></div>
+</figure><p>그림 내용을 함수로 구현하면 다음과 같다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">bin2</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+    <span class="c1"># (n, k) 모양의 2차원 행렬 준비. 리스트 조건제시법 활용</span>
+    
+    <span class="n">B</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
+    
+    <span class="c1"># 동적계획법으로 행렬 대각선 이하 부분 채워나가기</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+            
+            <span class="k">if</span> <span class="n">j</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">j</span> <span class="o">==</span> <span class="n">i</span><span class="p">:</span>
+                <span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
+    
+    <span class="k">return</span> <span class="n">B</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">k</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>매우 빠르게 계산한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bin2</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">14</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>145422675
+</pre></div>
+</div>
+</div>
+</div>
+<p>동일한 인자에 대해 재귀 알고리즘은 30초 이상 걸린다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+
+<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="nb">bin</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">end</span><span class="o">-</span><span class="n">start</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>17.791045904159546
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">bin2(n,</span> <span class="pre">k)</span></code> 함수의 시간복잡도는 다음과 같다.</p>
+<ul class="simple">
+<li><p>입력 크기: <span class="math notranslate nohighlight">\(n\)</span>과 <span class="math notranslate nohighlight">\(k\)</span></p></li>
+<li><p>계산단위: <code class="docutils literal notranslate"><span class="pre">j</span></code> 변수에 대한 <code class="docutils literal notranslate"><span class="pre">for</span></code> 반복문 실행횟수</p></li>
+</ul>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>i 값</p></th>
+<th class="head"><p>반복횟수</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>1회</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>2회</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>3회</p></td>
+</tr>
+<tr class="row-odd"><td><p>…</p></td>
+<td><p>…</p></td>
+</tr>
+<tr class="row-even"><td><p>k-1</p></td>
+<td><p>k회</p></td>
+</tr>
+<tr class="row-odd"><td><p>k</p></td>
+<td><p>k+1회</p></td>
+</tr>
+<tr class="row-even"><td><p>k+1</p></td>
+<td><p>k+1회</p></td>
+</tr>
+<tr class="row-odd"><td><p>…</p></td>
+<td><p>…</p></td>
+</tr>
+<tr class="row-even"><td><p>n</p></td>
+<td><p>k+1회</p></td>
+</tr>
+</tbody>
+</table>
+<p>따라서 다음이 성립한다.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+T(n, k) &amp;= 1 + 2 + 3 + \cdots + k + (k+1)\cdot (n-k+1) \\
+&amp;= \frac{(2n-k+2)(k+1)}{2} \\
+&amp; \in O(n\,k)
+\end{align*}
+\end{split}\]</div>
+</section>
+<section id="id5">
+<h2><span class="section-number">18.4. </span>연습 문제<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h2>
+<ol class="simple">
+<li><p><a class="reference external" href="https://colab.research.google.com/github/codingalzi/algopy/blob/master/excs/exc-dynamic_programming_1.ipynb">(실습) 최적화 문제와 동적계획법</a></p></li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="sort_search_3.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">17. </span>삽입 정렬, 쉘 정렬</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="dynamic_programming_2.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">19. </span>플로이드-워셜 알고리즘</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By 코딩알지<br/>
+  
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
