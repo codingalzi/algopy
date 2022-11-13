@@ -39,3 +39,25 @@ parts:
       - file: sort_search_1
       - file: sort_search_2
       - file: sort_search_3
+    - caption: 동적계획법
+      numbered: True
+      chapters:
+      - file: dynamic_programming_1
+      - file: dynamic_programming_2
+      - file: dynamic_programming_3
+    - caption: 탐욕 기법
+      numbered: True
+      chapters:
+      - file: greedy_algorithm_1
+      - file: greedy_algorithm_2
+      - file: greedy_algorithm_3  
+    - caption: 되추적 기법과 제네릭 프로그래밍
+      numbered: True
+      chapters:
+      - file: back_tracking
+      - file: generic_programming
+    - caption: NP 이론 소개
+      numbered: True
+      chapters:
+      - file: np_theory_1
+      - file: np_theory_2

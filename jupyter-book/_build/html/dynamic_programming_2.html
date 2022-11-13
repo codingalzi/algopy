@@ -1,0 +1,1157 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>19. 플로이드-워셜 알고리즘 &#8212; 문제해결 알고리즘</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="20. 외판원 문제" href="dynamic_programming_3.html" />
+    <link rel="prev" title="18. 최적화 문제와 동적계획법" href="dynamic_programming_1.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">문제해결 알고리즘</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  파이썬 기초
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="python_basic_1.html">
+   1. 기본 자료형
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="python_basic_2.html">
+   2. 제어 구조와 함수
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="python_basic_3.html">
+   3. 클래스와 상속
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="python_basic_4.html">
+   4. 클래스 기본 요소
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  알고리즘 시간 복잡도
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="time_complexity.html">
+   5. 시간 복잡도
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="python_list_dict.html">
+   6. 파이썬 모음 자료형 분석
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  선형 자료구조
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="stacks.html">
+   7. 스택
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="infix_prefix_postfix.html">
+   8. 중위, 전위, 후위 표기법
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="queues.html">
+   9. 큐
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="deques.html">
+   10. 덱
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="linked_lists.html">
+   11. 연결 리스트
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ordered_lists.html">
+   12. 정렬 리스트
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  재귀
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="recursive_functions.html">
+   13. 재귀
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="hanoi_tower.html">
+   14. 하노이의 탑과 미로게임
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  탐색과 정렬
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="sort_search_1.html">
+   15. 탐색과 분할정복
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="sort_search_2.html">
+   16. 버블/선택/합병/퀵 정렬
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="sort_search_3.html">
+   17. 삽입 정렬, 쉘 정렬
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  동적계획법
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="dynamic_programming_1.html">
+   18. 최적화 문제와 동적계획법
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   19. 플로이드-워셜 알고리즘
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dynamic_programming_3.html">
+   20. 외판원 문제
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  탐욕 기법
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="greedy_algorithm_1.html">
+   21. 최소비용 신장트리
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="greedy_algorithm_2.html">
+   22. 다익스트라 알고리즘
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="greedy_algorithm_3.html">
+   23. 탐욕 기법 대 동적계획법
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  되추적 기법과 제네릭 프로그래밍
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="back_tracking.html">
+   24. 되추적 기법
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="generic_programming.html">
+   25. 제네릭 프로그래밍
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  NP 이론 소개
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="np_theory_1.html">
+   26. 문제 해결 난이도
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="np_theory_2.html">
+   27. NP 이론
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/codingalzi/algopy/master?urlpath=tree/jupyter-book/dynamic_programming_2.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/codingalzi/algopy"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/codingalzi/algopy/issues/new?title=Issue%20on%20page%20%2Fdynamic_programming_2.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/dynamic_programming_2.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   19.1. 그래프 용어
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   19.2. 최단 경로 문제
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id4">
+   19.3. 플로이드-워셜 알고리즘
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id5">
+   19.4. 최적의 원칙
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id6">
+   19.5. 연습 문제
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>플로이드-워셜 알고리즘</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   19.1. 그래프 용어
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   19.2. 최단 경로 문제
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id4">
+   19.3. 플로이드-워셜 알고리즘
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id5">
+   19.4. 최적의 원칙
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id6">
+   19.5. 연습 문제
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1><span class="section-number">19. </span>플로이드-워셜 알고리즘<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h1>
+<p><strong>소스코드</strong></p>
+<p>아래 내용을
+<a class="reference external" href="https://colab.research.google.com/github/codingalzi/algopy/blob/master/jupyter-book/dynamic_programming_2.ipynb">(구글 코랩) 플로이드-워셜 알고리즘</a>에서
+직접 실행할 수 있다.</p>
+<p><strong>주요 내용</strong></p>
+<ul class="simple">
+<li><p>방향 그래프</p></li>
+<li><p>최단 경로 문제</p></li>
+<li><p>플로이드-워셜 알고리즘</p></li>
+<li><p>최적의 원칙</p></li>
+</ul>
+<section id="id2">
+<h2><span class="section-number">19.1. </span>그래프 용어<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
+<p>그래프 관련 용어를 익혀두어야 한다.</p>
+<ul class="simple">
+<li><p>마디 또는 정점(vertex, node)</p></li>
+<li><p>이음선(edge, arc)</p></li>
+<li><p>방향 그래프(directed graph, or digraph): 이음선에 방향이 포함된 그래프</p></li>
+<li><p>가중치(weight)</p></li>
+<li><p>가중치 포함 그래프(weighted graph)</p></li>
+<li><p>경로(path): 이음선으로 연결된 마디들의 나열. 즉, 하나의 마디에서 다른 마디로 가는 이음선의 연결.</p></li>
+<li><p>단순경로(simple path): 같은 마디를 두 번 지나지 않는 경로</p></li>
+<li><p>순환(cycle): 하나의 마디에서 출발하여 다시 그 마디로 돌아오는 경로</p></li>
+<li><p>순환 그래프(cyclic graph): 순환을 갖는 그래프</p></li>
+<li><p>비순환 그래프 (acyclic graph): 순환을 갖지 않는 그래프</p></li>
+<li><p>경로의 길이(length):</p>
+<ul>
+<li><p>가중치 포함 그래프의 경우: 경로 상에 있는 가중치의 합</p></li>
+<li><p>가중치 없는 그래프의 경우: 경로 상에 있는 이음선의 수</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>예제: 가중치 포함 방향그래프</strong></p>
+<div align="center"><img src="https://raw.githubusercontent.com/CodingRG-HKNU/FoundationsOfAlgorithms/master/slides/images/algo03/algo03-03.png" width="350"/></div></section>
+<section id="id3">
+<h2><span class="section-number">19.2. </span>최단 경로 문제<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h2>
+<p>임의의 마디에서 다른 임의의 마디로 가는 최단 경로를 구하는 문제이다.
+이때 이음선의 가중치와 방향을 함께 고려해야 한다.
+최단 경로는 순환을 포함하지 않는 단순 경로만 대상으로 찾으면 된다.</p>
+<p><strong>응용 사례</strong></p>
+<ul class="simple">
+<li><p>도시 간의 최단경로</p></li>
+<li><p>다구간 비행기표 여정</p></li>
+<li><p>지도앱에서 경유 추가</p></li>
+</ul>
+<p>그래프에서 <span class="math notranslate nohighlight">\(v_1\)</span>에서 <span class="math notranslate nohighlight">\(v_3\)</span>로 가는 단순경로와 경로 길이는 다음 세 종류이다.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\([v_1, v_2, v_3]\)</span>: 경로 길이는 <span class="math notranslate nohighlight">\(1 + 3 = 4\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\([v_1, v_4, v_3]\)</span>: 경로 길이는 <span class="math notranslate nohighlight">\(1 + 2 = 3\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\([v_1, v_2, v_4, v_3]\)</span>: 경로 길이는 <span class="math notranslate nohighlight">\(1 + 2 + 2 = 5\)</span>.</p></li>
+</ul>
+<p>이중에 <span class="math notranslate nohighlight">\([v_1, v_4, v_3]\)</span>가 <span class="math notranslate nohighlight">\(v_1\)</span>에서 <span class="math notranslate nohighlight">\(v_3\)</span>로 가는 최단 경로이다.</p>
+<p><strong>완전 탐색</strong></p>
+<p>완전 탐색(brute force) 알고리즘은
+두 마디 사이의 가능한 모든 경로의 길이를 계산한 후 그 중에 최단 경로를 선택한다.
+하지만 이 알고리즘은 지수보다 나쁜 시간복잡도를 가진다.</p>
+<ul>
+<li><p>가정:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(n\)</span> 개의 마디: <span class="math notranslate nohighlight">\(v_1, v_2, ..., v_n\)</span></p></li>
+<li><p>모든 마디들 사이에 이음선 존재</p></li>
+</ul>
+</li>
+<li><p><span class="math notranslate nohighlight">\(v_1\)</span>에서 <span class="math notranslate nohighlight">\(v_n\)</span>으로 가는 경로 중 나머지 모든 마디를 한 번씩 꼭 거쳐서 가는 경로들의 수는?</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(v_1\)</span> 에서 출발하여 처음에 도착할 수 있는 마디의 가지 수는 <span class="math notranslate nohighlight">\((n-2)\)</span> 개</p></li>
+<li><p>그 중에 하나를 선택하면, 그 다음에 도착할 수 있는 마디의 가지 수는 <span class="math notranslate nohighlight">\((n-3)\)</span>개</p></li>
+<li><p>…</p></li>
+<li><p>따라서 총 경로의 개수는 다음과 같음:</p>
+<div class="math notranslate nohighlight">
+\[(n-2)\times(n-3)\times\cdots\times 1= (n-2)!\]</div>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>동적계획법 적용</strong></p>
+<p>가중치 포함 방향그래프 상의 임의의 두 마디 사이의 최단경로를 동적계획법으로 계산한다.
+이를 위해 주어진 방향그래프의 <strong>인접행렬</strong>(adjacent matrix)를
+동적계획법 기법으로 업데이트하여 두 마디 사이의 최단 경로를 계산한다.</p>
+<p><strong>그래프의 인접행렬</strong></p>
+<p>그래프의 인접행렬은 마디와 마디를 잇는 이음선과 가중치의 정보를 표현하는 2차원 행렬이며
+다음과 같이 정의되는 <span class="math notranslate nohighlight">\(n\times n\)</span> 행렬 <span class="math notranslate nohighlight">\(W\)</span>로 표현된다.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+W[i][j] = 
+\begin{cases}
+\text{이음선 가중치} &amp; \quad\text{$v_i$ 에서 $v_j$ 로의 이음선이 존재하는 경우} \\
+\infty &amp; \quad\text{$v_i$ 에서 $v_j$ 로의 이음선이 존재하지 않는 경우} \\
+0 &amp; \quad \text{$i = j$ 인 경우}
+\end{cases}
+\end{split}\]</div>
+<p>위 예제 그래프의 인접행렬은 다음과 같다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 무한에 해당하는 기호 사용</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">inf</span>
+
+<span class="c1"># inf 는 두 마디 사이에 이음선이 없음을 의미함.</span>
+<span class="n">W</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">inf</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+     <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">inf</span><span class="p">],</span>
+     <span class="p">[</span><span class="n">inf</span><span class="p">,</span> <span class="n">inf</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">inf</span><span class="p">],</span>
+     <span class="p">[</span><span class="n">inf</span><span class="p">,</span> <span class="n">inf</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+     <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="n">inf</span><span class="p">,</span> <span class="n">inf</span><span class="p">,</span> <span class="n">inf</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>최단경로길이 행렬</strong></p>
+<p>반면에 각 마디들 사이의 최단경로의 길이를 담은 2차원 행렬 <code class="docutils literal notranslate"><span class="pre">D</span></code>는 다음과 같다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">D</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>최단경로 길이행렬 구하기</strong></p>
+<p>이제 남은 과제는 “어떻게 <code class="docutils literal notranslate"><span class="pre">W</span></code>에서 <code class="docutils literal notranslate"><span class="pre">D</span></code>를 구할 것인가?” 이다.</p>
+<div align="center"><img src="https://raw.githubusercontent.com/CodingRG-HKNU/FoundationsOfAlgorithms/master/slides/images/algo03/algo03-06.png" width="600"/></div><p><strong>동적계획법 전략</strong></p>
+<p>마디 <span class="math notranslate nohighlight">\(v_i\)</span>에서 마디 <span class="math notranslate nohighlight">\(v_j\)</span>로 가는 최단 경로를 계산하기 위해
+중간에 지나쳐야 하는 중간지점을 확대해 나가면서 최단경로를 업데이트하는 전략을 사용한다.</p>
+<p>전략: <span class="math notranslate nohighlight">\(0 \le k \le n\)</span> 를 만족하는 <span class="math notranslate nohighlight">\(k\)</span>에 대해 다음을 만족하는 2차원 행렬 <span class="math notranslate nohighlight">\(D^{(k)}\)</span>를
+동적계획법으로 생성한다.</p>
+<p>\begin{align*}
+D^{(k)}[i][j] &amp;= \text{집합 <span class="math notranslate nohighlight">\(\{v_1, v_2, \dots, v_k\}\)</span> 에 속하는 마디만을 통해서} \
+&amp; \quad,\text{<span class="math notranslate nohighlight">\(v_i\)</span> 에서 <span class="math notranslate nohighlight">\(v_j\)</span> 로 가는 최단경로의 길이}
+\end{align*}</p>
+<p>그러면 다음이 성립한다.</p>
+<p>\begin{align*}
+D^{(0)} &amp;= W \
+D^{(n)} &amp;= D
+\end{align*}</p>
+<p>남은 과제는 <span class="math notranslate nohighlight">\(D^{(k-1)}\)</span> 로부터 <span class="math notranslate nohighlight">\(D^{(k)}\)</span>를
+아래 관계가 만족되도록 생성하는 것이다.</p>
+<div class="math notranslate nohighlight">
+\[
+D^{(0)} \longrightarrow D^{(1)}\longrightarrow D^{(2)}
+\longrightarrow \cdots \longrightarrow D^{(n-1)}\longrightarrow D^{(n)}
+\]</div>
+<p><strong>예제: <span class="math notranslate nohighlight">\(D^{(k)}[2][5]\)</span> 계산하기</strong></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(D^{(0)}[2][5] = W[2][5] = \infty\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(D^{(1)}[2][5] = \min (D^{(0)}[2][5], \text{len}([v_2, v_1, v_5])) = \min(\infty, 14) = 14\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(D^{(2)}[2][5] = D^{(1)}[2][5] = 14\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(D^{(3)}[2][5] = D^{(2)}[2][5] = 14\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(D^{(4)}[2][5] = \min (D^{(3)}[2][5], d^{(4)}) = \min(14, 5) = 5\)</span></p></li>
+</ul>
+<p>\begin{align*}
+d^{(4)} &amp;= \min(\text{length}[v_2, v_4, v_5], \text{length}[v_2, v_1, v_4, v_5], \text{length}[v_2, v_3, v_4, v_5]) \
+&amp;= \min(5, 13, 10) \
+&amp;= 5
+\end{align*}</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(D^{(5)}[2][5] = D^{(4)}[2][5] = 5\)</span></p></li>
+</ul>
+<p><strong><span class="math notranslate nohighlight">\(D^{(k)}\)</span> 의 재귀적 성질</strong></p>
+<p><span class="math notranslate nohighlight">\(D^{(k)}[i][j]\)</span> 를 재귀적으로 정의할 수 있다.</p>
+<div class="math notranslate nohighlight">
+\[D^{(k)}[i][j] = \min \big( D^{(k-1)}[i][j],\,D^{(k-1)}[i][k] + D^{(k-1)}[k][j] \big)\]</div>
+<ul>
+<li><p>경우 1: <span class="math notranslate nohighlight">\(\{v_1, v_2,\dots, v_k\}\)</span> 에 속한 마디들만을 통해서 <span class="math notranslate nohighlight">\(v_i\)</span>에서 <span class="math notranslate nohighlight">\(v_j\)</span>로 가는 최단경로가 <span class="math notranslate nohighlight">\(v_k\)</span>를 거쳐가지 않는 경우.</p>
+<div class="math notranslate nohighlight">
+\[D^{(k)}[i][j] = D^{(k-1)}[i][j]\]</div>
+  <br>
+</li>
+<li><p>경우 2: <span class="math notranslate nohighlight">\(\{v_1, v_2,\dots, v_k\}\)</span> 에 속한 마디들만을 통해서 <span class="math notranslate nohighlight">\(v_i\)</span>에서 <span class="math notranslate nohighlight">\(v_j\)</span>로 가는 최단경로가 <span class="math notranslate nohighlight">\(v_k\)</span>를 거쳐가는 경우.</p>
+<div class="math notranslate nohighlight">
+\[D^{(k)}[i][j] = D^{(k-1)}[i][k] + D^{(k-1)}[k][j]\]</div>
+</li>
+</ul>
+<p>아래 그림 참조할 것.</p>
+<div align="center"><img src="https://raw.githubusercontent.com/CodingRG-HKNU/FoundationsOfAlgorithms/master/slides/images/algo03/algo03-07.png" width="500"/></div></section>
+<section id="id4">
+<h2><span class="section-number">19.3. </span>플로이드-워셜 알고리즘<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h2>
+<p><strong>플로이드-워셜</strong>(Floyd-Warshall) 알고리즘은
+앞서 설명한 재귀적 성질을 이용하여 동적계획법으로 아래 화살표 과정을 구현하는 알고리즘이다.</p>
+<div class="math notranslate nohighlight">
+\[
+W = D^{(0)} \longrightarrow D^{(1)}\longrightarrow D^{(2)}
+\longrightarrow \cdots \longrightarrow D^{(n-1)}\longrightarrow D^{(n)} = D
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
+
+<span class="k">def</span> <span class="nf">floyd_warshall</span><span class="p">(</span><span class="n">W</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">W</span><span class="p">)</span>
+
+    <span class="c1"># D^(0) 지정</span>
+    <span class="c1"># 주의: deepcopy를 사용하지 않으면 W에 혼란을 발생시킴</span>
+    <span class="n">D</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">W</span><span class="p">)</span>
+
+    <span class="c1"># k가 0부터 (n-1)까지 이동하면서 D가 D^(1), ..., D^(n)을 차례대로 모방함.</span>
+    <span class="c1"># 즉, D를 업데이트하는 방식을 이용하여 최종적으로 D^(n) 생성</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="c1"># 행렬의 인덱스는 0부터 (n-1)까지 이동</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+                <span class="n">D</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">D</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="p">,</span> <span class="n">D</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span><span class="o">+</span> <span class="n">D</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">])</span>
+    
+    <span class="c1"># 최종 완성된 D 반환</span>
+    <span class="k">return</span> <span class="n">D</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">floyd_warshall</span><span class="p">(</span><span class="n">W</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0, 1, 3, 1, 4],
+ [8, 0, 3, 2, 5],
+ [10, 11, 0, 4, 7],
+ [6, 7, 2, 0, 3],
+ [3, 4, 6, 4, 0]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>참조: <a class="reference external" href="https://pythontutor.com/visualize.html#code=def%20floyd_warshall%28W%29%3A%0A%20%20%20%20n%20%3D%20len%28W%29%0A%20%20%20%20D%20%3D%20W%0A%0A%20%20%20%20for%20k%20in%20range%280,%20n%29%3A%0A%20%20%20%20%20%20%20%20for%20i%20in%20range%280,%20n%29%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20for%20j%20in%20range%280,%20n%29%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20D%5Bi%5D%5Bj%5D%20%3D%20min%28D%5Bi%5D%5Bj%5D%20,%20D%5Bi%5D%5Bk%5D%2B%20D%5Bk%5D%5Bj%5D%29%0A%20%20%20%20%0A%20%20%20%20return%20D%0A%20%20%20%20%0Afrom%20math%20import%20inf%0A%0AW%20%3D%20%5B%5B0,%201,%20inf,%201,%205%5D,%0A%20%20%20%20%20%5B9,%200,%203,%202,%20inf%5D,%0A%20%20%20%20%20%5Binf,%20inf,%200,%204,%20inf%5D,%0A%20%20%20%20%20%5Binf,%20inf,%202,%200,%203%5D,%0A%20%20%20%20%20%5B3,%20inf,%20inf,%20inf,%200%5D%5D%0A%20%20%20%20%20%0Afloyd_warshall%28W%29&amp;cumulative=false&amp;curInstr=0&amp;heapPrimitives=nevernest&amp;mode=display&amp;origin=opt-frontend.js&amp;py=3&amp;rawInputLstJSON=%5B%5D&amp;textReferences=false">PythonTutor: 플로이드-워셜 알고리즘</a></p>
+<p><strong>최단경로 확인 알고리즘</strong></p>
+<p>이전 함수를 약간 수정하여 최단경로를 출력하는 함수를 구현한다.
+추가되어야 하는 사항은
+두 마디 사이의 최단경로에 사용된 마디 중에서 가장 큰 인덱스를 기억하는 행렬 <span class="math notranslate nohighlight">\(P\)</span>이다.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+P[i][j] =
+\begin{cases}
+k &amp; \text{최단경로의 중간에 사용된 마디의 인덱스 중에서 가장 큰 값이 $k$인 경우} \\
+  &amp; \text{(아래 그림에서 사용된 $v_k$의 인덱스 $k$)}\\
+  &amp; \\
+0 &amp; \text{최단경로의 중간에 사용된 마디가 없는 경우}
+\end{cases}
+\end{split}\]</div>
+<div align="center"><img src="https://raw.githubusercontent.com/CodingRG-HKNU/FoundationsOfAlgorithms/master/slides/images/algo03/algo03-07.png" width="500"/></div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
+
+<span class="k">def</span> <span class="nf">floyd_warshall2</span><span class="p">(</span><span class="n">W</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">W</span><span class="p">)</span>
+
+    <span class="c1"># deepcopy를 사용하지 않으면 D에 혼란을 발생시킴</span>
+    <span class="n">D</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">W</span><span class="p">)</span>
+    <span class="n">P</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">W</span><span class="p">)</span>
+    
+    <span class="c1"># P 행렬 초기화. 모든 항목을 -1로 설정</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+    <span class="c1"># k가 0부터 (n-1)까지 이동하면서 D가 D^(1), ..., D^(n)을 차례대로 모방함.</span>
+    <span class="c1"># 그와 함께 동시에 P 행렬도 차례대로 업데이트함.</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">D</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span><span class="o">+</span> <span class="n">D</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">D</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]:</span>
+                    <span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">k</span>
+                    <span class="n">D</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">D</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span><span class="o">+</span> <span class="n">D</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
+    
+    <span class="c1"># 최종 완성된 P도 반환</span>
+    <span class="k">return</span> <span class="n">D</span><span class="p">,</span> <span class="n">P</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>최단경로 찍어보기: 방식 1</strong></p>
+<p>아래 <code class="docutils literal notranslate"><span class="pre">path</span></code> 함수는 두 마디 사이의 최단 경로상에 위치한 마디를 순서대로 보여준다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">path</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
+    <span class="c1"># 인덱스가 0부터 출발하기에 -1 또는 +1을 적절히 조절해야 함.</span>
+    <span class="k">if</span> <span class="n">P</span><span class="p">[</span><span class="n">q</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">r</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">P</span><span class="p">[</span><span class="n">q</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">r</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="n">path</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">v</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">v</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+        <span class="n">path</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">v</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>예를 들어 <span class="math notranslate nohighlight">\(v_5\)</span>에서 <span class="math notranslate nohighlight">\(v_3\)</span>으로 가는 최단경로상의 중간마디는 다음과 같다.</p>
+<p>참조: <a class="reference external" href="http://pythontutor.com/visualize.html#code=def%20path%28P,%20q,%20r%29%3A%0A%20%20%20%20%23%20%EC%9D%B8%EB%8D%B1%EC%8A%A4%EA%B0%80%200%EB%B6%80%ED%84%B0%20%EC%B6%9C%EB%B0%9C%ED%95%98%EA%B8%B0%EC%97%90%20-1%20%EB%98%90%EB%8A%94%20%2B1%EC%9D%84%20%EC%A0%81%EC%A0%88%ED%9E%88%20%EC%A1%B0%EC%A0%88%ED%95%B4%EC%95%BC%20%ED%95%A8.%0A%20%20%20%20if%20P%5Bq-1%5D%5Br-1%5D%20%21%3D%20-1%3A%0A%20%20%20%20%20%20%20%20v%20%3D%20P%5Bq-1%5D%5Br-1%5D%0A%0A%20%20%20%20%20%20%20%20path%28P,%20q,%20v%2B1%29%0A%20%20%20%20%20%20%20%20print%28v%2B1,end%3D%27%20%27%29%0A%20%20%20%20%20%20%20%20path%28P,%20v%2B1,%20r%29%0A%0AP%20%3D%20%5B%5B-1,%20-1,%203,%20-1,%203%5D,%0A%20%20%20%20%5B4,%20-1,%20-1,%20-1,%203%5D,%0A%20%20%20%20%5B4,%204,%20-1,%20-1,%203%5D,%0A%20%20%20%20%5B4,%204,%20-1,%20-1,%20-1%5D,%0A%20%20%20%20%5B-1,%200,%203,%200,%20-1%5D%5D%0A%0Apath%28P,%205,%203%29%20%20%20%20%20%20%20%20%20&amp;cumulative=false&amp;curInstr=0&amp;heapPrimitives=nevernest&amp;mode=display&amp;origin=opt-frontend.js&amp;py=3&amp;rawInputLstJSON=%5B%5D&amp;textReferences=false">PythonTutor: 최단경로 확인하기 1</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span><span class="p">,</span> <span class="n">P</span> <span class="o">=</span> <span class="n">floyd_warshall2</span><span class="p">(</span><span class="n">W</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">P</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[-1, -1, 3, -1, 3],
+ [4, -1, -1, -1, 3],
+ [4, 4, -1, -1, 3],
+ [4, 4, -1, -1, -1],
+ [-1, 0, 3, 0, -1]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">path</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1 4 
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>최단경로 찍어보기: 방식 2</strong></p>
+<p>최단경로 상에 위치한 마디를 리스트로 담을 수 있다.</p>
+<p>참조: <a class="reference external" href="http://pythontutor.com/visualize.html#code=def%20path2%28P,%20q,%20r,%20route%29%3A%0A%20%20%20%20%23%20%EC%9D%B8%EB%8D%B1%EC%8A%A4%EA%B0%80%200%EB%B6%80%ED%84%B0%20%EC%B6%9C%EB%B0%9C%ED%95%98%EA%B8%B0%EC%97%90%20-1%20%EB%98%90%EB%8A%94%20%2B1%EC%9D%84%20%EC%A0%81%EC%A0%88%ED%9E%88%20%EC%A1%B0%EC%A0%88%ED%95%B4%EC%95%BC%20%ED%95%A8.%0A%20%20%20%20if%20P%5Bq-1%5D%5Br-1%5D%20%21%3D%20-1%3A%0A%20%20%20%20%20%20%20%20v%20%3D%20P%5Bq-1%5D%5Br-1%5D%0A%0A%20%20%20%20%20%20%20%20path2%28P,%20q,%20v%2B1,%20route%29%0A%20%20%20%20%20%20%20%20route.append%28v%2B1%29%0A%20%20%20%20%20%20%20%20path2%28P,%20v%2B1,%20r,%20route%29%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20return%20route%0A%20%20%20%20%0AP%20%3D%20%5B%5B-1,%20-1,%203,%20-1,%203%5D,%0A%20%20%20%20%20%5B4,%20-1,%20-1,%20-1,%203%5D,%0A%20%20%20%20%20%5B4,%204,%20-1,%20-1,%203%5D,%0A%20%20%20%20%20%5B4,%204,%20-1,%20-1,%20-1%5D,%0A%20%20%20%20%20%5B-1,%200,%203,%200,%20-1%5D%5D%0A%20%20%20%20%20%0Aprint%28path2%28P,%205,%203,%20%5B%5D%29%29&amp;cumulative=false&amp;curInstr=0&amp;heapPrimitives=nevernest&amp;mode=display&amp;origin=opt-frontend.js&amp;py=3&amp;rawInputLstJSON=%5B%5D&amp;textReferences=false">PythonTutor: 최단경로 확인하기 2</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">path2</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">route</span><span class="p">):</span>
+    <span class="c1"># 인덱스가 0부터 출발하기에 -1 또는 +1을 적절히 조절해야 함.</span>
+    <span class="k">if</span> <span class="n">P</span><span class="p">[</span><span class="n">q</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">r</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">P</span><span class="p">[</span><span class="n">q</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">r</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="n">path2</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">v</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">route</span><span class="p">)</span>
+        <span class="n">route</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">path2</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">v</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">route</span><span class="p">)</span>
+        
+    <span class="k">return</span> <span class="n">route</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">path2</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="p">[])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 4]
+</pre></div>
+</div>
+</div>
+</div>
+<p>위 결과를 이용하여 경로를 보다 예쁘게 출력할 수 있다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">print_path2</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
+    <span class="n">route</span> <span class="o">=</span> <span class="n">path2</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="p">[])</span>
+    <span class="n">route</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+    <span class="n">route</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot; -&gt; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">route</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">print_path2</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5 -&gt; 1 -&gt; 4 -&gt; 3
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">print_path2</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2 -&gt; 4 -&gt; 5
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>최단경로 찍어보기: 방식 3</strong></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+P[i][j] =
+\begin{cases}
+k &amp; \text{최단경로상의 마디 중에서 $v_i$에 가장 가까운 마디의 인덱스가 $k$인 경우} \\
+0 &amp; \text{최단경로의 중간에 사용된 마디가 없는 경우}
+\end{cases}
+\end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">product</span>
+
+<span class="k">def</span> <span class="nf">floyd_warshall3</span><span class="p">(</span><span class="n">W</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">W</span><span class="p">)</span>
+
+    <span class="n">D</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">W</span><span class="p">)</span>
+    <span class="n">P</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">]</span>   <span class="o">*</span> <span class="n">n</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
+    
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">product</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">repeat</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+        <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">W</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">inf</span><span class="p">:</span>
+            <span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">j</span>
+    
+    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">product</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">repeat</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+        <span class="n">sum_ik_kj</span> <span class="o">=</span> <span class="n">D</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">D</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">D</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">sum_ik_kj</span><span class="p">:</span>
+            <span class="n">D</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">sum_ik_kj</span>
+            <span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>  <span class="o">=</span> <span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">D</span><span class="p">,</span> <span class="n">P</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">path3</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
+    <span class="c1"># 인덱스가 0부터 출발하기에 -1 또는 +1을 적절히 조절해야 함.</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">while</span> <span class="n">path</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="n">path</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">route</span> <span class="o">=</span> <span class="s1">&#39; → &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">p</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">path</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;최단길이:</span><span class="si">{</span><span class="n">D</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">&gt;2</span><span class="si">}</span><span class="s2">, 최단경로: </span><span class="si">{</span><span class="n">route</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">D</span><span class="p">,</span> <span class="n">P</span> <span class="o">=</span> <span class="n">floyd_warshall3</span><span class="p">(</span><span class="n">W</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">path3</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>최단길이: 6, 최단경로: 5 → 1 → 4 → 3
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">path3</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>최단길이: 5, 최단경로: 2 → 4 → 5
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id5">
+<h2><span class="section-number">19.4. </span>최적의 원칙<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h2>
+<p>동적계획법에 의한 설계 절차는 일반적으로 다음 과정을 따른다.</p>
+<ul class="simple">
+<li><p>문제의 입력에 대해 최적의 해답을 제공하는 재귀 관계식 설정</p></li>
+<li><p>상향식으로 최적의 해답을 계산</p></li>
+<li><p>상향식으로 최적의 해답을 구축</p></li>
+</ul>
+<p>하지만 동적계획법에 의해 얻어진 해답이 최적이 되려면 해당 문제에 대해 <strong>최적의 원칙</strong>이
+적용될 수 있어야 한다.
+최적의 원칙이 적용되는 문제는
+해당 문제의 입력사례에 대한 최적의 해가 그 입력사례를 분할한 모든 부분사례에 대한
+최적의 해를 포함하고 있어야 한다.</p>
+<p><strong>예제: 최단경로 문제</strong></p>
+<p><span class="math notranslate nohighlight">\(v_k\)</span>를 <span class="math notranslate nohighlight">\(v_i\)</span>에서 <span class="math notranslate nohighlight">\(v_j\)</span>로 가는 최적경로 상의 마디라고 하면,
+<span class="math notranslate nohighlight">\(v_i\)</span>에서 <span class="math notranslate nohighlight">\(v_k\)</span> 로 가는 부분경로와 <span class="math notranslate nohighlight">\(v_k\)</span>에서 <span class="math notranslate nohighlight">\(v_j\)</span>로 가는
+부분경로도 반드시 최적이어야 한다.</p>
+<div align="center"><img src="https://raw.githubusercontent.com/CodingRG-HKNU/FoundationsOfAlgorithms/master/slides/images/algo03/algo03-07.png" width="500"/></div><p><strong>최적의 원칙이 적용되지 않는 예제</strong></p>
+<p>순환이 없는 최장경로를 구하는 문제는 최적의 원칙이 적용되지 않는다.</p>
+<p>예를 들어 아래 그래프에서 <span class="math notranslate nohighlight">\(v_1\)</span>에서 <span class="math notranslate nohighlight">\(v_4\)</span>로의 (순환이 없는) 최장경로는 <span class="math notranslate nohighlight">\([v_1, v_3, v_2, v_4]\)</span>이다.
+그러나 이 경로의 부분 경로인 <span class="math notranslate nohighlight">\(v_1\)</span>에서 <span class="math notranslate nohighlight">\(v_3\)</span>으로의 (순환이 없는) 최장경로는
+<span class="math notranslate nohighlight">\([v_1, v_3]\)</span>이 아니고, <span class="math notranslate nohighlight">\([v_1, v_2, v_3]\)</span> 이다.
+따라서 최적의 원칙이 적용되지 않는다.</p>
+<div align="center"><img src="https://raw.githubusercontent.com/CodingRG-HKNU/FoundationsOfAlgorithms/master/slides/images/algo03/algo03-08.png" width="200"/></div></section>
+<section id="id6">
+<h2><span class="section-number">19.5. </span>연습 문제<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h2>
+<ol class="simple">
+<li><p><a class="reference external" href="https://colab.research.google.com/github/codingalzi/algopy/blob/master/excs/exc-dynamic_programming_2.ipynb">(실습) 플로이드-워셜 알고리즘</a></p></li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="dynamic_programming_1.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">18. </span>최적화 문제와 동적계획법</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="dynamic_programming_3.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">20. </span>외판원 문제</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By 코딩알지<br/>
+  
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
