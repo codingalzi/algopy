@@ -1,18 +1,18 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # 탐색과 분할정복
+# # 탐색과 분할 정복
 
 # **소스코드**
 # 
 # 아래 내용을 
-# [(구글 코랩) 탐색과 분할정복](https://colab.research.google.com/github/codingalzi/algopy/blob/master/jupyter-book/sort_search_1.ipynb)에서 
+# [(구글 코랩) 탐색과 분할 정복](https://colab.research.google.com/github/codingalzi/algopy/blob/master/jupyter-book/sort_search_1.ipynb)에서 
 # 직접 실행할 수 있다.
 
 # **주요 내용**
 # 
 # - 순차 탐색과 이진 탐색
-# - 분할정복
+# - 분할 정복
 
 # ## 탐색
 
@@ -242,23 +242,23 @@ print(binary_search(test_list, 54))
 # 하지만 리스트가 매우 긴 경우 정렬 시간이 매우 오래 걸리기에
 # 그냥 순차탐색을 활용하는 것이 보다 나을 수 있다.
 
-# ## 분할정복
+# ## 분할 정복
 
-# 앞서 살펴 본 이진탐색이 대표적인 분할정복 기법의 활용예제이다.
-# **분할정복**(divide-and-conquer) 기법은 큰 입력사례의 해법을
+# 앞서 살펴 본 이진탐색이 대표적인 분할 정복 기법의 활용예제이다.
+# **분할 정복**(divide-and-conquer) 기법은 큰 입력사례의 해법을
 # 보다 작은 크기의 입력사례에서 찾는 기법을 말한다.
 # 이진탐색의 경우 리스트를 절반으로 줄이는 과정을 반복하면서 
 # 항목의 포함여부를 판단하며, 
 # 작은 크기의 구간에 대한 포함여부가 판단되는 순간 
 # 그것을 원래 문제의 결론으로 사용하고 동시에 실행을 멈춘다.
 # 
-# 분할정복 기법으로 해결되는 문제는 기본적으로 재귀로 매우
+# 분할 정복 기법으로 해결되는 문제는 기본적으로 재귀로 매우
 # 효율적으로 해결된다.
 # 이유는 비록 재귀호출이 반복적으로 발생하기는 하지만
 # 재귀호출 도중 결론이 나면 바로 실행이 완료되기 때문이다.
-# 이진탐색을 비롯하여 앞으로 다룰 합병정렬과 퀵정렬도 분할정복 기법을
+# 이진탐색을 비롯하여 앞으로 다룰 합병정렬과 퀵정렬도 분할 정복 기법을
 # 사용한다. 
-# 이외에도 분할정복 기법은 다양한 알고리즘 문제 해결에 활용된다.
+# 이외에도 분할 정복 기법은 다양한 알고리즘 문제 해결에 활용된다.
 # 
 # 다음 `binary_search_rec()` 함수는
 # 이진탐색을 재귀함수로 구현한다.
@@ -320,4 +320,4 @@ print(binary_search_rec(test_list, 54))
 
 # ## 연습 문제
 
-# 1. [(실습) 탐색과 분할정복](https://colab.research.google.com/github/codingalzi/algopy/blob/master/excs/exc-sort_search_1.ipynb)
+# 1. [(실습) 탐색과 분할 정복](https://colab.research.google.com/github/codingalzi/algopy/blob/master/excs/exc-sort_search_1.ipynb)
