@@ -595,17 +595,19 @@ W[i][j] =
 <p>이제 남은 과제는 “어떻게 <span class="math notranslate nohighlight">\(W\)</span>에서 <span class="math notranslate nohighlight">\(D\)</span>를 구할 것인가?” 이다.</p>
 <div align="center"><img src="https://raw.githubusercontent.com/CodingRG-HKNU/FoundationsOfAlgorithms/master/slides/images/algo03/algo03-06.png" width="600"/></div><p><strong>동적계획법 전략</strong></p>
 <p>마디 <span class="math notranslate nohighlight">\(v_i\)</span>에서 마디 <span class="math notranslate nohighlight">\(v_j\)</span>로 가는 최단 경로를 계산하기 위해
-중간에 지나쳐야 하는 중간지점을 확대해 나가면서 최단경로를 업데이트하는 전략을 사용한다.</p>
-<p>전략: <span class="math notranslate nohighlight">\(0 \le k \le n\)</span> 를 만족하는 <span class="math notranslate nohighlight">\(k\)</span>에 대해 다음을 만족하는 2차원 행렬 <span class="math notranslate nohighlight">\(D^{(k)}\)</span>를
+중간에 지나쳐야 하는 중간지점을 확대해 나가면서 최단경로를 업데이트하는 전략을 사용한다.
+이를 위해 <span class="math notranslate nohighlight">\(k\)</span>를 <span class="math notranslate nohighlight">\(0\)</span>부터 <span class="math notranslate nohighlight">\(n\)</span>까지 변하게 하면서 아래 조건에 맞는 행렬 <span class="math notranslate nohighlight">\(D^{(k)}\)</span>를
 동적계획법으로 생성한다.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align*}
 D^{(k)}[i][j] &amp;= \text{집합 $\{v_1, v_2, \dots, v_k\}$ 에 속하는 마디만을 통해서} \\
-&amp; \quad\,\text{$v_i$ 에서 $v_j$ 로 가는 최단경로의 길이}
+&amp; \,\,\quad\,\text{$v_i$ 에서 $v_j$ 로 가는 최단경로의 길이}
 \end{align*}
 \end{split}\]</div>
-<p>그러면 다음이 성립한다.</p>
+<p>즉, <span class="math notranslate nohighlight">\(i\)</span>번째 행, <span class="math notranslate nohighlight">\(j\)</span>번째 열에 위치한 값은 <span class="math notranslate nohighlight">\(v_i\)</span> 에서 <span class="math notranslate nohighlight">\(v_j\)</span> 로 가는 최단경로의 길이이다.
+단, 해당 경로는 <span class="math notranslate nohighlight">\(v_1, v_2, \dots, v_k\)</span>만 경유할 수 있다.
+이제 다음이 성립한다.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align*}
@@ -623,10 +625,18 @@ D^{(0)} \longrightarrow D^{(1)}\longrightarrow D^{(2)}
 <p><strong>예제: <span class="math notranslate nohighlight">\(D^{(k)}[2][5]\)</span> 계산하기</strong></p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(D^{(0)}[2][5] = W[2][5] = \infty\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(D^{(1)}[2][5] = \min (D^{(0)}[2][5], \text{len}([v_2, v_1, v_5])) = \min(\infty, 14) = 14\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(D^{(1)}[2][5] = \min (D^{(0)}[2][5], d^{(1)}) = \min(\infty, 14) = 14\)</span></p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(d^{(1)}\)</span>은 <span class="math notranslate nohighlight">\(v_1\)</span>를 거치는 최단경로 길이: <span class="math notranslate nohighlight">\(d^{(1)} = \text{len}([v_2, v_1, v_5]) = 14\)</span></p></li>
+</ul>
+</li>
 <li><p><span class="math notranslate nohighlight">\(D^{(2)}[2][5] = D^{(1)}[2][5] = 14\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(D^{(3)}[2][5] = D^{(2)}[2][5] = 14\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(D^{(4)}[2][5] = \min (D^{(3)}[2][5], d^{(4)}) = \min(14, 5) = 5\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(D^{(4)}[2][5] = \min (D^{(3)}[2][5], d^{(4)}) = \min(14, 5) = 5\)</span>.</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(d^{(4)}\)</span>는 <span class="math notranslate nohighlight">\(v_4\)</span>를 거치는 최단경로 길이:</p></li>
+</ul>
+</li>
 </ul>
 <p>\begin{align*}
 d^{(4)} &amp;= \min(\text{length}[v_2, v_4, v_5], \text{length}[v_2, v_1, v_4, v_5], \text{length}[v_2, v_3, v_4, v_5]) \
