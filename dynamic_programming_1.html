@@ -662,16 +662,17 @@ min
 앞서 살펴 본 메모이제이션 기법을 거꾸로 적용하는 것과 유사하지만
 1원, 2원, 3원 등부터 63원까지 <strong>모든 경우</strong>에 대해 차례대로 필요한 최소 동전 수를
 저장해 두고 재활용한다.</p>
-<p>아래 그림은 1원부터 11원까지 잔돈 지불에 필요한 최손 동전 수를 저장하는 과정을 보여준다.
+<p>아래 그림은 1원부터 11원까지 잔돈 지불에 필요한 최소 동전 수를 저장하는 과정을 보여준다.
 예를 들어, 11원을 지불하고자 하는 경우 아래 세 경우를 확인한 다음에 최솟값을 선택한다.</p>
 <ul class="simple">
-<li><p>1원 동전을 사용하는 경우: 10원 지불 방식에 1을 더한 값</p></li>
-<li><p>5원 동전을 사용하는 경우: 6원 지불 방식에 1을 더한 값</p></li>
-<li><p>10원 동전을 사용하는 경우: 1원 지불 방식에 1을 더한 값</p></li>
+<li><p>1원 동전을 사용하는 경우: 나머지 10원을 지불할 때 필요한 최소 동전 수에 1을 더한 값</p></li>
+<li><p>5원 동전을 사용하는 경우: 나머지 6원을 지불할 때 필요한 최소 동전 수에 1을 더한 값</p></li>
+<li><p>10원 동전을 사용하는 경우: 나머지 1원을 지불할 때 필요한 최소 동전 수에 1을 더한 값</p></li>
 </ul>
 <figure>
 <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/notebooks/_images/changeTable.png" width="60%"></div>
-</figure><p>동적계획법을 이용하여 잔돈 지불 문제를 해결하는 알고리즘은 다음과 같다.</p>
+</figure><p>동적계획법을 이용하여 잔돈 지불 문제를 해결하는 알고리즘은 다음과 같다.
+계산이 매우 빨라졌으며, 재귀 호출도 전혀 없다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
@@ -708,18 +709,18 @@ min
 </div>
 </div>
 </div>
-<p>계산이 매우 빨라졌으며, 재귀 호출도 전혀 없다.
-하지만 위 알고리즘은 지불에 필요한 최소 동전 수만 계산할 뿐
-실제로 어떻게 지불해야하는가는 알려주지 않는다.
-이 문제를 해결하려면 <code class="docutils literal notranslate"><span class="pre">known_results</span></code>의 디폴트딕트를 업데이트 하면서
-동시에 마지막으로 사용된 동전이 무엇이었는지를 기억해야 한다.</p>
+<p><strong>잔돈 지불 방법 출력</strong></p>
+<p>지불에 필요한 최소 동전 수와 함께
+실제로 어떻게 지불해야하는가를 알려주도록 하려면
+지불에 사용되는 동전을 기억해 두면 된다.
+아래 코드의 <code class="docutils literal notranslate"><span class="pre">coins_used</span></code> 는 특정 액수의 잔돈을 지불할 때 가장 마지막에 사용되는 동전을 기억한다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
 
 <span class="k">def</span> <span class="nf">make_change_4</span><span class="p">(</span><span class="n">coin_value_list</span><span class="p">,</span> <span class="n">change</span><span class="p">):</span>
     <span class="n">min_coins</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
-    <span class="n">coins_used</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">coins_used</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>  <span class="c1"># 특정 액수의 잔돈을 지불할 때 사용되는 마지막 동전 기억.</span>
     
     <span class="c1"># 1원부터 차례대로 최소 동전 수 계산</span>
     <span class="k">for</span> <span class="n">changeToMake</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">change</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
@@ -733,12 +734,18 @@ min
                 <span class="n">new_coin</span> <span class="o">=</span> <span class="n">j</span>
         
         <span class="n">min_coins</span><span class="p">[</span><span class="n">changeToMake</span><span class="p">]</span> <span class="o">=</span> <span class="n">coin_count</span>
-        <span class="n">coins_used</span><span class="p">[</span><span class="n">changeToMake</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_coin</span>
+        <span class="n">coins_used</span><span class="p">[</span><span class="n">changeToMake</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_coin</span>    <span class="c1"># changeToMake 를 지불할 때 사용되는 마지막 동전 기억</span>
     
     <span class="c1"># 최종적으로 계산된 값 반환</span>
     <span class="k">return</span> <span class="n">min_coins</span><span class="p">[</span><span class="n">change</span><span class="p">],</span> <span class="n">coins_used</span>
-
-<span class="k">def</span> <span class="nf">print_coins</span><span class="p">(</span><span class="n">coins_used</span><span class="p">,</span> <span class="n">change</span><span class="p">):</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">print_coins()</span></code> 함수는 잔돈 지불에 필요한 모든 동전을 출력한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">print_coins</span><span class="p">(</span><span class="n">coins_used</span><span class="p">,</span> <span class="n">change</span><span class="p">):</span>
     <span class="n">coin</span> <span class="o">=</span> <span class="n">change</span>
     <span class="k">while</span> <span class="n">coin</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">this_coin</span> <span class="o">=</span> <span class="n">coins_used</span><span class="p">[</span><span class="n">coin</span><span class="p">]</span>
@@ -749,6 +756,7 @@ min
 </div>
 </div>
 </div>
+<p>예를 들어, 63원을 지불하려면 6개의 최소 동전이 필요하며 지불 방식은 다음과 같다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">amount</span> <span class="o">=</span> <span class="mi">63</span>
@@ -767,7 +775,7 @@ min
 </div>
 </div>
 </div>
-<p>21원 동전이 추가되면 21원 동전 3개가 필요함을 확인해준다.</p>
+<p>아래 코드는 21원 동전이 추가되면 21원 동전 3개만 있으면 됨을 확인해준다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">amount</span> <span class="o">=</span> <span class="mi">63</span>
@@ -907,7 +915,7 @@ min
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>32.90200996398926
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>32.79086899757385
 </pre></div>
 </div>
 </div>

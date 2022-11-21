@@ -486,9 +486,9 @@ const thebe_selector_output = ".output, .cell_output"
 <h2><span class="section-number">19.1. </span>그래프 용어<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>그래프 관련 용어를 익혀두어야 한다.</p>
 <ul class="simple">
-<li><p>마디 또는 정점(vertex, node)</p></li>
-<li><p>이음선(edge, arc)</p></li>
-<li><p>방향 그래프(directed graph, or digraph): 이음선에 방향이 포함된 그래프</p></li>
+<li><p>마디, 정점(vertex, node)</p></li>
+<li><p>이음선, 에지(edge, arc)</p></li>
+<li><p>방향 그래프(directed graph): 이음선에 방향이 포함된 그래프</p></li>
 <li><p>가중치(weight)</p></li>
 <li><p>가중치 포함 그래프(weighted graph)</p></li>
 <li><p>경로(path): 이음선으로 연결된 마디들의 나열. 즉, 하나의 마디에서 다른 마디로 가는 이음선의 연결.</p></li>
@@ -508,8 +508,8 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="section" id="id3">
 <h2><span class="section-number">19.2. </span>최단 경로 문제<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <p>임의의 마디에서 다른 임의의 마디로 가는 최단 경로를 구하는 문제이다.
-이때 이음선의 가중치와 방향을 함께 고려해야 한다.
-최단 경로는 순환을 포함하지 않는 단순 경로만 대상으로 찾으면 된다.</p>
+이때 이음선의 가중치와 방향을 함께 고려한다.
+최단 경로는 순환을 포함하지 않는 단순 경로만 대상으로 한다.</p>
 <p><strong>응용 사례</strong></p>
 <ul class="simple">
 <li><p>도시 간의 최단경로</p></li>
@@ -547,8 +547,8 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 </ul>
 <p><strong>동적계획법 적용</strong></p>
-<p>가중치 포함 방향그래프 상의 임의의 두 마디 사이의 최단경로를 동적계획법으로 계산한다.
-이를 위해 주어진 방향그래프의 <strong>인접행렬</strong>(adjacent matrix)를
+<p>두 마디 사이의 최단경로를 동적계획법으로 계산하기 위해
+주어진 방향그래프의 <strong>인접행렬</strong>(adjacent matrix)을
 동적계획법 기법으로 업데이트하여 두 마디 사이의 최단 경로를 계산한다.</p>
 <p><strong>그래프의 인접행렬</strong></p>
 <p>그래프의 인접행렬은 마디와 마디를 잇는 이음선과 가중치의 정보를 표현하는 2차원 행렬이며
@@ -579,7 +579,7 @@ W[i][j] =
 </div>
 </div>
 <p><strong>최단경로길이 행렬</strong></p>
-<p>반면에 각 마디들 사이의 최단경로의 길이를 담은 2차원 행렬 <code class="docutils literal notranslate"><span class="pre">D</span></code>는 다음과 같다.</p>
+<p>반면에 각 마디들 사이의 최단경로의 길이를 담은 2차원 행렬 <span class="math notranslate nohighlight">\(D\)</span>는 다음과 같다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">D</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
@@ -592,21 +592,27 @@ W[i][j] =
 </div>
 </div>
 <p><strong>최단경로 길이행렬 구하기</strong></p>
-<p>이제 남은 과제는 “어떻게 <code class="docutils literal notranslate"><span class="pre">W</span></code>에서 <code class="docutils literal notranslate"><span class="pre">D</span></code>를 구할 것인가?” 이다.</p>
+<p>이제 남은 과제는 “어떻게 <span class="math notranslate nohighlight">\(W\)</span>에서 <span class="math notranslate nohighlight">\(D\)</span>를 구할 것인가?” 이다.</p>
 <div align="center"><img src="https://raw.githubusercontent.com/CodingRG-HKNU/FoundationsOfAlgorithms/master/slides/images/algo03/algo03-06.png" width="600"/></div><p><strong>동적계획법 전략</strong></p>
 <p>마디 <span class="math notranslate nohighlight">\(v_i\)</span>에서 마디 <span class="math notranslate nohighlight">\(v_j\)</span>로 가는 최단 경로를 계산하기 위해
 중간에 지나쳐야 하는 중간지점을 확대해 나가면서 최단경로를 업데이트하는 전략을 사용한다.</p>
 <p>전략: <span class="math notranslate nohighlight">\(0 \le k \le n\)</span> 를 만족하는 <span class="math notranslate nohighlight">\(k\)</span>에 대해 다음을 만족하는 2차원 행렬 <span class="math notranslate nohighlight">\(D^{(k)}\)</span>를
 동적계획법으로 생성한다.</p>
-<p>\begin{align*}
-D^{(k)}[i][j] &amp;= \text{집합 <span class="math notranslate nohighlight">\(\{v_1, v_2, \dots, v_k\}\)</span> 에 속하는 마디만을 통해서} \
-&amp; \quad,\text{<span class="math notranslate nohighlight">\(v_i\)</span> 에서 <span class="math notranslate nohighlight">\(v_j\)</span> 로 가는 최단경로의 길이}
-\end{align*}</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+D^{(k)}[i][j] &amp;= \text{집합 $\{v_1, v_2, \dots, v_k\}$ 에 속하는 마디만을 통해서} \\
+&amp; \quad\,\text{$v_i$ 에서 $v_j$ 로 가는 최단경로의 길이}
+\end{align*}
+\end{split}\]</div>
 <p>그러면 다음이 성립한다.</p>
-<p>\begin{align*}
-D^{(0)} &amp;= W \
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+D^{(0)} &amp;= W \\
 D^{(n)} &amp;= D
-\end{align*}</p>
+\end{align*}
+\end{split}\]</div>
 <p>남은 과제는 <span class="math notranslate nohighlight">\(D^{(k-1)}\)</span> 로부터 <span class="math notranslate nohighlight">\(D^{(k)}\)</span>를
 아래 관계가 만족되도록 생성하는 것이다.</p>
 <div class="math notranslate nohighlight">
