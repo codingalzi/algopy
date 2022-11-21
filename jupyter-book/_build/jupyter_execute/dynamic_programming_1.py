@@ -210,18 +210,19 @@ make_change_2([1, 5, 10, 25], 63)
 # 1원, 2원, 3원 등부터 63원까지 **모든 경우**에 대해 차례대로 필요한 최소 동전 수를
 # 저장해 두고 재활용한다.
 # 
-# 아래 그림은 1원부터 11원까지 잔돈 지불에 필요한 최손 동전 수를 저장하는 과정을 보여준다.
+# 아래 그림은 1원부터 11원까지 잔돈 지불에 필요한 최소 동전 수를 저장하는 과정을 보여준다.
 # 예를 들어, 11원을 지불하고자 하는 경우 아래 세 경우를 확인한 다음에 최솟값을 선택한다.
 # 
-# - 1원 동전을 사용하는 경우: 10원 지불 방식에 1을 더한 값
-# - 5원 동전을 사용하는 경우: 6원 지불 방식에 1을 더한 값
-# - 10원 동전을 사용하는 경우: 1원 지불 방식에 1을 더한 값
+# - 1원 동전을 사용하는 경우: 나머지 10원을 지불할 때 필요한 최소 동전 수에 1을 더한 값
+# - 5원 동전을 사용하는 경우: 나머지 6원을 지불할 때 필요한 최소 동전 수에 1을 더한 값
+# - 10원 동전을 사용하는 경우: 나머지 1원을 지불할 때 필요한 최소 동전 수에 1을 더한 값
 
 # <figure>
 # <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/notebooks/_images/changeTable.png" width="60%"></div>
 # </figure>
 
 # 동적계획법을 이용하여 잔돈 지불 문제를 해결하는 알고리즘은 다음과 같다.
+# 계산이 매우 빨라졌으며, 재귀 호출도 전혀 없다.
 
 # In[6]:
 
@@ -252,11 +253,12 @@ def make_change_3(coin_value_list, change):
 print(make_change_3([1, 5, 10, 25], 63))
 
 
-# 계산이 매우 빨라졌으며, 재귀 호출도 전혀 없다.
-# 하지만 위 알고리즘은 지불에 필요한 최소 동전 수만 계산할 뿐
-# 실제로 어떻게 지불해야하는가는 알려주지 않는다.
-# 이 문제를 해결하려면 `known_results`의 디폴트딕트를 업데이트 하면서
-# 동시에 마지막으로 사용된 동전이 무엇이었는지를 기억해야 한다.
+# **잔돈 지불 방법 출력**
+
+# 지불에 필요한 최소 동전 수와 함께
+# 실제로 어떻게 지불해야하는가를 알려주도록 하려면
+# 지불에 사용되는 동전을 기억해 두면 된다.
+# 아래 코드의 `coins_used` 는 특정 액수의 잔돈을 지불할 때 가장 마지막에 사용되는 동전을 기억한다. 
 
 # In[8]:
 
@@ -265,7 +267,7 @@ from collections import defaultdict
 
 def make_change_4(coin_value_list, change):
     min_coins = defaultdict(int)
-    coins_used = defaultdict(int)
+    coins_used = defaultdict(int)  # 특정 액수의 잔돈을 지불할 때 사용되는 마지막 동전 기억.
     
     # 1원부터 차례대로 최소 동전 수 계산
     for changeToMake in range(1, change + 1):
@@ -279,10 +281,17 @@ def make_change_4(coin_value_list, change):
                 new_coin = j
         
         min_coins[changeToMake] = coin_count
-        coins_used[changeToMake] = new_coin
+        coins_used[changeToMake] = new_coin    # changeToMake 를 지불할 때 사용되는 마지막 동전 기억
     
     # 최종적으로 계산된 값 반환
     return min_coins[change], coins_used
+
+
+# `print_coins()` 함수는 잔돈 지불에 필요한 모든 동전을 출력한다.
+
+# In[9]:
+
+
 
 def print_coins(coins_used, change):
     coin = change
@@ -293,7 +302,9 @@ def print_coins(coins_used, change):
     print()
 
 
-# In[9]:
+# 예를 들어, 63원을 지불하려면 6개의 최소 동전이 필요하며 지불 방식은 다음과 같다.
+
+# In[10]:
 
 
 amount = 63
@@ -305,9 +316,9 @@ print(f"잔돈 {amount} 센트를 지불하기 위해 다음 {num_coins} 개의 
 print_coins(coins_used, amount)
 
 
-# 21원 동전이 추가되면 21원 동전 3개가 필요함을 확인해준다.
+# 아래 코드는 21원 동전이 추가되면 21원 동전 3개만 있으면 됨을 확인해준다.
 
-# In[10]:
+# In[11]:
 
 
 amount = 63
@@ -368,7 +379,7 @@ print_coins(coins_used, amount)
 
 # 위 식을 그대로 재귀로 구현하면 다음과 같다.
 
-# In[11]:
+# In[12]:
 
 
 def bin(n, k):
@@ -406,7 +417,7 @@ def bin(n, k):
 
 # 그림 내용을 함수로 구현하면 다음과 같다.
 
-# In[12]:
+# In[13]:
 
 
 def bin2(n, k):
@@ -428,7 +439,7 @@ def bin2(n, k):
 
 # 매우 빠르게 계산한다.
 
-# In[13]:
+# In[14]:
 
 
 bin2(30, 14)
@@ -436,7 +447,7 @@ bin2(30, 14)
 
 # 동일한 인자에 대해 재귀 알고리즘은 30초 이상 걸린다.
 
-# In[14]:
+# In[15]:
 
 
 import time
