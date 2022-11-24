@@ -278,12 +278,8 @@ def floyd_warshall2(W):
 
     # deepcopy를 사용하지 않으면 D에 혼란을 발생시킴
     D = deepcopy(W)
-    P = deepcopy(W)
-    
-    # P 행렬 초기화. 모든 항목을 -1로 설정
-    for i in range(n):
-        for j in range(n):
-            P[i][j] = -1
+    # 경로 기억 어레이
+    P = [[-1]   * n for i in range(n)] # -1로 초기화
 
     # k가 0부터 (n-1)까지 이동하면서 D가 D^(1), ..., D^(n)을 차례대로 모방함.
     # 그와 함께 동시에 P 행렬도 차례대로 업데이트함.
@@ -407,16 +403,17 @@ def floyd_warshall3(W):
     n = len(W)
 
     D = deepcopy(W)
+    # 경로 기억 어레이
     P = [[0]   * n for i in range(n)]
     
+    # P 초기화는 인접행렬의 정보 활용
     for i, j in product(range(n), repeat=2):
         if 0 < W[i][j] < inf:
             P[i][j] = j
     
     for k, i, j in product(range(n), repeat=3):
-        sum_ik_kj = D[i][k] + D[k][j]
-        if D[i][j] > sum_ik_kj:
-            D[i][j] = sum_ik_kj
+        if D[i][k] + D[k][j] < D[i][j]:
+            D[i][j] = D[i][k] + D[k][j]
             P[i][j]  = P[i][k]
     return D, P
 
@@ -424,31 +421,31 @@ def floyd_warshall3(W):
 # In[16]:
 
 
-def path3(D, P, i, j):
+def path3(P, i, j):
     # 인덱스가 0부터 출발하기에 -1 또는 +1을 적절히 조절해야 함.
         path = [i-1]
         while path[-1] != j-1:
             path.append(P[path[-1]][j-1])
         route = ' → '.join(str(p + 1) for p in path)
-        print(f"최단길이:{D[i-1][j-1]:>2}, 최단 경로: {route}")
+        print(f"최단 경로: {route}")
 
 
 # In[17]:
 
 
-D, P = floyd_warshall3(W)
+_, P = floyd_warshall3(W)
 
 
 # In[18]:
 
 
-path3(D, P, 5, 3)
+path3(P, 5, 3)
 
 
 # In[19]:
 
 
-path3(D, P, 2, 5)
+path3(P, 2, 5)
 
 
 # ## 최적의 원칙

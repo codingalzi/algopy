@@ -741,12 +741,8 @@ k &amp; \text{최단 경로의 중간에 사용된 마디의 인덱스 중에서
 
     <span class="c1"># deepcopy를 사용하지 않으면 D에 혼란을 발생시킴</span>
     <span class="n">D</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">W</span><span class="p">)</span>
-    <span class="n">P</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">W</span><span class="p">)</span>
-    
-    <span class="c1"># P 행렬 초기화. 모든 항목을 -1로 설정</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-            <span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="c1"># 경로 기억 어레이</span>
+    <span class="n">P</span> <span class="o">=</span> <span class="p">[[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>   <span class="o">*</span> <span class="n">n</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span> <span class="c1"># -1로 초기화</span>
 
     <span class="c1"># k가 0부터 (n-1)까지 이동하면서 D가 D^(1), ..., D^(n)을 차례대로 모방함.</span>
     <span class="c1"># 그와 함께 동시에 P 행렬도 차례대로 업데이트함.</span>
@@ -900,16 +896,17 @@ k &amp; \text{최단 경로상의 마디 중에서 $v_i$에 가장 가까운 마
     <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">W</span><span class="p">)</span>
 
     <span class="n">D</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">W</span><span class="p">)</span>
+    <span class="c1"># 경로 기억 어레이</span>
     <span class="n">P</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">]</span>   <span class="o">*</span> <span class="n">n</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
     
+    <span class="c1"># P 초기화는 인접행렬의 정보 활용</span>
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">product</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">repeat</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
         <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">W</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">inf</span><span class="p">:</span>
             <span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">j</span>
     
     <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">product</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">repeat</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
-        <span class="n">sum_ik_kj</span> <span class="o">=</span> <span class="n">D</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">D</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
-        <span class="k">if</span> <span class="n">D</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">sum_ik_kj</span><span class="p">:</span>
-            <span class="n">D</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">sum_ik_kj</span>
+        <span class="k">if</span> <span class="n">D</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">D</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">D</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]:</span>
+            <span class="n">D</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">D</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">D</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
             <span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>  <span class="o">=</span> <span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">D</span><span class="p">,</span> <span class="n">P</span>
 </pre></div>
@@ -918,44 +915,44 @@ k &amp; \text{최단 경로상의 마디 중에서 $v_i$에 가장 가까운 마
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">path3</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">path3</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
     <span class="c1"># 인덱스가 0부터 출발하기에 -1 또는 +1을 적절히 조절해야 함.</span>
         <span class="n">path</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
         <span class="k">while</span> <span class="n">path</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
             <span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="n">path</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
         <span class="n">route</span> <span class="o">=</span> <span class="s1">&#39; → &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">p</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">path</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;최단길이:</span><span class="si">{</span><span class="n">D</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">&gt;2</span><span class="si">}</span><span class="s2">, 최단 경로: </span><span class="si">{</span><span class="n">route</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;최단 경로: </span><span class="si">{</span><span class="n">route</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">D</span><span class="p">,</span> <span class="n">P</span> <span class="o">=</span> <span class="n">floyd_warshall3</span><span class="p">(</span><span class="n">W</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span><span class="p">,</span> <span class="n">P</span> <span class="o">=</span> <span class="n">floyd_warshall3</span><span class="p">(</span><span class="n">W</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">path3</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">path3</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>최단길이: 6, 최단 경로: 5 → 1 → 4 → 3
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>최단 경로: 5 → 1 → 4 → 3
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">path3</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">path3</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>최단길이: 5, 최단 경로: 2 → 4 → 5
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>최단 경로: 2 → 4 → 5
 </pre></div>
 </div>
 </div>
