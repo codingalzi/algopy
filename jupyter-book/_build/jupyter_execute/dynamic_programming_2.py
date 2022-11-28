@@ -279,7 +279,7 @@ def floyd_warshall2(W):
     # deepcopy를 사용하지 않으면 D에 혼란을 발생시킴
     D = deepcopy(W)
     # 경로 기억 어레이
-    P = [[-1]   * n for i in range(n)] # -1로 초기화
+    P = [[-1] * n for i in range(n)] # -1로 초기화
 
     # k가 0부터 (n-1)까지 이동하면서 D가 D^(1), ..., D^(n)을 차례대로 모방함.
     # 그와 함께 동시에 P 행렬도 차례대로 업데이트함.
@@ -404,7 +404,7 @@ def floyd_warshall3(W):
 
     D = deepcopy(W)
     # 경로 기억 어레이
-    P = [[0]   * n for i in range(n)]
+    P = [[0] * n for i in range(n)]
     
     # P 초기화는 인접행렬의 정보 활용
     for i, j in product(range(n), repeat=2):
