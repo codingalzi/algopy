@@ -742,7 +742,7 @@ k &amp; \text{최단 경로의 중간에 사용된 마디의 인덱스 중에서
     <span class="c1"># deepcopy를 사용하지 않으면 D에 혼란을 발생시킴</span>
     <span class="n">D</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">W</span><span class="p">)</span>
     <span class="c1"># 경로 기억 어레이</span>
-    <span class="n">P</span> <span class="o">=</span> <span class="p">[[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>   <span class="o">*</span> <span class="n">n</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span> <span class="c1"># -1로 초기화</span>
+    <span class="n">P</span> <span class="o">=</span> <span class="p">[[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">n</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span> <span class="c1"># -1로 초기화</span>
 
     <span class="c1"># k가 0부터 (n-1)까지 이동하면서 D가 D^(1), ..., D^(n)을 차례대로 모방함.</span>
     <span class="c1"># 그와 함께 동시에 P 행렬도 차례대로 업데이트함.</span>
@@ -897,7 +897,7 @@ k &amp; \text{최단 경로상의 마디 중에서 $v_i$에 가장 가까운 마
 
     <span class="n">D</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">W</span><span class="p">)</span>
     <span class="c1"># 경로 기억 어레이</span>
-    <span class="n">P</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">]</span>   <span class="o">*</span> <span class="n">n</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
+    <span class="n">P</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">n</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
     
     <span class="c1"># P 초기화는 인접행렬의 정보 활용</span>
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">product</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">repeat</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
