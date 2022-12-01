@@ -625,12 +625,12 @@ const thebe_selector_output = ".output, .cell_output"
         <span class="n">F</span><span class="p">[</span><span class="n">nearest</span><span class="p">[</span><span class="n">vnear</span><span class="p">]]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">vnear</span><span class="p">)</span>
         <span class="n">distance</span><span class="p">[</span><span class="n">vnear</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>    <span class="c1"># 선택된 마디 표시</span>
     
-        <span class="c1"># 모든 마디를 대상으로 distance와 nearest 업데이트 (F가 수정되었기 때문)</span>
+        <span class="c1"># 아직 Y에 포함되지 않은 마디를 대상으로 distance와 nearest 업데이트 (F가 수정되었기 때문)</span>
         <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">W</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">vnear</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">distance</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
-                <span class="n">nearest</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">vnear</span>
-                <span class="n">distance</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">W</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">vnear</span><span class="p">]</span>
-    <span class="k">return</span> <span class="n">F</span>                    <span class="c1"># 신장트리 반환</span>
+            <span class="k">if</span> <span class="n">W</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">vnear</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">distance</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>   <span class="c1"># Y에 새로이 추가된 vnear와의 거리가 최소 가중치 값을 갖는 경우</span>
+                <span class="n">nearest</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">vnear</span>          <span class="c1"># v(j)에 가장 가까우면서 Y에 속한 마디는 v(vnear)</span>
+                <span class="n">distance</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">W</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">vnear</span><span class="p">]</span>   <span class="c1"># v(j)와 v(vnear)의 거리</span>
+    <span class="k">return</span> <span class="n">F</span> 
 </pre></div>
 </div>
 </div>

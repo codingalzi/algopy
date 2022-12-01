@@ -195,12 +195,12 @@ def prim(W):                    # W: 가중 비방향 연결그래프의 인접�
         F[nearest[vnear]].append(vnear)
         distance[vnear] = -1    # 선택된 마디 표시
     
-        # 모든 마디를 대상으로 distance와 nearest 업데이트 (F가 수정되었기 때문)
+        # 아직 Y에 포함되지 않은 마디를 대상으로 distance와 nearest 업데이트 (F가 수정되었기 때문)
         for j in range(1, m):
-            if W[j][vnear] < distance[j]:
-                nearest[j] = vnear
-                distance[j] = W[j][vnear]
-    return F                    # 신장트리 반환
+            if W[j][vnear] < distance[j]:   # Y에 새로이 추가된 vnear와의 거리가 최소 가중치 값을 갖는 경우
+                nearest[j] = vnear          # v(j)에 가장 가까우면서 Y에 속한 마디는 v(vnear)
+                distance[j] = W[j][vnear]   # v(j)와 v(vnear)의 거리
+    return F 
 
 
 # In[2]:
