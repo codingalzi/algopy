@@ -630,6 +630,7 @@ const thebe_selector_output = ".output, .cell_output"
             <span class="k">if</span> <span class="n">W</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">vnear</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">distance</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>   <span class="c1"># Y에 새로이 추가된 vnear와의 거리가 최소 가중치 값을 갖는 경우</span>
                 <span class="n">nearest</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">vnear</span>          <span class="c1"># v(j)에 가장 가까우면서 Y에 속한 마디는 v(vnear)</span>
                 <span class="n">distance</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">W</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">vnear</span><span class="p">]</span>   <span class="c1"># v(j)와 v(vnear)의 거리</span>
+    
     <span class="k">return</span> <span class="n">F</span> 
 </pre></div>
 </div>
