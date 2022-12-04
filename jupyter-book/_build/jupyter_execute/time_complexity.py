@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# (ch:time_complexity)=
 # # 시간 복잡도
 
 # **소스코드**
@@ -453,6 +454,7 @@ def no_meaning(n):
 # 
 # <그림 출처: [Big-O Cheat Sheet](https://www.bigocheatsheet.com/)>
 
+# (sec:running_time)=
 # ### 시간 복잡도와 실행시간
 
 # * 가정: 기본 계산단위 실행시간 = 1 ns(10억 분의 1 초)

@@ -56,7 +56,8 @@ parts:
       chapters:
       - file: back_tracking
       - file: generic_programming
-    - caption: NP 이론 소개
+    - caption: NP 이론
       numbered: True
       chapters:
+      - file: orders
       - file: np_theory
