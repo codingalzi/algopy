@@ -59,5 +59,4 @@ parts:
     - caption: NP 이론 소개
       numbered: True
       chapters:
-      - file: np_theory_1
-      - file: np_theory_2
+      - file: np_theory
