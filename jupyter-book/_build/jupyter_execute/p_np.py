@@ -171,4 +171,4 @@
 
 # <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo09/algo09-03.png" width="600"/></div>
 # 
-# <p><div style="text-align: center">&lt;그림 출처: <a href="https://en.wikipedia.org/wiki/P_versus_NP_problem">위키피디아: P versus NP problem</a>&gt;</div></p>
+# <p><div style="text-align: center">&lt;그림 출처: <a href="https://en.wikipedia.org/wiki/P_versus_NP_problem">(위키피디아) P versus NP problem</a>&gt;</div></p>
