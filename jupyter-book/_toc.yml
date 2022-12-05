@@ -60,4 +60,4 @@ parts:
       numbered: True
       chapters:
       - file: orders
-      - file: np_theory
+      - file: p_np
