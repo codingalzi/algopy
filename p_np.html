@@ -38,12 +38,9 @@
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script>let toggleHintShow = 'Click to show';</script>
-    <script>let toggleHintHide = 'Click to hide';</script>
-    <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
@@ -468,10 +465,18 @@ const thebe_selector_output = ".output, .cell_output"
 <p class="admonition-title"><span class="caption-number">Example 27.1 </span> (행렬의 곱셈)</p>
 <div class="example-content section" id="proof-content">
 <p>행렬의 곱셈을 실행하는 문제의 하한 시간 복잡도는 <span class="math notranslate nohighlight">\(\Omega(n^2)\)</span>이다.
-즉, 행렬 곱셈에 사용되는 알고리즘의 시간 복잡도가 <span class="math notranslate nohighlight">\(\Omega(n^2)\)</span> 보다 좋을 수 없다는 사실이 증명되었다.
-반면에 지금까지 알려진 가장 낮은 계산 복잡도의 알고리즘은
-2014년에 알려진 르 갈<font size='2'>Le Gall</font> 알고리즘이며,
-시간 복잡도가 <span class="math notranslate nohighlight">\(\Theta(n^{2.3728639})\)</span>이다.</p>
+즉, 행렬 곱셈에 사용되는 알고리즘의 시간 복잡도가 <span class="math notranslate nohighlight">\(\Omega(n^2)\)</span> 보다 좋을 수 없다는 사실이 증명되었다.</p>
+<p>반면에 지금까지 알려진 가장 낮은 계산 복잡도의 알고리즘은
+Josh Alman(2020)와 Virginia Vassilevska Williams(2021)이 독립적으로
+발표한 알고리즘이며,
+시간 복잡도가 <span class="math notranslate nohighlight">\(O(n^{2.3728596})\)</span>이다.
+2022년 10월에 <span class="math notranslate nohighlight">\(O(n^{2.37188})\)</span> 의 시간 복잡도를 갖는 알고리즘이 공개되었지만
+아직 완전히 검증되지는 않았다.</p>
+<p>하지만 이와같은 알고리즘이 실전에서는 잘 사용되지 않는다.
+이유는 빅-<span class="math notranslate nohighlight">\(O\)</span>에 숨겨진 상수 계수가 매우 크기 때문에 컴퓨터로 사실상
+실행 불가능할 정도로 큰 크기의 행렬에 대해서만 의미가 있는 값이기 때문이다.</p>
+<p>실전에서는 일반적으로 <span class="math notranslate nohighlight">\(O(n^{2.807})\)</span> 시간 복잡도를 갖는
+<a class="reference external" href="https://codingrg-hknu.github.io/FoundationsOfAlgorithms/slides/Algo-02-Divide-and-Conquer-2-slides.pdf">슈트라센 알고리즘</a>을 개선해서 사용하는 것으로 알려져 있다.</p>
 </div>
 </div><div class="proof example admonition" id="exp-sorting">
 <p class="admonition-title"><span class="caption-number">Example 27.2 </span> (정렬 문제)</p>
