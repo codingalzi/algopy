@@ -38,9 +38,12 @@
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
@@ -970,11 +973,12 @@ k &amp; \text{최단 경로상의 마디 중에서 $v_i$에 가장 가까운 마
 <span class="math notranslate nohighlight">\(v_i\)</span>에서 <span class="math notranslate nohighlight">\(v_k\)</span> 로 가는 부분경로와 <span class="math notranslate nohighlight">\(v_k\)</span>에서 <span class="math notranslate nohighlight">\(v_j\)</span>로 가는
 부분경로도 반드시 최적이어야 한다.</p>
 <div align="center"><img src="https://raw.githubusercontent.com/CodingRG-HKNU/FoundationsOfAlgorithms/master/slides/images/algo03/algo03-07.png" width="500"/></div><p><strong>예제: 최장 경로 문제</strong></p>
-<p>순환이 없는 최장경로를 구하는 문제는 최적의 원칙이 적용되지 않는다.</p>
-<p>예를 들어 아래 그래프에서 <span class="math notranslate nohighlight">\(v_1\)</span>에서 <span class="math notranslate nohighlight">\(v_4\)</span>로의 (순환이 없는) 최장경로는 <span class="math notranslate nohighlight">\([v_1, v_3, v_2, v_4]\)</span>이다.
-그러나 이 경로의 부분 경로인 <span class="math notranslate nohighlight">\(v_1\)</span>에서 <span class="math notranslate nohighlight">\(v_3\)</span>으로의 (순환이 없는) 최장경로는
+<p>예를 들어 아래 그래프에서 <span class="math notranslate nohighlight">\(v_1\)</span>에서 <span class="math notranslate nohighlight">\(v_4\)</span>로의 비순환 최장경로는 <span class="math notranslate nohighlight">\([v_1, v_3, v_2, v_4]\)</span>이다.
+그러나 이 경로의 부분 경로인 <span class="math notranslate nohighlight">\(v_1\)</span>에서 <span class="math notranslate nohighlight">\(v_3\)</span>으로의 베순환 최장경로는
 <span class="math notranslate nohighlight">\([v_1, v_3]\)</span>이 아니고, <span class="math notranslate nohighlight">\([v_1, v_2, v_3]\)</span> 이다.
-따라서 최적의 원칙이 적용되지 않는다.</p>
+이는 동적 계획법으로 비순환 최장경로를 생성하려 한다면 <span class="math notranslate nohighlight">\([v_1, v_2, v_3]\)</span>를 사용해야 한다는 의미이고
+결국엔 <span class="math notranslate nohighlight">\(v_1\)</span>에서 <span class="math notranslate nohighlight">\(v_4\)</span>로의 비순환 최장경로를 생성할 수 없음을 의미한다.</p>
+<p>결론적으로 동적 계획법으로 최적의 해를 얻기 위해서는 최적의 원칙이 성립해야 한다.</p>
 <div align="center"><img src="https://raw.githubusercontent.com/CodingRG-HKNU/FoundationsOfAlgorithms/master/slides/images/algo03/algo03-08.png" width="200"/></div></div>
 <div class="section" id="id6">
 <h2><span class="section-number">19.5. </span>연습 문제<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
