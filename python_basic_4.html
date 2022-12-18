@@ -38,9 +38,12 @@
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
@@ -737,11 +740,11 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;__main__.MSDie object at 0x7fa9e8745e50&gt; 3
-&lt;__main__.MSDie object at 0x7fa9e8745e50&gt; 2
-&lt;__main__.MSDie object at 0x7fa9e8745e50&gt; 6
-&lt;__main__.MSDie object at 0x7fa9e8745e50&gt; 5
-&lt;__main__.MSDie object at 0x7fa9e8745e50&gt; 5
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;__main__.MSDie object at 0x7f53ca2febe0&gt; 6
+&lt;__main__.MSDie object at 0x7f53ca2febe0&gt; 1
+&lt;__main__.MSDie object at 0x7f53ca2febe0&gt; 4
+&lt;__main__.MSDie object at 0x7f53ca2febe0&gt; 1
+&lt;__main__.MSDie object at 0x7f53ca2febe0&gt; 6
 </pre></div>
 </div>
 </div>
@@ -790,9 +793,9 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MSDie(6) - 가리키는 값은 3
-MSDie(6) - 가리키는 값은 5
-MSDie(6) - 가리키는 값은 3
+MSDie(6) - 가리키는 값은 2
 MSDie(6) - 가리키는 값은 4
+MSDie(6) - 가리키는 값은 1
 MSDie(6) - 가리키는 값은 2
 </pre></div>
 </div>
@@ -806,7 +809,7 @@ MSDie(6) - 가리키는 값은 2
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;__main__.MSDie at 0x7fa9e876d490&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;__main__.MSDie at 0x7f53c826f580&gt;
 </pre></div>
 </div>
 </div>
@@ -822,7 +825,7 @@ MSDie(6) - 가리키는 값은 2
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;__main__.MSDie object at 0x7fa9e876d940&gt;, &lt;__main__.MSDie object at 0x7fa9e876d1f0&gt;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;__main__.MSDie object at 0x7f53c826fc70&gt;, &lt;__main__.MSDie object at 0x7f53c826feb0&gt;]
 </pre></div>
 </div>
 </div>
@@ -866,7 +869,7 @@ MSDie(6) - 가리키는 값은 2
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[MSDie(6):2, MSDie(20):2]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[MSDie(6):5, MSDie(20):1]
 </pre></div>
 </div>
 </div>
@@ -913,11 +916,11 @@ MSDie(6) - 가리키는 값은 2
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MSDie(6):1
-MSDie(6):1
-MSDie(6):1
-MSDie(6):4
-MSDie(6):3
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MSDie(6):4
+MSDie(6):5
+MSDie(6):6
+MSDie(6):6
+MSDie(6):5
 </pre></div>
 </div>
 </div>
@@ -930,7 +933,7 @@ MSDie(6):3
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[MSDie(6):1, MSDie(20):1]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[MSDie(6):2, MSDie(20):14]
 </pre></div>
 </div>
 </div>
@@ -1257,7 +1260,7 @@ True
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
 </pre></div>
 </div>
 </div>
@@ -1305,7 +1308,7 @@ True
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;_MSDie__hidden1&#39;: 3, &#39;_hidden2&#39;: 7, &#39;num_sides&#39;: 6, &#39;current_value&#39;: 4}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;_MSDie__hidden1&#39;: 3, &#39;_hidden2&#39;: 7, &#39;num_sides&#39;: 6, &#39;current_value&#39;: 3}
 </pre></div>
 </div>
 </div>
@@ -1426,7 +1429,7 @@ True
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
 </pre></div>
 </div>
 </div>
@@ -1499,7 +1502,7 @@ True
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
 </pre></div>
 </div>
 </div>
@@ -2203,9 +2206,7 @@ True
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>13
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>25
+25
 37
 </pre></div>
 </div>
@@ -2306,7 +2307,7 @@ True
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;generator object &lt;genexpr&gt; at 0x7fa9e8731890&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;generator object &lt;genexpr&gt; at 0x7f53c825a190&gt;
 </pre></div>
 </div>
 </div>
@@ -2468,7 +2469,7 @@ True
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;enumerate object at 0x7fa9e872e100&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;enumerate object at 0x7f53c824df80&gt;
 </pre></div>
 </div>
 </div>
