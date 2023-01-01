@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# (sec:p_np)=
 # # P-NP 문제
 
 # **소스코드**
@@ -112,12 +113,22 @@
 
 # 다항 시간<font size='2'>polynomial time</font> 알고리즘으로 
 # 풀 수 있는 모든 진위판별 문제의 집합을 P로 표기한다.
+# 예를 들어 탐색 알고리즘은 대부분 P에 포함된다.
+# 반면에 임의의 수도쿠 문제를 다항 시간 알고리즘은 아직 알려지지 않았다.
+
+# <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo09/p-np-1.png" width="600"/></div>
 # 
-# 예를 들어, 탐색 알고리즘은 대부분 P에 포함된다.
-# 반면에 외판원이 특정 시간 안에 모든 도시를 방문하고 돌아올 수 있는지를 판멸하는 문제가
-# 집합 P에 속하는지 여부는 아직 모른다. 
+# <p><div style="text-align: center">&lt;그림 출처: <a href="https://www.youtube.com/watch?v=YX40hbAHx3s&t=2s&ab_channel=UndefinedBehavior">(유튜브)P vs. NP and the Computational Complexity Zoo</a>&gt;</div></p>
+
+# 알고리즘 분야에서 가장 유명한 문제 중에 하나가 외판원 문제는
+# 외판원이 특정 시간 안에 모든 도시를 방문하고 돌아올 수 있는지를 판멸하는 문제이다.
+# 그런데 이 외판원 문제가 집합 P에 속하는지 여부는 아직 모른다. 
 # 이 문제에 대해 다항 시간 알고리즘이 알려지지 않았지만
 # 다항 시간 알고리즘이 존재하지 않는다는 증명도 아직 없다.
+
+# <div align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/GLPK_solution_of_a_travelling_salesman_problem.svg/1920px-GLPK_solution_of_a_travelling_salesman_problem.svg.png" width="300"/></div>
+# 
+# <p><div style="text-align: center">&lt;그림 출처: <a href="https://ko.wikipedia.org/wiki/%EC%99%B8%ED%8C%90%EC%9B%90_%EB%AC%B8%EC%A0%9C">(위키백과)외판원 문제</a>&gt;</div></p>
 
 # **집합 NP**
 
@@ -126,7 +137,14 @@
 # **비결정론적 다항 시간**<font size='2'>non-deterministical polynomial</font>
 # 알고리즘이란 해당 알고리즘이 문제를 제대로 해결하는지 여부를 검증하는 데에 다항 시간이 요구되는 알고리즘을 일컫는다.
 # 
-# 대표적으로 외판원 문제와 소인수분해 문제가 NP에 속한다. 이유는 경로가 주어지면 주어진 시간 안에 해당 경로를 통해 모든 장소를 방문하고 되돌아올 수 있는지를 판단하거나, 
+# 대표적으로 수도쿠 문제가 NP에 속한다.
+# 이유는 수도쿠 문제에 대한 답이 제시되었을 때 해당 답이 제대로 된 해답인지 여부를 판단하는 일은 곱셈과 덧셈 정도의 수준에서 다항 시간 내에 판단할 수 있기 때문이다.
+
+# <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo09/p-np-2.png" width="600"/></div>
+# 
+# <p><div style="text-align: center">&lt;그림 출처: <a href="https://www.youtube.com/watch?v=YX40hbAHx3s&t=2s&ab_channel=UndefinedBehavior">(유튜브)P vs. NP and the Computational Complexity Zoo</a>&gt;</div></p>
+
+# 외판원 문제와 소인수분해 문제 또한 NP에 속한다. 이유는 경로가 주어지면 주어진 시간 안에 해당 경로를 통해 모든 장소를 방문하고 되돌아올 수 있는지를 판단하거나, 
 # 어떤 수의 소인수분해 결과가 해당 수를 제대로 소인수분해 했는지 여부를 판단하는 문제는
 # 다항 시간 내에 판단할 수 있기 때문이다.
 
@@ -145,8 +163,11 @@
 # **P 이면 NP!**
 
 # P 에 속하는 문제는 모두 NP에도 속한다.
-# 이유는 결정론적 튜링 기계로 구현될 수 있는 알고리즘은 비결정론적 튜링 기계로도
-# 구현될 수 있기 때문이다.
+# 이유는 결정론적 튜링 기계로 다항 시간에 실행되는 알고리즘이 제시한 답은 
+# 동일한 알고리즘을 이용하여 다항 시간 내에 정답 여부를 확인할 수 있기 때문이다.
+# 
+# 보다 전문적으로 말하면 결정론적 튜링 기계로 구현된 알고리즘은 모두 비결정론적 튜링 기계로도
+# 구현될 수 있다.
 
 # **P = NP ?**
 

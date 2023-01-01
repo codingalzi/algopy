@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>26. 차수 &#8212; 문제해결 알고리즘</title>
+    <title>9.1. 차수 &#8212; 문제해결 알고리즘</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -38,12 +38,9 @@
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script>let toggleHintShow = 'Click to show';</script>
-    <script>let toggleHintHide = 'Click to hide';</script>
-    <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
@@ -56,8 +53,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="27. P-NP 문제" href="p_np.html" />
-    <link rel="prev" title="25. 제네릭 프로그래밍" href="generic_programming.html" />
+    <link rel="next" title="9.2. P-NP 문제" href="p_np.html" />
+    <link rel="prev" title="9. NP 이론" href="np_theory.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -89,202 +86,249 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  파이썬 기초
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="python_basic_1.html">
-   1. 기본 자료형
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="python_basic.html">
+   1. 파이썬 기초
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="python_basic_1.html">
+     1.1. 기본 자료형
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="python_basic_2.html">
+     1.2. 제어 구조와 함수
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="python_basic_3.html">
+     1.3. 클래스와 상속
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="python_basic_4.html">
+     1.4. 클래스 기본 요소
+    </a>
+   </li>
+  </ul>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="python_basic_2.html">
-   2. 제어 구조와 함수
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="algorithm_time_complexity.html">
+   2. 알고리즘 시간 복잡도
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="time_complexity.html">
+     2.1. 시간 복잡도
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="python_list_dict.html">
+     2.2. 파이썬 모음 자료형 분석
+    </a>
+   </li>
+  </ul>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="python_basic_3.html">
-   3. 클래스와 상속
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="linear_structures.html">
+   3. 선형 자료구조
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="stacks.html">
+     3.1. 스택
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="infix_prefix_postfix.html">
+     3.2. 중위, 전위, 후위 표기법
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="queues.html">
+     3.3. 큐
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="deques.html">
+     3.4. 덱
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="linked_lists.html">
+     3.5. 연결 리스트
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ordered_lists.html">
+     3.6. 정렬 리스트
+    </a>
+   </li>
+  </ul>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="python_basic_4.html">
-   4. 클래스 기본 요소
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="recursion.html">
+   4. 재귀
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="recursive_functions.html">
+     4.1. 재귀
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="hanoi_tower.html">
+     4.2. 하노이의 탑과 미로게임
+    </a>
+   </li>
+  </ul>
  </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  알고리즘 시간 복잡도
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="time_complexity.html">
-   5. 시간 복잡도
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="sort_search.html">
+   5. 탐색과 정렬
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="sort_search_1.html">
+     5.1. 탐색과 분할 정복
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="sort_search_2.html">
+     5.2. 버블/선택/합병/퀵 정렬
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="sort_search_3.html">
+     5.3. 삽입 정렬, 쉘 정렬
+    </a>
+   </li>
+  </ul>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="python_list_dict.html">
-   6. 파이썬 모음 자료형 분석
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="dynamic_programming.html">
+   6. 동적계획법
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="dynamic_programming_1.html">
+     6.1. 최적화 문제와 동적계획법
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="dynamic_programming_2.html">
+     6.2. 플로이드-워셜 알고리즘
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="dynamic_programming_3.html">
+     6.3. 외판원 문제
+    </a>
+   </li>
+  </ul>
  </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  선형 자료구조
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="stacks.html">
-   7. 스택
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="greedy_algorithm.html">
+   7. 탐욕 기법
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="greedy_algorithm_1.html">
+     7.1. 최소비용 신장트리
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="greedy_algorithm_2.html">
+     7.2. 다익스트라 알고리즘
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="greedy_algorithm_3.html">
+     7.3. 탐욕 기법 대 동적계획법
+    </a>
+   </li>
+  </ul>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="infix_prefix_postfix.html">
-   8. 중위, 전위, 후위 표기법
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="back_tracking_generic.html">
+   8. 되추적 기법과 제네릭 프로그래밍
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="back_tracking.html">
+     8.1. 되추적 기법
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generic_programming.html">
+     8.2. 제네릭 프로그래밍
+    </a>
+   </li>
+  </ul>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="queues.html">
-   9. 큐
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="np_theory.html">
+   9. NP 이론
   </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="deques.html">
-   10. 덱
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="linked_lists.html">
-   11. 연결 리스트
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ordered_lists.html">
-   12. 정렬 리스트
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  재귀
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="recursive_functions.html">
-   13. 재귀
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="hanoi_tower.html">
-   14. 하노이의 탑과 미로게임
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  탐색과 정렬
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="sort_search_1.html">
-   15. 탐색과 분할 정복
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="sort_search_2.html">
-   16. 버블/선택/합병/퀵 정렬
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="sort_search_3.html">
-   17. 삽입 정렬, 쉘 정렬
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  동적계획법
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="dynamic_programming_1.html">
-   18. 최적화 문제와 동적계획법
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="dynamic_programming_2.html">
-   19. 플로이드-워셜 알고리즘
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="dynamic_programming_3.html">
-   20. 외판원 문제
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  탐욕 기법
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="greedy_algorithm_1.html">
-   21. 최소비용 신장트리
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="greedy_algorithm_2.html">
-   22. 다익스트라 알고리즘
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="greedy_algorithm_3.html">
-   23. 탐욕 기법 대 동적계획법
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  되추적 기법과 제네릭 프로그래밍
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="back_tracking.html">
-   24. 되추적 기법
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="generic_programming.html">
-   25. 제네릭 프로그래밍
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  NP 이론
- </span>
-</p>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   26. 차수
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="p_np.html">
-   27. P-NP 문제
-  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     9.1. 차수
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="p_np.html">
+     9.2. P-NP 문제
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -392,17 +436,17 @@ const thebe_selector_output = ".output, .cell_output"
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id2">
-   26.1. 차수의 직관적 이해
+   9.1.1. 차수의 직관적 이해
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id3">
-   26.2. 차수의 정의
+   9.1.2. 차수의 정의
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id4">
-   26.3. 차수의 특성
+   9.1.3. 차수의 특성
   </a>
  </li>
 </ul>
@@ -427,17 +471,17 @@ const thebe_selector_output = ".output, .cell_output"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id2">
-   26.1. 차수의 직관적 이해
+   9.1.1. 차수의 직관적 이해
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id3">
-   26.2. 차수의 정의
+   9.1.2. 차수의 정의
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id4">
-   26.3. 차수의 특성
+   9.1.3. 차수의 특성
   </a>
  </li>
 </ul>
@@ -449,15 +493,15 @@ const thebe_selector_output = ".output, .cell_output"
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="ch-orders">
-<span id="id1"></span><h1><span class="section-number">26. </span>차수<a class="headerlink" href="#ch-orders" title="Permalink to this headline">¶</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="sec-orders">
+<span id="id1"></span><h1><span class="section-number">9.1. </span>차수<a class="headerlink" href="#sec-orders" title="Permalink to this headline">¶</a></h1>
 <p><strong>주요 내용</strong></p>
 <ul class="simple">
 <li><p>차수 이해</p></li>
 <li><p><span class="math notranslate nohighlight">\(O\)</span>, <span class="math notranslate nohighlight">\(o\)</span>, <span class="math notranslate nohighlight">\(\Theta\)</span>, <span class="math notranslate nohighlight">\(\Omega\)</span> 정의</p></li>
 </ul>
 <div class="section" id="id2">
-<h2><span class="section-number">26.1. </span>차수의 직관적 이해<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">9.1.1. </span>차수의 직관적 이해<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>아래 두 알고리즘 중에서 어떤 알고리즘을 선택해야 할까?</p>
 <table class="colwidths-auto table">
 <thead>
@@ -501,7 +545,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p>“어떤 자연수 <span class="math notranslate nohighlight">\(N\)</span>이 존재하여 <span class="math notranslate nohighlight">\(n&gt; N\)</span>인 임의의 양의 정수 <span class="math notranslate nohighlight">\(n\)</span>에 대해 <span class="math notranslate nohighlight">\(0.01 n^2\)</span>이 <span class="math notranslate nohighlight">\(100 n\)</span> 보다 크다” 를 다르게 표현하면
 “<span class="math notranslate nohighlight">\(0.01 n^2\)</span>이 <span class="math notranslate nohighlight">\(100 n\)</span> 보다 궁극적으로 크다” 라고 말한다.</p>
 <div class="proof definition admonition" id="def-eventually">
-<p class="admonition-title"><span class="caption-number">Definition 26.1 </span> (궁극적으로 크다의 정의)</p>
+<p class="admonition-title"><span class="caption-number">Definition 9.1 </span> (궁극적으로 크다의 정의)</p>
 <div class="definition-content section" id="proof-content">
 <p>다음 성질을 갖는 정수 <span class="math notranslate nohighlight">\(N \ge 0\)</span>이 존재할 때
 “<span class="math notranslate nohighlight">\(f(n)\)</span>이 <span class="math notranslate nohighlight">\(g(n)\)</span> 보다 궁극적으로 크다” 라고 말한다.</p>
@@ -552,7 +596,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="section" id="id3">
-<h2><span class="section-number">26.2. </span>차수의 정의<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">9.1.2. </span>차수의 정의<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <p>차수(<span class="math notranslate nohighlight">\(\Theta\)</span>)를 엄밀하게 정의하려면 “Big-<span class="math notranslate nohighlight">\(O\)</span>”와 “<span class="math notranslate nohighlight">\(\Omega\)</span>(Omega, 오메가)” 개념이 요구된다.</p>
 <p><strong>Big-<span class="math notranslate nohighlight">\(O\)</span> 표기법</strong></p>
 <p>다음 성질을 갖는 양의 실수 <span class="math notranslate nohighlight">\(c\)</span>와 음이 아닌 정수 <span class="math notranslate nohighlight">\(N\)</span>이 존재할 때 <span class="math notranslate nohighlight">\(g(n)\in O(f(n))\)</span>이 성립한다:</p>
@@ -725,7 +769,7 @@ $<span class="math notranslate nohighlight">\(n^2+10n \le 2n^2\)</span>$</p></li
 </ul>
 <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo01/algo01-14.png" width="400"/></div></div>
 <div class="section" id="id4">
-<h2><span class="section-number">26.3. </span>차수의 특성<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">9.1.3. </span>차수의 특성<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(g(n) \in O(f(n)) \quad\Longleftrightarrow\quad f(n) \in \Omega(g(n))\)</span></p></li>
 </ul>
@@ -778,17 +822,17 @@ $<span class="math notranslate nohighlight">\(n^2+10n \le 2n^2\)</span>$</p></li
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="generic_programming.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="np_theory.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">25. </span>제네릭 프로그래밍</p>
+            <p class="prev-next-title"><span class="section-number">9. </span>NP 이론</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="p_np.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">27. </span>P-NP 문제</p>
+        <p class="prev-next-title"><span class="section-number">9.2. </span>P-NP 문제</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

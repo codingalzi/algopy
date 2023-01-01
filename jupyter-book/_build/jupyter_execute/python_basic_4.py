@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# (sec:python_basic_4)=
 # # 클래스 기본 요소
 
 # **소스코드**

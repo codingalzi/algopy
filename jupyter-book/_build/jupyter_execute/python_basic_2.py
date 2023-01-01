@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# (sec:python_basic_2)=
 # # 제어 구조와 함수
 
 # **소스코드**

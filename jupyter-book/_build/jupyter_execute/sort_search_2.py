@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# (sec:sort_search_2)=
 # # 버블/선택/합병/퀵 정렬
 
 # **소스코드**

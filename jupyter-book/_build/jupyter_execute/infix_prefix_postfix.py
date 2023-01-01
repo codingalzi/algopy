@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# (sec:infix_prefix_postfix)=
 # # 중위, 전위, 후위 표기법
 
 # **소스코드**

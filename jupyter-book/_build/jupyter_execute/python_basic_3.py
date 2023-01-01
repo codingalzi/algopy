@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# (sec:python_basic_3)=
 # # 클래스와 상속
 
 # **소스코드**

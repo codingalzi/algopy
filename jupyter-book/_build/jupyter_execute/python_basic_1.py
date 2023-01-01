@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# (sec:python_basic_1)=
 # # 기본 자료형
 
 # **소스코드**

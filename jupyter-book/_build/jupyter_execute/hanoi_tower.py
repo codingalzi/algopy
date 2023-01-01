@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# (sec:hanoi_tower)=
 # # 하노이의 탑과 미로게임
 
 # **소스코드**

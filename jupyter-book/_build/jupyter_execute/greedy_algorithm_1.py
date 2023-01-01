@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# (sec:greedy_algorithm_1)=
 # # 최소비용 신장트리
 
 # **소스코드**

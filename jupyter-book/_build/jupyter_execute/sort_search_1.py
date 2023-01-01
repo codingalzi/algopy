@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# (sec:sort_search_1)=
 # # 탐색과 분할 정복
 
 # **소스코드**

@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# (sec:deques)=
 # # 덱
 
 # **소스코드**

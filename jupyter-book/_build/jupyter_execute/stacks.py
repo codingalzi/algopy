@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# (sec:stacks)=
 # # 스택
 
 # **소스코드**

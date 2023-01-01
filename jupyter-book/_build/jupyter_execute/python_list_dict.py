@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# (sec:python_list_dict)=
 # # 파이썬 모음 자료형 분석
 
 # **소스코드**

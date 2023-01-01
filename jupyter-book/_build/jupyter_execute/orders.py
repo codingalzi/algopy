@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# (ch:orders)=
+# (sec:orders)=
 # # 차수
 
 # **주요 내용**

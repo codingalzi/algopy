@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# (sec:dynamic_programming_1)=
 # # 최적화 문제와 동적계획법
 
 # **소스코드**

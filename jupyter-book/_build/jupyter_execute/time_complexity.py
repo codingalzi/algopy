@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# (ch:time_complexity)=
+# (sec:time_complexity)=
 # # 시간 복잡도
 
 # **소스코드**
