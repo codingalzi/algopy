@@ -6,49 +6,66 @@ root: intro
 options:
   numbered: True
 #  only_build_toc_files: true
-chapters:
-- file: python_basic
-  sections:
-  - file: python_basic_1
-  - file: python_basic_2
-  - file: python_basic_3
-  - file: python_basic_4
-- file: algorithm_time_complexity
-  sections:
-  - file: time_complexity
-  - file: python_list_dict
-- file: linear_structures
-  sections:
-  - file: stacks
-  - file: infix_prefix_postfix
-  - file: queues
-  - file: deques
-  - file: linked_lists
-  - file: ordered_lists
-- file: recursion
-  sections:
-  - file: recursive_functions
-  - file: hanoi_tower
-- file: sort_search
-  sections:
-  - file: sort_search_1
-  - file: sort_search_2
-  - file: sort_search_3
-- file: dynamic_programming
-  sections:
-  - file: dynamic_programming_1
-  - file: dynamic_programming_2
-  - file: dynamic_programming_3
-- file: greedy_algorithm
-  sections:
-  - file: greedy_algorithm_1
-  - file: greedy_algorithm_2
-  - file: greedy_algorithm_3  
-- file: back_tracking_generic
-  sections:
-  - file: back_tracking
-  - file: generic_programming
-- file: np_theory
-  sections:
-  - file: orders
-  - file: p_np
+
+parts:
+  - caption: 파이썬 기초
+    numbered: True
+    chapters:
+    - file: python_basic_1
+    - file: python_basic_2
+    - file: python_basic_3
+    - file: python_basic_4
+  - caption: 알고리즘 시간 복잡도
+    numbered: True
+    chapters:
+    - file: time_complexity
+    - file: python_list_dict
+  - caption: 선형 자료 구조
+    numbered: True
+    chapters:
+    - file: stacks
+    - file: infix_prefix_postfix
+    - file: queues
+    - file: deques
+    - file: linked_lists
+    - file: ordered_lists
+  - caption: 재귀
+    numbered: True
+    chapters:
+    - file: recursive_functions
+    - file: hanoi_tower
+  - caption: 탐색과 정렬
+    numbered: True
+    chapters:
+    - file: sort_search_1
+    - file: sort_search_2
+    - file: sort_search_3
+  - caption: 트리와 트리 알고리즘
+    numbered: True
+    chapters:
+    - file: trees_heaps_maps_1
+    - file: trees_heaps_maps_2
+    - file: trees_heaps_maps_3
+    - file: trees_heaps_maps_4
+  - caption: 동적계획법
+    numbered: True
+    chapters:
+    - file: dynamic_programming_1
+    - file: dynamic_programming_2
+    - file: dynamic_programming_3
+  - caption: 탐욕 기법
+    numbered: True
+    chapters:
+    - file: greedy_algorithm_1
+    - file: greedy_algorithm_2
+    - file: greedy_algorithm_3  
+  - caption: 되추적 기법과 제네릭 프로그래밍
+    numbered: True
+    chapters:
+    - file: back_tracking
+    - file: generic_programming
+  - caption: NP 이론
+    numbered: True
+    chapters:
+    - file: orders
+    - file: p_np

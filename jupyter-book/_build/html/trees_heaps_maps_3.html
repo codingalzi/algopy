@@ -1,0 +1,1174 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>20. 맵 추상 자료형 2부 &#8212; 문제해결 알고리즘</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'trees_heaps_maps_3';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="21. 맵 추상 자료형 3부" href="trees_heaps_maps_4.html" />
+    <link rel="prev" title="19. 맵 추상 자료형 1부" href="trees_heaps_maps_2.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">문제해결 알고리즘</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">파이썬 기초</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="python_basic_1.html">1. 기본 자료형</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_basic_2.html">2. 제어 구조와 함수</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_basic_3.html">3. 클래스와 상속</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_basic_4.html">4. 클래스 기본 요소</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">알고리즘 시간 복잡도</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="time_complexity.html">5. 시간 복잡도</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_list_dict.html">6. 파이썬 모음 자료형 분석</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">선형 자료 구조</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="stacks.html">7. 스택</a></li>
+<li class="toctree-l1"><a class="reference internal" href="infix_prefix_postfix.html">8. 중위, 전위, 후위 표기법</a></li>
+<li class="toctree-l1"><a class="reference internal" href="queues.html">9. 큐</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deques.html">10. 덱</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linked_lists.html">11. 연결 리스트</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ordered_lists.html">12. 정렬 리스트</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">재귀</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="recursive_functions.html">13. 재귀</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hanoi_tower.html">14. 하노이의 탑과 미로게임</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">탐색과 정렬</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="sort_search_1.html">15. 탐색과 분할 정복</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sort_search_2.html">16. 버블/선택/합병/퀵 정렬</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sort_search_3.html">17. 삽입 정렬, 쉘 정렬</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">트리와 트리 알고리즘</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="trees_heaps_maps_1.html">18. 트리와 힙</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trees_heaps_maps_2.html">19. 맵 추상 자료형 1부</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">20. 맵 추상 자료형 2부</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trees_heaps_maps_4.html">21. 맵 추상 자료형 3부</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">동적계획법</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="dynamic_programming_1.html">22. 최적화 문제와 동적계획법</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dynamic_programming_2.html">23. 플로이드-워셜 알고리즘</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dynamic_programming_3.html">24. 외판원 문제</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">탐욕 기법</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="greedy_algorithm_1.html">25. 최소비용 신장트리</a></li>
+<li class="toctree-l1"><a class="reference internal" href="greedy_algorithm_2.html">26. 다익스트라 알고리즘</a></li>
+<li class="toctree-l1"><a class="reference internal" href="greedy_algorithm_3.html">27. 탐욕 기법 대 동적계획법</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">되추적 기법과 제네릭 프로그래밍</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="back_tracking.html">28. 되추적 기법</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generic_programming.html">29. 제네릭 프로그래밍</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">NP 이론</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="orders.html">30. 차수</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p_np.html">31. P-NP 문제</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/codingalzi/algopy" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/codingalzi/algopy/issues/new?title=Issue%20on%20page%20%2Ftrees_heaps_maps_3.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/trees_heaps_maps_3.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>맵 추상 자료형 2부</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">20.1. 이진탐색트리</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">20.1.1. 정의</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">20.1.2. 구현</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#binarysearchtree-treenode">20.1.2.1. <code class="docutils literal notranslate"><span class="pre">BinarySearchTree</span></code> 클래스와 <code class="docutils literal notranslate"><span class="pre">TreeNode</span></code> 클래스</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">20.1.3. 이진탐색트리 분석</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">20.2. 프로그래밍 실습 과제</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1><span class="section-number">20. </span>맵 추상 자료형 2부<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
+<section id="id2">
+<h2><span class="section-number">20.1. </span>이진탐색트리<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<p>이진트리에 값을 저장하여 항목 탐색을 키와 값의 관계로 작동하도록 할 수 있다.
+즉, 이진트리를 맵(Map) 추상 자료형으로 활용하여 매우 효율적인 탐색을
+실행할 수 있다.</p>
+<section id="id3">
+<h3><span class="section-number">20.1.1. </span>정의<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<p><strong>이진탐색트리</strong>의 마디에 사용되는 키는 모두 아래 특성을 만족한다.</p>
+<ul class="simple">
+<li><p>부모 마디보다 작은 키: 부모의 왼쪽 서브트리에 위치</p></li>
+<li><p>부모 마디보다 큰 키: 부모의 오른쪽 서브트리에 위치</p></li>
+</ul>
+<p><strong>예제</strong></p>
+<p>아래 그림은 70, 31, 93, 94, 14, 23, 73를 차례대로 이진탐색트리에
+추가한 결과를 보여준다.</p>
+<ul class="simple">
+<li><p>70 추가: 루트</p></li>
+<li><p>31 추가: 루트 왼쪽 자식 마디</p></li>
+<li><p>93 추가: 루트 오른쪽 자식 마디</p></li>
+<li><p>94 추가: 93의 오른쪽 자식 마디</p></li>
+<li><p>14 추가: 31의 왼쪽 자식 마디</p></li>
+<li><p>23 추가: 14의 오른쪽 자식 마디</p></li>
+<li><p>73 추가: 93의 왼쪽 자식 마디</p></li>
+</ul>
+<figure>
+<div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/simpleBST.png" width="40%"></div>
+</figure></section>
+<section id="id4">
+<h3><span class="section-number">20.1.2. </span>구현<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
+<p><a class="reference external" href="https://codingalzi.github.io/algopy/notebooks/algopy08_TreesHeaps.html">8장 트리와 힙</a>에서 정의한 <code class="docutils literal notranslate"><span class="pre">BinaryTree</span></code> 클래스를 이용하여 이진탐색트리를 구현하기에는
+다음 두 요소 때문에 매우 어렵다.</p>
+<ul class="simple">
+<li><p>트리의 루트 마디를 별도로 기억해야 한다.</p></li>
+<li><p>각 마디에 저장되는 부모자식 정보가 항목이 추가 또는 삭제될 때마다 수정되어야 한다.</p></li>
+</ul>
+<section id="binarysearchtree-treenode">
+<h4><span class="section-number">20.1.2.1. </span><code class="docutils literal notranslate"><span class="pre">BinarySearchTree</span></code> 클래스와 <code class="docutils literal notranslate"><span class="pre">TreeNode</span></code> 클래스<a class="headerlink" href="#binarysearchtree-treenode" title="Permalink to this heading">#</a></h4>
+<p>여기서는 아래 두 개의 클래스를 활용하여 이진탐색트리를 구현한다.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">BinarySearchTree</span></code> 클래스</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">root</span></code> 속성: 이진탐색트리의 루트 마디 지정.</p>
+<ul>
+<li><p>기본값: <code class="docutils literal notranslate"><span class="pre">None</span></code>. 즉, 마디가 전혀 없는 이진탐색트리 생성.</p></li>
+</ul>
+</li>
+<li><p>지정되는 루트 마디는 <code class="docutils literal notranslate"><span class="pre">TreeNode</span></code> 클래스의 객체</p></li>
+<li><p>예제: 아래 그림의 빨강 화살표.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TreeNode</span></code> 클래스</p>
+<ul>
+<li><p>부모 마디와 자식 마디 사이의 관계를 지정함.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">parent</span></code>: 부모 마디</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">left_child</span></code>: 왼쪽 자식 마디</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">right_child</span></code>: 오른쪽 자식 마디</p></li>
+</ul>
+</li>
+<li><p>예제: 아래 그림 참조</p>
+<ul>
+<li><p>빨강 화살표: 루트 마디 참조</p></li>
+<li><p>검정 화살표: 자식 참조</p></li>
+<li><p>파랑 화살표: 부모 참조</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure>
+<div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/notebooks/_images/BinarySearchTree.png" width="47%"></div>
+</figure><p><strong>두 클래스의 상호작용</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">BinarySearchTree</span></code> 클래스의 객체는 루트가 존재하는지 여부만을 확인하며,
+<code class="docutils literal notranslate"><span class="pre">TreeNode</span></code> 객체를 루트로 사용하는 경우 마디의 추가/삭제와 업데이트,
+부모-자식간의 관계 정보 확인 및 업데이트 등을
+활용하는 메서드를 제공한다.
+반면에 <code class="docutils literal notranslate"><span class="pre">TreeNode</span></code> 객체는 <code class="docutils literal notranslate"><span class="pre">BinarySearchTree</span></code> 클래스의 메서드가
+수행하는 기능을 지원하는 메서드를 포함한다.</p>
+<p><strong><code class="docutils literal notranslate"><span class="pre">TreeNode</span></code> 클래스의 메서드</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">TreeNode</span></code> 클래스는 기본적으로 자식과 부모 마디에 대한 정보를 저장하고 활용하며,
+이를 위해 제공되는 메서드는 다음과 같다.</p>
+<ul class="simple">
+<li><p>속성 변수</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">self.key</span></code>: 마디의 키</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">self.value</span></code>: 키와 연관된 값</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">self.left_child</span></code>: 왼쪽 자식 마디(<code class="docutils literal notranslate"><span class="pre">TreeNode</span></code> 객체)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">self.right_child</span></code>: 오른쪽 자식 마디(<code class="docutils literal notranslate"><span class="pre">TreeNode</span></code> 객체)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">self.parent</span></code>: 부모 마디(<code class="docutils literal notranslate"><span class="pre">TreeNode</span></code> 객체)</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">is_left_child(self)</span></code>: 자신이 부모 마디의 왼쪽 자식인지 여부 판단</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">is_right_child(self)</span></code>: 자신이 부모 마디의 오른쪽 자식인지 여부 판단</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">is_root(self)</span></code>: 자신이 루트 마디인지 여부 판단. 즉, 부모 마디가 없는지 여부 판단.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">is_leaf(self)</span></code>: 자신이 잎루 마디인지 여부 판단. 즉, 자식 마디를 전혀 갖지 않는지 여부 판단.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">has_a_child(self)</span></code>: 하나 이상의 자식 마디를 갖는지 여부 판단.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">has_children(self)</span></code>: 왼쪽, 오른쪽 자식 마디 모두 갖는지 여부 판단.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">replace_valuee(self,</span> <span class="pre">key,</span> <span class="pre">value,</span> <span class="pre">left,</span> <span class="pre">right)</span></code>:</p>
+<ul>
+<li><p>자신의 키와 값 변경</p></li>
+<li><p>왼쪽, 오른쪽 자식 마디 지정 후 자신을 해당 마디들의 부모로 지정</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">find_successor(self)</span></code>: 현재 마디의 계승자 탐색</p>
+<ul>
+<li><p>좌우 자식 모두를 갖는 마디를 삭제하고자 할 경우 우측 서브트리의 최소 키(key)를
+갖는 마디를 계승자로 지정.</p></li>
+<li><p>일반적으로 현재 마디의 키 다음으로 큰 키를 갖는 마디를 찾아야 함.
+프로그래밍 실습 문제 참조.</p></li>
+<li><p>계승자는 최대 한 개의 자식 마디를 가지게 됨.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">find_min(self)</span></code>: 현재 마디를 루트로 갖는 서브트리에서 사용된 키의 최솟값</p>
+<ul>
+<li><p>맨 하단 좌측에 위치한 마디의 키</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">splice_out(self)</span></code>: 계승자 제거.</p>
+<ul>
+<li><p>제거되는 마디의 위치로 계승자를 옮기기 위해
+계승자가 원래 있던 자리에서 제거하는 과정</p></li>
+<li><p>계승자는 최대 하나의 자식 마디를 갖기에 나머지 마디를 계승자의 부모 마디에
+연결만 해주면 됨.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__iter__(self)</span></code>: 중위순회방식으로 루트마디에서 연결된 모드 마디의 키(key)를
+확인하는 이터레이터</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">TreeNode</span></code> 클래스 전체 코드는 다음과 같다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 트리의 마디 클래스: 키와 값으로 이루어지며 좌우 자식과 부모 마디 정보 함께 보유</span>
+<span class="k">class</span> <span class="nc">TreeNode</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">key</span> <span class="o">=</span> <span class="n">key</span>             <span class="c1"># 키</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>         <span class="c1"># 값</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">left_child</span> <span class="o">=</span> <span class="n">left</span>     <span class="c1"># 좌측 자식 마디</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">right_child</span> <span class="o">=</span> <span class="n">right</span>   <span class="c1"># 우측 자식 마디</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="n">parent</span>       <span class="c1"># 부모 마디</span>
+
+    <span class="c1"># 좌측 자식 마디: 부모의 좌측 자식 마디 여부</span>
+    <span class="k">def</span> <span class="nf">is_left_child</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">left_child</span> <span class="ow">is</span> <span class="bp">self</span>
+
+    <span class="c1"># 우측 자식 마디: 부모의 우측 자식 마디 여부</span>
+    <span class="k">def</span> <span class="nf">is_right_child</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">right_child</span> <span class="ow">is</span> <span class="bp">self</span>
+
+    <span class="c1"># 루트: 부모가 없을 때</span>
+    <span class="k">def</span> <span class="nf">is_root</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span>
+
+    <span class="c1"># 잎: 자식이 없을 때</span>
+    <span class="k">def</span> <span class="nf">is_leaf</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">right_child</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">left_child</span><span class="p">)</span>
+
+    <span class="c1"># 자식 존재 여부</span>
+    <span class="k">def</span> <span class="nf">has_a_child</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">right_child</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">left_child</span>
+
+    <span class="c1"># 좌우측 두 자식 모두 존재 여부</span>
+    <span class="k">def</span> <span class="nf">has_children</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">right_child</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">left_child</span>
+
+    <span class="c1"># 키, 값, 좌우 자식 지정</span>
+    <span class="k">def</span> <span class="nf">replace_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">key</span> <span class="o">=</span> <span class="n">key</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">left_child</span> <span class="o">=</span> <span class="n">left</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">right_child</span> <span class="o">=</span> <span class="n">right</span>
+      
+        <span class="c1"># 새 자식의 부모로 자신을 지정</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">left_child</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">left_child</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="bp">self</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">right_child</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">right_child</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="bp">self</span>
+
+    <span class="c1"># 현재 마디의 계승자 마디 탐색</span>
+    <span class="c1"># 우측 자식이 있는 경우만 다뤄도 여기서는 목적 달성.</span>
+    <span class="c1"># 모든 경우를 다루는 경우는 프로그래밍 실습 과제 참조.</span>
+    <span class="k">def</span> <span class="nf">find_successor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_children</span><span class="p">():</span>
+            <span class="n">successor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">right_child</span><span class="o">.</span><span class="n">find_min</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">successor</span>
+    
+    <span class="c1"># 현재 트리에 사용된 가장 작은 키</span>
+    <span class="k">def</span> <span class="nf">find_min</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span>
+        <span class="k">while</span> <span class="n">current</span><span class="o">.</span><span class="n">left_child</span><span class="p">:</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">left_child</span>
+        <span class="k">return</span> <span class="n">current</span>
+
+    <span class="c1"># 계승자 마디 삭제 후 자식 마디들을 부모 마디에 이어 붙이기</span>
+    <span class="c1"># 계승자는 자식을 하나만 갖기에 가능함.</span>
+    <span class="k">def</span> <span class="nf">splice_out</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_leaf</span><span class="p">():</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_left_child</span><span class="p">():</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">left_child</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">right_child</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">left_child</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_left_child</span><span class="p">():</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">left_child</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">left_child</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">right_child</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">left_child</span>
+            
+            <span class="bp">self</span><span class="o">.</span><span class="n">left_child</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_left_child</span><span class="p">():</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">left_child</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">right_child</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">right_child</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">right_child</span>
+            
+            <span class="bp">self</span><span class="o">.</span><span class="n">right_child</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span>
+
+    <span class="c1"># 이터레이터: 중위순회방식으로 키(key) 확인</span>
+    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">left_child</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">left_child</span><span class="p">:</span>
+                    <span class="k">yield</span> <span class="n">elem</span>
+            <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">key</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">right_child</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">right_child</span><span class="p">:</span>
+                    <span class="k">yield</span> <span class="n">elem</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong><code class="docutils literal notranslate"><span class="pre">BinarySearchTree</span></code> 클래스의 메서드</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">BinarySearchTree</span></code> 클래스에서 제공하는 기능은 다음과 같다.</p>
+<p>기능 1: 항목 추가</p>
+<p>지정된 키와 값을 하나의 마디에 추가하거나 업데이트 한다.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">put(self,</span> <span class="pre">key,</span> <span class="pre">value)</span></code>: 적절한 위치의 마디의 키(key)와 값으로 지정.</p>
+<ul>
+<li><p>루트가 없는 경우: 루트 마디로 지정</p></li>
+<li><p>루트가 있는 경우: <code class="docutils literal notranslate"><span class="pre">_put(self,</span> <span class="pre">key,</span> <span class="pre">value,</span> <span class="pre">current_node)</span></code> 재귀 메서드를 활용하여 적절한 위치의 마디로 지정.</p></li>
+<li><p>키(key)가 이미 존재하는 경우 값(value) 업데이트.</p></li>
+</ul>
+</li>
+</ul>
+<p>아래 그림은 <code class="docutils literal notranslate"><span class="pre">19</span></code>를 <code class="docutils literal notranslate"><span class="pre">_put(self,</span> <span class="pre">key,</span> <span class="pre">value,</span> <span class="pre">current_node)</span></code> 함수가 적절한 위치에 넣는
+과정을 보여준다.
+<code class="docutils literal notranslate"><span class="pre">19</span></code>와 비교되는 마디는 회색 마디로 표시되었다.</p>
+<figure>
+<div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/bstput.png" width="50%"></div>
+</figure><p>기능 2: 키의 값 확인</p>
+<p>지정된 키(key)의 값(value)를 확인하는 일은 <code class="docutils literal notranslate"><span class="pre">put()</span></code> 메서드와 유사하다.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">get(self,</span> <span class="pre">key)</span></code>: 지정된 키(key)를 갖는 마디에 저장된 값(value) 확인.</p>
+<ul>
+<li><p>루트가 없는 경우: <code class="docutils literal notranslate"><span class="pre">None</span></code> 반환</p></li>
+<li><p>루트가 있는 경우: <code class="docutils literal notranslate"><span class="pre">_get(self,</span> <span class="pre">key,</span> <span class="pre">current_node)</span></code> 재귀 메서드를 활용하여 적절한 위치의 마디에 저장된 값 반환</p></li>
+<li><p>키가 없으면 <code class="docutils literal notranslate"><span class="pre">None</span></code> 반환.</p></li>
+</ul>
+</li>
+</ul>
+<p>기능 3: 대괄호 연산자(<code class="docutils literal notranslate"><span class="pre">[]</span></code>) 지원</p>
+<p>아래 두 메서드가 필요하다.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">__setitem__(self,</span> <span class="pre">key,</span> <span class="pre">value)</span></code></p>
+<ul>
+<li><p>예제: <code class="docutils literal notranslate"><span class="pre">my_zip_tree['Plymouth']</span> <span class="pre">=</span> <span class="pre">55446</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">self.put(key,</span> <span class="pre">value)</span></code> 활용</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__getitem__(self,</span> <span class="pre">key)</span></code></p>
+<ul>
+<li><p>예제: <code class="docutils literal notranslate"><span class="pre">z</span> <span class="pre">=</span> <span class="pre">my_zip_tree['Plymouth']</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">self.get(key)</span></code> 활용</p></li>
+</ul>
+</li>
+</ul>
+<p>기능 4: <code class="docutils literal notranslate"><span class="pre">in</span></code> 연산자 지원</p>
+<p>아래 메서드가 필요하다.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">__contains__(self,</span> <span class="pre">key)</span></code></p>
+<ul>
+<li><p>예제: <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">Plymouth</span> <span class="pre">in</span> <span class="pre">my_zip_tree:</span> <span class="pre">print(True)</span></code></p></li>
+<li><p>반환값: <code class="docutils literal notranslate"><span class="pre">bool(self._get(key,</span> <span class="pre">self.root))</span></code></p></li>
+</ul>
+</li>
+</ul>
+<p>기능 5: 키-값 항목 제거</p>
+<p>지정된 키(key)를 사용하는 마디를 제거한다.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">delete(self,</span> <span class="pre">key)</span></code>:</p>
+<ul>
+<li><p>트리의 사이즈가 1, 즉 루트만 존재하는 경우: 루트의 키를 확인한 후 동일하면 루트 제거</p></li>
+<li><p>트리의 사이즈가 1보다 큰 경우: <code class="docutils literal notranslate"><span class="pre">self._get(key)</span></code> 를 이용하여 제거해야 할 마디 확인 후
+<code class="docutils literal notranslate"><span class="pre">_delete()</span></code> 메서드로 해당 마디 제거.</p></li>
+<li><p>제거 대상 키가 존재하지 않는 경우 <code class="docutils literal notranslate"><span class="pre">KeyError</span></code> 오류 발생.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">_delete(self,</span> <span class="pre">current_node)</span></code>: 지정된 마디 제거 후 자식 마디 재설정</p>
+<ul>
+<li><p>자식이 없는 잎 마디: 그냥 삭제. 부모 마디의 해당 자식 마디에 대한 정보 삭제.</p></li>
+<li><p>자식을 하나 갖는 마디: 해당 마디 삭제 후 자식 마디를 부모 마디에 연결.</p></li>
+<li><p>좌우 자식 모두 갖는 경우: 해당 마디를 계승자의 키-값으로 교체한 후 계승자 삭제.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__delitem__(self,</span> <span class="pre">key)</span></code>: <code class="docutils literal notranslate"><span class="pre">del</span></code> 연산자 지원.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">_delete()</span></code> 메서드가 작동하는 과정을 예를 들어 설명하면 다음과 같다.</p>
+<ul class="simple">
+<li><p>잎 마디 제거: <code class="docutils literal notranslate"><span class="pre">16</span></code>을 키로 갖는 마디 제거</p></li>
+</ul>
+<figure>
+<div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/bstdel1.png" width="80%"></div>
+</figure><ul class="simple">
+<li><p>자식을 하나 갖는 마디 제거: <code class="docutils literal notranslate"><span class="pre">25</span></code>를 키로 갖는 마디 제거</p></li>
+</ul>
+<figure>
+<div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/bstdel2.png" width="85%"></div>
+</figure><ul class="simple">
+<li><p>좌우 자식 모두 갖는 마디 제거: <code class="docutils literal notranslate"><span class="pre">5</span></code>를 키로 갖는 마디 제거</p>
+<ul>
+<li><p>계승자 확인: <code class="docutils literal notranslate"><span class="pre">find_successor()</span></code> 활용</p></li>
+<li><p>계승자 제거: <code class="docutils literal notranslate"><span class="pre">splice_out()</span></code> 활용</p></li>
+<li><p>제거된 마디 정보 업데이트</p></li>
+</ul>
+</li>
+</ul>
+<figure>
+<div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/bstdel3.png" width="80%"></div>
+</figure><p><code class="docutils literal notranslate"><span class="pre">BinarySearchTree</span></code> 클래스 전체 코드는 다음과 같다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">BinarySearchTree</span><span class="p">:</span>
+    <span class="c1"># 생성자: 아무 마디(TreeNode) 없는 이진탐색트리 생성. </span>
+    <span class="c1"># 자식 마디는 TreeNode에서 처리.</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="o">=</span> <span class="kc">None</span>    <span class="c1"># TreeNode 객체</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1"># 트리 크기: 마디 개수</span>
+    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span>
+
+    <span class="c1"># 이터레이터: 모든 마디의 키를 중위순회방식으로 확인</span>
+    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="fm">__iter__</span><span class="p">()</span>
+
+    <span class="c1"># 항목 추가: 루트 이외의 마디는 TreeNode에서 재귀적으로 처리</span>
+    <span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="o">=</span> <span class="n">TreeNode</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_put</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">+</span> <span class="mi">1</span>     <span class="c1"># size를 1 키우기</span>
+
+    <span class="c1"># 항목 추가 보조함수: 이진 탐색 트리 특성 유지</span>
+    <span class="k">def</span> <span class="nf">_put</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">current_node</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="o">&lt;</span> <span class="n">current_node</span><span class="o">.</span><span class="n">key</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">current_node</span><span class="o">.</span><span class="n">left_child</span><span class="p">:</span> 
+                <span class="bp">self</span><span class="o">.</span><span class="n">_put</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">current_node</span><span class="o">.</span><span class="n">left_child</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span> <span class="c1"># 왼쪽 자식 없는 경우 마디 추가</span>
+                <span class="n">current_node</span><span class="o">.</span><span class="n">left_child</span> <span class="o">=</span> <span class="n">TreeNode</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="n">current_node</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="n">current_node</span><span class="o">.</span><span class="n">key</span><span class="p">:</span>  <span class="c1"># value 업데이트</span>
+            <span class="n">current_node</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span>  <span class="c1"># 키의 값을 대체하는 경우 size는 그대로 두기 위해</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">current_node</span><span class="o">.</span><span class="n">right_child</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_put</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">current_node</span><span class="o">.</span><span class="n">right_child</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span> <span class="c1"># 오른쪽 자식 없는 경우 마디 추가</span>
+                <span class="n">current_node</span><span class="o">.</span><span class="n">right_child</span> <span class="o">=</span> <span class="n">TreeNode</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="n">current_node</span><span class="p">)</span>
+
+    <span class="c1"># 사전식 키-값 지정: aBinTree[key] = value</span>
+    <span class="k">def</span> <span class="fm">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+    <span class="c1">#  키의 값 확인</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">result</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">value</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="c1"># 키의 값 확인 보조함수: 키가 포함된 마디 반환. 재귀 적용</span>
+    <span class="k">def</span> <span class="nf">_get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">current_node</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">current_node</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">current_node</span><span class="o">.</span><span class="n">key</span> <span class="o">==</span> <span class="n">key</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">current_node</span>
+        <span class="k">elif</span> <span class="n">key</span> <span class="o">&lt;</span> <span class="n">current_node</span><span class="o">.</span><span class="n">key</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">current_node</span><span class="o">.</span><span class="n">left_child</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">current_node</span><span class="o">.</span><span class="n">right_child</span><span class="p">)</span>
+
+    <span class="c1">#  사전식 키의 값 확인: aBinTree[key]</span>
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+
+    <span class="c1"># 키 포함 여부 확인(in 연산자): key in aBinTree</span>
+    <span class="k">def</span> <span class="fm">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">))</span>
+
+    <span class="c1"># 키 삭제: del 연산자에 활용됨</span>
+    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="c1"># 하나의 마디만 있는 경우</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">key</span> <span class="o">==</span> <span class="n">key</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="c1"># 여러 마디가 있는 경우</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="c1"># 삭제 대상 마디 확인</span>
+            <span class="n">node_to_remove</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>
+            
+            <span class="k">if</span> <span class="n">node_to_remove</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_delete</span><span class="p">(</span><span class="n">node_to_remove</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="s2">&quot;키를 찾을 수 없음!&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="s2">&quot;키를 찾을 수 없음!&quot;</span><span class="p">)</span>
+
+    <span class="c1"># 키 삭제 보조함수: </span>
+    <span class="k">def</span> <span class="nf">_delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">current_node</span><span class="p">):</span>
+        <span class="c1"># 잎 마디인 경우</span>
+        <span class="k">if</span> <span class="n">current_node</span><span class="o">.</span><span class="n">is_leaf</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">current_node</span> <span class="o">==</span> <span class="n">current_node</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">left_child</span><span class="p">:</span>
+                <span class="n">current_node</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">left_child</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">current_node</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">right_child</span> <span class="o">=</span> <span class="kc">None</span>
+        
+        <span class="c1"># 좌우 자식 마디 모두 있는 경우: 계승자를 현재 마디로 옮김.</span>
+        <span class="k">elif</span> <span class="n">current_node</span><span class="o">.</span><span class="n">has_children</span><span class="p">():</span>
+            <span class="n">successor</span> <span class="o">=</span> <span class="n">current_node</span><span class="o">.</span><span class="n">find_successor</span><span class="p">()</span>
+            <span class="n">successor</span><span class="o">.</span><span class="n">splice_out</span><span class="p">()</span>
+            <span class="n">current_node</span><span class="o">.</span><span class="n">key</span> <span class="o">=</span> <span class="n">successor</span><span class="o">.</span><span class="n">key</span>
+            <span class="n">current_node</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">successor</span><span class="o">.</span><span class="n">value</span>
+        
+        <span class="c1"># 자식 마디가 하나인 경우</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># 왼쪽 자식만 있는 경우</span>
+            <span class="k">if</span> <span class="n">current_node</span><span class="o">.</span><span class="n">left_child</span><span class="p">:</span>
+                <span class="c1"># 부모의 왼쪽 자식인 경우</span>
+                <span class="k">if</span> <span class="n">current_node</span><span class="o">.</span><span class="n">is_left_child</span><span class="p">():</span>
+                    <span class="n">current_node</span><span class="o">.</span><span class="n">left_child</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="n">current_node</span><span class="o">.</span><span class="n">parent</span>
+                    <span class="n">current_node</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">left_child</span> <span class="o">=</span> <span class="n">current_node</span><span class="o">.</span><span class="n">left_child</span>
+                <span class="c1"># 부모의 오른쪽 자식인 경우</span>
+                <span class="k">elif</span> <span class="n">current_node</span><span class="o">.</span><span class="n">is_right_child</span><span class="p">():</span>
+                    <span class="n">current_node</span><span class="o">.</span><span class="n">left_child</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="n">current_node</span><span class="o">.</span><span class="n">parent</span>
+                    <span class="n">current_node</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">right_child</span> <span class="o">=</span> <span class="n">current_node</span><span class="o">.</span><span class="n">left_child</span>
+                <span class="c1"># 루트인 경우</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">current_node</span><span class="o">.</span><span class="n">replace_value</span><span class="p">(</span>
+                        <span class="n">current_node</span><span class="o">.</span><span class="n">left_child</span><span class="o">.</span><span class="n">key</span><span class="p">,</span>
+                        <span class="n">current_node</span><span class="o">.</span><span class="n">left_child</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                        <span class="n">current_node</span><span class="o">.</span><span class="n">left_child</span><span class="o">.</span><span class="n">left_child</span><span class="p">,</span>
+                        <span class="n">current_node</span><span class="o">.</span><span class="n">left_child</span><span class="o">.</span><span class="n">right_child</span><span class="p">,</span>
+                    <span class="p">)</span>
+            
+            <span class="c1"># 오른쪽 자식만 있는 경우</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># 부모의 왼쪽 자식인 경우</span>
+                <span class="k">if</span> <span class="n">current_node</span><span class="o">.</span><span class="n">is_left_child</span><span class="p">():</span>
+                    <span class="n">current_node</span><span class="o">.</span><span class="n">right_child</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="n">current_node</span><span class="o">.</span><span class="n">parent</span>
+                    <span class="n">current_node</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">left_child</span> <span class="o">=</span> <span class="n">current_node</span><span class="o">.</span><span class="n">right_child</span>
+                <span class="c1"># 부모의 왼쪽 자식인 경우</span>
+                <span class="k">elif</span> <span class="n">current_node</span><span class="o">.</span><span class="n">is_right_child</span><span class="p">():</span>
+                    <span class="n">current_node</span><span class="o">.</span><span class="n">right_child</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="n">current_node</span><span class="o">.</span><span class="n">parent</span>
+                    <span class="n">current_node</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">right_child</span> <span class="o">=</span> <span class="n">current_node</span><span class="o">.</span><span class="n">right_child</span>
+                <span class="c1"># 루트인 경우</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">current_node</span><span class="o">.</span><span class="n">replace_value</span><span class="p">(</span>
+                        <span class="n">current_node</span><span class="o">.</span><span class="n">right_child</span><span class="o">.</span><span class="n">key</span><span class="p">,</span>
+                        <span class="n">current_node</span><span class="o">.</span><span class="n">right_child</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                        <span class="n">current_node</span><span class="o">.</span><span class="n">right_child</span><span class="o">.</span><span class="n">left_child</span><span class="p">,</span>
+                        <span class="n">current_node</span><span class="o">.</span><span class="n">right_child</span><span class="o">.</span><span class="n">right_child</span><span class="p">,</span>
+                    <span class="p">)</span>
+    
+    <span class="c1"># 키-값 쌍 삭제(del 연산자): del aBinTree[key]</span>
+    <span class="k">def</span> <span class="fm">__delitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>예제</strong></p>
+<p>다음 키-값 쌍으로 이루어진 이진탐색트리를 생성한다.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;a&quot;</span><span class="p">:</span><span class="s2">&quot;art&quot;</span>
+<span class="s2">&quot;q&quot;</span><span class="p">:</span><span class="s2">&quot;quick&quot;</span>
+<span class="s2">&quot;b&quot;</span><span class="p">:</span><span class="s2">&quot;brown&quot;</span>
+<span class="s2">&quot;f&quot;</span><span class="p">:</span><span class="s2">&quot;fox&quot;</span>
+<span class="s2">&quot;j&quot;</span><span class="p">:</span><span class="s2">&quot;jumps&quot;</span>
+<span class="s2">&quot;o&quot;</span><span class="p">:</span><span class="s2">&quot;over&quot;</span>
+<span class="s2">&quot;t&quot;</span><span class="p">:</span><span class="s2">&quot;the&quot;</span>
+<span class="s2">&quot;l&quot;</span><span class="p">:</span><span class="s2">&quot;lazy&quot;</span>
+<span class="s2">&quot;d&quot;</span><span class="p">:</span><span class="s2">&quot;dog&quot;</span>
+</pre></div>
+</div>
+<p>이후 <code class="docutils literal notranslate"><span class="pre">&quot;q&quot;</span></code>의 값을 <code class="docutils literal notranslate"><span class="pre">&quot;quiet&quot;</span></code>로 수정한 후에
+포함된 항목을 확인한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 9개 항목 추가</span>
+<span class="n">my_tree</span> <span class="o">=</span> <span class="n">BinarySearchTree</span><span class="p">()</span>
+<span class="n">my_tree</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;art&quot;</span>
+<span class="n">my_tree</span><span class="p">[</span><span class="s2">&quot;q&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;quick&quot;</span>
+<span class="n">my_tree</span><span class="p">[</span><span class="s2">&quot;b&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;brown&quot;</span>
+<span class="n">my_tree</span><span class="p">[</span><span class="s2">&quot;f&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;fox&quot;</span>
+<span class="n">my_tree</span><span class="p">[</span><span class="s2">&quot;j&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;jumps&quot;</span>
+<span class="n">my_tree</span><span class="p">[</span><span class="s2">&quot;o&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;over&quot;</span>
+<span class="n">my_tree</span><span class="p">[</span><span class="s2">&quot;t&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;the&quot;</span>
+<span class="n">my_tree</span><span class="p">[</span><span class="s2">&quot;l&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;lazy&quot;</span>
+<span class="n">my_tree</span><span class="p">[</span><span class="s2">&quot;d&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;dog&quot;</span>
+
+<span class="c1"># 추가된 항목 일부 확인</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== 추가된 항목 일부 확인 ===</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;q의 값:&quot;</span><span class="p">,</span> <span class="n">my_tree</span><span class="p">[</span><span class="s2">&quot;q&quot;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;l의 값:&quot;</span><span class="p">,</span> <span class="n">my_tree</span><span class="p">[</span><span class="s2">&quot;l&quot;</span><span class="p">])</span>
+
+<span class="c1"># q의 값 업데이트</span>
+<span class="n">my_tree</span><span class="p">[</span><span class="s2">&quot;q&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;quiet&quot;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">=== q의 값 업데이트 ===</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;q의 값:&quot;</span><span class="p">,</span> <span class="n">my_tree</span><span class="p">[</span><span class="s2">&quot;q&quot;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;l의 값:&quot;</span><span class="p">,</span> <span class="n">my_tree</span><span class="p">[</span><span class="s2">&quot;l&quot;</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">=== 트리 사이즈 ===</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;이진탐색트리에 </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">my_tree</span><span class="p">)</span><span class="si">}</span><span class="s2"> 개의 항목이 있다.&quot;</span><span class="p">)</span>
+
+<span class="c1"># 항목 삭제</span>
+<span class="n">my_tree</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;키 a를 삭제하면 </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">my_tree</span><span class="p">)</span><span class="si">}</span><span class="s2"> 개의 항목이 남는다.&quot;</span><span class="p">)</span>
+
+<span class="c1"># 남은 항목의 키-값 확인</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">=== 트리 항목 ===</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;남은 항목의 키-값은 다음과 같다.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">my_tree</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">node</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">my_tree</span><span class="p">[</span><span class="n">node</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== 추가된 항목 일부 확인 ===
+
+q의 값: quick
+l의 값: lazy
+
+=== q의 값 업데이트 ===
+
+q의 값: quiet
+l의 값: lazy
+
+=== 트리 사이즈 ===
+
+이진탐색트리에 9 개의 항목이 있다.
+키 a를 삭제하면 8 개의 항목이 남는다.
+
+=== 트리 항목 ===
+
+남은 항목의 키-값은 다음과 같다.
+
+b: brown
+d: dog
+f: fox
+j: jumps
+l: lazy
+o: over
+q: quiet
+t: the
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="id5">
+<h3><span class="section-number">20.1.3. </span>이진탐색트리 분석<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">put()</span></code>과 <code class="docutils literal notranslate"><span class="pre">get()</span></code> 메서드, <code class="docutils literal notranslate"><span class="pre">in</span></code>과 <code class="docutils literal notranslate"><span class="pre">del</span></code> 연산자 모두
+생성된 이진탐색트리의 높이(height)에 의존한다.
+트리의 사이즈가 <span class="math notranslate nohighlight">\(n\)</span>일 때
+무작위로 생성된 트리의 경우 높이가 대략 <span class="math notranslate nohighlight">\(\log_2{n}\)</span>이다.
+그리고 이런 경우 모든 메서드와 연산자의 시간복잡도는 <span class="math notranslate nohighlight">\(O(\log_2{n})\)</span>이다.
+하지만 아래의 경우 또한 발생할 수 있으며 그런 경우 시간복잡도는 최악의 경우
+<span class="math notranslate nohighlight">\(O(n)\)</span>이다.</p>
+<figure>
+<div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/skewedTree.png" width="30%"></div>
+</figure><p><strong>연습문제</strong></p>
+<ol class="arabic simple">
+<li><p>리스트 <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">4,</span> <span class="pre">5,</span> <span class="pre">6,</span> <span class="pre">7,</span> <span class="pre">8,</span> <span class="pre">9,</span> <span class="pre">10]</span></code>의 항목을 차례대로 추가한 이진탐색트리를 그려라.</p></li>
+<li><p>리스트 <code class="docutils literal notranslate"><span class="pre">[10,</span> <span class="pre">9,</span> <span class="pre">8,</span> <span class="pre">7,</span> <span class="pre">6,</span> <span class="pre">5,</span> <span class="pre">4,</span> <span class="pre">3,</span> <span class="pre">2,</span> <span class="pre">1]</span></code>의 항목을 차례대로 추가한 이진탐색트리를 그려라.</p></li>
+<li><p>리스트 <code class="docutils literal notranslate"><span class="pre">[68,</span> <span class="pre">88,</span> <span class="pre">61,</span> <span class="pre">89,</span> <span class="pre">94,</span> <span class="pre">50,</span> <span class="pre">4,</span> <span class="pre">76,</span> <span class="pre">66,</span> <span class="pre">82]</span></code>의 항목을 차례대로 추가한 이진탐색트리를 그려라.</p></li>
+<li><p>리스트를 무작위로 생성한 후에 해당 리스트의 항목을 차례대로 추가한 이진탐색트리를 그려라.</p></li>
+</ol>
+</section>
+</section>
+<section id="id6">
+<h2><span class="section-number">20.2. </span>프로그래밍 실습 과제<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h2>
+<ol class="arabic">
+<li><p>본문에서 <code class="docutils literal notranslate"><span class="pre">TreeNode</span></code>의 메섣드로 정의한 <code class="docutils literal notranslate"><span class="pre">find_successor()</span></code> 함수는
+좌우측 자식을 모두 갖는 경우만 다룬다.
+그렇지 않은 일반적인 경우까지 다루도록 하려면 아래와 같이
+수정해야 한다.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">find_successor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">successor</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">right_child</span><span class="p">:</span>
+        <span class="n">successor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">right_child</span><span class="o">.</span><span class="n">find_min</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span> <span class="c1"># 우측 자식 없는 경우</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_left_child</span><span class="p">():</span>
+                <span class="n">successor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span>
+            <span class="k">else</span><span class="p">:</span> <span class="c1"># 부모의 우측 자식인 경우: 자신을 제외한 부모의 계승자 활용</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">right_child</span> <span class="o">=</span> <span class="kc">None</span> 
+                <span class="n">successor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">find_successor</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">right_child</span> <span class="o">=</span> <span class="bp">self</span>
+    <span class="k">return</span> <span class="n">successor</span>
+</pre></div>
+</div>
+<p>일반화된 <code class="docutils literal notranslate"><span class="pre">find_successor()</span></code> 메서드를 이용하여 중위순회(inorder traversal) 방식으로
+이진탐색트리를 순회하는 메서드를 구현하라.</p>
+</li>
+<li><p>이진탐색트리 코드를 수정하여 스레드 이진탐색트리 클래스로 만들어라.
+그리고 스레드 이진탐색트리의 모든 마디를 순회하는 중위순회 알고리즘을
+비재귀(non-recursive) 함수로 구현하라.
+스레트 이진트리에 대한 설명은 <a class="reference external" href="https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&amp;blogId=royal2030&amp;logNo=221544336513">스레드 이진트리 개념</a>를
+참조한다.</p></li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="trees_heaps_maps_2.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">19. </span>맵 추상 자료형 1부</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="trees_heaps_maps_4.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">21. </span>맵 추상 자료형 3부</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">20.1. 이진탐색트리</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">20.1.1. 정의</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">20.1.2. 구현</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#binarysearchtree-treenode">20.1.2.1. <code class="docutils literal notranslate"><span class="pre">BinarySearchTree</span></code> 클래스와 <code class="docutils literal notranslate"><span class="pre">TreeNode</span></code> 클래스</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">20.1.3. 이진탐색트리 분석</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">20.2. 프로그래밍 실습 과제</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By 코딩알지
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

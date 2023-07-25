@@ -1,0 +1,1061 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>21. 맵 추상 자료형 3부 &#8212; 문제해결 알고리즘</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'trees_heaps_maps_4';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="22. 최적화 문제와 동적계획법" href="dynamic_programming_1.html" />
+    <link rel="prev" title="20. 맵 추상 자료형 2부" href="trees_heaps_maps_3.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">문제해결 알고리즘</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">파이썬 기초</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="python_basic_1.html">1. 기본 자료형</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_basic_2.html">2. 제어 구조와 함수</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_basic_3.html">3. 클래스와 상속</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_basic_4.html">4. 클래스 기본 요소</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">알고리즘 시간 복잡도</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="time_complexity.html">5. 시간 복잡도</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_list_dict.html">6. 파이썬 모음 자료형 분석</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">선형 자료 구조</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="stacks.html">7. 스택</a></li>
+<li class="toctree-l1"><a class="reference internal" href="infix_prefix_postfix.html">8. 중위, 전위, 후위 표기법</a></li>
+<li class="toctree-l1"><a class="reference internal" href="queues.html">9. 큐</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deques.html">10. 덱</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linked_lists.html">11. 연결 리스트</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ordered_lists.html">12. 정렬 리스트</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">재귀</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="recursive_functions.html">13. 재귀</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hanoi_tower.html">14. 하노이의 탑과 미로게임</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">탐색과 정렬</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="sort_search_1.html">15. 탐색과 분할 정복</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sort_search_2.html">16. 버블/선택/합병/퀵 정렬</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sort_search_3.html">17. 삽입 정렬, 쉘 정렬</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">트리와 트리 알고리즘</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="trees_heaps_maps_1.html">18. 트리와 힙</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trees_heaps_maps_2.html">19. 맵 추상 자료형 1부</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trees_heaps_maps_3.html">20. 맵 추상 자료형 2부</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">21. 맵 추상 자료형 3부</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">동적계획법</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="dynamic_programming_1.html">22. 최적화 문제와 동적계획법</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dynamic_programming_2.html">23. 플로이드-워셜 알고리즘</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dynamic_programming_3.html">24. 외판원 문제</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">탐욕 기법</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="greedy_algorithm_1.html">25. 최소비용 신장트리</a></li>
+<li class="toctree-l1"><a class="reference internal" href="greedy_algorithm_2.html">26. 다익스트라 알고리즘</a></li>
+<li class="toctree-l1"><a class="reference internal" href="greedy_algorithm_3.html">27. 탐욕 기법 대 동적계획법</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">되추적 기법과 제네릭 프로그래밍</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="back_tracking.html">28. 되추적 기법</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generic_programming.html">29. 제네릭 프로그래밍</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">NP 이론</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="orders.html">30. 차수</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p_np.html">31. P-NP 문제</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/codingalzi/algopy" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/codingalzi/algopy/issues/new?title=Issue%20on%20page%20%2Ftrees_heaps_maps_4.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/trees_heaps_maps_4.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>맵 추상 자료형 3부</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#avl">21.1. 균형 이진탐색트리(AVL 트리)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">21.1.1. AVL 트리 분석</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">21.1.2. AVL 트리 구현</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">21.2. 맵 추상자료형 구현 비교</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">21.3. 프로그래밍 실습 과제</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1><span class="section-number">21. </span>맵 추상 자료형 3부<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
+<section id="avl">
+<h2><span class="section-number">21.1. </span>균형 이진탐색트리(AVL 트리)<a class="headerlink" href="#avl" title="Permalink to this heading">#</a></h2>
+<p>앞서 살펴 본 이진탐색트리의 탐색(<code class="docutils literal notranslate"><span class="pre">get()</span></code>) 및 항목추가(<code class="docutils literal notranslate"><span class="pre">put()</span></code>) 알고리즘은
+최악의 경우 <span class="math notranslate nohighlight">\(O(n)\)</span>의 시간복잡도를 갖는다.
+여기서는 이진트리의 좌우 자식 서브트리를 균형이 잡히도록 항목을 추가하여
+탐색과 항목추가 모두 <span class="math notranslate nohighlight">\(O(\log n)\)</span>의 시간복잡도를 갖도록 알고리즘을 구현한다.
+이와같이 균형 잡힌 이진트리를 <strong>AVL 트리</strong>(Adelson-Velski 트리)라고 부른다.</p>
+<p>AVL 트리를 구성하려면 모든 마디에 대해 <strong>균형인수</strong>(balance factor)를
+항상 평가해야 한다.
+마디의 균형인수는 해당 마디의 왼쪽 서브트리의 높이에서
+오른쪽 서브트리의 높이를 뺀 값이다.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>마디의 균형인수 = (왼쪽 서브트리의 높이) - (오른쪽 서브트리의 높이)
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>균형인수 <span class="math notranslate nohighlight">\(&gt;\)</span> 0: 왼쪽으로 치우친 트리</p></li>
+<li><p>균형인수 <span class="math notranslate nohighlight">\(=\)</span> 0: 균형 잡힌 트리</p></li>
+<li><p>균형인수 <span class="math notranslate nohighlight">\(&lt;\)</span> 0: 오른쪽으로 치우친 트리</p></li>
+</ul>
+<p>아래 그림은 오른쪽으로 치우친 트리에서 각 마디의 균형인수를 보여준다.</p>
+<figure>
+<div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/unbalanced.png" width="35%"></div>
+</figure><section id="id2">
+<h3><span class="section-number">21.1.1. </span>AVL 트리 분석<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<p>AVL 트리(균형 이진탐색트리)는 모든 마디의 균형인수가 -1, 0, 1 중에 하나이어야 한다.
+아래 그림은 높이가 0, 1, 2, 3 인 AVL 트리를 대상으로 했을 때 왼쪽 오른쪽으로 가장 많이
+치우친 트리를 보여준다.</p>
+<figure>
+<div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/worstAVL.png" width="70%"></div>
+</figure><p>위 그림에서 알 수 있듯이 높이가 <span class="math notranslate nohighlight">\(h\)</span>인 AVL 트리의 크기(마디 수) <span class="math notranslate nohighlight">\(N_h\)</span>는 아래 점화식을 만족한다.</p>
+<div class="math notranslate nohighlight">
+\[N_h = 1 + N_{h-1} + N_{h-2}\]</div>
+<p><span class="math notranslate nohighlight">\(h\)</span>가 매우 크면 아래 식이 성립한다.
+<span class="math notranslate nohighlight">\(\Phi\)</span>는 황금비(Golden Ratio)를 나타내며 피보나치 수열과 밀접하게 관련된다.
+보다 자세한 설명은 <a class="reference external" href="https://runestone.academy/runestone/books/published/pythonds3/Trees/AVLTreePerformance.html">AVL Tree Performance</a>를 참조할 수 있다.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+N_h  &amp;= \frac{\Phi^{h+2}}{\sqrt{5}} - 1 \\
+\Phi &amp;= \frac{1 + \sqrt{5}}{2}
+\end{align*}
+\end{split}\]</div>
+<p>위 식으로부터 다음 결과가 성립하여 AVL 트리의 탐색 알고리즘이 <span class="math notranslate nohighlight">\(O(\log{N})\)</span>임을 증명한다.</p>
+<div class="math notranslate nohighlight">
+\[
+h  = 1.44 \log{N_h}
+\]</div>
+</section>
+<section id="id3">
+<h3><span class="section-number">21.1.2. </span>AVL 트리 구현<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<p><a class="reference external" href="https://codingalzi.github.io/algopy/notebooks/algopy09_Map_2.html">2부</a>에서
+사용한 <code class="docutils literal notranslate"><span class="pre">TreeNode</span></code>와 <code class="docutils literal notranslate"><span class="pre">BinarySearchTree</span></code>를 상속한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 트리의 마디 클래스: 키와 값으로 이루어지며 좌우 자식과 부모 마디 정보 함께 보유</span>
+<span class="k">class</span> <span class="nc">TreeNode</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">key</span> <span class="o">=</span> <span class="n">key</span>             <span class="c1"># 키</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>         <span class="c1"># 값</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">left_child</span> <span class="o">=</span> <span class="n">left</span>     <span class="c1"># 좌측 자식 마디</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">right_child</span> <span class="o">=</span> <span class="n">right</span>   <span class="c1"># 우측 자식 마디</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="n">parent</span>       <span class="c1"># 부모 마디</span>
+
+    <span class="c1"># 좌측 자식 마디: 부모의 좌측 자식 마디 여부</span>
+    <span class="k">def</span> <span class="nf">is_left_child</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">left_child</span> <span class="ow">is</span> <span class="bp">self</span>
+
+    <span class="c1"># 우측 자식 마디: 부모의 우측 자식 마디 여부</span>
+    <span class="k">def</span> <span class="nf">is_right_child</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">right_child</span> <span class="ow">is</span> <span class="bp">self</span>
+
+    <span class="c1"># 루트: 부모가 없을 때</span>
+    <span class="k">def</span> <span class="nf">is_root</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span>
+
+    <span class="c1"># 잎: 자식이 없을 때</span>
+    <span class="k">def</span> <span class="nf">is_leaf</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">right_child</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">left_child</span><span class="p">)</span>
+
+    <span class="c1"># 자식 존재 여부</span>
+    <span class="k">def</span> <span class="nf">has_a_child</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">right_child</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">left_child</span>
+
+    <span class="c1"># 좌우측 두 자식 모두 존재 여부</span>
+    <span class="k">def</span> <span class="nf">has_children</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">right_child</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">left_child</span>
+
+    <span class="c1"># 키, 값, 좌우 자식 지정</span>
+    <span class="k">def</span> <span class="nf">replace_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">key</span> <span class="o">=</span> <span class="n">key</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">left_child</span> <span class="o">=</span> <span class="n">left</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">right_child</span> <span class="o">=</span> <span class="n">right</span>
+      
+        <span class="c1"># 새 자식의 부모로 자신을 지정</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">left_child</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">left_child</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="bp">self</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">right_child</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">right_child</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="bp">self</span>
+
+    <span class="c1"># 현재 마디의 계승자 마디 탐색</span>
+    <span class="c1"># 우측 자식이 있는 경우만 다뤄도 여기서는 목적 달성.</span>
+    <span class="c1"># 모든 경우를 다루는 경우는 프로그래밍 실습 과제 참조.</span>
+    <span class="k">def</span> <span class="nf">find_successor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_children</span><span class="p">():</span>
+            <span class="n">successor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">right_child</span><span class="o">.</span><span class="n">find_min</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">successor</span>
+    
+    <span class="c1"># 현재 트리에 사용된 가장 작은 키</span>
+    <span class="k">def</span> <span class="nf">find_min</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span>
+        <span class="k">while</span> <span class="n">current</span><span class="o">.</span><span class="n">left_child</span><span class="p">:</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">left_child</span>
+        <span class="k">return</span> <span class="n">current</span>
+
+    <span class="c1"># 계승자 마디 삭제 후 자식 마디들을 부모 마디에 이어 붙이기</span>
+    <span class="c1"># 계승자는 자식을 하나만 갖기에 가능함.</span>
+    <span class="k">def</span> <span class="nf">splice_out</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_leaf</span><span class="p">():</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_left_child</span><span class="p">():</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">left_child</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">right_child</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">left_child</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_left_child</span><span class="p">():</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">left_child</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">left_child</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">right_child</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">left_child</span>
+            
+            <span class="bp">self</span><span class="o">.</span><span class="n">left_child</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_left_child</span><span class="p">():</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">left_child</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">right_child</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">right_child</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">right_child</span>
+            
+            <span class="bp">self</span><span class="o">.</span><span class="n">right_child</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span>
+
+    <span class="c1"># 이터레이터: 중위순회방식으로 키(key) 확인</span>
+    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">left_child</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">left_child</span><span class="p">:</span>
+                    <span class="k">yield</span> <span class="n">elem</span>
+            <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">key</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">right_child</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">right_child</span><span class="p">:</span>
+                    <span class="k">yield</span> <span class="n">elem</span>
+
+<span class="k">class</span> <span class="nc">BinarySearchTree</span><span class="p">:</span>
+    <span class="c1"># 생성자: 아무 마디(TreeNode) 없는 이진탐색트리 생성. </span>
+    <span class="c1"># 자식 마디는 TreeNode에서 처리.</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="o">=</span> <span class="kc">None</span>    <span class="c1"># TreeNode 객체</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1"># 트리 크기: 마디 개수</span>
+    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span>
+
+    <span class="c1"># 이터레이터: 모든 마디의 키를 중위순회방식으로 확인</span>
+    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="fm">__iter__</span><span class="p">()</span>
+
+    <span class="c1"># 항목 추가: 루트 이외의 마디는 TreeNode에서 재귀적으로 처리</span>
+    <span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="o">=</span> <span class="n">TreeNode</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_put</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">+</span> <span class="mi">1</span>     <span class="c1"># size를 1 키우기</span>
+
+    <span class="c1"># 항목 추가 보조함수: 이진 탐색 트리 특성 유지</span>
+    <span class="k">def</span> <span class="nf">_put</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">current_node</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="o">&lt;</span> <span class="n">current_node</span><span class="o">.</span><span class="n">key</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">current_node</span><span class="o">.</span><span class="n">left_child</span><span class="p">:</span> 
+                <span class="bp">self</span><span class="o">.</span><span class="n">_put</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">current_node</span><span class="o">.</span><span class="n">left_child</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span> <span class="c1"># 왼쪽 자식 없는 경우 마디 추가</span>
+                <span class="n">current_node</span><span class="o">.</span><span class="n">left_child</span> <span class="o">=</span> <span class="n">TreeNode</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="n">current_node</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="n">current_node</span><span class="o">.</span><span class="n">key</span><span class="p">:</span>  <span class="c1"># value 업데이트</span>
+            <span class="n">current_node</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span>  <span class="c1"># 키의 값을 대체하는 경우 size는 그대로 두기 위해</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">current_node</span><span class="o">.</span><span class="n">right_child</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_put</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">current_node</span><span class="o">.</span><span class="n">right_child</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span> <span class="c1"># 오른쪽 자식 없는 경우 마디 추가</span>
+                <span class="n">current_node</span><span class="o">.</span><span class="n">right_child</span> <span class="o">=</span> <span class="n">TreeNode</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="n">current_node</span><span class="p">)</span>
+
+    <span class="c1"># 사전식 키-값 지정: aBinTree[key] = value</span>
+    <span class="k">def</span> <span class="fm">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+    <span class="c1">#  키의 값 확인</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">result</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">value</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="c1"># 키의 값 확인 보조함수: 키가 포함된 마디 반환. 재귀 적용</span>
+    <span class="k">def</span> <span class="nf">_get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">current_node</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">current_node</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">current_node</span><span class="o">.</span><span class="n">key</span> <span class="o">==</span> <span class="n">key</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">current_node</span>
+        <span class="k">elif</span> <span class="n">key</span> <span class="o">&lt;</span> <span class="n">current_node</span><span class="o">.</span><span class="n">key</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">current_node</span><span class="o">.</span><span class="n">left_child</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">current_node</span><span class="o">.</span><span class="n">right_child</span><span class="p">)</span>
+
+    <span class="c1">#  사전식 키의 값 확인: aBinTree[key]</span>
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+
+    <span class="c1"># 키 포함 여부 확인(in 연산자): key in aBinTree</span>
+    <span class="k">def</span> <span class="fm">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">))</span>
+
+    <span class="c1"># 키 삭제: del 연산자에 활용됨</span>
+    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="c1"># 하나의 마디만 있는 경우</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">key</span> <span class="o">==</span> <span class="n">key</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="c1"># 여러 마디가 있는 경우</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="c1"># 삭제 대상 마디 확인</span>
+            <span class="n">node_to_remove</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>
+            
+            <span class="k">if</span> <span class="n">node_to_remove</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_delete</span><span class="p">(</span><span class="n">node_to_remove</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="s2">&quot;키를 찾을 수 없음!&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="s2">&quot;키를 찾을 수 없음!&quot;</span><span class="p">)</span>
+
+    <span class="c1"># 키 삭제 보조함수: </span>
+    <span class="k">def</span> <span class="nf">_delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">current_node</span><span class="p">):</span>
+        <span class="c1"># 잎 마디인 경우</span>
+        <span class="k">if</span> <span class="n">current_node</span><span class="o">.</span><span class="n">is_leaf</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">current_node</span> <span class="o">==</span> <span class="n">current_node</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">left_child</span><span class="p">:</span>
+                <span class="n">current_node</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">left_child</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">current_node</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">right_child</span> <span class="o">=</span> <span class="kc">None</span>
+        
+        <span class="c1"># 좌우 자식 마디 모두 있는 경우: 계승자를 현재 마디로 옮김.</span>
+        <span class="k">elif</span> <span class="n">current_node</span><span class="o">.</span><span class="n">has_children</span><span class="p">():</span>
+            <span class="n">successor</span> <span class="o">=</span> <span class="n">current_node</span><span class="o">.</span><span class="n">find_successor</span><span class="p">()</span>
+            <span class="n">successor</span><span class="o">.</span><span class="n">splice_out</span><span class="p">()</span>
+            <span class="n">current_node</span><span class="o">.</span><span class="n">key</span> <span class="o">=</span> <span class="n">successor</span><span class="o">.</span><span class="n">key</span>
+            <span class="n">current_node</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">successor</span><span class="o">.</span><span class="n">value</span>
+        
+        <span class="c1"># 자식 마디가 하나인 경우</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># 왼쪽 자식만 있는 경우</span>
+            <span class="k">if</span> <span class="n">current_node</span><span class="o">.</span><span class="n">left_child</span><span class="p">:</span>
+                <span class="c1"># 부모의 왼쪽 자식인 경우</span>
+                <span class="k">if</span> <span class="n">current_node</span><span class="o">.</span><span class="n">is_left_child</span><span class="p">():</span>
+                    <span class="n">current_node</span><span class="o">.</span><span class="n">left_child</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="n">current_node</span><span class="o">.</span><span class="n">parent</span>
+                    <span class="n">current_node</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">left_child</span> <span class="o">=</span> <span class="n">current_node</span><span class="o">.</span><span class="n">left_child</span>
+                <span class="c1"># 부모의 오른쪽 자식인 경우</span>
+                <span class="k">elif</span> <span class="n">current_node</span><span class="o">.</span><span class="n">is_right_child</span><span class="p">():</span>
+                    <span class="n">current_node</span><span class="o">.</span><span class="n">left_child</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="n">current_node</span><span class="o">.</span><span class="n">parent</span>
+                    <span class="n">current_node</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">right_child</span> <span class="o">=</span> <span class="n">current_node</span><span class="o">.</span><span class="n">left_child</span>
+                <span class="c1"># 루트인 경우</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">current_node</span><span class="o">.</span><span class="n">replace_value</span><span class="p">(</span>
+                        <span class="n">current_node</span><span class="o">.</span><span class="n">left_child</span><span class="o">.</span><span class="n">key</span><span class="p">,</span>
+                        <span class="n">current_node</span><span class="o">.</span><span class="n">left_child</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                        <span class="n">current_node</span><span class="o">.</span><span class="n">left_child</span><span class="o">.</span><span class="n">left_child</span><span class="p">,</span>
+                        <span class="n">current_node</span><span class="o">.</span><span class="n">left_child</span><span class="o">.</span><span class="n">right_child</span><span class="p">,</span>
+                    <span class="p">)</span>
+            
+            <span class="c1"># 오른쪽 자식만 있는 경우</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># 부모의 왼쪽 자식인 경우</span>
+                <span class="k">if</span> <span class="n">current_node</span><span class="o">.</span><span class="n">is_left_child</span><span class="p">():</span>
+                    <span class="n">current_node</span><span class="o">.</span><span class="n">right_child</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="n">current_node</span><span class="o">.</span><span class="n">parent</span>
+                    <span class="n">current_node</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">left_child</span> <span class="o">=</span> <span class="n">current_node</span><span class="o">.</span><span class="n">right_child</span>
+                <span class="c1"># 부모의 왼쪽 자식인 경우</span>
+                <span class="k">elif</span> <span class="n">current_node</span><span class="o">.</span><span class="n">is_right_child</span><span class="p">():</span>
+                    <span class="n">current_node</span><span class="o">.</span><span class="n">right_child</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="n">current_node</span><span class="o">.</span><span class="n">parent</span>
+                    <span class="n">current_node</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">right_child</span> <span class="o">=</span> <span class="n">current_node</span><span class="o">.</span><span class="n">right_child</span>
+                <span class="c1"># 루트인 경우</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">current_node</span><span class="o">.</span><span class="n">replace_value</span><span class="p">(</span>
+                        <span class="n">current_node</span><span class="o">.</span><span class="n">right_child</span><span class="o">.</span><span class="n">key</span><span class="p">,</span>
+                        <span class="n">current_node</span><span class="o">.</span><span class="n">right_child</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                        <span class="n">current_node</span><span class="o">.</span><span class="n">right_child</span><span class="o">.</span><span class="n">left_child</span><span class="p">,</span>
+                        <span class="n">current_node</span><span class="o">.</span><span class="n">right_child</span><span class="o">.</span><span class="n">right_child</span><span class="p">,</span>
+                    <span class="p">)</span>
+    
+    <span class="c1"># 키-값 쌍 삭제(del 연산자): del aBinTree[key]</span>
+    <span class="k">def</span> <span class="fm">__delitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>AVLTreeNode 클래스</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">TreeNode</span></code> 클래스를 상속하며,
+부모 자식 관계뿐만 아니라 균형인수도 저장하도록 한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">AVLTreeNode</span><span class="p">(</span><span class="n">TreeNode</span><span class="p">):</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">balance_factor</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">parent</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">balance_factor</span> <span class="o">=</span> <span class="n">balance_factor</span>  <span class="c1"># 균형인수</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>AVLTree 클래스</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">BinarySearchTree</span></code> 클래스를 상속한다.</p>
+<p>기능 업데이트 1: <code class="docutils literal notranslate"><span class="pre">_put(self,</span> <span class="pre">key,</span> <span class="pre">value,</span> <span class="pre">current_node)</span></code> 메서드 재정의(overriding)</p>
+<p>새로운 항목은 항상 잎(leaf) 마디로 추가되기에 균형인수는 0이다.
+하지만 부모의 균형인수가 변하기에 적절하게 업데이트 해야 한다.</p>
+<ul class="simple">
+<li><p>왼쪽 자식으로 추가되는 경우: 부모 마디의 균형인수 1 키울 것</p></li>
+<li><p>오른쪽 자식으로 추가되는 경우: 부모 마디의 균형인수 1 줄일 것</p></li>
+</ul>
+<p>위 과정을 부모의 부모 등 모든 조상에 대해 재귀적으로 적용해야 한다.
+이를 위해 <code class="docutils literal notranslate"><span class="pre">update_balance(self,</span> <span class="pre">node)</span></code> 메서드를 추가한다.</p>
+<p>기능 업데이트 2: <code class="docutils literal notranslate"><span class="pre">update_balance(self,</span> <span class="pre">node)</span></code> 메서드 정의</p>
+<p>새로운 자식이 추가된 부모의 균형인수를 업데이트 해야 함며,
+이를 부모의 부모까지 재귀적으로 적용해야 한다.
+단, 업데이트된 부모의 균형인수가 0이라면 더 이상 재귀를 적용할 필요가 없다.
+왜냐하면 업데이트된 부모의 균형인수가 0이라면 부모의 부모의 균형인수는
+전혀 바뀌지 않기 때문이다.</p>
+<ul class="simple">
+<li><p>자식 추가 후 균형인수가 1보가 크거나 -1보다 작아진 경우: 더 이상 AVL 트리가 아니기에
+트리 전체를 새롭게 정돈해서 균형을 다시 잡아주어야 한다.
+이를 위해 <code class="docutils literal notranslate"><span class="pre">rebalance(self,</span> <span class="pre">node)</span></code> 메서드를 추가한다.</p></li>
+</ul>
+<p>기능 업데이트 3: <code class="docutils literal notranslate"><span class="pre">rebalance(self,</span> <span class="pre">node)</span></code> 메서드 정의</p>
+<p>추가된 항목으로 인해 균형이 깨진 경우 균형을 다시 잡아주도록 트리의 마디 구조를 바꾼다.
+이를 위해 <code class="docutils literal notranslate"><span class="pre">rotate_left(self,</span> <span class="pre">rotaiton_root)</span></code>와 <code class="docutils literal notranslate"><span class="pre">rotate_right(self,</span> <span class="pre">rotaiton_root)</span></code>
+메서드를 구현한다.</p>
+<ul class="simple">
+<li><p>왼쪽으로 회전</p></li>
+</ul>
+<figure>
+<div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/simpleunbalanced.png" width="50%"></div>
+</figure><ul class="simple">
+<li><p>오른쪽으로 회전</p></li>
+</ul>
+<figure>
+<div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/rightrotate1.png" width="60%"></div>
+</figure><ul class="simple">
+<li><p>보다 복잡한 경우</p></li>
+</ul>
+<figure>
+<div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/rotatelr.png" width="60%"></div>
+</figure><p><strong>주의</strong>: 아래 코드는 불완전함.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">AVLTree</span><span class="p">(</span><span class="n">BinarySearchTree</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_put</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">current_node</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="o">&lt;</span> <span class="n">current_node</span><span class="o">.</span><span class="n">key</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">current_node</span><span class="o">.</span><span class="n">left_child</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_put</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">current_node</span><span class="o">.</span><span class="n">left_child</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">current_node</span><span class="o">.</span><span class="n">left_child</span> <span class="o">=</span> <span class="n">AVLTreeNode</span><span class="p">(</span>
+                    <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="n">current_node</span>
+                <span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">update_balance</span><span class="p">(</span><span class="n">current_node</span><span class="o">.</span><span class="n">left_child</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">current_node</span><span class="o">.</span><span class="n">right_child</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_put</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">current_node</span><span class="o">.</span><span class="n">right_child</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">current_node</span><span class="o">.</span><span class="n">right_child</span> <span class="o">=</span> <span class="n">AVLTreeNode</span><span class="p">(</span>
+                    <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="n">current_node</span>
+                <span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">update_balance</span><span class="p">(</span><span class="n">current_node</span><span class="o">.</span><span class="n">right_child</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">update_balance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">balance_factor</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">node</span><span class="o">.</span><span class="n">balance_factor</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">rebalance</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">parent</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">is_left_child</span><span class="p">():</span>
+                <span class="n">node</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">balance_factor</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">elif</span> <span class="n">node</span><span class="o">.</span><span class="n">is_right_child</span><span class="p">():</span>
+                <span class="n">node</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">balance_factor</span> <span class="o">-=</span> <span class="mi">1</span>
+
+            <span class="c1"># 부모의 균형인수가 0이 아닌경우 재귀 적용</span>
+            <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">balance_factor</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">update_balance</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">parent</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">rotate_left</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rotation_root</span><span class="p">):</span>
+        <span class="n">new_root</span> <span class="o">=</span> <span class="n">rotation_root</span><span class="o">.</span><span class="n">right_child</span>
+        <span class="n">rotation_root</span><span class="o">.</span><span class="n">right_child</span> <span class="o">=</span> <span class="n">new_root</span><span class="o">.</span><span class="n">left_child</span>
+        <span class="k">if</span> <span class="n">new_root</span><span class="o">.</span><span class="n">left_child</span><span class="p">:</span>
+            <span class="n">new_root</span><span class="o">.</span><span class="n">left_child</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="n">rotation_root</span>
+        <span class="n">new_root</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="n">rotation_root</span><span class="o">.</span><span class="n">parent</span>
+        <span class="k">if</span> <span class="n">rotation_root</span><span class="o">.</span><span class="n">is_root</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_root</span> <span class="o">=</span> <span class="n">new_root</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">rotation_root</span><span class="o">.</span><span class="n">is_left_child</span><span class="p">():</span>
+                <span class="n">rotation_root</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">left_child</span> <span class="o">=</span> <span class="n">new_root</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">rotation_root</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">right_child</span> <span class="o">=</span> <span class="n">new_root</span>
+        <span class="n">new_root</span><span class="o">.</span><span class="n">left_child</span> <span class="o">=</span> <span class="n">rotation_root</span>
+        <span class="n">rotation_root</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="n">new_root</span>
+        <span class="n">rotation_root</span><span class="o">.</span><span class="n">balance_factor</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">rotation_root</span><span class="o">.</span><span class="n">balance_factor</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">-</span> <span class="nb">min</span><span class="p">(</span><span class="n">new_root</span><span class="o">.</span><span class="n">balance_factor</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">new_root</span><span class="o">.</span><span class="n">balance_factor</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">new_root</span><span class="o">.</span><span class="n">balance_factor</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">+</span> <span class="nb">max</span><span class="p">(</span><span class="n">rotation_root</span><span class="o">.</span><span class="n">balance_factor</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="c1"># 수정되어야 함</span>
+    <span class="k">def</span> <span class="nf">rotate_right</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rotation_root</span><span class="p">):</span>
+        <span class="n">new_root</span> <span class="o">=</span> <span class="n">rotation_root</span><span class="o">.</span><span class="n">left_child</span>
+        <span class="n">rotation_root</span><span class="o">.</span><span class="n">left_child</span> <span class="o">=</span> <span class="n">new_root</span><span class="o">.</span><span class="n">right_child</span>
+        <span class="k">if</span> <span class="n">new_root</span><span class="o">.</span><span class="n">right_child</span><span class="p">:</span>
+            <span class="n">new_root</span><span class="o">.</span><span class="n">right_child</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="n">rotation_root</span>
+        <span class="n">new_root</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="n">rotation_root</span><span class="o">.</span><span class="n">parent</span>
+        <span class="k">if</span> <span class="n">rotation_root</span><span class="o">.</span><span class="n">is_root</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_root</span> <span class="o">=</span> <span class="n">new_root</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">rotation_root</span><span class="o">.</span><span class="n">is_right_child</span><span class="p">():</span>
+                <span class="n">rotation_root</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">right_child</span> <span class="o">=</span> <span class="n">new_root</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">rotation_root</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">left_child</span> <span class="o">=</span> <span class="n">new_root</span>
+        <span class="n">new_root</span><span class="o">.</span><span class="n">right_child</span> <span class="o">=</span> <span class="n">rotation_root</span>
+        <span class="n">rotation_root</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="n">new_root</span>
+        <span class="n">rotation_root</span><span class="o">.</span><span class="n">balance_factor</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">rotation_root</span><span class="o">.</span><span class="n">balance_factor</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">-</span> <span class="nb">min</span><span class="p">(</span><span class="n">new_root</span><span class="o">.</span><span class="n">balance_factor</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">new_root</span><span class="o">.</span><span class="n">balance_factor</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">new_root</span><span class="o">.</span><span class="n">balance_factor</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">+</span> <span class="nb">max</span><span class="p">(</span><span class="n">rotation_root</span><span class="o">.</span><span class="n">balance_factor</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">rebalance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">balance_factor</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">right_child</span><span class="o">.</span><span class="n">balance_factor</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">rotate_right</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right_child</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">rotate_left</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">rotate_left</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">node</span><span class="o">.</span><span class="n">balance_factor</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">left_child</span><span class="o">.</span><span class="n">balance_factor</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">rotate_left</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left_child</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">rotate_right</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">rotate_right</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="id4">
+<h2><span class="section-number">21.2. </span>맵 추상자료형 구현 비교<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>연산자</p></th>
+<th class="head text-center"><p>정렬 리스트</p></th>
+<th class="head text-center"><p>해시 테이블</p></th>
+<th class="head text-center"><p>이진탐색트리</p></th>
+<th class="head text-center"><p>AVL 트리</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>put</p></td>
+<td class="text-center"><p>O(n)</p></td>
+<td class="text-center"><p>O(1)</p></td>
+<td class="text-center"><p>O(n)</p></td>
+<td class="text-center"><p>O(log n)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>get</p></td>
+<td class="text-center"><p>O(log n)</p></td>
+<td class="text-center"><p>O(1)</p></td>
+<td class="text-center"><p>O(n)</p></td>
+<td class="text-center"><p>O(log n)</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>in</p></td>
+<td class="text-center"><p>O(log n)</p></td>
+<td class="text-center"><p>O(1)</p></td>
+<td class="text-center"><p>O(n)</p></td>
+<td class="text-center"><p>O(log n)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>del</p></td>
+<td class="text-center"><p>O(n)</p></td>
+<td class="text-center"><p>O(1)</p></td>
+<td class="text-center"><p>O(n)</p></td>
+<td class="text-center"><p>O(log n)</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>연습문제</strong></p>
+<ol class="arabic">
+<li><p>아래 모양의 트리를 균형이진탐색트리로 만들어라.</p>
+ <figure>
+ <div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/rotexer1.png" width="20%"></div>
+ </figure>
+</li>
+<li><p>아래 이미지를 이용하여 D 마디의 균형인수를 업데이트 하는 식을 유도하라.</p>
+ <figure>
+ <div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/bfderive.png" width="60%"></div>
+ </figure></li>
+</ol>
+</section>
+<section id="id5">
+<h2><span class="section-number">21.3. </span>프로그래밍 실습 과제<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>AVL 트리에서 항목을 삭제하는 기능을 구현하라.
+항목삭제 후에 균형인수 업데이트와 리밸런싱 등을 적절하게 구현해야 한다.</p></li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="trees_heaps_maps_3.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">20. </span>맵 추상 자료형 2부</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="dynamic_programming_1.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">22. </span>최적화 문제와 동적계획법</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#avl">21.1. 균형 이진탐색트리(AVL 트리)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">21.1.1. AVL 트리 분석</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">21.1.2. AVL 트리 구현</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">21.2. 맵 추상자료형 구현 비교</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">21.3. 프로그래밍 실습 과제</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By 코딩알지
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

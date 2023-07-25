@@ -1,586 +1,428 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>3.1. 스택 &#8212; 문제해결 알고리즘</title>
-    
-  <link href="_static/css/theme.css" rel="stylesheet">
-  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    
-  <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+    <title>7. 스택 &#8212; 문제해결 알고리즘</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
-    
-      
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'stacks';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="3.2. 중위, 전위, 후위 표기법" href="infix_prefix_postfix.html" />
-    <link rel="prev" title="3. 선형 자료구조" href="linear_structures.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+    <link rel="next" title="8. 중위, 전위, 후위 표기법" href="infix_prefix_postfix.html" />
+    <link rel="prev" title="6. 파이썬 모음 자료형 분석" href="python_list_dict.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
 
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+  
+  <div class="sidebar-header-items sidebar-primary__section">
     
-        <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
-      
-      
-      
-      <h1 class="site-logo" id="site-title">문제해결 알고리즘</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <ul class="current nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="python_basic.html">
-   1. 파이썬 기초
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="python_basic_1.html">
-     1.1. 기본 자료형
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="python_basic_2.html">
-     1.2. 제어 구조와 함수
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="python_basic_3.html">
-     1.3. 클래스와 상속
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="python_basic_4.html">
-     1.4. 클래스 기본 요소
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="algorithm_time_complexity.html">
-   2. 알고리즘 시간 복잡도
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="time_complexity.html">
-     2.1. 시간 복잡도
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="python_list_dict.html">
-     2.2. 파이썬 모음 자료형 분석
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="linear_structures.html">
-   3. 선형 자료구조
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     3.1. 스택
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="infix_prefix_postfix.html">
-     3.2. 중위, 전위, 후위 표기법
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="queues.html">
-     3.3. 큐
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="deques.html">
-     3.4. 덱
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="linked_lists.html">
-     3.5. 연결 리스트
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="ordered_lists.html">
-     3.6. 정렬 리스트
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="recursion.html">
-   4. 재귀
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="recursive_functions.html">
-     4.1. 재귀
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="hanoi_tower.html">
-     4.2. 하노이의 탑과 미로게임
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="sort_search.html">
-   5. 탐색과 정렬
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-  <label for="toctree-checkbox-5">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="sort_search_1.html">
-     5.1. 탐색과 분할 정복
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="sort_search_2.html">
-     5.2. 버블/선택/합병/퀵 정렬
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="sort_search_3.html">
-     5.3. 삽입 정렬, 쉘 정렬
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="dynamic_programming.html">
-   6. 동적계획법
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-  <label for="toctree-checkbox-6">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="dynamic_programming_1.html">
-     6.1. 최적화 문제와 동적계획법
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="dynamic_programming_2.html">
-     6.2. 플로이드-워셜 알고리즘
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="dynamic_programming_3.html">
-     6.3. 외판원 문제
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="greedy_algorithm.html">
-   7. 탐욕 기법
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
-  <label for="toctree-checkbox-7">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="greedy_algorithm_1.html">
-     7.1. 최소비용 신장트리
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="greedy_algorithm_2.html">
-     7.2. 다익스트라 알고리즘
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="greedy_algorithm_3.html">
-     7.3. 탐욕 기법 대 동적계획법
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="back_tracking_generic.html">
-   8. 되추적 기법과 제네릭 프로그래밍
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
-  <label for="toctree-checkbox-8">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="back_tracking.html">
-     8.1. 되추적 기법
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="generic_programming.html">
-     8.2. 제네릭 프로그래밍
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="np_theory.html">
-   9. NP 이론
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
-  <label for="toctree-checkbox-9">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="orders.html">
-     9.1. 차수
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="p_np.html">
-     9.2. P-NP 문제
-    </a>
-   </li>
-  </ul>
- </li>
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">문제해결 알고리즘</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">파이썬 기초</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="python_basic_1.html">1. 기본 자료형</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_basic_2.html">2. 제어 구조와 함수</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_basic_3.html">3. 클래스와 상속</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_basic_4.html">4. 클래스 기본 요소</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">알고리즘 시간 복잡도</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="time_complexity.html">5. 시간 복잡도</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_list_dict.html">6. 파이썬 모음 자료형 분석</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">선형 자료 구조</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">7. 스택</a></li>
+<li class="toctree-l1"><a class="reference internal" href="infix_prefix_postfix.html">8. 중위, 전위, 후위 표기법</a></li>
+<li class="toctree-l1"><a class="reference internal" href="queues.html">9. 큐</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deques.html">10. 덱</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linked_lists.html">11. 연결 리스트</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ordered_lists.html">12. 정렬 리스트</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">재귀</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="recursive_functions.html">13. 재귀</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hanoi_tower.html">14. 하노이의 탑과 미로게임</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">탐색과 정렬</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="sort_search_1.html">15. 탐색과 분할 정복</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sort_search_2.html">16. 버블/선택/합병/퀵 정렬</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sort_search_3.html">17. 삽입 정렬, 쉘 정렬</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">트리와 트리 알고리즘</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="trees_heaps_maps_1.html">18. 트리와 힙</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trees_heaps_maps_2.html">19. 맵 추상 자료형 1부</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trees_heaps_maps_3.html">20. 맵 추상 자료형 2부</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trees_heaps_maps_4.html">21. 맵 추상 자료형 3부</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">동적계획법</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="dynamic_programming_1.html">22. 최적화 문제와 동적계획법</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dynamic_programming_2.html">23. 플로이드-워셜 알고리즘</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dynamic_programming_3.html">24. 외판원 문제</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">탐욕 기법</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="greedy_algorithm_1.html">25. 최소비용 신장트리</a></li>
+<li class="toctree-l1"><a class="reference internal" href="greedy_algorithm_2.html">26. 다익스트라 알고리즘</a></li>
+<li class="toctree-l1"><a class="reference internal" href="greedy_algorithm_3.html">27. 탐욕 기법 대 동적계획법</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">되추적 기법과 제네릭 프로그래밍</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="back_tracking.html">28. 되추적 기법</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generic_programming.html">29. 제네릭 프로그래밍</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">NP 이론</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="orders.html">30. 차수</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p_np.html">31. P-NP 문제</a></li>
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/stacks.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+</nav></div>
     </div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
-            <!-- Source interaction buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/codingalzi/algopy"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/codingalzi/algopy/issues/new?title=Issue%20on%20page%20%2Fstacks.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+      </div>
+      
+      <main id="main-content" class="bd-main">
         
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
     </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/codingalzi/algopy" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/codingalzi/algopy/issues/new?title=Issue%20on%20page%20%2Fstacks.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
 </div>
 
-            <!-- Full screen (wrap in <a> to have style consistency -->
 
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
 
-            <!-- Launch buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/codingalzi/algopy/master?urlpath=tree/jupyter-book/stacks.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/stacks.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
     </div>
+  
 </div>
+</div>
+              
+              
 
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>스택</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div>
+                <h2> Contents </h2>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
+            <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id2">
-   3.1.1. 선형 자료구조
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id3">
-   3.1.2. 스택의 정의
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#stack">
-   3.1.3.
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     Stack
-    </span>
-   </code>
-   추상 자료형
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id4">
-   3.1.4. 스택 자료구조 구현
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id5">
-   3.1.5. 스택 실전 활용
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id6">
-     3.1.5.1. 괄호 짝맞추기 문제
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id7">
-     3.1.5.2. 괄호 짝맞추기 문제(일반화)
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id8">
-     3.1.5.3. 이진법 계산
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id9">
-     3.1.5.4. 진법 변환
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id10">
-   3.1.6. 연습 문제
-  </a>
- </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">7.1. 선형 자료구조</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">7.2. 스택의 정의</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stack">7.3. <code class="docutils literal notranslate"><span class="pre">Stack</span></code> 추상 자료형</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">7.4. 스택 자료구조 구현</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">7.5. 스택 실전 활용</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">7.5.1. 괄호 짝맞추기 문제</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">7.5.2. 괄호 짝맞추기 문제(일반화)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">7.5.3. 이진법 계산</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">7.5.4. 진법 변환</a></li>
 </ul>
-
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">7.6. 연습 문제</a></li>
+</ul>
             </nav>
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>스택</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id2">
-   3.1.1. 선형 자료구조
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id3">
-   3.1.2. 스택의 정의
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#stack">
-   3.1.3.
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     Stack
-    </span>
-   </code>
-   추상 자료형
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id4">
-   3.1.4. 스택 자료구조 구현
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id5">
-   3.1.5. 스택 실전 활용
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id6">
-     3.1.5.1. 괄호 짝맞추기 문제
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id7">
-     3.1.5.2. 괄호 짝맞추기 문제(일반화)
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id8">
-     3.1.5.3. 이진법 계산
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id9">
-     3.1.5.4. 진법 변환
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id10">
-   3.1.6. 연습 문제
-  </a>
- </li>
-</ul>
 
-                        </nav>
-                    </div>
-                </div>
-            </div>
-            
-              <div>
+              
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="sec-stacks">
-<span id="id1"></span><h1><span class="section-number">3.1. </span>스택<a class="headerlink" href="#sec-stacks" title="Permalink to this headline">¶</a></h1>
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="sec-stacks">
+<span id="id1"></span><h1><span class="section-number">7. </span>스택<a class="headerlink" href="#sec-stacks" title="Permalink to this heading">#</a></h1>
 <p><strong>소스코드</strong></p>
 <p>아래 내용을
 <a class="reference external" href="https://colab.research.google.com/github/codingalzi/algopy/blob/master/jupyter-book/stacks.ipynb">(구글 코랩) 스택</a>에서
@@ -590,8 +432,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p>스택 자료구조</p></li>
 <li><p>스택 활용</p></li>
 </ul>
-<div class="section" id="id2">
-<h2><span class="section-number">3.1.1. </span>선형 자료구조<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<section id="id2">
+<h2><span class="section-number">7.1. </span>선형 자료구조<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
 <p><strong>선형 자료구조</strong><font size='2'>linear structures</font>는
 여러 개의 값을 선형적으로 포함하는 모음 자료구조이다.
 선형 자료구조는 두 개의 끝을 가지며 양 끝에 항목을 더하거나 삭제할 수 있는 기능을 제공한다.
@@ -605,9 +447,9 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p>양 끝을 부르는 이름이 자료구조마다 다를 수 있으며 보통 처음/끝, 왼쪽/오른쪽, 전방/후방, 탑/바톰/베이스 등으로 불린다.
 여기서는 먼저 스택을 소개한다.</p>
-</div>
-<div class="section" id="id3">
-<h2><span class="section-number">3.1.2. </span>스택의 정의<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id3">
+<h2><span class="section-number">7.2. </span>스택의 정의<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
 <p><strong>스택</strong><font size='2'>stack</font>은 여러 개의 값을 가지며 값들 사이의 순서가 중요한 선형 자료형이다.
 항목의 추가 및 삭제는 보통 <strong>탑</strong><font size='2'>top</font>이라 불리는 한 쪽 끝에서만 허용된다.
 반면에 다른 한 쪽 끝은 <strong>베이스</strong><font size='2'>base</font>라 한다.</p>
@@ -624,9 +466,9 @@ const thebe_selector_output = ".output, .cell_output"
 </figure><p><strong>활용 예제</strong>: 인터넷 브라우저의 ‘뒤로가기’<font size='2'>Back</font> 버튼</p>
 <p>웹페이지가 변경될 때마다 순서를 기억해 둔 다음에
 ‘뒤로가기’ 버튼을 누르면 역순으로 이전 웹페이지를 보여준다.</p>
-</div>
-<div class="section" id="stack">
-<h2><span class="section-number">3.1.3. </span><code class="docutils literal notranslate"><span class="pre">Stack</span></code> 추상 자료형<a class="headerlink" href="#stack" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="stack">
+<h2><span class="section-number">7.3. </span><code class="docutils literal notranslate"><span class="pre">Stack</span></code> 추상 자료형<a class="headerlink" href="#stack" title="Permalink to this heading">#</a></h2>
 <p>스택 추상 자료형을 구체적인 파이썬 자료구조로
 구현하기 위해 구비해야 하는 기본 속성과 기능은 다음과 같다.</p>
 <ul class="simple">
@@ -638,7 +480,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p><code class="docutils literal notranslate"><span class="pre">size()</span></code>:  항목 개수 반환.</p></li>
 </ul>
 <p>아래 테이블은 스택을 생성하과 활용하는 과정을 간단하게 소개한다.</p>
-<table class="colwidths-auto table">
+<table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>스택 연산</p></th>
 <th class="head"><p>스택 항목</p></th>
@@ -696,9 +538,9 @@ const thebe_selector_output = ".output, .cell_output"
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="id4">
-<h2><span class="section-number">3.1.4. </span>스택 자료구조 구현<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id4">
+<h2><span class="section-number">7.4. </span>스택 자료구조 구현<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
 <p>스택 자료구조를 <code class="docutils literal notranslate"><span class="pre">Stack</span></code> 클래스로 구현하기 위해
 리스트를 항목들의 저장 장치로 활용한다.
 앞서 소개한 기능들은 모두 메서드로 정의한다.
@@ -870,11 +712,11 @@ True
 <span class="go">IndexError: list index out of range</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="id5">
-<h2><span class="section-number">3.1.5. </span>스택 실전 활용<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id6">
-<h3><span class="section-number">3.1.5.1. </span>괄호 짝맞추기 문제<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id5">
+<h2><span class="section-number">7.5. </span>스택 실전 활용<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h2>
+<section id="id6">
+<h3><span class="section-number">7.5.1. </span>괄호 짝맞추기 문제<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h3>
 <p>아래 식에서처럼 함수나 또는 연산 실행을 위해 사용되는 괄호는 짝이 맞아야 한다.
 즉, 여는 괄호 하나와 닫는 괄호 하나가 짝이 맞아야 한다.</p>
 <div class="math notranslate nohighlight">
@@ -963,9 +805,9 @@ False
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="id7">
-<h3><span class="section-number">3.1.5.2. </span>괄호 짝맞추기 문제(일반화)<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id7">
+<h3><span class="section-number">7.5.2. </span>괄호 짝맞추기 문제(일반화)<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h3>
 <p>소, 중, 대 세 종류의 괄호를 대상으로 짝맞추기 문제를 해결하는 알고리즘을 구현한다.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">(</span></code>, <code class="docutils literal notranslate"><span class="pre">)</span></code>: 튜플, 표현식 등</p></li>
@@ -1026,9 +868,9 @@ False
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="id8">
-<h3><span class="section-number">3.1.5.3. </span>이진법 계산<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id8">
+<h3><span class="section-number">7.5.3. </span>이진법 계산<a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h3>
 <p>십진법 정수 <span class="math notranslate nohighlight">\(233_{10}\)</span>를 이진법으로 표기하면 <span class="math notranslate nohighlight">\(11101001_{2}\)</span>이 된다.
 실제로 두 수가 가리키는 수를 다음과 같으며 동일한 값을 나타낸다.</p>
 <div class="math notranslate nohighlight">
@@ -1108,9 +950,9 @@ False
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="id9">
-<h3><span class="section-number">3.1.5.4. </span>진법 변환<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id9">
+<h3><span class="section-number">7.5.4. </span>진법 변환<a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h3>
 <p>십진법으로 표기된 정수를 이진법 뿐만 아니라 8진법, 16진법 등으로 자유자재로
 변환시키는 함수를 구현해보자.
 예를 들어 정수 233을 8진법으로는 <code class="docutils literal notranslate"><span class="pre">351</span></code> 또는 16진법으로는 <code class="docutils literal notranslate"><span class="pre">E9</span></code>이며,
@@ -1198,15 +1040,15 @@ CA3D7
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="id10">
-<h2><span class="section-number">3.1.6. </span>연습 문제<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
-<ol class="simple">
+</section>
+</section>
+<section id="id10">
+<h2><span class="section-number">7.6. </span>연습 문제<a class="headerlink" href="#id10" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
 <li><p><a class="reference external" href="https://colab.research.google.com/github/codingalzi/algopy/blob/master/excs/exc-stacks.ipynb">(실습) 스택</a></p></li>
 </ol>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1220,7 +1062,7 @@ CA3D7
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
@@ -1228,43 +1070,109 @@ CA3D7
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="python_list_dict.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>파이썬 모음 자료형 분석</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="infix_prefix_postfix.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">8. </span>중위, 전위, 후위 표기법</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">7.1. 선형 자료구조</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">7.2. 스택의 정의</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stack">7.3. <code class="docutils literal notranslate"><span class="pre">Stack</span></code> 추상 자료형</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">7.4. 스택 자료구조 구현</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">7.5. 스택 실전 활용</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">7.5.1. 괄호 짝맞추기 문제</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">7.5.2. 괄호 짝맞추기 문제(일반화)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">7.5.3. 이진법 계산</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">7.5.4. 진법 변환</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">7.6. 연습 문제</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="linear_structures.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">3. </span>선형 자료구조</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="infix_prefix_postfix.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">3.2. </span>중위, 전위, 후위 표기법</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
-</div>
+          </div>
+          <footer class="bd-footer-content">
             
-        </div>
-    </div>
-    <footer class="footer">
-  <p>
-    
-      By 코딩알지<br/>
-    
-  </p>
-</footer>
-</main>
-
-
-      </div>
-    </div>
+<div class="bd-footer-content__inner container">
   
-  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <div class="footer-item">
+    
+<p class="component-author">
+By 코딩알지
+</p>
 
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>
