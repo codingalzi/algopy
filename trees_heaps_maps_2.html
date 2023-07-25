@@ -1,0 +1,1178 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>19. 맵 추상 자료형 1부 &#8212; 문제해결 알고리즘</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'trees_heaps_maps_2';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="20. 맵 추상 자료형 2부" href="trees_heaps_maps_3.html" />
+    <link rel="prev" title="18. 트리와 힙" href="trees_heaps_maps_1.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">문제해결 알고리즘</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">파이썬 기초</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="python_basic_1.html">1. 기본 자료형</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_basic_2.html">2. 제어 구조와 함수</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_basic_3.html">3. 클래스와 상속</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_basic_4.html">4. 클래스 기본 요소</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">알고리즘 시간 복잡도</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="time_complexity.html">5. 시간 복잡도</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_list_dict.html">6. 파이썬 모음 자료형 분석</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">선형 자료 구조</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="stacks.html">7. 스택</a></li>
+<li class="toctree-l1"><a class="reference internal" href="infix_prefix_postfix.html">8. 중위, 전위, 후위 표기법</a></li>
+<li class="toctree-l1"><a class="reference internal" href="queues.html">9. 큐</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deques.html">10. 덱</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linked_lists.html">11. 연결 리스트</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ordered_lists.html">12. 정렬 리스트</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">재귀</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="recursive_functions.html">13. 재귀</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hanoi_tower.html">14. 하노이의 탑과 미로게임</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">탐색과 정렬</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="sort_search_1.html">15. 탐색과 분할 정복</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sort_search_2.html">16. 버블/선택/합병/퀵 정렬</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sort_search_3.html">17. 삽입 정렬, 쉘 정렬</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">트리와 트리 알고리즘</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="trees_heaps_maps_1.html">18. 트리와 힙</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">19. 맵 추상 자료형 1부</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trees_heaps_maps_3.html">20. 맵 추상 자료형 2부</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trees_heaps_maps_4.html">21. 맵 추상 자료형 3부</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">동적계획법</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="dynamic_programming_1.html">22. 최적화 문제와 동적계획법</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dynamic_programming_2.html">23. 플로이드-워셜 알고리즘</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dynamic_programming_3.html">24. 외판원 문제</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">탐욕 기법</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="greedy_algorithm_1.html">25. 최소비용 신장트리</a></li>
+<li class="toctree-l1"><a class="reference internal" href="greedy_algorithm_2.html">26. 다익스트라 알고리즘</a></li>
+<li class="toctree-l1"><a class="reference internal" href="greedy_algorithm_3.html">27. 탐욕 기법 대 동적계획법</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">되추적 기법과 제네릭 프로그래밍</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="back_tracking.html">28. 되추적 기법</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generic_programming.html">29. 제네릭 프로그래밍</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">NP 이론</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="orders.html">30. 차수</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p_np.html">31. P-NP 문제</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/codingalzi/algopy" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/codingalzi/algopy/issues/new?title=Issue%20on%20page%20%2Ftrees_heaps_maps_2.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/trees_heaps_maps_2.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>맵 추상 자료형 1부</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">19.1. 목표</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#map">19.2. <code class="docutils literal notranslate"><span class="pre">Map</span></code> 추상 자료형</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">19.3. 해싱과 해시 테이블</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">19.3.1. 해시 함수</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">19.3.2. 충돌 해결법</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hashtable">19.3.3. <code class="docutils literal notranslate"><span class="pre">HashTable</span></code> 클래스 구현</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">19.3.4. 해싱 분석</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">19.4. 프로그래밍 실습 과제</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1><span class="section-number">19. </span>맵 추상 자료형 1부<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
+<section id="id2">
+<h2><span class="section-number">19.1. </span>목표<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<p>맵(Map) 추상 자료형의 다양한 활용법을 소개한다.</p>
+<ul class="simple">
+<li><p>해시 테이블</p></li>
+<li><p>이진탐색트리</p></li>
+<li><p>균형 이진탐색트리(AVL 트리)</p></li>
+</ul>
+</section>
+<section id="map">
+<h2><span class="section-number">19.2. </span><code class="docutils literal notranslate"><span class="pre">Map</span></code> 추상 자료형<a class="headerlink" href="#map" title="Permalink to this heading">#</a></h2>
+<p>사전 자료형처럼 작동하는 자료형 일반을 <code class="docutils literal notranslate"><span class="pre">Map</span></code> 추상 자료형이라 부른다.
+<code class="docutils literal notranslate"><span class="pre">Map</span></code> 객체는 키(key)와 값(value)으로 이루어진 쌍을 저장하며 키(key)를
+이용하여 연관된 값(value)를 확인한다.</p>
+<p><strong><code class="docutils literal notranslate"><span class="pre">Map</span></code> 추상 자료형</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">Map</span></code> 클래스는 아래 기능을 제공해야 한다.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">put(key,</span> <span class="pre">val)</span></code>: 키-값 쌍을 항목으로 추가.
+키(key)가 이미 존재하는 경우 관련된 값(value)을 얻데이트함.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get(key)</span></code>: 키와 연관된 값 확인. 키가 존재하지 않으면 <code class="docutils literal notranslate"><span class="pre">None</span></code> 반환.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">del</span></code>: <code class="docutils literal notranslate"><span class="pre">del</span> <span class="pre">map[key]</span></code> 방식으로 작동하며 지정된 키와 연관된 값을 함께 삭제함.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">len()</span></code>: 항목 개수 반환</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">in</span></code>: 키(key) <code class="docutils literal notranslate"><span class="pre">key</span> <span class="pre">in</span> <span class="pre">map</span></code> 방식으로 작동하며 키의 존재 여부 확인.</p></li>
+</ul>
+</section>
+<section id="id3">
+<h2><span class="section-number">19.3. </span>해싱과 해시 테이블<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
+<p><strong>해싱</strong>(hashing) 기법을 적용하여 <span class="math notranslate nohighlight">\(O(1)\)</span> 시간복잡도의 탐색을 허용하는
+자료구조를 알아본다.
+이 자료구조는 <strong>해시 테이블</strong>(hash table)을 이용하여
+새로운 항목이 저장될 위치가 어디인지 미리 확인한
+다음에 저장한다.</p>
+<p>해시 테이블의 저장 공간 각각을 <strong>슬롯</strong>(slot)이라 부르며
+탐색 대상 항목이 있어야 하는 슬롯의 위치인 인덱스를 먼저 확인한 후에
+실제로 해당 슬롯에 저장되어 있는지 여부만을 확인하기에
+시간복잡도가 <span class="math notranslate nohighlight">\(O(1)\)</span>이 될 수 있다.</p>
+<p><strong>주의사항</strong>: 항목이 위치해야 할 위치를 계산하는 시간은 일정하다는 전제조건이
+성립해야 한다.</p>
+<p>여기서는 리스트를 이용하여 해시 테이블을 구현한다.
+아래 그림은 크기가 11인 비어 있는 해시 테이블을 보여준다.</p>
+<figure>
+<div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/hashtable.png" width="70%"></div>
+</figure><section id="id4">
+<h3><span class="section-number">19.3.1. </span>해시 함수<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
+<p><strong>해시 함수</strong>(hash function)는 항목이 저정되어야 할 슬롯의 위치를 계산한다.
+길이가 <span class="math notranslate nohighlight">\(m\)</span>인 해시 테이블을 사용한다면 해시 함수의 반환값은 <span class="math notranslate nohighlight">\(0\)</span>과 <span class="math notranslate nohighlight">\(m-1\)</span> 사이의 값을
+임의의 항목에 대해 계산해야 한다.</p>
+<p><strong>해시 알고리즘 1: 나머지 함수</strong></p>
+<p>입력값을 해시 테이블의 길이로 나눈 나머지를 항목이 저장되어야 할 슬롯의 위치(인덱스)로 지정한다.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">h</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="o">=</span> <span class="n">item</span> <span class="o">%</span> <span class="mi">11</span>
+</pre></div>
+</div>
+<p>예를 들어 54, 26, 93, 17, 77, 31 에 대한 <strong>해시값</strong>(hash value)은
+다음과 같다.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p><strong>항목</strong></p></th>
+<th class="head text-center"><p><strong>해시값</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>54</p></td>
+<td class="text-center"><p>10</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>26</p></td>
+<td class="text-center"><p>4</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>93</p></td>
+<td class="text-center"><p>5</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>17</p></td>
+<td class="text-center"><p>6</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>77</p></td>
+<td class="text-center"><p>0</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>31</p></td>
+<td class="text-center"><p>9</p></td>
+</tr>
+</tbody>
+</table>
+<p>해시값을 활용하여 각각의 값을 리스트의 해당 인덱스에 저장한 결과는 다음과 같다.</p>
+<figure>
+<div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/hashtable2.png" width="70%"></div>
+</figure><p><em><strong>탐색 시간 복잡도</strong></em></p>
+<p>나머지 함수를 활용하여 생성된 해시 테이블에 대한 탐색 알고리즘은 <span class="math notranslate nohighlight">\(O(1)\)</span>이다.
+이유는 항목의 나머지를 계산한 다음에 해당 위치의 값을 한 번 확인만하면 되기 때문이다.
+나머지 계산에 드는 시간은 해시 테이블의 길이와 무관하게 무관하게 거의 일정하다.</p>
+<p><strong>해시 테이블 점유율</strong></p>
+<p><strong>점유율</strong>(load factor)은 해시 테이블에서 항목이 자리한 슬롯의 비율이며
+보통 <span class="math notranslate nohighlight">\(\lambda\)</span>(람다)로 표시한다.</p>
+<div class="math notranslate nohighlight">
+\[\lambda = \frac {\text{포함된 항목 수}}{\text{테이블 크기}}\]</div>
+<p>위 해시 테이블의 점유율은 <span class="math notranslate nohighlight">\(\frac{6}{11}\)</span>이다.</p>
+<p><strong>참고</strong>: 점유율(<span class="math notranslate nohighlight">\(\lambda\)</span>)은 해싱 관련 함수들의 시간/공간 복잡도를 계산하는 데에
+중요한 역할을 수행한다(9.2.4절 참조).</p>
+<p><strong>충돌 문제</strong></p>
+<p>앞서 설명한 나머지 방식은 나머지가 동일하면 저장되어야 할
+위치가 중복되는 문제를 갖는다.
+이런 문제를 <strong>충돌</strong>(collision)이라 부른다.
+예를 들어 44, 77 등은 모두 해시 테이블의 길이인 11로 나누면 나머지가 0이다.</p>
+<p>임의의 데이터셋에 대해 충돌이 절대로 발생하지 않는 해시 함수와 해시 테이블을
+구현하는 <strong>완전한 해시 함수</strong>는 존재하지 않는다.
+일반적으로 해시 테이블의 길이를 충분히 늘리면 충돌이 발생하지 않는다.
+예를 들어 <code class="docutils literal notranslate"><span class="pre">2021280001</span></code> 등과 같은 10자리 학번을 충돌없이
+저장하기 위해 길이가 100억인 해시 테이블을 활용할 수 있다.
+하지만 학생 수가 고작 몇 천명이라면 엄청난 양의 메모리를 낭비하게 되는 셈이다.</p>
+<p>따라서 해시 테이블의 크기를 최소화하면서 충돌을 방지하는 해시 함수를 고안해야 하는 것이
+주요 과제이다.
+여기서는 나머지 방식을 개선하는 과정을 통해 충돌이
+보다 적게 발생하는 다양한 해시 테이블 구현 기법을 알아본다.</p>
+<p><strong>참고</strong>: 나머지 계산은 어떤 형태로든 여전히 활용된다.</p>
+<p><strong>해시 알고리즘 2: 자릿수 접기 기법</strong></p>
+<p><strong>자릿수 접기</strong>(digit folding) 기법은 주어지는 수를 일정 크기로 쪼개서
+생성된 값들에 나머지 활용 기법을 적용한다.
+단, 마지막으로 쪼개진 수의 경우 다른 수들의 자릿수와 다를 수 있다.</p>
+<p><strong>방식 1</strong></p>
+<p>예를 들어, 전화번호 43-655-5461 이라는 전화번호를 저장하려 할 때 두 자리씩 쪼개면
+43, 65, 55, 46, 1이 생성되고,
+이 수들을 다 더합면 210을 얻는다.</p>
+<div class="math notranslate nohighlight">
+\[43 + 65 + 55 + 46 + 1 = 210\]</div>
+<p>11개의 슬롯을 갖는 해시 테이블에 위 전화번호를 저장하기 위해
+나머지 기법을 적용한다.
+즉, 210을 11로 나눈 나머지가 1이기에 전화번호 43-655-5461은
+1번 슬롯에 저장된다.</p>
+<p><strong>방식 2</strong></p>
+<p>일정 길이로 쪼갠 값들을 더해줄 때 두 개 중에 하나는 숫자를 뒤집어서 더하는 방식이다.
+이전과 동일한 전화번호를 2자로 끊어서 생성된 번호를 다음처럼 둘 중에 하나는 뒤집어서 더한 후
+11로 나눈 나머지를 계산하면 다른 슬롯으로 지정된다.</p>
+<div class="math notranslate nohighlight">
+\[43 + 56 + 55 + 64 + 1 = 219\]</div>
+<p>그리고 219를 11로 나눈 나머지는 10이다.</p>
+<p><strong>방식 3</strong></p>
+<p><strong>중간제곱법</strong>(mid-square method)은 주어진 수를 제곱한 후
+중간에 위치한 몇 개의 숫자를 대상으로 나머지 기법을 적용한다.
+예를 들어, 44에 대해 먼저 제곱을 계산한다.</p>
+<div class="math notranslate nohighlight">
+\[44 ^{2} = 1,936\]</div>
+<p>이제 중간에 위치한 9와 3을 추출하여 생성된 수 93에 대해 나머지 기법을 적용한다.
+해시 테이블의 크기가 11이라면 93을 11로 나눈 나머지 5가 저장될 슬롯의 인덱스가 된다.</p>
+<p>아래 테이블은 다양한 항목에 대해 나머지 기법과 중간제곱법을 적용한 결과가
+어떻게 다른지를 보여준다.
+단, 해시 테이블의 길이는 11이다.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p><strong>항목</strong></p></th>
+<th class="head text-center"><p><strong>나머지</strong></p></th>
+<th class="head text-center"><p><strong>중간제곱</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>54</p></td>
+<td class="text-center"><p>10</p></td>
+<td class="text-center"><p>3</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>26</p></td>
+<td class="text-center"><p>4</p></td>
+<td class="text-center"><p>7</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>93</p></td>
+<td class="text-center"><p>5</p></td>
+<td class="text-center"><p>9</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>17</p></td>
+<td class="text-center"><p>6</p></td>
+<td class="text-center"><p>8</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>77</p></td>
+<td class="text-center"><p>0</p></td>
+<td class="text-center"><p>4</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>31</p></td>
+<td class="text-center"><p>9</p></td>
+<td class="text-center"><p>6</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>문자열 해싱</strong></p>
+<p>문자열에 대한 해시 함수는 각 문자에 대응하는 정수 유니코드를 생성하는
+<code class="docutils literal notranslate"><span class="pre">ord()</span></code> 함수를 이용한다.
+예를 들어, 문자열 <code class="docutils literal notranslate"><span class="pre">&quot;cat&quot;</span></code>에 사용된 세 개의 문자 각각에 대한 정수 유니코드는 다음과 같다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="s2">&quot;c&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="s2">&quot;t&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>99
+97
+116
+</pre></div>
+</div>
+</div>
+</div>
+<p>이제 생성된 수들에 앞서 설명한 해시 알고리즘 중에 한 가지 방식을 적용하면 된다.</p>
+<p><strong>방식 1</strong></p>
+<p>예를 들어, 얻어진 수를 모두 더해 해시 테이블의 길이로 나눈 나머지를 활용하는 방식을
+적용하는 과정은 다음과 같다.
+단, 해시 테이블의 길이는 11이라고 가정한다.</p>
+<figure>
+<div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/stringhash.png" width="45%"></div>
+</figure><p>아래 함수 <code class="docutils literal notranslate"><span class="pre">hash_str()</span></code> 함수가 앞서 설명한 알고리즘을 구현한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">hash_str</span><span class="p">(</span><span class="n">a_string</span><span class="p">,</span> <span class="n">table_size</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">([</span><span class="nb">ord</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">a_string</span><span class="p">])</span> <span class="o">%</span> <span class="n">table_size</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>방식 2</strong></p>
+<p>이전 방식은 서로 어구전철(anagram)인 단어에 대해 동일한 값을 계산한다.
+즉, 어구전철 단어를 구별하지 못한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hash_str</span><span class="p">(</span><span class="s2">&quot;cat&quot;</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hash_str</span><span class="p">(</span><span class="s2">&quot;act&quot;</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
+</pre></div>
+</div>
+</div>
+</div>
+<p>이 단점을 해결하기 위해 각 문자의 위치 정보를 해시값을 계산할 때 함께 활용한다.</p>
+<figure>
+<div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/stringhash2.png" width="45%"></div>
+</figure><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">hash_str</span><span class="p">(</span><span class="n">a_string</span><span class="p">,</span> <span class="n">table_size</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">([</span><span class="nb">ord</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="o">*</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">a_string</span><span class="p">)])</span> <span class="o">%</span> <span class="n">table_size</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hash_str</span><span class="p">(</span><span class="s2">&quot;cat&quot;</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hash_str</span><span class="p">(</span><span class="s2">&quot;act&quot;</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>해시 함수의 복잡도</strong></p>
+<p>해시값을 계산하는 알고리즘이 너무 복잡하면 별 의미가 없다.
+그 대신에 리스트에 임의로 항목을 저장한 후에 순차탐색 또는 정렬 후 이진탐색 등으로
+탐색을 진행하는 편이 더 나을 수 있다.</p>
+</section>
+<section id="id5">
+<h3><span class="section-number">19.3.2. </span>충돌 해결법<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h3>
+<p>모든 경우에 완벽한 해시 함수는 존재하지 않는다고 했다.
+따라서 서로 다른 항목이 동일한 해시값을 갖는 충돌이
+발생했을 때 처리 방법을 항상 고민해야 한다.</p>
+<p><strong>충돌 해결법 1: 빈자리 찾기</strong></p>
+<p><strong>빈자리 찾기</strong>(open addressing)는 해시값으로 지정된 슬롯에
+이미 다른 항목이 자리 잡고 있을 때 오른편으로 가장 가까운 빈자리를
+<strong>선형 탐사</strong>(linear probing)하여 찾은 후 해당 자리에 항목을 추가하는 알고리즘이다.
+선형 탐사 과정에서 리스트의 오른편 끝에 다다른다면
+경우에 따라 리스트의 처음부터 다시 선형 탐사를 시작할 수도 있다.</p>
+<p>아래 그림은
+54, 26, 93, 17, 77, 31을 나머지 기법으로 리스트에 추가한 결과이다.</p>
+<figure>
+<div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/hashtable2.png" width="70%"></div>
+</figure><p>여기에 44, 55, 20을 빈자리 찾기 기법으로 추가한 결과는 다음과 같다.</p>
+<ul class="simple">
+<li><p>44 추가하기: 11로 나눈 나머지 0</p>
+<ul>
+<li><p>0번 이미 채워젔음.</p></li>
+<li><p>따라서 1번 인덱스에 추가.</p></li>
+</ul>
+</li>
+<li><p>55 추가하기: 11로 나눈 나머지 0.</p>
+<ul>
+<li><p>0번, 1번이미 채워젔음.</p></li>
+<li><p>따라서 2번 인덱스에 추가.</p></li>
+</ul>
+</li>
+<li><p>20 추가하기: 11로 나눈 나머지 9.</p>
+<ul>
+<li><p>9번, 10번 이미 채워젔음.</p></li>
+<li><p>리스트 처음으로 돌아감.</p></li>
+<li><p>0번, 1번, 2번 이미 채워졌음.</p></li>
+<li><p>따라서 3번 인덱스에 추가.</p></li>
+</ul>
+</li>
+</ul>
+<figure>
+<div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/linearprobing1.png" width="70%"></div>
+</figure><p>빈자리 찾기 방식으로 채워진 해시 테이블에서 탐색하려면 항목 채우기 방식을 그대로 따라가면서
+항목을 확인하거나 빈자리가 나올 때까지 선형 탐사를 반복한다.
+예를 들어, 20의 포함여부를 확인하려면 아래 과정을 수행한다.</p>
+<ul class="simple">
+<li><p>11로 나눈 나머지 9 확인.</p></li>
+<li><p>9번 슬롯: 20 아님</p></li>
+<li><p>10번 슬롯: 20 아님</p></li>
+<li><p>리스트 처음으로 돌아감.</p></li>
+<li><p>0번, 1번, 2번 모두 20 아님.</p></li>
+<li><p>3번 슬롯에서 20 확인.</p></li>
+<li><p>결론: 20 있음.</p></li>
+</ul>
+<p>반면에 27의 포함여부 확인과정은 다음과 같다.</p>
+<ul class="simple">
+<li><p>11로 나눈 나머지 5 확인.</p></li>
+<li><p>5번 슬롯: 27 아님</p></li>
+<li><p>6번 슬롯: 27 아님</p></li>
+<li><p>7번 슬롯: 비어 있음.</p></li>
+<li><p>결론: 27 없음.</p></li>
+</ul>
+<p><strong>군집화와 군집화 해결책</strong></p>
+<p>빈자리 찾기 방식은 항목들이 해시 테이블의 한쪽에서 <strong>군집</strong>(cluster)을 형성할 수 있다는 것이다.
+즉, <strong>군집화</strong>(clustering) 문제가 발생할 수 있다.
+군집화가 발생하면 일부 항목이 원래 위치해야 할 슬롯으로부터 너무 멀리 떨어져 저장되어야 하는
+문제가 따라온다.
+아래 그림은 군집화로 인해 20이 엉뚱한 슬롯에 저장됨을 잘 보여준다.</p>
+<figure>
+<div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/clustering.png" width="70%"></div>
+</figure><p><strong>리해싱(rehashing)</strong></p>
+<p>빈 자리 찾기를 몇 칸씩 슬롯을 건너뛰며 찾으면 군집화를 약화시킬 수 있다.
+예를 들어, 아래 그림은 차례대로 44, 55, 20을 충돌이 발생하면 3칸씩 건너 뛰며 빈자리를 찾아
+추가한 결과를 보여준다.</p>
+<figure>
+<div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/linearprobing2.png" width="70%"></div>
+</figure><p>충돌이 발생했을 때 한 칸 또는 여러 칸을 주기적으로 건너 뛰며 빈자리를 찾는 방식을
+<strong>리해싱</strong>(rehashing)이라 한다.
+리해싱을 사용할 때 해시 테이블의 모든 슬롯이 방문되는 것을 보장해야 한다.
+예를 들어 해시 테이블의 길이가 짝수이고 4칸씩 건너뛰면 홀 수 인덱스의 슬롯은
+전혀 점유되지 않을 수도 있다.
+이런 이유로 해시 테이블의 길이는 11과 같은 소수(prime number)를 사용한다.</p>
+<p><strong>제곱 탐사</strong></p>
+<p><strong>제곱 탐사</strong>(quadratic probing)는 충돌이 발생했을 때
+건너 뛰는 슬롯의 수를 제곱수 만큼 늘려가며 찾는다.
+예를 들어, 해시값 <code class="docutils literal notranslate"><span class="pre">h</span></code>에 대해 해당 슬롯이 이미 점유되었을 때
+다음 빈칸은 <code class="docutils literal notranslate"><span class="pre">h+1</span></code>, <code class="docutils literal notranslate"><span class="pre">h+4</span></code>, <code class="docutils literal notranslate"><span class="pre">h+9</span></code>, <code class="docutils literal notranslate"><span class="pre">h+16</span></code>, <code class="docutils literal notranslate"><span class="pre">h+25</span></code> 등을
+대상으로 차례대로 점유 여부를 확인한다.
+예를 들어, 아래 그림은 차례대로 44, 55, 20을 충돌이 발생하면
+제곱 탐사 방식을 적용하여 추가한 결과를 보여준다.</p>
+<figure>
+<div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/quadratic.png" width="70%"></div>
+</figure><p><strong>체이닝</strong></p>
+<p><strong>체이닝</strong>(chaining)은 충돌이 발생했을 때
+다른 빈칸을 찾는 대신 해당 슬롯에 다른 항목들과 함께 모음자료형의 항목으로 저장하는 방식이다.
+아래 그림은 54, 26, 93, 17, 77, 31, 44, 55, 20을 체이닝 방식으로 저장한 결과를 보여준다.</p>
+<figure>
+<div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/chaining.png" width="70%"></div>
+</figure><p>해시 테이블 탐색은 먼저 해시값을 계산해서 지정된 슬롯을 확인한 다음에
+포함되어 있는 모음 자료형에서 해당 항목을 탐색한다.
+체이닝 방식은 각 슬롯마다 저장되는 항목의 수를 평균적으로 훨씬 낮추기에
+탐색이 그만큼 빠르게 진행되도록 한다.</p>
+<p><strong>퀴즈</strong></p>
+<p>길이가 13인 해시 테이블에 27과 130을 항목으로 추가할 때 사용하는 슬롯의 인덱스는 무엇인가?</p>
+<p>정답: 1과 0</p>
+<p><strong>퀴즈</strong></p>
+<p>113 , 117 , 97 , 100 , 114 , 108 , 116 , 105 , 99을
+길이가 11인 해시 테이블에 빈자리 찾기 방식으로 입력한 결과를 묘사하라.
+빈칸은 밑줄 두개로 표현하며, 건너 뛰는 칸의 수는 1로 한다.</p>
+<p>정답: <code class="docutils literal notranslate"><span class="pre">99,</span> <span class="pre">100,</span> <span class="pre">__,</span> <span class="pre">113,</span> <span class="pre">114,</span> <span class="pre">__,</span> <span class="pre">116,</span> <span class="pre">117,</span> <span class="pre">105,</span> <span class="pre">97,</span> <span class="pre">108</span></code></p>
+</section>
+<section id="hashtable">
+<h3><span class="section-number">19.3.3. </span><code class="docutils literal notranslate"><span class="pre">HashTable</span></code> 클래스 구현<a class="headerlink" href="#hashtable" title="Permalink to this heading">#</a></h3>
+<p>해시 테이블(<code class="docutils literal notranslate"><span class="pre">HashTable</span></code>) 클래스를 이용하여 항목 탐색을 <span class="math notranslate nohighlight">\(O(1)\)</span> 시간으로 실행하는
+<code class="docutils literal notranslate"><span class="pre">Map</span></code> 추상 자료형을 구현한다.
+클래스에 포함되는 메서드는 다음과 같다.</p>
+<p><strong>생성자</strong></p>
+<ul class="simple">
+<li><p>키와 값을 저장하기 위해 두 개의 리스트 활용. 하나의 키-값 쌍은 동일한 인덱스에 저장됨.</p>
+<ul>
+<li><p>첫째 리스트(<code class="docutils literal notranslate"><span class="pre">slots</span></code>): 키 저장</p></li>
+<li><p>둘째 리스트(<code class="docutils literal notranslate"><span class="pre">data</span></code>): 값 저장</p></li>
+</ul>
+</li>
+<li><p>해시 테이블 길이(<code class="docutils literal notranslate"><span class="pre">size</span></code>): 11 (소수 사용)</p></li>
+</ul>
+<p><strong>put()</strong> 메서드</p>
+<p>다음 두 함수 활용</p>
+<ul class="simple">
+<li><p>해시 함수(<code class="docutils literal notranslate"><span class="pre">hash_function()</span></code>): 나머지 알고리즘</p></li>
+<li><p>리해싱(<code class="docutils literal notranslate"><span class="pre">rehash()</span></code>): 선형 탐사. 1칸씩 이동하며 빈자리 찾기.</p></li>
+</ul>
+<p><strong>hash_function()</strong> 메서드</p>
+<ul class="simple">
+<li><p>항목을 해시 테이블의 길이로 나눈 나머지 값 반환</p></li>
+</ul>
+<p><strong>rehash()</strong> 메서드</p>
+<ul class="simple">
+<li><p>선형 탐사. 1칸씩 이동하며 빈자리 찾기</p></li>
+</ul>
+<p><strong>get()</strong> 메서드</p>
+<ul class="simple">
+<li><p>처음 해시값에서 시작하여 선형 탐사 기법 적용.</p></li>
+<li><p>리스트를 한 바퀴 돌아 제자리로 돌아오면 탐색 중단.</p></li>
+</ul>
+<p>이외에 <code class="docutils literal notranslate"><span class="pre">__getitem__()</span></code>, <code class="docutils literal notranslate"><span class="pre">__setitem__()</span></code> 메서드를
+지원해서 대괄호(<code class="docutils literal notranslate"><span class="pre">[]</span></code>) 연산자를 사용하도록 해야 한다.
+또한 <code class="docutils literal notranslate"><span class="pre">__in__()</span></code>과 <code class="docutils literal notranslate"><span class="pre">__len__()</span></code> 메서드를 구현해야 하지만
+연습문제로 남겨둔다.</p>
+<p><strong><code class="docutils literal notranslate"><span class="pre">HashTable</span></code> 클래스</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">HashTable</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="mi">11</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">slots</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span>
+
+    <span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="n">hash_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hash_function</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">slots</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">slots</span><span class="p">[</span><span class="n">hash_value</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">slots</span><span class="p">[</span><span class="n">hash_value</span><span class="p">]</span> <span class="o">=</span> <span class="n">key</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">hash_value</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">slots</span><span class="p">[</span><span class="n">hash_value</span><span class="p">]</span> <span class="o">==</span> <span class="n">key</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">hash_value</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span>  <span class="c1"># replace</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">next_slot</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rehash</span><span class="p">(</span><span class="n">hash_value</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">slots</span><span class="p">))</span>
+                <span class="k">while</span> <span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">slots</span><span class="p">[</span><span class="n">next_slot</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+                    <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">slots</span><span class="p">[</span><span class="n">next_slot</span><span class="p">]</span> <span class="o">!=</span> <span class="n">key</span>
+                <span class="p">):</span>
+                    <span class="n">next_slot</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rehash</span><span class="p">(</span><span class="n">next_slot</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">slots</span><span class="p">))</span>
+
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">slots</span><span class="p">[</span><span class="n">next_slot</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">slots</span><span class="p">[</span><span class="n">next_slot</span><span class="p">]</span> <span class="o">=</span> <span class="n">key</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">next_slot</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">next_slot</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span>
+
+    <span class="k">def</span> <span class="nf">hash_function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">size</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">key</span> <span class="o">%</span> <span class="n">size</span>
+
+    <span class="k">def</span> <span class="nf">rehash</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">old_hash</span><span class="p">,</span> <span class="n">size</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">old_hash</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">size</span>
+
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="n">start_slot</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hash_function</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">slots</span><span class="p">))</span>
+
+        <span class="n">position</span> <span class="o">=</span> <span class="n">start_slot</span>
+        <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">slots</span><span class="p">[</span><span class="n">position</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">slots</span><span class="p">[</span><span class="n">position</span><span class="p">]</span> <span class="o">==</span> <span class="n">key</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">position</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">position</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rehash</span><span class="p">(</span><span class="n">position</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">slots</span><span class="p">))</span>
+                <span class="k">if</span> <span class="n">position</span> <span class="o">==</span> <span class="n">start_slot</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        
+    <span class="c1"># 사전 형식으로 출력</span>
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">aDict</span> <span class="o">=</span> <span class="p">{</span><span class="bp">self</span><span class="o">.</span><span class="n">slots</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">slots</span><span class="p">))}</span>
+        <span class="k">return</span> <span class="n">aDict</span><span class="o">.</span><span class="fm">__repr__</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aHash</span> <span class="o">=</span> <span class="n">HashTable</span><span class="p">()</span>
+
+<span class="n">aHash</span><span class="p">[</span><span class="mi">54</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;cat&quot;</span>
+<span class="n">aHash</span><span class="p">[</span><span class="mi">26</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;dog&quot;</span>
+<span class="n">aHash</span><span class="p">[</span><span class="mi">93</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;lion&quot;</span>
+<span class="n">aHash</span><span class="p">[</span><span class="mi">17</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;tiger&quot;</span>
+<span class="n">aHash</span><span class="p">[</span><span class="mi">77</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;bird&quot;</span>
+<span class="n">aHash</span><span class="p">[</span><span class="mi">31</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;cow&quot;</span>
+<span class="n">aHash</span><span class="p">[</span><span class="mi">44</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;goat&quot;</span>
+<span class="n">aHash</span><span class="p">[</span><span class="mi">55</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;pig&quot;</span>
+<span class="n">aHash</span><span class="p">[</span><span class="mi">20</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;chicken&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">aHash</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{77: &#39;bird&#39;, 44: &#39;goat&#39;, 55: &#39;pig&#39;, 20: &#39;chicken&#39;, 26: &#39;dog&#39;, 93: &#39;lion&#39;, 17: &#39;tiger&#39;, None: None, 31: &#39;cow&#39;, 54: &#39;cat&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">aHash</span><span class="p">[</span><span class="mi">20</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">aHash</span><span class="p">[</span><span class="mi">17</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chicken
+tiger
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aHash</span><span class="p">[</span><span class="mi">20</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;duck&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">aHash</span><span class="p">[</span><span class="mi">20</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">aHash</span><span class="p">[</span><span class="mi">99</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>duck
+None
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>연습</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">__in__()</span></code>과 <code class="docutils literal notranslate"><span class="pre">__len__()</span></code> 메서드를 구현하라.</p>
+</section>
+<section id="id6">
+<h3><span class="section-number">19.3.4. </span>해싱 분석<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h3>
+<p>충돌이 없는 해시 테이블에 대한 탐색 시간은 <span class="math notranslate nohighlight">\(O(1)\)</span>이다.
+하지만 충돌이 발생하는 경우 시간 복잡도 계산은 그리 간단하지 않으며
+여기서는 자세히 다루지 않는다.
+다만 알려진 결과만 간단하게 정리한다.</p>
+<p><strong>점유율(<span class="math notranslate nohighlight">\(\lambda\)</span>)과 시간복잡도</strong></p>
+<p>점유율(<span class="math notranslate nohighlight">\(\lambda\)</span>)이 탐색 시간에 많은 영향을 미친다.</p>
+<ul class="simple">
+<li><p>점유율이 0에 가까운 경우</p>
+<ul>
+<li><p>충돌 확률 매우 낮음.</p></li>
+<li><p><span class="math notranslate nohighlight">\(O(1)\)</span> 시간에 가깝게 탐색 가능.</p></li>
+</ul>
+</li>
+<li><p>점유율이 1에 가까운 경우</p>
+<ul>
+<li><p>충돌 확률 매우 높음.</p></li>
+<li><p><span class="math notranslate nohighlight">\(O(1)\)</span> 시간 보다 느리게 탐색 진행됨.</p></li>
+</ul>
+</li>
+</ul>
+<p>**빈자리 찾기 알고리즘 시간 복잡도 **</p>
+<p>선형 탐사를 사용하는 빈자리 찾기 알고리즘에서
+충돌이 발생했을 때 실행해야 하는 비교 횟수는 다음과 같다.</p>
+<ul class="simple">
+<li><p>항목이 존재하는 경우 평균 비교 횟수: <span class="math notranslate nohighlight">\(\frac{1}{2}\left(1+\frac{1}{1-\lambda}\right)\)</span> <br></p></li>
+<li><p>항목이 존재하지 않는 경우 평균 비교 횟수: <span class="math notranslate nohighlight">\(\frac{1}{2}\left(1+\left(\frac{1}{1-\lambda}\right)^2\right)\)</span></p></li>
+</ul>
+<p><strong>체이닝 기법 시간 복잡도</strong></p>
+<p>체이닝 기법에 사용되는 알고리즘에 따라
+충돌이 발생했을 때 실행해야 하는 비교 횟수는 다르지만
+기본적으로 선형 탐사 방식보다 빠르며,
+해싱은 기본적으로 체이닝 기법을 활용한다.</p>
+<p><strong>참고</strong>: 보다 자세한 내용은
+<a class="reference external" href="https://www.geeksforgeeks.org/hashing-set-2-separate-chaining/">GeeksforGeeks - Hashing | Set 2 (Separate Chaining)</a>를 참조한다.</p>
+<p><strong>연습문제</strong></p>
+<ol class="arabic simple">
+<li><p>해시 테이블의 점유도가 다음과 같을 때 평균 비교횟수를 계산한 후에
+언제 해시 테이블의 슬롯이 부족하다고 느껴지는지를 설명하라.</p>
+<ul class="simple">
+<li><p>10%</p></li>
+<li><p>25%</p></li>
+<li><p>50%</p></li>
+<li><p>75%</p></li>
+<li><p>90%</p></li>
+<li><p>99%
+<br><br></p></li>
+</ul>
+</li>
+<li><p>문자열 해싱에 각 문자의 인덱스를 가중치로 활용하는 다른 방식을 생각한 후에
+기존 방식과 비교하여 장단점을 설명하라.</p></li>
+</ol>
+</section>
+</section>
+<section id="id7">
+<h2><span class="section-number">19.4. </span>프로그래밍 실습 과제<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">HashTable</span></code> 클래스에 <code class="docutils literal notranslate"><span class="pre">del</span></code> 메서드를 구현하라.
+빈자리 찾기, 체이닝 등 충돌 방지에 사용된 기법에 따라
+메서드 구현이 달라질 수 있다.</p></li>
+<li><p>해시 테이블의 점유율이 75%가 넘는 순간에
+해시 테이블의 크기를 두 배 정도로 늘리는 <code class="docutils literal notranslate"><span class="pre">resize()</span></code> 메서드를 구현하라.
+단, 해시 테이블의 길이는 소수가 되도록 함에 주의해야 한다.
+참고: <a class="reference external" href="https://www.algolist.net/Data_structures/Hash_table/Dynamic_resizing">Hash table. Dynamic resizing</a></p></li>
+<li><p>제곱 탐사 기법을 이용하여 리해싱을 구현하라.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">HashTable</span></code> 클래스를 체이닝 방식으로 충돌을 지원하도록 하라.
+체이닝에 AVL 트리를 활용한다.</p></li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="trees_heaps_maps_1.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">18. </span>트리와 힙</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="trees_heaps_maps_3.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">20. </span>맵 추상 자료형 2부</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">19.1. 목표</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#map">19.2. <code class="docutils literal notranslate"><span class="pre">Map</span></code> 추상 자료형</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">19.3. 해싱과 해시 테이블</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">19.3.1. 해시 함수</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">19.3.2. 충돌 해결법</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hashtable">19.3.3. <code class="docutils literal notranslate"><span class="pre">HashTable</span></code> 클래스 구현</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">19.3.4. 해싱 분석</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">19.4. 프로그래밍 실습 과제</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By 코딩알지
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
