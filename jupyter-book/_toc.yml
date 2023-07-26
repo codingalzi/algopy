@@ -25,10 +25,9 @@ parts:
   - caption: 선형 자료 구조
     numbered: True
     chapters:
-    - file: stacks
-    - file: infix_prefix_postfix
-    - file: queues
-    - file: deques
+    - file: linear_data_structures_1
+    - file: linear_data_structures_2
+    - file: linear_data_structures_3
 #     - file: linked_lists
 #     - file: ordered_lists
   - caption: 재귀
@@ -42,13 +41,12 @@ parts:
     - file: sort_search_1
     - file: sort_search_2
 #     - file: sort_search_3
-  - caption: 트리와 트리 알고리즘
+  - caption: 트리, 힙, 맵
     numbered: True
     chapters:
     - file: trees_heaps_maps_1
     - file: trees_heaps_maps_2
     - file: trees_heaps_maps_3
-    - file: trees_heaps_maps_4
   - caption: 동적계획법
     numbered: True
     chapters:
