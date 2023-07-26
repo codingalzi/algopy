@@ -5,20 +5,22 @@ format: jb-book
 root: intro
 options:
   numbered: True
-#  only_build_toc_files: true
+  only_build_toc_files: True
 
 parts:
-  - caption: 파이썬 기초
+  - caption: 파이썬 클래스와 추상 자료형
     numbered: True
     chapters:
-    - file: python_basic_1
-    - file: python_basic_2
+#     - file: python_basic_1
+#     - file: python_basic_2
     - file: python_basic_3
     - file: python_basic_4
+    - file: python_basic_5
   - caption: 알고리즘 시간 복잡도
     numbered: True
     chapters:
     - file: time_complexity
+    - file: orders
     - file: python_list_dict
   - caption: 선형 자료 구조
     numbered: True
@@ -27,8 +29,8 @@ parts:
     - file: infix_prefix_postfix
     - file: queues
     - file: deques
-    - file: linked_lists
-    - file: ordered_lists
+#     - file: linked_lists
+#     - file: ordered_lists
   - caption: 재귀
     numbered: True
     chapters:
@@ -39,7 +41,7 @@ parts:
     chapters:
     - file: sort_search_1
     - file: sort_search_2
-    - file: sort_search_3
+#     - file: sort_search_3
   - caption: 트리와 트리 알고리즘
     numbered: True
     chapters:
@@ -52,7 +54,7 @@ parts:
     chapters:
     - file: dynamic_programming_1
     - file: dynamic_programming_2
-    - file: dynamic_programming_3
+#     - file: dynamic_programming_3
   - caption: 탐욕 기법
     numbered: True
     chapters:
@@ -67,5 +69,4 @@ parts:
   - caption: NP 이론
     numbered: True
     chapters:
-    - file: orders
     - file: p_np
