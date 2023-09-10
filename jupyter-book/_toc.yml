@@ -11,25 +11,26 @@ parts:
   - caption: 파이썬 클래스와 추상 자료형
     numbered: True
     chapters:
-#     - file: python_basic_1
-#     - file: python_basic_2
-    - file: python_basic_3
-    - file: python_basic_4
-    - file: python_basic_5
+    - file: oop-classes-objects
+    - file: oop-inheritance
   - caption: 선형 자료 구조
     numbered: True
     chapters:
     - file: linear_data_structures_1
     - file: linear_data_structures_2
     - file: linear_data_structures_3
-#     - file: linked_lists
-#     - file: ordered_lists
   - caption: 알고리즘 시간 복잡도
     numbered: True
     chapters:
     - file: time_complexity
     - file: orders
     - file: python_list_dict
+  - caption: 탐색과 정렬
+    numbered: True
+    chapters:
+    - file: sort_search_1
+    - file: sort_search_2
+#     - file: sort_search_3
   - caption: 트리, 힙, 맵
     numbered: True
     chapters:
@@ -41,12 +42,6 @@ parts:
     chapters:
     - file: recursive_functions
     - file: hanoi_tower
-  - caption: 탐색과 정렬
-    numbered: True
-    chapters:
-    - file: sort_search_1
-    - file: sort_search_2
-#     - file: sort_search_3
   - caption: 동적계획법
     numbered: True
     chapters:
