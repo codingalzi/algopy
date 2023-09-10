@@ -419,14 +419,15 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2.1. 모음 자료형의 상속 체계</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vector">2.2. Vector 클래스</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2.3. 메서드 재정의</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#append-pop">2.3.1. <code class="docutils literal notranslate"><span class="pre">append()</span></code>, <code class="docutils literal notranslate"><span class="pre">pop()</span></code> 메서드 재정의</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add">2.3.2. <code class="docutils literal notranslate"><span class="pre">__add__()</span></code> 매직 메서드 재정의: 벡터 합</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2.1. 상속이란?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2.2. 모음 자료형의 상속 체계</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vector">2.3. Vector 클래스</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">2.4. 메서드 재정의</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#append-pop">2.4.1. <code class="docutils literal notranslate"><span class="pre">append()</span></code>, <code class="docutils literal notranslate"><span class="pre">pop()</span></code> 메서드 재정의</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add">2.4.2. <code class="docutils literal notranslate"><span class="pre">__add__()</span></code> 매직 메서드 재정의: 벡터 합</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">2.4. 연습문제</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">2.5. 연습문제</a></li>
 </ul>
             </nav>
         </div>
@@ -440,6 +441,10 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="ch-inheritance">
 <span id="id1"></span><h1><span class="section-number">2. </span>상속<a class="headerlink" href="#ch-inheritance" title="Permalink to this heading">#</a></h1>
+<p><strong>슬라이드</strong></p>
+<p>본문 내용을 요약한 <a class="reference external" href="https://github.com/codingalzi/algopy/raw/master/slides/slides-oop-inheritance.pdf">슬라이드</a>를 다운로드할 수 있다.</p>
+<section id="id2">
+<h2><span class="section-number">2.1. </span>상속이란?<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
 <p><strong>상속</strong><font size='2'>inheritance</font>은 객체 지향 프로그래밍의 또 다른 주요 요소이다.
 클래스를 선언할 때 다른 클래스의 속성과 메서드를 상속 받아 활용할 수 있다.
 상속을 받는 클래스를 <strong>자식 클래스</strong> 또는 <strong>하위 클래스</strong>,
@@ -449,8 +454,9 @@ document.write(`
     <span class="n">클래스</span> <span class="n">본문</span>
 </pre></div>
 </div>
-<section id="id2">
-<h2><span class="section-number">2.1. </span>모음 자료형의 상속 체계<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="id3">
+<h2><span class="section-number">2.2. </span>모음 자료형의 상속 체계<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
 <p>아래 그림은 파이썬 모음 자료형의 상속 체계를 보여준다.
 예를 들어, <code class="docutils literal notranslate"><span class="pre">list</span></code> 클래스는 <code class="docutils literal notranslate"><span class="pre">Sequence</span></code> 클래스를 상속하며,
 <code class="docutils literal notranslate"><span class="pre">Sequence</span></code>는 <code class="docutils literal notranslate"><span class="pre">Collection</span></code> 클래를 상속한다.
@@ -469,7 +475,7 @@ document.write(`
 <p>두 가지 예제를 이용하여 상속을 설명한다.</p>
 </section>
 <section id="vector">
-<h2><span class="section-number">2.2. </span>Vector 클래스<a class="headerlink" href="#vector" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">2.3. </span>Vector 클래스<a class="headerlink" href="#vector" title="Permalink to this heading">#</a></h2>
 <p>벡터는 정수 또는 부동소수점으로 이루어진 리스트와 유사한 모음 자료형이다.
 길이(항목의 개수)가 동일한 두 벡터의 내적은 동일한 위치의 두 항목의 곱셈의 합이다.
 예를 들어 <code class="docutils literal notranslate"><span class="pre">[2,</span> <span class="pre">3,</span> <span class="pre">4]</span></code> 와 <code class="docutils literal notranslate"><span class="pre">[5,</span> <span class="pre">6,</span> <span class="pre">9]</span></code> 두 벡터의 내적은 다음과 같다.</p>
@@ -570,11 +576,11 @@ document.write(`
 </div>
 </div>
 </section>
-<section id="id3">
-<h2><span class="section-number">2.3. </span>메서드 재정의<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
+<section id="id4">
+<h2><span class="section-number">2.4. </span>메서드 재정의<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
 <p>부모 클래스로부터 상속 받은 인스턴스 메서드의 일부를 재정의해야 하는 경우가 발생할 수 있다.</p>
 <section id="append-pop">
-<h3><span class="section-number">2.3.1. </span><code class="docutils literal notranslate"><span class="pre">append()</span></code>, <code class="docutils literal notranslate"><span class="pre">pop()</span></code> 메서드 재정의<a class="headerlink" href="#append-pop" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">2.4.1. </span><code class="docutils literal notranslate"><span class="pre">append()</span></code>, <code class="docutils literal notranslate"><span class="pre">pop()</span></code> 메서드 재정의<a class="headerlink" href="#append-pop" title="Permalink to this heading">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">append()</span></code> 메서드도 잘 작동한다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -897,7 +903,7 @@ document.write(`
 </div>
 </section>
 <section id="add">
-<h3><span class="section-number">2.3.2. </span><code class="docutils literal notranslate"><span class="pre">__add__()</span></code> 매직 메서드 재정의: 벡터 합<a class="headerlink" href="#add" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">2.4.2. </span><code class="docutils literal notranslate"><span class="pre">__add__()</span></code> 매직 메서드 재정의: 벡터 합<a class="headerlink" href="#add" title="Permalink to this heading">#</a></h3>
 <p>길이가 동일한 두 벡터의 합(<code class="docutils literal notranslate"><span class="pre">+</span></code>)을 항목별 합으로 정의하려 한다.
 그러려면 <code class="docutils literal notranslate"><span class="pre">__add__()</span></code> 매직 메서드를 재정의해야 한다.</p>
 <div class="cell docutils container">
@@ -999,8 +1005,8 @@ document.write(`
 </div>
 </section>
 </section>
-<section id="id4">
-<h2><span class="section-number">2.4. </span>연습문제<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
+<section id="id5">
+<h2><span class="section-number">2.5. </span>연습문제<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h2>
 <p>참고: <a class="reference external" href="https://colab.research.google.com/github/codingalzi/pybook/blob/master/practices/practice-inheritance.ipynb">(실습) 상속</a></p>
 </section>
 </section>
@@ -1072,14 +1078,15 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2.1. 모음 자료형의 상속 체계</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vector">2.2. Vector 클래스</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2.3. 메서드 재정의</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#append-pop">2.3.1. <code class="docutils literal notranslate"><span class="pre">append()</span></code>, <code class="docutils literal notranslate"><span class="pre">pop()</span></code> 메서드 재정의</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add">2.3.2. <code class="docutils literal notranslate"><span class="pre">__add__()</span></code> 매직 메서드 재정의: 벡터 합</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2.1. 상속이란?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2.2. 모음 자료형의 상속 체계</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vector">2.3. Vector 클래스</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">2.4. 메서드 재정의</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#append-pop">2.4.1. <code class="docutils literal notranslate"><span class="pre">append()</span></code>, <code class="docutils literal notranslate"><span class="pre">pop()</span></code> 메서드 재정의</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add">2.4.2. <code class="docutils literal notranslate"><span class="pre">__add__()</span></code> 매직 메서드 재정의: 벡터 합</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">2.4. 연습문제</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">2.5. 연습문제</a></li>
 </ul>
   </nav></div>
 
