@@ -466,8 +466,11 @@ document.write(`
 <li><p>정렬 리스트<font size='2'>sorted list</font></p></li>
 </ul>
 <p>선형 자료구조의 양 끝을 부르는 이름이
-자료구조마다 다를 수 있다.
-보통 처음/끝, 왼쪽/오른쪽, 전방/후방, 탑/바톰/베이스 등으로 불린다.</p>
+자료구조마다 다를 수 있다.</p>
+<ul class="simple">
+<li><p>머리: 헤드(head), 탑(top), 프론트(front)</p></li>
+<li><p>꼬리: 테일(tail), 바틈(bottom), 리어(rear)</p></li>
+</ul>
 <p>파이썬은 큐, 스택, 덱 자료구조를 제공한다.</p>
 <ul class="simple">
 <li><p>큐와 스택: <a class="reference external" href="https://docs.python.org/3/library/queue.html">queue</a> 모듈의 <code class="docutils literal notranslate"><span class="pre">Queue</span></code> 클래스와 <code class="docutils literal notranslate"><span class="pre">LifoQueue</span></code> 클래스</p></li>
@@ -536,7 +539,13 @@ print(*args, sep=&#39; &#39;, end=&#39;\n&#39;, file=None, flush=False)
 <p>&lt;이미지 출처: <a class="reference external" href="https://velog.io/&#64;janeljs/python-print-sep-end-file-flush">janeljs.log</a>&gt;</p>
 <p>이에 대한 해결책은 <code class="docutils literal notranslate"><span class="pre">flush=True</span></code>로 지정하는 것이다.
 그러면 한 개의 숫자씩 차례대로 출력한다.</p>
-<p><strong>참고</strong>: <code class="docutils literal notranslate"><span class="pre">flush=False</span></code>가 기본값이다.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
 </section>
 <section id="id3">
 <h2><span class="section-number">3.3. </span><code class="docutils literal notranslate"><span class="pre">Queue</span></code> 추상 자료형<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
@@ -1024,47 +1033,6 @@ True
 </div>
 </div>
 </div>
-<p>분당 출력 페이지수를 20장으로 하면 아래 결과를 얻는다.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
-<span class="n">average_wait_list</span> <span class="o">=</span> <span class="p">[]</span>
-
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
-    <span class="n">average_wait_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">simulation</span><span class="p">(</span><span class="mi">3600</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
-    
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;평균 대기시간: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">average_wait_list</span><span class="p">)</span><span class="si">:</span><span class="s2">6.2f</span><span class="si">}</span><span class="s2"> 초&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>평균 대기시간:   4.44 초
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
-<span class="n">average_wait_list</span> <span class="o">=</span> <span class="p">[]</span>
-
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
-    <span class="n">average_wait_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">simulation</span><span class="p">(</span><span class="mi">3600</span><span class="p">,</span> <span class="mi">40</span><span class="p">))</span>
-    
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;평균 대기시간: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">average_wait_list</span><span class="p">)</span><span class="si">:</span><span class="s2">6.2f</span><span class="si">}</span><span class="s2"> 초&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>평균 대기시간:   0.87 초
-</pre></div>
-</div>
-</div>
-</div>
-<p>프린터의 초당 출력 페이지 수를 2배 늘릴 때마다 평균 대기시간은 평균적으로 4배 줄어든다.
-이유는 하나의 인쇄 과제를 실행하는 대 시간이 2배 줄고, 큐에서 대기하는 시간 또한 2배 정도 줄어들기 때문이다.</p>
 </section>
 <section id="id7">
 <h2><span class="section-number">3.7. </span>연습 문제<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h2>
