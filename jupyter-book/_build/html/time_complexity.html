@@ -68,7 +68,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="7. 차수" href="orders.html" />
-    <link rel="prev" title="5. 덱(Deque)" href="linear_data_structures_3.html" />
+    <link rel="prev" title="5. 덱(Deque)" href="deques.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -152,9 +152,9 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">선형 자료 구조</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="linear_data_structures_1.html">3. 스택(Stack)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="linear_data_structures_2.html">4. 큐(Queue)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="linear_data_structures_3.html">5. 덱(Deque)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="queues.html">3. 큐(Queue)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stacks.html">4. 스택(Stack)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deques.html">5. 덱(Deque)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">알고리즘 시간 복잡도</span></p>
 <ul class="current nav bd-sidenav">
@@ -654,7 +654,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1부터 10000까지 더하는데 평균적으로 0.00049초 걸림.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1부터 10000까지 더하는데 평균적으로 0.00000초 걸림.
 </pre></div>
 </div>
 </div>
@@ -674,7 +674,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1부터 100000까지 더하는데 평균적으로 0.00477초 걸림.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1부터 100000까지 더하는데 평균적으로 0.00313초 걸림.
 </pre></div>
 </div>
 </div>
@@ -694,7 +694,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1부터 1000000까지 더하는데 평균적으로 0.04899초 걸림.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1부터 1000000까지 더하는데 평균적으로 0.03857초 걸림.
 </pre></div>
 </div>
 </div>
@@ -714,7 +714,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1부터 10000000까지 더하는데 평균적으로 0.46934초 걸림.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1부터 10000000까지 더하는데 평균적으로 0.39191초 걸림.
 </pre></div>
 </div>
 </div>
@@ -753,10 +753,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1부터    10000까지 더하는데 평균적으로 0.0000003099441528초 걸림.
-1부터   100000까지 더하는데 평균적으로 0.0000002145767212초 걸림.
-1부터  1000000까지 더하는데 평균적으로 0.0000001668930054초 걸림.
-1부터 10000000까지 더하는데 평균적으로 0.0000001430511475초 걸림.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1부터    10000까지 더하는데 평균적으로 0.0000000000000000초 걸림.
+1부터   100000까지 더하는데 평균적으로 0.0000000000000000초 걸림.
+1부터  1000000까지 더하는데 평균적으로 0.0000000000000000초 걸림.
+1부터 10000000까지 더하는데 평균적으로 0.0000000000000000초 걸림.
 </pre></div>
 </div>
 </div>
@@ -1502,7 +1502,7 @@ T(n) = 2n + 26 \in O(n)
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="linear_data_structures_3.html"
+       href="deques.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">

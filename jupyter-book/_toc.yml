@@ -16,9 +16,9 @@ parts:
   - caption: 선형 자료 구조
     numbered: True
     chapters:
-    - file: linear_data_structures_1
-    - file: linear_data_structures_2
-    - file: linear_data_structures_3
+    - file: queues
+    - file: stacks
+    - file: deques
   - caption: 알고리즘 시간 복잡도
     numbered: True
     chapters:
