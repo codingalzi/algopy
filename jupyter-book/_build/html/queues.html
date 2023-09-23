@@ -554,7 +554,7 @@ print(*args, sep=&#39; &#39;, end=&#39;\n&#39;, file=None, flush=False)
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">Queue(maxsize=0)</span></code>: 비어 있는 큐 생성. <code class="docutils literal notranslate"><span class="pre">maxsize</span></code>를 양의 정수로 지정하면 항목을 최대 그만큼 담을 수 있음.
 아니면 제한 없음.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">put(item)</span></code>: maxsize가 양의 정수인 경우 최대 항목수를 초과 한 경우
+<li><p><code class="docutils literal notranslate"><span class="pre">put(item)</span></code>: maxsize가 양의 정수이면서 항목을 추가하면 허용되는 항목의 수를 초과하는 경우
 먼저 머리(head, front)를 제거한 다음 새로운 항목을 꼬리(rear, tail)에 추가. 반환값 없음.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">get()</span></code>: 머리(head, front) 항목 삭제. 삭제된 항목 반환.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">empty()</span></code>: 큐가 비었는지 여부 판단. 부울값 반환.</p></li>
@@ -841,11 +841,11 @@ True
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>111
-98
-132
-148
-125
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>11
+123
+83
+38
+137
 </pre></div>
 </div>
 </div>
@@ -1008,7 +1008,7 @@ True
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>평균 대기시간: 123.28 초
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>평균 대기시간: 119.41 초
 </pre></div>
 </div>
 </div>
@@ -1028,7 +1028,7 @@ True
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>평균 대기시간:  19.40 초
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>평균 대기시간:  21.15 초
 </pre></div>
 </div>
 </div>
