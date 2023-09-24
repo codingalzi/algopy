@@ -433,9 +433,9 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">4.4.2. 괄호 짝맞추기 문제(일반화)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">4.5. 중위/전위/중위 표기법</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">4.5. 중위/전위/후위 표기법</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">4.5.1. 중위 표기법</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">4.5.2. 전위/후기 표기법</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">4.5.2. 전위/후위 표기법</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">4.6. 표기법 변환</a><ul class="nav section-nav flex-column">
@@ -461,6 +461,8 @@ document.write(`
 <p><strong>참고</strong></p>
 <p>아래 내용은 <a class="reference external" href="https://runestone.academy/ns/books/published/pythonds3/index.html">Problem Solving with Algorithms and Data Structures using Python</a>의 3장 내용을
 일부 활용한다.</p>
+<p><strong>슬라이드</strong></p>
+<p>본문 내용을 요약한 <a class="reference external" href="https://github.com/codingalzi/algopy/raw/master/slides/slides-stacks.pdf">슬라이드</a>를 다운로드할 수 있다.</p>
 <p><strong>주요 내용</strong></p>
 <ul class="simple">
 <li><p>스택 자료구조</p></li>
@@ -481,10 +483,7 @@ document.write(`
 <p>아래 그림에서 설명된 것처럼 들어온 순서 역순으로 삭제되는 것을 의미한다.</p>
 <figure>
 <div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/simplereversal.png" width="75%"></div>
-</figure><p><strong>활용 예제</strong>: 인터넷 브라우저의 ‘뒤로가기’<font size='2'>Back</font> 버튼</p>
-<p>웹페이지가 변경될 때마다 순서를 기억해 둔 다음에
-‘뒤로가기’ 버튼을 누르면 역순으로 이전 웹페이지를 보여준다.</p>
-</section>
+</figure></section>
 <section id="id2">
 <h2><span class="section-number">4.2. </span><code class="docutils literal notranslate"><span class="pre">Stack</span></code> 추상 자료형<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
 <p>스택 추상 자료형을 구체적인 파이썬 자료구조로
@@ -797,7 +796,10 @@ True
 </div>
 </div>
 </div>
-<p>하지만 이전에 보았듯이 항목을 추가하거나 삭제할 때 훨씬 많은 시간이 소요된다.</p>
+<p><strong>성능 비교</strong></p>
+<p>항목을 추가하거나 삭제할 때 두 클래스의 성능에서 차이가 많이 난다.
+아래 코드는 큐를 생성하여 1만개, 2만개, …, 10만개의 항목을 추가하고 삭제하는 데에 필요한 시간을 측정한다.
+먼저 <code class="docutils literal notranslate"><span class="pre">Stack</span></code> 클래스를 이용하면 다음과 같다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counts</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="mi">100001</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
@@ -806,7 +808,7 @@ True
 </div>
 </div>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">Stack</span></code> 클래스 활용: 항목 추가</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Stack</span></code> 클래스 활용: 항목 추가에 걸리는 시간</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -827,22 +829,22 @@ True
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10000개 항목 추가에 걸리는 시간: 0.002996683120727539
-20000개 항목 추가에 걸리는 시간: 0.007004976272583008
-30000개 항목 추가에 걸리는 시간: 0.00967097282409668
-40000개 항목 추가에 걸리는 시간: 0.012829303741455078
-50000개 항목 추가에 걸리는 시간: 0.016191959381103516
-60000개 항목 추가에 걸리는 시간: 0.018883228302001953
-70000개 항목 추가에 걸리는 시간: 0.015119075775146484
-80000개 항목 추가에 걸리는 시간: 0.03128457069396973
-90000개 항목 추가에 걸리는 시간: 0.02066183090209961
-100000개 항목 추가에 걸리는 시간: 0.026708126068115234
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10000개 항목 추가에 걸리는 시간: 0.0
+20000개 항목 추가에 걸리는 시간: 0.014008760452270508
+30000개 항목 추가에 걸리는 시간: 0.0024111270904541016
+40000개 항목 추가에 걸리는 시간: 0.016611576080322266
+50000개 항목 추가에 걸리는 시간: 0.01901412010192871
+60000개 항목 추가에 걸리는 시간: 0.021910667419433594
+70000개 항목 추가에 걸리는 시간: 0.021999597549438477
+80000개 항목 추가에 걸리는 시간: 0.02644515037536621
+90000개 항목 추가에 걸리는 시간: 0.029467344284057617
+100000개 항목 추가에 걸리는 시간: 0.03254961967468262
 </pre></div>
 </div>
 </div>
 </div>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">Stack</span></code> 클래스 활용: 항목 삭제</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Stack</span></code> 클래스 활용: 항목 삭제에 걸리는 시간</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -867,21 +869,23 @@ True
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10000개 항목 삭제에 걸리는 시간: 0.0
-20000개 항목 삭제에 걸리는 시간: 0.0
-30000개 항목 삭제에 걸리는 시간: 0.007905244827270508
-40000개 항목 삭제에 걸리는 시간: 0.011040687561035156
-50000개 항목 삭제에 걸리는 시간: 0.015657901763916016
-60000개 항목 삭제에 걸리는 시간: 0.016118764877319336
-70000개 항목 삭제에 걸리는 시간: 0.015579462051391602
-80000개 항목 삭제에 걸리는 시간: 0.031249046325683594
-90000개 항목 삭제에 걸리는 시간: 0.022758007049560547
-100000개 항목 삭제에 걸리는 시간: 0.022597789764404297
+20000개 항목 삭제에 걸리는 시간: 0.014857053756713867
+30000개 항목 삭제에 걸리는 시간: 0.01718759536743164
+40000개 항목 삭제에 걸리는 시간: 0.009571552276611328
+50000개 항목 삭제에 걸리는 시간: 0.008299112319946289
+60000개 항목 삭제에 걸리는 시간: 0.015617132186889648
+70000개 항목 삭제에 걸리는 시간: 0.03380608558654785
+80000개 항목 삭제에 걸리는 시간: 0.020462751388549805
+90000개 항목 삭제에 걸리는 시간: 0.015868186950683594
+100000개 항목 삭제에 걸리는 시간: 0.03440666198730469
 </pre></div>
 </div>
 </div>
 </div>
+<p>다음은 <code class="docutils literal notranslate"><span class="pre">Stack_left</span></code> 클래스를 이용한다.
+항목의 추가와 삭제 모두 훨씬 오래 걸린다.</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">Stack_left</span></code> 클래스 활용: 항목 추가</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Stack_left</span></code> 클래스 활용: 항목 추가에 걸리는 시간</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -902,22 +906,22 @@ True
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10000개 항목 추가에 걸리는 시간: 0.017940998077392578
-20000개 항목 추가에 걸리는 시간: 0.09355497360229492
-30000개 항목 추가에 걸리는 시간: 0.1992199420928955
-40000개 항목 추가에 걸리는 시간: 0.35364818572998047
-50000개 항목 추가에 걸리는 시간: 0.5940191745758057
-60000개 항목 추가에 걸리는 시간: 0.8632948398590088
-70000개 항목 추가에 걸리는 시간: 1.2041616439819336
-80000개 항목 추가에 걸리는 시간: 1.578528881072998
-90000개 항목 추가에 걸리는 시간: 2.038304567337036
-100000개 항목 추가에 걸리는 시간: 2.517698287963867
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10000개 항목 추가에 걸리는 시간: 0.028695106506347656
+20000개 항목 추가에 걸리는 시간: 0.0892174243927002
+30000개 항목 추가에 걸리는 시간: 0.20418453216552734
+40000개 항목 추가에 걸리는 시간: 0.36127710342407227
+50000개 항목 추가에 걸리는 시간: 0.5858893394470215
+60000개 항목 추가에 걸리는 시간: 0.8843841552734375
+70000개 항목 추가에 걸리는 시간: 1.1947391033172607
+80000개 항목 추가에 걸리는 시간: 1.593348503112793
+90000개 항목 추가에 걸리는 시간: 2.033482074737549
+100000개 항목 추가에 걸리는 시간: 2.529245376586914
 </pre></div>
 </div>
 </div>
 </div>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">Stack_left</span></code> 클래스 활용: 항목 삭제</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Stack_left</span></code> 클래스 활용: 항목 삭제에 걸리는 시간</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -941,29 +945,30 @@ True
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10000개 항목 삭제에 걸리는 시간: 0.012997627258300781
-20000개 항목 삭제에 걸리는 시간: 0.047330617904663086
-30000개 항목 삭제에 걸리는 시간: 0.07816576957702637
-40000개 항목 삭제에 걸리는 시간: 0.15717244148254395
-50000개 항목 삭제에 걸리는 시간: 0.2983684539794922
-60000개 항목 삭제에 걸리는 시간: 0.41791296005249023
-70000개 항목 삭제에 걸리는 시간: 0.6085512638092041
-80000개 항목 삭제에 걸리는 시간: 0.8320720195770264
-90000개 항목 삭제에 걸리는 시간: 1.0866329669952393
-100000개 항목 삭제에 걸리는 시간: 1.3345043659210205
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10000개 항목 삭제에 걸리는 시간: 0.013001680374145508
+20000개 항목 삭제에 걸리는 시간: 0.046868324279785156
+30000개 항목 삭제에 걸리는 시간: 0.09375524520874023
+40000개 항목 삭제에 걸리는 시간: 0.1643836498260498
+50000개 항목 삭제에 걸리는 시간: 0.2968733310699463
+60000개 항목 삭제에 걸리는 시간: 0.45313072204589844
+70000개 항목 삭제에 걸리는 시간: 0.6424126625061035
+80000개 항목 삭제에 걸리는 시간: 0.867316722869873
+90000개 항목 삭제에 걸리는 시간: 1.1253547668457031
+100000개 항목 삭제에 걸리는 시간: 1.3810582160949707
 </pre></div>
 </div>
 </div>
 </div>
-<p>이유는 리스트의 0번 인덱스를 탑으로 사용하면 항목을 추가하거나 삭제할 때마다
+<p><code class="docutils literal notranslate"><span class="pre">Stack</span></code>을 이용하는 경우보다 많이 오래 걸리는
+이유는 리스트의 0번 인덱스를 탑으로 사용하면 항목을 추가하거나 삭제할 때마다
 나머지 항목들의 위치를 이동시키기 위해 보다 많은 시간이 요구되기 때문이다.</p>
 </section>
 <section id="queue-lifoqueue">
 <h3><span class="section-number">4.3.2. </span><code class="docutils literal notranslate"><span class="pre">queue</span></code> 모듈의 <code class="docutils literal notranslate"><span class="pre">LifoQueue</span></code> 클래스<a class="headerlink" href="#queue-lifoqueue" title="Permalink to this heading">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">queue</span></code> 모듈의 <code class="docutils literal notranslate"><span class="pre">LifoQueue</span></code> 클래스가 스택 자료구조를 가리킨다.
-앞서 정의한 <code class="docutils literal notranslate"><span class="pre">Queue</span></code> 클래스보다 훨씬 빠르게 작동한다.</p>
+앞서 정의한 <code class="docutils literal notranslate"><span class="pre">Stack</span></code> 클래스보다 10배 정도 느리다.</p>
 <ul class="simple">
-<li><p>항목 추가</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LifoQueue</span></code> 클래스 활용: 항목 추가에 걸리는 시간</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -985,22 +990,22 @@ True
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10000개 항목 추가에 걸리는 시간: 0.007940053939819336
-20000개 항목 추가에 걸리는 시간: 0.032460689544677734
-30000개 항목 추가에 걸리는 시간: 0.027688980102539062
-40000개 항목 추가에 걸리는 시간: 0.0625004768371582
-50000개 항목 추가에 걸리는 시간: 0.06299972534179688
-60000개 항목 추가에 걸리는 시간: 0.09012413024902344
-70000개 항목 추가에 걸리는 시간: 0.09424710273742676
-80000개 항목 추가에 걸리는 시간: 0.1098778247833252
-90000개 항목 추가에 걸리는 시간: 0.11281633377075195
-100000개 항목 추가에 걸리는 시간: 0.14116382598876953
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10000개 항목 추가에 걸리는 시간: 0.01300048828125
+20000개 항목 추가에 걸리는 시간: 0.028430700302124023
+30000개 항목 추가에 걸리는 시간: 0.041871070861816406
+40000개 항목 추가에 걸리는 시간: 0.04974865913391113
+50000개 항목 추가에 걸리는 시간: 0.07894349098205566
+60000개 항목 추가에 걸리는 시간: 0.08714795112609863
+70000개 항목 추가에 걸리는 시간: 0.09936118125915527
+80000개 항목 추가에 걸리는 시간: 0.10067033767700195
+90000개 항목 추가에 걸리는 시간: 0.1336076259613037
+100000개 항목 추가에 걸리는 시간: 0.1500248908996582
 </pre></div>
 </div>
 </div>
 </div>
 <ul class="simple">
-<li><p>항목 삭제</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LifoQueue</span></code> 클래스 활용: 항목 삭제에 걸리는 시간</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1024,16 +1029,16 @@ True
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10000개 항목 삭제에 걸리는 시간: 0.027781248092651367
-20000개 항목 삭제에 걸리는 시간: 0.04015398025512695
-30000개 항목 삭제에 걸리는 시간: 0.06352877616882324
-40000개 항목 삭제에 걸리는 시간: 0.09443449974060059
-50000개 항목 삭제에 걸리는 시간: 0.09832882881164551
-60000개 항목 삭제에 걸리는 시간: 0.12752318382263184
-70000개 항목 삭제에 걸리는 시간: 0.13607454299926758
-80000개 항목 삭제에 걸리는 시간: 0.16076064109802246
-90000개 항목 삭제에 걸리는 시간: 0.18525457382202148
-100000개 항목 삭제에 걸리는 시간: 0.20365571975708008
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10000개 항목 삭제에 걸리는 시간: 0.016625165939331055
+20000개 항목 삭제에 걸리는 시간: 0.033080101013183594
+30000개 항목 삭제에 걸리는 시간: 0.06613373756408691
+40000개 항목 삭제에 걸리는 시간: 0.08338737487792969
+50000개 항목 삭제에 걸리는 시간: 0.10477256774902344
+60000개 항목 삭제에 걸리는 시간: 0.11662173271179199
+70000개 항목 삭제에 걸리는 시간: 0.1330564022064209
+80000개 항목 삭제에 걸리는 시간: 0.16695117950439453
+90000개 항목 삭제에 걸리는 시간: 0.18349242210388184
+100000개 항목 삭제에 걸리는 시간: 0.19993185997009277
 </pre></div>
 </div>
 </div>
@@ -1068,10 +1073,9 @@ True
 (()()(()
 </pre></div>
 </div>
-<p>그런데 표현식 또는 코드에 사용된 모든 괄호들의 짝이 맞는가를 확인하는 일은 매우 중요하다.
+<p>표현식과 코드에 사용된 모든 괄호들의 짝이 맞는가를 확인하는 일은 매우 중요하다.
 파이썬의 경우 괄호가 맞지 않으면 실행 전에 바로 구문 오류(<code class="docutils literal notranslate"><span class="pre">SyntaxError</span></code>)를 발생시킨다.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="mi">5</span> <span class="o">+</span> <span class="mi">6</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">7</span> <span class="o">+</span> <span class="mi">8</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">4</span> <span class="o">+</span> <span class="mi">3</span>
-
 <span class="go">  Input In [7]</span>
 <span class="go">    (5 + 6) * (7 + 8) / (4 + 3</span>
 <span class="go">                              ^</span>
@@ -1082,7 +1086,7 @@ True
 함수를 구현한다.
 스택 활용법은 다음과 같다.
 괄호로 이루어진 문자열이 주어졌을 때 왼편부터 시작해서 여는 괄호와 닫는 괄호를
-만달 때마다 아잭 작업을 반복한다.</p>
+만날 때마다 아래 작업을 반복한다.</p>
 <ul class="simple">
 <li><p>여는 괄호: 스택에 추가</p></li>
 <li><p>닫는 괄호: 스택의 탑 항목 삭제</p></li>
@@ -1094,7 +1098,7 @@ True
 <li><p>그렇지 않으면 모든 괄호의 짝이 맞음.</p></li>
 </ul>
 <figure>
-<div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/simpleparcheck.png" width="40%"></div>
+<div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/simpleparcheck.png" width="50%"></div>
 </figure><div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">par_checker</span><span class="p">(</span><span class="n">symbol_string</span><span class="p">):</span>
@@ -1158,7 +1162,7 @@ False
 </pre></div>
 </div>
 <p>이전 코드를 조금 수정하면 일반화된 짝맞추기 문제를 해결할 수 있다.
-다만, 닫는 괄호를 처리할 때 동일한 종류인지 여부를 추가로 확인해야 한다.</p>
+다만, 닫는 괄호를 처리할 때 동일한 종류인지 여부를 먼저 확인해야 한다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">balance_checker</span><span class="p">(</span><span class="n">symbol_string</span><span class="p">):</span>
@@ -1198,21 +1202,21 @@ False
 </section>
 </section>
 <section id="id8">
-<h2><span class="section-number">4.5. </span>중위/전위/중위 표기법<a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">4.5. </span>중위/전위/후위 표기법<a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h2>
 <p>이항 연산자를 이용한 표현식을 작성하는 세 종류의 표기법을 살펴본다.
-또한 표기법 변환 알고리즘과 변환된 표현식의 계산 알고리즘을 스택 자료구조를 이용하여 구현한다.</p>
+또한 표기법 변환 알고리즘과 변환된 표현식의 값을 계산하는 알고리즘을 스택 자료구조를 이용하여 구현한다.</p>
 <section id="id9">
 <h3><span class="section-number">4.5.1. </span>중위 표기법<a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h3>
 <p>아래 두 수식에 사용되는 덧셈 연산자(<code class="docutils literal notranslate"><span class="pre">+</span></code>)와
 곱셈 연산자(<code class="docutils literal notranslate"><span class="pre">*</span></code>)는 더해지거나 곱해지는 두
-피연산자(operand), 즉 두 인자의 사이에 위치한다.</p>
+피연산자<font size='2'>operand</font>, 즉 두 인자의 사이에 위치한다.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
 <span class="mi">2</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="mi">6</span>
 </pre></div>
 </div>
 <p>이렇게 이항 연산자를
 두 피연산자 사이에 위치시켜 표현식을 작성하는 방법을
-<strong>중위 표기법</strong>(infix notation)이라 한다.
+<strong>중위 표기법</strong><font size='2'>infix notation</font>이라 한다.
 중위 표기법으로 작성된 표현식은 간단하게 <strong>중위 표현식</strong>이라 부른다.</p>
 <p>중위 표현식을 해석할 때 연산자들의 <strong>우선순위</strong>를 잘 고려해야 한다.
 예를 들어 <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">+</span> <span class="pre">3</span> <span class="pre">*</span> <span class="pre">6</span></code>는 <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">+</span> <span class="pre">(3</span> <span class="pre">*</span> <span class="pre">6)</span></code>로 해석되어 최종적으로 20으로 계산된다.
@@ -1222,15 +1226,29 @@ False
 <p>또한 <code class="docutils literal notranslate"><span class="pre">4</span> <span class="pre">-</span> <span class="pre">x</span> <span class="pre">+</span> <span class="pre">7</span></code>와 <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">/</span> <span class="pre">x</span> <span class="pre">*</span> <span class="pre">y</span></code> 처럼 우선순위가 동일한 연산자가 연속적으로 사용되었을 경우엔
 왼쪽에 위치한 연산자부터 계산한다.
 즉, <code class="docutils literal notranslate"><span class="pre">4</span> <span class="pre">-</span> <span class="pre">x</span> <span class="pre">+</span> <span class="pre">7</span></code>는 <code class="docutils literal notranslate"><span class="pre">(4</span> <span class="pre">-</span> <span class="pre">x)</span> <span class="pre">+</span> <span class="pre">7</span></code>로, <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">/</span> <span class="pre">x</span> <span class="pre">*</span> <span class="pre">y</span></code>는 <code class="docutils literal notranslate"><span class="pre">(2</span> <span class="pre">/</span> <span class="pre">x)</span> <span class="pre">*</span> <span class="pre">y</span></code> 로 계산된다.
-<code class="docutils literal notranslate"><span class="pre">4</span> <span class="pre">-</span> <span class="pre">(x</span> <span class="pre">+</span> <span class="pre">7)</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">/</span> <span class="pre">(x</span> <span class="pre">*</span> <span class="pre">y)</span></code> 는 다른 값을 가리킴에 주의해야 한다.</p>
+<code class="docutils literal notranslate"><span class="pre">4</span> <span class="pre">-</span> <span class="pre">(x</span> <span class="pre">+</span> <span class="pre">7)</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">/</span> <span class="pre">(x</span> <span class="pre">*</span> <span class="pre">y)</span></code> 는 다른 값으로 계산됨에 주의한다.</p>
 </section>
 <section id="id10">
-<h3><span class="section-number">4.5.2. </span>전위/후기 표기법<a class="headerlink" href="#id10" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">4.5.2. </span>전위/후위 표기법<a class="headerlink" href="#id10" title="Permalink to this heading">#</a></h3>
 <p>이처럼 중위 표기법을 사용하는 표현식은 의도된 계산을 명확히 하기 위해 괄호를 사용해야 한다.
-그런데 <strong>전위 표기법</strong>(prefix notation)
-또는 <strong>후기 표기법</strong>(postfix notation)을
-사용하면 괄호를 전혀 사용하지 않으면서 원하고자 하는 값을 유일한 방식으로 나타낼 수 있다.</p>
-<p>예를 들어 <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">+</span> <span class="pre">y</span></code>를 전위 표기법과 후기 표기법으로 표현하면 다음과 같다.</p>
+반면에 <strong>전위 표기법</strong><font size='2'>prefix notation</font>
+또는 <strong>후위 표기법</strong><font size='2'>postfix notation</font>은 괄호를 필요로 하지 않으면서
+하나의 표현식이 하나의 값만 가리키도록 해준다.</p>
+<ul class="simple">
+<li><p>전위 표기법</p>
+<ul>
+<li><p>모든 연산자가 모든 피연산자(연산자의 인자)의 왼쪽에 위치</p></li>
+<li><p>피연산자는 연산자 오른쪽에 차례대로 위치</p></li>
+</ul>
+</li>
+<li><p>후위 표기법</p>
+<ul>
+<li><p>모든 연산자가 모든 피연산자(연산자의 인자)의 오른쪽에 위치</p></li>
+<li><p>피연산자는 연산자 왼쪽에 차례대로 위치</p></li>
+</ul>
+</li>
+</ul>
+<p>예를 들어 <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">+</span> <span class="pre">y</span></code>를 전위 표기법과 후위 표기법으로 표현하면 다음과 같다.</p>
 <table class="table">
 <thead>
 <tr class="row-odd"><th class="head text-center"><p>중위 표기법</p></th>
@@ -1245,12 +1263,7 @@ False
 </tr>
 </tbody>
 </table>
-<p>전위 표기법을 사용하면 모든 연산자가 모든 피연산자(연산자의 인자)의 왼쪽에 위치하며,
-피연산자는 연산자 오른쪽에 차례대로 위치한다.
-후위 표기법을 사용하면 모든 연산자가 모든 피연산자(연산자의 인자)의 오른쪽에 위치하며,
-피연산자는 연산자 왼쪽에 차례대로 위치한다.</p>
-<p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">+</span> <span class="pre">y</span> <span class="pre">*</span> <span class="pre">z</span></code> 처럼 여러 개의 연산자가 사용되는 경우엔
-피연산자에 대해 동일한 규칙을 적용한다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">+</span> <span class="pre">y</span> <span class="pre">*</span> <span class="pre">z</span></code>의 전위와 후위 표현식은 다음과 같다.</p>
 <table class="table">
 <thead>
 <tr class="row-odd"><th class="head text-center"><p>중위 표기법</p></th>
@@ -1265,7 +1278,21 @@ False
 </tr>
 </tbody>
 </table>
-<p>아래 표는 <code class="docutils literal notranslate"><span class="pre">(x</span> <span class="pre">+</span> <span class="pre">y)</span> <span class="pre">*</span> <span class="pre">z</span></code>의 전위와 하위 표현식을 보여준다.</p>
+<p>각 표기법으로 변환 과정은 다음과 같다.
+괄호로 감싸인 표현식은 아직 중위 표기법을 사용한다는 점에 주의한다.</p>
+<ul class="simple">
+<li><p>전위 표기법으로의 변환</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="o">*</span> <span class="n">z</span> <span class="o">=&gt;</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="p">(</span><span class="n">y</span> <span class="o">*</span> <span class="n">z</span><span class="p">))</span> <span class="o">=&gt;</span> <span class="o">+</span> <span class="n">x</span> <span class="p">(</span><span class="n">y</span> <span class="o">*</span> <span class="n">z</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="o">*</span> <span class="n">y</span> <span class="n">z</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>후위 표기법으로의 변환</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="o">*</span> <span class="n">z</span> <span class="o">=&gt;</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="p">(</span><span class="n">y</span> <span class="o">*</span> <span class="n">z</span><span class="p">))</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="p">(</span><span class="n">y</span> <span class="o">*</span> <span class="n">z</span><span class="p">)</span> <span class="o">+</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="n">y</span> <span class="n">z</span> <span class="o">*</span> <span class="o">+</span>
+</pre></div>
+</div>
+<p>아래 표는 <code class="docutils literal notranslate"><span class="pre">(x</span> <span class="pre">+</span> <span class="pre">y)</span> <span class="pre">*</span> <span class="pre">z</span></code>의 전위와 후위 표현식을 보여준다.</p>
 <table class="table">
 <thead>
 <tr class="row-odd"><th class="head text-center"><p>중위 표기법</p></th>
@@ -1280,8 +1307,24 @@ False
 </tr>
 </tbody>
 </table>
-<p>이처럼 전위 또는 후위 표기법을 사용하면 괄호가 없어도 모든 표현식이 유일한 값을 가리킨다.
-아래 표는 보다 많은 예제를 보여준다.</p>
+<p>각 표기법으로 변환 과정은 다음과 같다.
+괄호로 감싸인 표현식은 아직 중위 표기법을 사용한다는 점에 주의한다.</p>
+<ul class="simple">
+<li><p>전위 표기법으로의 변환</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">)</span> <span class="o">*</span> <span class="n">z</span> <span class="o">=&gt;</span> <span class="p">((</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">)</span> <span class="o">*</span> <span class="n">z</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">)</span> <span class="n">z</span> <span class="o">=&gt;</span> <span class="o">*</span> <span class="o">+</span> <span class="n">x</span> <span class="n">y</span> <span class="n">z</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>후위 표기법으로의 변환</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">)</span> <span class="o">*</span> <span class="n">z</span> <span class="o">=&gt;</span> <span class="p">((</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">)</span> <span class="o">*</span> <span class="n">z</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">)</span> <span class="n">z</span> <span class="o">*</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="n">y</span> <span class="o">+</span> <span class="n">z</span> <span class="o">*</span>
+</pre></div>
+</div>
+<p>이처럼 전위 또는 후위 표기법을 사용하면 괄호가 없어도 모든 표현식이 하나의 값만 가리킨다.</p>
+<p><strong>예제</strong></p>
+<p>아래 표에 포함된 보다 복잡한 중위 표현식을 전위와 후위 표현식으로 변환화는 과정을 묘사하면서
+전위와 후위 표기법에 친숙해지도록 하기를 권장한다.</p>
 <table class="table">
 <thead>
 <tr class="row-odd"><th class="head text-center"><p>중위 표기법</p></th>
@@ -1325,7 +1368,7 @@ False
 과정을 반복하기만 하면 아무리 복잡한 표현식이라도
 간단하게 전위 또는 후위 표기법으로 변환할 수 있다.</p>
 <p><strong>예제</strong></p>
-<p><code class="docutils literal notranslate"><span class="pre">(A</span> <span class="pre">+</span> <span class="pre">B)</span> <span class="pre">*</span> <span class="pre">C</span> <span class="pre">-</span> <span class="pre">(D</span> <span class="pre">-</span> <span class="pre">E)</span> <span class="pre">*</span> <span class="pre">(F</span> <span class="pre">+</span> <span class="pre">G)</span></code> 를 중위/후위 표기법으로 표현하는 과정은 다음과 같다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">(A</span> <span class="pre">+</span> <span class="pre">B)</span> <span class="pre">*</span> <span class="pre">C</span> <span class="pre">-</span> <span class="pre">(D</span> <span class="pre">-</span> <span class="pre">E)</span> <span class="pre">*</span> <span class="pre">(F</span> <span class="pre">+</span> <span class="pre">G)</span></code> 를 전위/후위 표기법으로 표현하는 과정은 다음과 같다.</p>
 <figure>
 <div align="center"><img src="https://runestone.academy/ns/books/published/pythonds3/_images/complexmove.png" width="80%"></div>
 </figure></section>
@@ -1340,11 +1383,11 @@ False
 연산자의 순서는 연산자의 우선순위와 괄호에 의한 연산자 실행 순서에 의해 달라진다는
 성질을 이용하여 표기법 변환 알고리즘을 작성한다.</p>
 <ul class="simple">
-<li><p>중위 표기법 표현식을 왼쪽에서부터 차례대로 사용된 피연산자와 연산자를 확인한다.</p></li>
+<li><p>중위 표현식의 왼쪽에서부터 차례대로 사용된 피연산자와 연산자를 확인한다.</p></li>
 <li><p>피연산자가 확인되면 그대로 후위 표기법 표현식에 추가한다.</p></li>
-<li><p>연산자의 경우엔 별도로 준비된 스택(stack)에 추가한다.
-단, 해당 연산자의 우선순위와 괄호의 사용 여부에 따라 스택을 먼저
-관리한 다음에 추가한다.</p></li>
+<li><p>연산자의 경우엔 별도로 준비된 스택에 추가한다.
+단, 해당 연산자의 우선순위와 괄호의 사용 여부에 따라
+먼저 스택을 조작한 다음에 추가한다.</p></li>
 </ul>
 <p>연산자들을 스택으로 관리하는 이유는 먼저 스택에 추가된 연산자보다 낮은 우선순위의 연산자를
 만나는 순간 스택에 포함된 보다 높거나 같은 우선순위의 연산자와 관련된 계산을 먼저 실행해야 하기에
@@ -1380,34 +1423,17 @@ False
 <figure>
 <div align="center"><img src="https://runestone.academy/ns/books/published/pythonds3/_images/intopost.png" width="80%"></div>
 </figure><p>위 알고리즘을 파이썬 코드로 구현하기 위해 <code class="docutils literal notranslate"><span class="pre">Stack</span></code> 클래스를 이용한다.
-후위 표현식으로 변환 알고리즘에서 사용될 연산자들의 우선순위는 <code class="docutils literal notranslate"><span class="pre">prec</span></code> 이라는 사전으로 관리한다.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prec</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="n">prec</span><span class="p">[</span><span class="s2">&quot;*&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>
-<span class="n">prec</span><span class="p">[</span><span class="s2">&quot;/&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>
-<span class="n">prec</span><span class="p">[</span><span class="s2">&quot;+&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
-<span class="n">prec</span><span class="p">[</span><span class="s2">&quot;-&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
-<span class="n">prec</span><span class="p">[</span><span class="s2">&quot;(&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prec</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;*&#39;: 3, &#39;/&#39;: 3, &#39;+&#39;: 2, &#39;-&#39;: 2, &#39;(&#39;: 1}
-</pre></div>
-</div>
-</div>
-</div>
-<p>연는 괄호에도 우선순위를 부여한다. 하지만 다른 연산자들에 비해 가장 낮다.
+후위 표현식으로 변환 알고리즘에서 사용될 연산자들의 우선순위는 <code class="docutils literal notranslate"><span class="pre">precedence</span></code> 이라는 사전으로 관리한다.</p>
+<p>여는 괄호(<code class="docutils literal notranslate"><span class="pre">(</span></code>)에도 우선순위를 부여한다. 하지만 다른 연산자들에 비해 가장 낮다.
 이유는 닫는 괄호가 아닌 다른 연산자에 의해 <code class="docutils literal notranslate"><span class="pre">op_stack</span></code>에서 제거되지 않도록
 하기 위해서이다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">precedence</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;*&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;/&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;+&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;(&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">infix_to_postfix</span><span class="p">(</span><span class="n">infix_expr</span><span class="p">):</span>
@@ -1426,7 +1452,7 @@ False
                 <span class="n">postfix_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">top_token</span><span class="p">)</span>
                 <span class="n">top_token</span> <span class="o">=</span> <span class="n">op_stack</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">while</span> <span class="p">(</span><span class="ow">not</span> <span class="n">op_stack</span><span class="o">.</span><span class="n">empty</span><span class="p">())</span> <span class="ow">and</span> <span class="p">(</span><span class="n">prec</span><span class="p">[</span><span class="n">op_stack</span><span class="o">.</span><span class="n">peek</span><span class="p">()]</span> <span class="o">&gt;=</span> <span class="n">prec</span><span class="p">[</span><span class="n">token</span><span class="p">]):</span>
+            <span class="k">while</span> <span class="p">(</span><span class="ow">not</span> <span class="n">op_stack</span><span class="o">.</span><span class="n">empty</span><span class="p">())</span> <span class="ow">and</span> <span class="p">(</span><span class="n">precedence</span><span class="p">[</span><span class="n">op_stack</span><span class="o">.</span><span class="n">peek</span><span class="p">()]</span> <span class="o">&gt;=</span> <span class="n">precedence</span><span class="p">[</span><span class="n">token</span><span class="p">]):</span>
                 <span class="n">postfix_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">op_stack</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
             <span class="n">op_stack</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
 
@@ -1718,9 +1744,9 @@ False
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">4.4.2. 괄호 짝맞추기 문제(일반화)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">4.5. 중위/전위/중위 표기법</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">4.5. 중위/전위/후위 표기법</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">4.5.1. 중위 표기법</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">4.5.2. 전위/후기 표기법</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">4.5.2. 전위/후위 표기법</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">4.6. 표기법 변환</a><ul class="nav section-nav flex-column">
