@@ -50,7 +50,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .highlight .m { color: var(--jp-mirror-editor-number-color) } /* Literal.Number */
 .highlight .s { color: var(--jp-mirror-editor-string-color) } /* Literal.String */
 .highlight .ow { color: var(--jp-mirror-editor-operator-color); font-weight: bold } /* Operator.Word */
-.highlight .pm { color: var(--jp-mirror-editor-punctuation-color) } /* Punctuation.Marker */
 .highlight .w { color: var(--jp-mirror-editor-variable-color) } /* Text.Whitespace */
 .highlight .mb { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Bin */
 .highlight .mf { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Float */
@@ -71,6 +70,25 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .highlight .s1 { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Single */
 .highlight .ss { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Symbol */
 .highlight .il { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Integer.Long */
+  </style>
+<style type="text/css">
+    
+
+<script>
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+            /*preferredFont: "TeX",*/
+            /*availableFonts: ["TeX", "STIX"],*/
+            styles: {
+                scale: 100,
+                ".MathJax_Display": {
+                    "font-size": "100%",
+                }
+            }
+        }
+    });
+</script>
+    
   </style>
 
 
@@ -14496,9 +14514,6 @@ a.anchor-link {
 .reveal {
   font-size: 160%;
 }
-.reveal table {
-  font-size: var(--jp-ui-font-size1);
-}
 .reveal pre {
   width: inherit;
   padding: 0.4em;
@@ -14542,23 +14557,6 @@ div.jp-OutputPrompt {
   margin: 5px 5px 0 0;
 }
 
-.reveal div.highlight {
-  margin: 0;
-}
-
-.reveal div.highlight > pre {
-  margin: 0;
-  width: 100%;
-  font-size: var(--jp-code-font-size);
-}
-
-.reveal div.jp-OutputArea-output > pre {
-  margin: 0;
-  width: 90%;
-  font-size: var(--jp-code-font-size);
-  box-shadow: none;
-}
-
 /* Reveal navigation controls */
 
 .reveal .controls .navigate-left,
@@ -14599,14 +14597,17 @@ div.jp-OutputPrompt {
 
 /* Scrollbars */
 
-::-webkit-scrollbar {
+::-webkit-scrollbar
+{
   width: 6px;
   height: 6px;
 }
-::-webkit-scrollbar * {
-  background: transparent;
+::-webkit-scrollbar *
+{
+  background:transparent;
 }
-::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb
+{
   background: #727272 !important;
 }
 </style>
@@ -14633,12 +14634,12 @@ div.jp-OutputPrompt {
                 },
                 displayAlign: 'center',
                 CommonHTML: {
-                    linebreaks: {
-                    automatic: true
+                    linebreaks: { 
+                    automatic: true 
                     }
                 }
             });
-
+        
             MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
         }
     }
@@ -15143,9 +15144,7 @@ div.jp-OutputPrompt {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<ul>
-<li>짝이 맞지 않으면 오류 발생</li>
-</ul>
+<p>짝이 맞지 않으면 오류가 발생한다.</p>
 
 </div>
 </div>
@@ -15174,11 +15173,7 @@ div.jp-OutputPrompt {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<ul>
-<li><p>표현식을 작성할 때 여는 괄호 하나와 닫는 괄호 하나가 짝이 맞아야 함</p>
-<p>$$(5 + 6) * (7 + 8) / (4 + 3)$$</p>
-</li>
-</ul>
+<p>표현식을 작성할 때 여는 괄호 하나와 닫는 괄호 하나가 짝이 맞아야 한다.</p>
 
 </div>
 </div>
@@ -15190,9 +15185,18 @@ div.jp-OutputPrompt {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<ul>
-<li>괄호만 고려할 경우 다음 모양이 됨</li>
-</ul>
+$$(5 + 6) * (7 + 8) / (4 + 3)$$
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>괄호만 고려할 경우 다음 모양이 된다.</p>
 
 </div>
 </div>
@@ -15217,9 +15221,7 @@ div.jp-OutputPrompt {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<ul>
-<li>괄호 짝이 맞는 경우</li>
-</ul>
+<p>다음은 괄호 짝이 맞는 경우들이다.</p>
 
 </div>
 </div>
@@ -15248,9 +15250,7 @@ div.jp-OutputPrompt {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<ul>
-<li>괄호 짝이 맞지 않는 경우</li>
-</ul>
+<p>괄호 짝이 맞지 않는 경우는 다음과 같다.</p>
 
 </div>
 </div>
@@ -15379,14 +15379,11 @@ div.jp-OutputPrompt {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<ul>
-<li><p>소, 중, 대 세 종류의 괄호를 대상으로 짝맞추기 문제</p>
+<p>소, 중, 대 세 종류의 괄호를 대상으로 짝맞추기 문제를 해결한다.</p>
 <ul>
 <li><code>(</code>, <code>)</code>: 튜플, 표현식 등</li>
 <li><code>{</code>, <code>}</code>: 사전, 집합 등</li>
 <li><code>[</code>, <code>]</code>: 리스트 등</li>
-</ul>
-</li>
 </ul>
 
 </div>
@@ -15399,9 +15396,7 @@ div.jp-OutputPrompt {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<ul>
-<li>괄호 짝이 맞는 경우</li>
-</ul>
+<p>다음은 괄호 짝이 맞는 경우들이다.</p>
 
 </div>
 </div>
@@ -15430,9 +15425,7 @@ div.jp-OutputPrompt {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<ul>
-<li>괄호 짝이 맞지 않는 경우</li>
-</ul>
+<p>다음은 괄호 짝이 맞지 않는 경우들이다.</p>
 
 </div>
 </div>
@@ -15523,27 +15516,6 @@ div.jp-OutputPrompt {
 <td style="text-align:left"><code>* + x y z</code></td>
 <td style="text-align:left"><code>x y + z *</code></td>
 </tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
-</div></section></section><section><section>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<table>
-<thead><tr>
-<th style="text-align:left">중위 표기법</th>
-<th style="text-align:left">전위 표기법</th>
-<th style="text-align:left">후위 표기법</th>
-</tr>
-</thead>
-<tbody>
 <tr>
 <td style="text-align:left"><code>x + y * z + v</code></td>
 <td style="text-align:left"><code>+ + x * y z v</code></td>
@@ -15588,9 +15560,7 @@ div.jp-OutputPrompt {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<ul>
-<li><code>(A + B) * C - (D - E) * (F + G)</code> 를 전위/후위 표기법으로 표현하는 과정</li>
-</ul>
+<p><code>(A + B) * C - (D - E) * (F + G)</code> 를 전위/후위 표기법으로 표현하는 과정은 다음과 같다.</p>
 
 </div>
 </div>
@@ -15626,9 +15596,7 @@ div.jp-OutputPrompt {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<ul>
-<li><code>A * B + C * D</code>를 후위 표기법으로 변환하는 과정</li>
-</ul>
+<p><code>A * B + C * D</code>를 후위 표기법으로 변환하는 과정은 다음과 같다.</p>
 
 </div>
 </div>
@@ -15697,6 +15665,18 @@ div.jp-OutputPrompt {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>연산자들 사이의 우선순위를 지정한다.</p>
+
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <div class="highlight"><pre><span></span><span class="n">precedence</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;*&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;/&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;+&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;(&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
 </pre></div>
 
@@ -15704,6 +15684,17 @@ div.jp-OutputPrompt {
 </div>
 </div>
 </div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="%EC%A4%91%EC%9C%84-%ED%91%9C%ED%98%84%EC%8B%9D-=%3E-%ED%9B%84%EC%9C%84-%ED%91%9C%ED%98%84%EC%8B%9D">&#51473;&#50948; &#54364;&#54788;&#49885; =&gt; &#54980;&#50948; &#54364;&#54788;&#49885;<a class="anchor-link" href="#%EC%A4%91%EC%9C%84-%ED%91%9C%ED%98%84%EC%8B%9D-=%3E-%ED%9B%84%EC%9C%84-%ED%91%9C%ED%98%84%EC%8B%9D">&#182;</a></h3>
+</div>
+</div>
+</div>
+</div>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -15747,7 +15738,7 @@ div.jp-OutputPrompt {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="%ED%9B%84%EC%9C%84-%ED%91%9C%EA%B8%B0%EB%B2%95-%ED%91%9C%ED%98%84%EC%8B%9D-%EA%B3%84%EC%82%B0">&#54980;&#50948; &#54364;&#44592;&#48277; &#54364;&#54788;&#49885; &#44228;&#49328;<a class="anchor-link" href="#%ED%9B%84%EC%9C%84-%ED%91%9C%EA%B8%B0%EB%B2%95-%ED%91%9C%ED%98%84%EC%8B%9D-%EA%B3%84%EC%82%B0">&#182;</a></h2>
+<h2 id="%ED%9B%84%EC%9C%84-%ED%91%9C%ED%98%84%EC%8B%9D%EC%9D%98-%EA%B0%92-%EA%B3%84%EC%82%B0">&#54980;&#50948; &#54364;&#54788;&#49885;&#51032; &#44050; &#44228;&#49328;<a class="anchor-link" href="#%ED%9B%84%EC%9C%84-%ED%91%9C%ED%98%84%EC%8B%9D%EC%9D%98-%EA%B0%92-%EA%B3%84%EC%82%B0">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -15758,9 +15749,7 @@ div.jp-OutputPrompt {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<ul>
-<li>후위 표현식 <code>4 5 6 * +</code>을 계산하는 과정</li>
-</ul>
+<p>후위 표현식 <code>4 5 6 * +</code>을 계산하는 과정은 다음과 같다.</p>
 
 </div>
 </div>
@@ -15785,9 +15774,7 @@ div.jp-OutputPrompt {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<ul>
-<li>후위 표현식 <code>7 8 + 3 2 + /</code>을 계산하는 과정</li>
-</ul>
+<p>후위 표현식 <code>7 8 + 3 2 + /</code>을 계산하는 과정은 다음과 같다.</p>
 
 </div>
 </div>
@@ -15837,21 +15824,11 @@ div.jp-OutputPrompt {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">do_math</span><span class="p">(</span><span class="n">op</span><span class="p">,</span> <span class="n">op1</span><span class="p">,</span> <span class="n">op2</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">op</span> <span class="o">==</span> <span class="s2">&quot;*&quot;</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">op1</span> <span class="o">*</span> <span class="n">op2</span>
-    <span class="k">elif</span> <span class="n">op</span> <span class="o">==</span> <span class="s2">&quot;/&quot;</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">op1</span> <span class="o">/</span> <span class="n">op2</span>
-    <span class="k">elif</span> <span class="n">op</span> <span class="o">==</span> <span class="s2">&quot;+&quot;</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">op1</span> <span class="o">+</span> <span class="n">op2</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">op1</span> <span class="o">-</span> <span class="n">op2</span>
-</pre></div>
-
+<h3 id="%ED%9B%84%EC%9C%84-%ED%91%9C%ED%98%84%EC%8B%9D-%EA%B3%84%EC%82%B0-%ED%95%A8%EC%88%98">&#54980;&#50948; &#54364;&#54788;&#49885; &#44228;&#49328; &#54632;&#49688;<a class="anchor-link" href="#%ED%9B%84%EC%9C%84-%ED%91%9C%ED%98%84%EC%8B%9D-%EA%B3%84%EC%82%B0-%ED%95%A8%EC%88%98">&#182;</a></h3>
 </div>
 </div>
 </div>
-</div></section></section><section><section>
+</div>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -15874,6 +15851,27 @@ div.jp-OutputPrompt {
         <span class="nb">print</span><span class="p">(</span><span class="n">operand_stack</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">operand_stack</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">do_math</span><span class="p">(</span><span class="n">op</span><span class="p">,</span> <span class="n">op1</span><span class="p">,</span> <span class="n">op2</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">op</span> <span class="o">==</span> <span class="s2">&quot;*&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">op1</span> <span class="o">*</span> <span class="n">op2</span>
+    <span class="k">elif</span> <span class="n">op</span> <span class="o">==</span> <span class="s2">&quot;/&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">op1</span> <span class="o">/</span> <span class="n">op2</span>
+    <span class="k">elif</span> <span class="n">op</span> <span class="o">==</span> <span class="s2">&quot;+&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">op1</span> <span class="o">+</span> <span class="n">op2</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">op1</span> <span class="o">-</span> <span class="n">op2</span>
 </pre></div>
 
 </div>
