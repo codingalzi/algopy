@@ -427,7 +427,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">6.2. 시간복잡도</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#big-o">6.2.1. Big-O 표현식</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#big-o">6.2.1. Big-O 표기법 직관적 소개</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">6.2.2. 주요 시간복잡도 함수</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sec-running-time">6.2.3. 시간복잡도와 실행시간</a></li>
 </ul>
@@ -457,7 +457,7 @@ document.write(`
 <p><strong>주요 내용</strong></p>
 <ul class="simple">
 <li><p>알고리즘 분석</p></li>
-<li><p>시간복잡도와 “Big-O” 표현식</p></li>
+<li><p>시간복잡도와 “Big-O” 표기법</p></li>
 </ul>
 <section id="id2">
 <h2><span class="section-number">6.1. </span>알고리즘 분석<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
@@ -860,18 +860,18 @@ T(n) &amp;= 3 + 3n^{2} + 2n + 1 \\
 \end{align*}
 \end{split}\]</div>
 <section id="big-o">
-<h3><span class="section-number">6.2.1. </span>Big-O 표현식<a class="headerlink" href="#big-o" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.1. </span>Big-O 표기법 직관적 소개<a class="headerlink" href="#big-o" title="Permalink to this heading">#</a></h3>
 <p>입력 크기에 의존하는 실행시간 함수 <span class="math notranslate nohighlight">\(T(n)\)</span>의 정의에 사용되는 수식을 분석할 때
 수식에 사용되는 모든 항을 다룰 필요가 없다.
 예를 들어 <span class="math notranslate nohighlight">\(T(n) = n + 1\)</span> 에서 <span class="math notranslate nohighlight">\(1\)</span>은 별로 중요하지 않다.
 실제로 <span class="math notranslate nohighlight">\(n\)</span>이 커질 수록 <span class="math notranslate nohighlight">\((n + 1)\)</span>에서 <span class="math notranslate nohighlight">\(1\)</span>의 역할은 거의 사라진다.
 실제로 <span class="math notranslate nohighlight">\((n+1) / n\)</span>은 <span class="math notranslate nohighlight">\(n\)</span>이 커질 수로 1에 무한히 가까워진다.
-이를 <strong>Big-O 표현식</strong>으로 나타내면 다음과 같다.</p>
+이를 <strong>Big-O 표기법</strong>으로 나타내면 다음과 같다.</p>
 <div class="math notranslate nohighlight">
 \[
 T(n) \in O(n)
 \]</div>
-<p>실행시간 함수 <span class="math notranslate nohighlight">\(T(n)\)</span>을 Big-O 표현식으로 나타내려면 앞서 설명한 것처럼 실행시간 계산에 있어서
+<p>실행시간 함수 <span class="math notranslate nohighlight">\(T(n)\)</span>을 Big-O 표기법으로 나타내려면 앞서 설명한 것처럼 실행시간 계산에 있어서
 입력 크기 <span class="math notranslate nohighlight">\(n\)</span>이 매우 커질 때 가장 중요한 역할을 수행하는 항인 찾아야 한다.
 그런 항이 <span class="math notranslate nohighlight">\(f(n)\)</span> 이라 할 때 아래처럼 표기한다.</p>
 <div class="math notranslate nohighlight">
@@ -1541,7 +1541,7 @@ T(n) = 2n + 26 \in O(n)
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">6.2. 시간복잡도</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#big-o">6.2.1. Big-O 표현식</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#big-o">6.2.1. Big-O 표기법 직관적 소개</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">6.2.2. 주요 시간복잡도 함수</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sec-running-time">6.2.3. 시간복잡도와 실행시간</a></li>
 </ul>
