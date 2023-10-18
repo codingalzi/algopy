@@ -421,17 +421,19 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">7.1. 시간 복잡도 함수의 차수</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">7.1.1. 차수의 직관적 이해</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">7.1. 시간 복잡도 함수의 차수 이해</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">7.1.1. 궁극적으로 크다? 빠르다?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">7.1.2. 차수 예제</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">7.2. 차수의 정의</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#big-o">7.2.1. Big-<span class="math notranslate nohighlight">\(O\)</span> 표기법</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#omega">7.2.2. <span class="math notranslate nohighlight">\(\Omega\)</span> 표기법</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#theta">7.2.3. 차수(<span class="math notranslate nohighlight">\(\Theta\)</span>) 표기법</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">7.2.4. 차수의 특성</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">7.3. 차수의 특성</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">7.3. 연습문제</a></li>
 </ul>
             </nav>
         </div>
@@ -449,13 +451,13 @@ document.write(`
 <p>본문 내용을 요약한 <a class="reference external" href="https://github.com/codingalzi/algopy/raw/master/slides/slides-orders.pdf">슬라이드</a>를 다운로드할 수 있다.</p>
 <p><strong>주요 내용</strong></p>
 <ul class="simple">
-<li><p>차수 이해</p></li>
-<li><p><span class="math notranslate nohighlight">\(O\)</span>, <span class="math notranslate nohighlight">\(\Omega\)</span>, <span class="math notranslate nohighlight">\(\Theta\)</span> 정의와 이해</p></li>
+<li><p>차수의 직관적 이해</p></li>
+<li><p><span class="math notranslate nohighlight">\(O\)</span>, <span class="math notranslate nohighlight">\(\Omega\)</span>, <span class="math notranslate nohighlight">\(\Theta\)</span> 정의</p></li>
 </ul>
 <section id="id2">
-<h2><span class="section-number">7.1. </span>시간 복잡도 함수의 차수<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">7.1. </span>시간 복잡도 함수의 차수 이해<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
 <section id="id3">
-<h3><span class="section-number">7.1.1. </span>차수의 직관적 이해<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">7.1.1. </span>궁극적으로 크다? 빠르다?<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
 <p>아래 두 알고리즘 중에서 어떤 알고리즘을 선택해야 할까?</p>
 <table class="table">
 <thead>
@@ -472,7 +474,7 @@ document.write(`
 </tr>
 </tbody>
 </table>
-<p>일반적으로 차수가 높은 고차 다항식의 시간 복잡도를 갖는 알고리즘이 실행 시간 측면서 비효율적이다.
+<p>일반적으로 고차 다항식의 시간 복잡도를 갖는 알고리즘이 실행 시간 측면서 비효율적이다.
 하지만 최고차 항의 계수가 상대적으로 크면 입력값의 크기에 따라 충분히 좋은 알고리즘으로 사용될 수 있다.</p>
 <p>위 두 알고리즘의 경우 입력 크기 1만을 기준으로 다르게 선택될 수 있다.</p>
 <table class="table">
@@ -509,12 +511,13 @@ document.write(`
 <div class="math notranslate nohighlight">
 \[\text{$n&gt;N$인 임의의 양의 정수 $n$에 대해 $f(n) &gt; g(n)$이다.}\]</div>
 </section>
-</div><p>시간 복잡도의 기준으로 말하면 다음이 성립한다.</p>
+</div><p>시간 복잡도 함수를 기준으로 말하면 다음이 성립한다.</p>
 <div class="math notranslate nohighlight">
 \[\text{$g(n)$이 $f(n)$ 보다 궁극적으로 빠르다 $\quad\Longleftrightarrow\quad$ $f(n)$이 $g(n)$ 보다 궁극적으로 크다}\]</div>
-<p>이렇듯 알고리즘 시간 복잡도의 차수가 높을 수록 입력값의 크기가 어느 정도 커지면
-낮은 차수의 알고리즘보다 실행 시간이 훨씬 길어진다.
-반면에 차수가 높더라도 입력값의 크기가 그렇게 크지 않으면 어느 정도는 효율적으로 활용할 수도 있다.</p>
+<p>일반적으로 알고리즘의 시간 복잡도가 고차 함수일 수록 입력값의 크기가 어느 정도 이상으로 커지면
+실행 시간이 훨씬 오래 걸린다.
+하지만 입력값의 크기가 그렇게 크지 않으면 고차 함수의 시간 복잡도를 갖는 알고리즘이라 하더라도
+경우에 따라서는 효율적으로 활용할 수도 있기도 하다.</p>
 </section>
 <section id="id4">
 <h3><span class="section-number">7.1.2. </span>차수 예제<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
@@ -564,21 +567,21 @@ document.write(`
 </tr>
 </tbody>
 </table>
-<p>앞서 언급된 시간 복잡도를 효율적인 측면에서 구분하면 다음과 같다.</p>
+<p>앞서 언급된 시간 복잡도를 사용 효율성 측면에서 구분하면 다음과 같다.</p>
 <table class="table">
 <thead>
-<tr class="row-odd"><th class="head text-left"><p>효율성</p></th>
+<tr class="row-odd"><th class="head text-center"><p>효율성</p></th>
 <th class="head text-left"><p>알고리즘 복잡도</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td class="text-left"><p>매우 효율적</p></td>
+<tr class="row-even"><td class="text-center"><p>매우 효율적인 알고리즘</p></td>
 <td class="text-left"><p><span class="math notranslate nohighlight">\(\Theta(1)\)</span>, <span class="math notranslate nohighlight">\(\Theta(\lg n)\)</span>, <span class="math notranslate nohighlight">\(\Theta(n)\)</span>, <span class="math notranslate nohighlight">\(\Theta(n \lg n)\)</span></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p>경우에 따라 괜찮은 알고리즘 복잡도</p></td>
+<tr class="row-odd"><td class="text-center"><p>경우에 따라 괜찮은 알고리즘</p></td>
 <td class="text-left"><p><span class="math notranslate nohighlight">\(\Theta(n^2)\)</span>, <span class="math notranslate nohighlight">\(\Theta(n^3)\)</span></p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p>사실상 사용 불가 알고리즘 복잡도</p></td>
+<tr class="row-even"><td class="text-center"><p>사실상 사용 불가 알고리즘</p></td>
 <td class="text-left"><p><span class="math notranslate nohighlight">\(\Theta(2^n)\)</span>, <span class="math notranslate nohighlight">\(\Theta(n!)\)</span></p></td>
 </tr>
 </tbody>
@@ -590,12 +593,14 @@ document.write(`
 <p>차수(<span class="math notranslate nohighlight">\(\Theta\)</span>)를 엄밀하게 정의하려면 Big-<span class="math notranslate nohighlight">\(O\)</span>와 <span class="math notranslate nohighlight">\(\Omega\)</span>(Omega, 오메가) 개념이 요구된다.</p>
 <section id="big-o">
 <h3><span class="section-number">7.2.1. </span>Big-<span class="math notranslate nohighlight">\(O\)</span> 표기법<a class="headerlink" href="#big-o" title="Permalink to this heading">#</a></h3>
-<p>다음 성질을 갖는 양의 실수 <span class="math notranslate nohighlight">\(c\)</span>와 음이 아닌 정수 <span class="math notranslate nohighlight">\(N\)</span>이 존재할 때 <span class="math notranslate nohighlight">\(g(n)\in O(f(n))\)</span>이 성립한다.</p>
+<p>다음 성질을 갖는 양의 실수 <span class="math notranslate nohighlight">\(c\)</span> 와 양의 정수 <span class="math notranslate nohighlight">\(N\)</span> 이 존재할 때 <span class="math notranslate nohighlight">\(g(n)\in O(f(n))\)</span> 으로 표현한다.</p>
 <div class="math notranslate nohighlight">
 \[\text{$n \ge N$인 임의의 정수 $n$에 대해 $g(n) \le c\cdot f(n)$}\]</div>
-<p>입력크기 <span class="math notranslate nohighlight">\(n\)</span>에 대해 시간 복잡도 <span class="math notranslate nohighlight">\(g(n)\)</span>의 수행시간이 궁극적으로 <span class="math notranslate nohighlight">\(f(n)\)</span>보다 나쁘지는 않음을 의미한다.</p>
+<p>알고리즘의 시간 복잡도 측면에서 볼 때
+입력 크기 <span class="math notranslate nohighlight">\(n\)</span>에 대해 시간 복잡도 <span class="math notranslate nohighlight">\(g(n)\)</span>의 수행시간이 궁극적으로 <span class="math notranslate nohighlight">\(f(n)\)</span>보다 나쁘지는 않음을 의미한다.
+즉, <span class="math notranslate nohighlight">\(g(n)\)</span>의 수행시간이 최악(worst)의 경우에도 <span class="math notranslate nohighlight">\(f(n)\)</span>의 수행시간보다는 느리지 않다.</p>
 <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo01/algo01-08.png" width="300"/></div>
-<br><p><span class="math notranslate nohighlight">\(O(n^2)\)</span>에 속하는/속하지 않는 시간 복잡도 함수들을 몇 개 살펴 본다.</p>
+<br><p><span class="math notranslate nohighlight">\(O(n^2)\)</span>에 속하는/속하지 않는 시간 복잡도 함수 몇 개를 살펴 본다.</p>
 <p><strong>예제 1</strong></p>
 <p><span class="math notranslate nohighlight">\(n \ge 10\)</span>인 경우 다음 부등식이 참이다.</p>
 <div class="math notranslate nohighlight">
@@ -608,150 +613,113 @@ document.write(`
 <p>모든 정수 <span class="math notranslate nohighlight">\(n\)</span>에 대해 다음 부등식이 참이다</p>
 <div class="math notranslate nohighlight">
 \[5n^2 \le 5n^2\]</div>
-<p>따라서 <span class="math notranslate nohighlight">\(c=5\)</span>와 <span class="math notranslate nohighlight">\(N=0\)</span>을 선택하면 Big-<span class="math notranslate nohighlight">\(O\)</span>의 정의에 의해 다음이 성립한다.</p>
+<p>따라서 <span class="math notranslate nohighlight">\(c=5\)</span>와 <span class="math notranslate nohighlight">\(N=1\)</span>을 선택하면 Big-<span class="math notranslate nohighlight">\(O\)</span>의 정의에 의해 다음이 성립한다.</p>
 <div class="math notranslate nohighlight">
 \[5n^2 \in O(n^2)\]</div>
 <p><strong>예제 3</strong></p>
-<p>임의의 양의 정수 <span class="math notranslate nohighlight">\(n\)</span>에 대해 다음 부등식이 참이다.</p>
+<p>2보다 같거나 큰 임의의 양의 정수 <span class="math notranslate nohighlight">\(n\)</span>에 대해 다음 부등식이 참이다.</p>
 <div class="math notranslate nohighlight">
-\[\frac{n(n-1)}{2} \le \frac{n^2}{2}\]</div>
-<p>따라서 <span class="math notranslate nohighlight">\(c = \frac 1 2\)</span>과 <span class="math notranslate nohighlight">\(N=0\)</span>을 선택하면 Big-<span class="math notranslate nohighlight">\(O\)</span>의 정의에 의해 다음이 성립한다.</p>
+\[2\, n\, \log(n) \le n^2\]</div>
+<p>따라서 <span class="math notranslate nohighlight">\(c = 1\)</span>과 <span class="math notranslate nohighlight">\(N=2\)</span>을 선택하면 Big-<span class="math notranslate nohighlight">\(O\)</span>의 정의에 의해 다음이 성립한다.</p>
 <div class="math notranslate nohighlight">
-\[\frac{n(n-1)}{2} \in O(n^2)\]</div>
+\[2\, n\, \log(n) \in O(n^2)\]</div>
 <p><strong>예제 4</strong></p>
 <p>임의의 양의 정수 <span class="math notranslate nohighlight">\(n\)</span>에 대해 다음 부등식이 참이다.</p>
 <div class="math notranslate nohighlight">
-\[n \le 1 \cdot n^2\]</div>
+\[n \le n^2\]</div>
 <p>따라서 <span class="math notranslate nohighlight">\(c=1\)</span>과 <span class="math notranslate nohighlight">\(N=1\)</span>을 선택하면 Big-<span class="math notranslate nohighlight">\(O\)</span>의 정의에 의해 다음이 성립한다.</p>
 <div class="math notranslate nohighlight">
 \[n \in O(n^2)\]</div>
 <p><strong>예제 5</strong></p>
-<p><span class="math notranslate nohighlight">\(c\)</span>와 <span class="math notranslate nohighlight">\(N\)</span>을 아무리 크게 잡더라도 <span class="math notranslate nohighlight">\(n\)</span>이 <span class="math notranslate nohighlight">\(c\)</span>보다 크면 다음 부등식이 성립한다.</p>
+<p><span class="math notranslate nohighlight">\(c\)</span>와 <span class="math notranslate nohighlight">\(N\)</span>을 아무리 크게 잡더라도 <span class="math notranslate nohighlight">\(n\)</span>이 <span class="math notranslate nohighlight">\(c\)</span>보다 크면 다음 부등식이 참이다.</p>
 <div class="math notranslate nohighlight">
 \[n^3 &gt; c\cdot n^2\]</div>
 <p>따라서 다음이 성립한다.</p>
 <div class="math notranslate nohighlight">
 \[n^3 \not\in O(n^2)\]</div>
-<p>아래 그림은 <span class="math notranslate nohighlight">\(O(n^2)\)</span>에 속하는 시간 복잡도 함수들의 집합을 잘 묘사한다.</p>
+<p><span class="math notranslate nohighlight">\(O(f(n))\)</span> 에 속하는 시간 복잡도 함수는 기본적으로 <span class="math notranslate nohighlight">\(f(n)\)</span> 과 비슷하거나 보다 느리게 증가하는 그래프를 갖는다.
+아래 그림은 <span class="math notranslate nohighlight">\(O(n^2)\)</span>에 속하는 시간 복잡도 함수들의 집합을 잘 묘사한다.</p>
 <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo01/algo01-10.png" width="250"/></div></section>
 <section id="omega">
 <h3><span class="section-number">7.2.2. </span><span class="math notranslate nohighlight">\(\Omega\)</span> 표기법<a class="headerlink" href="#omega" title="Permalink to this heading">#</a></h3>
-<p>다음 성질을 갖는 양의 실수 <span class="math notranslate nohighlight">\(c\)</span>와 음이 아닌 정수 <span class="math notranslate nohighlight">\(N\)</span>이 존재할 때 <span class="math notranslate nohighlight">\(g(n)\in \Omega(f(n))\)</span>이 성립한다.</p>
+<p>다음 성질을 갖는 양의 실수 <span class="math notranslate nohighlight">\(c\)</span> 와 양의 정수 <span class="math notranslate nohighlight">\(N\)</span> 이 존재할 때 <span class="math notranslate nohighlight">\(g(n)\in \Omega(f(n))\)</span> 으로 표현한다.</p>
 <div class="math notranslate nohighlight">
 \[\text{$n \ge N$인 임의의 정수 $n$에 대해 $g(n) \ge c\cdot f(n)$}\]</div>
-<p>입력크기 <span class="math notranslate nohighlight">\(n\)</span>에 대해 시간 복잡도 <span class="math notranslate nohighlight">\(g(n)\)</span>의 수행시간은 궁극적으로 <span class="math notranslate nohighlight">\(f(n)\)</span>보다 효율적이지 못함을 의미한다.</p>
-<div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo01/algo01-11.png" width="300"/></div><p><strong><span class="math notranslate nohighlight">\(\Omega\)</span> 표기법 예제</strong></p>
-<ul>
-<li><p><span class="math notranslate nohighlight">\(n^2 + 10n \in \Omega(n^2)\)</span>
-<br></p>
-<ul>
-<li><p><span class="math notranslate nohighlight">\(n \ge 0\)</span>인 경우:</p>
+<p>알고리즘의 시간 복잡도 측면에서 볼 때
+입력 크기 <span class="math notranslate nohighlight">\(n\)</span>에 대해 시간 복잡도 <span class="math notranslate nohighlight">\(g(n)\)</span>의 수행시간은 궁극적으로 <span class="math notranslate nohighlight">\(f(n)\)</span>보다 효율적이지 못함을 의미한다.
+즉, <span class="math notranslate nohighlight">\(g(n)\)</span>의 수행시간이 최선(best)의 경우에도 <span class="math notranslate nohighlight">\(f(n)\)</span>의 수행시간보다는 빠르지 않다.</p>
+<div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo01/algo01-11.png" width="300"/></div><p><span class="math notranslate nohighlight">\(\Omega(n^2)\)</span>에 속하는/속하지 않는 시간 복잡도 함수 몇 개를 살펴 본다.</p>
+<p><strong>예제 6</strong></p>
+<p>2보다 같거나 큰 임의의 양의 정수 <span class="math notranslate nohighlight">\(n\)</span>에 대해 다음 부등식이 참이다.</p>
 <div class="math notranslate nohighlight">
-\[n^2+10n \ge n^2\]</div>
-</li>
-<li><p>그러므로 <span class="math notranslate nohighlight">\(c = 1\)</span>과 <span class="math notranslate nohighlight">\(N = 0\)</span> 선택</p></li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p><span class="math notranslate nohighlight">\(5n^2 \in \Omega(n^2)\)</span>
-<br></p>
-<ul>
-<li><p><span class="math notranslate nohighlight">\(n \ge 0\)</span>인 경우:</p>
+\[\frac{n(n-1)}{2} \ge \frac{n^2}{4}\]</div>
+<p>따라서 <span class="math notranslate nohighlight">\(c = \frac 1 4\)</span>과 <span class="math notranslate nohighlight">\(N=2\)</span>을 선택하면 <span class="math notranslate nohighlight">\(\Omega\)</span>의 정의에 의해 다음이 성립한다.</p>
 <div class="math notranslate nohighlight">
-\[5n^2 \ge 1\cdot n^2\]</div>
-</li>
-<li><p>그러므로, <span class="math notranslate nohighlight">\(c=1\)</span>과 <span class="math notranslate nohighlight">\(N=0\)</span> 선택</p></li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p><span class="math notranslate nohighlight">\(\frac{n(n-1)}{2} \in \Omega(n^2)\)</span>
-<br></p>
-<ul>
-<li><p><span class="math notranslate nohighlight">\(n \ge 2\)</span>인 경우:</p>
+\[\frac{n(n-1)}{2} \in \Omega(n^2)\]</div>
+<p><strong>예제 7</strong></p>
+<p>임의의 양의 정수 <span class="math notranslate nohighlight">\(n\)</span>에 대해 다음 부등식이 참이다.</p>
 <div class="math notranslate nohighlight">
-\[\frac{n(n-1)}{2} \ge \frac{1}{4} n^2\]</div>
-</li>
-<li><p>그러므로 <span class="math notranslate nohighlight">\(c = 1/4\)</span>과 <span class="math notranslate nohighlight">\(N = 2\)</span> 선택</p></li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p><span class="math notranslate nohighlight">\(n^3 \in \Omega(n^2)\)</span>
-<br></p>
-<ul>
-<li><p><span class="math notranslate nohighlight">\(n \ge 1\)</span>인 경우:</p>
+\[n^3 \ge n^2\]</div>
+<p>따라서 <span class="math notranslate nohighlight">\(c = 1\)</span>과 <span class="math notranslate nohighlight">\(N = 1\)</span>을 선택하면 <span class="math notranslate nohighlight">\(\Omega\)</span>의 정의에 의해 다음이 성립한다.</p>
 <div class="math notranslate nohighlight">
-\[n^3 \ge 1 \cdot n^2\]</div>
-</li>
-<li><p>그러므로, <span class="math notranslate nohighlight">\(c = 1\)</span>과 <span class="math notranslate nohighlight">\(N = 1\)</span> 선택</p></li>
-</ul>
-</li>
-</ul>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(n \not\in \Omega(n^2)\)</span>
-<br></p>
-<ul>
-<li><p><span class="math notranslate nohighlight">\(c\)</span>를 아무리 작게, <span class="math notranslate nohighlight">\(N\)</span>을 아무리 크게 지정하더라도, <span class="math notranslate nohighlight">\(n \le c\cdot n^2\)</span>을 만족시키는 <span class="math notranslate nohighlight">\(n\ge N\)</span>이 존재.
-<br></p></li>
-<li><p>예를 들어, <span class="math notranslate nohighlight">\(n \ge 1/c\)</span>로 잡으면 됨.</p></li>
-</ul>
-</li>
-</ul>
-<p><span class="math notranslate nohighlight">\(\Omega(n^2)\)</span>:  특정 양의 실수 <span class="math notranslate nohighlight">\(c\)</span>에 대해 <span class="math notranslate nohighlight">\(c\, n^2\)</span> 보다 궁극적으로 큰 값을 가지는 함수들의 집합</p>
-<div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo01/algo01-12.png" width="250"/></div><p><strong><span class="math notranslate nohighlight">\(\Theta\)</span> 표기법</strong></p>
+\[n^3 \in \Omega(n^2)\]</div>
+<p><strong>예제 8</strong></p>
+<p>임의의 정수 <span class="math notranslate nohighlight">\(n\)</span>에 대해 다음 부등식이 참이다.</p>
+<div class="math notranslate nohighlight">
+\[6 n^6 + n^4 \ge n^2\]</div>
+<p>따라서 <span class="math notranslate nohighlight">\(c = 1\)</span>과 <span class="math notranslate nohighlight">\(N = 1\)</span>을 선택하면 <span class="math notranslate nohighlight">\(\Omega\)</span>의 정의에 의해 다음이 성립한다.</p>
+<div class="math notranslate nohighlight">
+\[6 n^6 + n^4 \in \Omega(n^2)\]</div>
+<p><strong>예제 9</strong></p>
+<p>임의의 양의 정수 <span class="math notranslate nohighlight">\(n\)</span>에 대해 다음 부등식이 참이다.</p>
+<div class="math notranslate nohighlight">
+\[2^n + 4n \ge n^2\]</div>
+<p>따라서 <span class="math notranslate nohighlight">\(c = 1\)</span>과 <span class="math notranslate nohighlight">\(N = 1\)</span>을 선택하면 <span class="math notranslate nohighlight">\(\Omega\)</span>의 정의에 의해 다음이 성립한다.</p>
+<div class="math notranslate nohighlight">
+\[2^n + 4n \in \Omega(n^2)\]</div>
+<p><strong>예제 10</strong></p>
+<p>양의 실수 <span class="math notranslate nohighlight">\(c\)</span>를 아무리 작게 잡더라도 <span class="math notranslate nohighlight">\(n\)</span> 이 <span class="math notranslate nohighlight">\(\frac 1 c\)</span> 보다 크면 다음 부등식이 참이다.</p>
+<div class="math notranslate nohighlight">
+\[n \le c\, n^2\]</div>
+<p>따라서 다음이 성립한다.</p>
+<div class="math notranslate nohighlight">
+\[n \not\in \Omega(n^2)\]</div>
+<p><span class="math notranslate nohighlight">\(\Omega(f(n))\)</span> 에 속하는 시간 복잡도 함수는 기본적으로 <span class="math notranslate nohighlight">\(f(n)\)</span> 과 비슷하거나 보다 빠르게 증가하는 그래프를 갖는다.
+아래 그림은 <span class="math notranslate nohighlight">\(\Omega(n^2)\)</span>에 속하는 시간 복잡도 함수들의 집합을 잘 묘사한다.</p>
+<div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo01/algo01-12.png" width="250"/></div></section>
+<section id="theta">
+<h3><span class="section-number">7.2.3. </span>차수(<span class="math notranslate nohighlight">\(\Theta\)</span>) 표기법<a class="headerlink" href="#theta" title="Permalink to this heading">#</a></h3>
 <p>차수(<span class="math notranslate nohighlight">\(\Theta\)</span>)의 엄밀한 정의는 다음과 같다.</p>
 <div class="math notranslate nohighlight">
 \[\Theta(f(n)) = O(f(n)) \cap \Omega(f(n))\]</div>
-<p>즉, 다음 성질을 갖는 양의 실수 <span class="math notranslate nohighlight">\(c\)</span>와 <span class="math notranslate nohighlight">\(d\)</span>, 그리고 음이 아닌 정수 <span class="math notranslate nohighlight">\(N\)</span>이 존재할 때 <span class="math notranslate nohighlight">\(g(n)\in \Theta(f(n))\)</span>이 성립한다.</p>
-<div class="math notranslate nohighlight">
-\[\text{$n \ge N$인 임의의 정수 $n$에 대해 $c\cdot f(n) \le g(n) \le d\cdot f(n)$}\]</div>
-<div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo01/algo01-13.png" width="300"/></div><p><strong><span class="math notranslate nohighlight">\(\Theta\)</span> 표기법 예제</strong></p>
-<ul>
-<li><p><span class="math notranslate nohighlight">\(\frac{n (n-1)}{2} \in \Theta(n^2)\)</span>:
-<br></p>
-<ul>
-<li><p><span class="math notranslate nohighlight">\(n\ge 2\)</span>인 경우:</p>
-<div class="math notranslate nohighlight">
-\[\frac{n (n-1)}{2} \ge \frac 1 4 n^2\]</div>
-</li>
-<li><p><span class="math notranslate nohighlight">\(n \ge 0\)</span>인 경우:</p>
-<div class="math notranslate nohighlight">
-\[\frac{n (n-1)}{2} \le \frac 1 2 n^2\]</div>
-</li>
-<li><p>그러므로, <span class="math notranslate nohighlight">\(c = \frac 1 4\)</span>, <span class="math notranslate nohighlight">\(d = \frac 1 2\)</span>, <span class="math notranslate nohighlight">\(N = 2\)</span>.</p></li>
-</ul>
-</li>
-</ul>
-<div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo01/algo01-14.png" width="350"/></div></section>
-</section>
+<p><span class="math notranslate nohighlight">\(\Theta(f(n))\)</span> 에 속하는 시간 복잡도 함수는 기본적으로 <span class="math notranslate nohighlight">\(f(n)\)</span> 과 비슷하게 증가하는 그래프를 갖는다.
+아래 그림은 <span class="math notranslate nohighlight">\(\Theta(n^2)\)</span>에 속하는 시간 복잡도 함수들의 집합을 잘 묘사한다.</p>
+<div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo01/algo01-14.png" width="350"/></div><p>알고리즘의 시간 복잡도 측면에서 볼 때 <span class="math notranslate nohighlight">\(\Theta(f(n))\)</span>의 차수를 갖는 알고리즘은
+입력 크기 <span class="math notranslate nohighlight">\(n\)</span>에 대해 최악의 경우와 최선의 경우 모두 시간 복잡도 <span class="math notranslate nohighlight">\(f(n)\)</span>의 수행시간보다 느리지도 않고 빠르지도 않다.
+즉, 기본적으로 <span class="math notranslate nohighlight">\(f(n)\)</span>의 시간 내에 실행이 종료되며, 아래 그림이 이를 잘 반영한다.</p>
+<div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo01/algo01-13.png" width="300"/></div></section>
 <section id="id6">
-<h2><span class="section-number">7.3. </span>차수의 특성<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(g(n) \in O(f(n)) \quad\Longleftrightarrow\quad f(n) \in \Omega(g(n))\)</span></p></li>
-</ul>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(g(n) \in \Theta(f(n)) \quad\Longleftrightarrow\quad f(n) \in \Theta(g(n))\)</span></p></li>
-</ul>
-<ul>
-<li><p>임의의 <span class="math notranslate nohighlight">\(a, b &gt; 1\)</span>에 대해 다음이 성립한다:</p>
+<h3><span class="section-number">7.2.4. </span>차수의 특성<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h3>
+<p>다음 세 가지 성질을 직관적으로 이해하고 기억해두어야 한다.</p>
+<p>첫째, <span class="math notranslate nohighlight">\(g(n) \in O(f(n))\)</span> 이 성립하면 <span class="math notranslate nohighlight">\(f(n) \in \Omega(g(n))\)</span> 도 성립한다.</p>
+<p>둘째, <span class="math notranslate nohighlight">\(f(n) \in \Omega(g(n))\)</span> 이 성립하면 <span class="math notranslate nohighlight">\(g(n) \in O(f(n))\)</span> 도 성립한다.</p>
+<p>셋째, <span class="math notranslate nohighlight">\(g(n) \in \Theta(f(n))\)</span> 이 성립하면 <span class="math notranslate nohighlight">\(f(n) \in \Theta(g(n))\)</span> 도 성립한다.</p>
+<p>넷째, 1보다 큰 임의의 양의 정수 <span class="math notranslate nohighlight">\(a, b &gt; 1\)</span>에 대해 다음이 성립한다.
+즉, 로그 함수는 모두 동일한 복잡도 카테고리에 속한다.</p>
 <div class="math notranslate nohighlight">
 \[\log_a n \in \Theta(\log_b n)\]</div>
-<p>즉, 로그 함수는 모두 동일한 복잡도 카테고리에 속한다.</p>
-</li>
-</ul>
-<p>많이 언급되는 복잡도 카테고리를 순서대로 나열하면 다음과 같다. 단, <span class="math notranslate nohighlight">\(k &gt; j &gt; 2\)</span>와 <span class="math notranslate nohighlight">\(b &gt; a &gt; 1\)</span>을 가정한다.</p>
+<p>이와 더불어 알고리즘의 시간 복잡도와 관련해서
+가장 많이 언급되는 복잡도 카테고리를 복잡도 순서대로 나열하면 다음과 같다.</p>
 <div class="math notranslate nohighlight">
-\[\Theta(\lg n)\;\; \Theta(n)\;\; \Theta(n\, \lg n)\;\; \Theta(n^2)\;\; \Theta(n^j)\;\; \Theta(n^k)\;\; \Theta(a^n)\;\; \Theta(b^n)\;\; \Theta(n!)\]</div>
-<p><strong>차수 예제</strong></p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\log_4 n \in \Theta(\lg n)\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(7 n^2 \in \Theta(n^2)\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(10 n\, \lg n + 7 n^2 \in \Theta(n^2)\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(3\, \lg n + 10 n\, \lg n + 7 n^2 \in \Theta(n^2)\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(5n + 3\, \lg n + 10 n\, \lg n + 7 n^2 \in \Theta(n^2)\)</span></p></li>
-</ul>
+\[\Theta(\lg n), \;\; \Theta(n),\;\; \Theta(n\, \lg n),\;\; \Theta(n^2),\;\; \Theta(n^j),\;\; \Theta(n^k),\;\; \Theta(a^n),\;\; \Theta(b^n),\;\; \Theta(n!)\]</div>
+<p>단, <span class="math notranslate nohighlight">\(2 &lt; j &lt; k\)</span> 와 <span class="math notranslate nohighlight">\(1 &lt; a&lt; b\)</span> 가 성립한다고 가정한다.</p>
+</section>
+</section>
+<section id="id7">
+<h2><span class="section-number">7.3. </span>연습문제<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://colab.research.google.com/github/codingalzi/algopy/blob/master/excs/exc-orders.ipynb">(실습) 차수</a></p></li>
+</ol>
 </section>
 </section>
 
@@ -822,17 +790,19 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">7.1. 시간 복잡도 함수의 차수</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">7.1.1. 차수의 직관적 이해</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">7.1. 시간 복잡도 함수의 차수 이해</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">7.1.1. 궁극적으로 크다? 빠르다?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">7.1.2. 차수 예제</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">7.2. 차수의 정의</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#big-o">7.2.1. Big-<span class="math notranslate nohighlight">\(O\)</span> 표기법</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#omega">7.2.2. <span class="math notranslate nohighlight">\(\Omega\)</span> 표기법</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#theta">7.2.3. 차수(<span class="math notranslate nohighlight">\(\Theta\)</span>) 표기법</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">7.2.4. 차수의 특성</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">7.3. 차수의 특성</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">7.3. 연습문제</a></li>
 </ul>
   </nav></div>
 
