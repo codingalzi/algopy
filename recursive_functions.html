@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>14. 재귀 &#8212; 문제해결 알고리즘</title>
+    <title>9. 재귀 &#8212; 문제해결 알고리즘</title>
   
   
   
@@ -67,8 +67,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'recursive_functions';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="15. 하노이의 탑과 미로게임" href="hanoi_tower.html" />
-    <link rel="prev" title="13. 맵(Map)" href="trees_heaps_maps_3.html" />
+    <link rel="next" title="10. 하노이의 탑과 미로게임" href="hanoi_tower.html" />
+    <link rel="prev" title="8. 파이썬 모음 자료형 분석" href="python_list_dict.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -162,21 +162,21 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="orders.html">7. 차수</a></li>
 <li class="toctree-l1"><a class="reference internal" href="python_list_dict.html">8. 파이썬 모음 자료형 분석</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">재귀</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">9. 재귀</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hanoi_tower.html">10. 하노이의 탑과 미로게임</a></li>
+</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">탐색과 정렬</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="sort_search_1.html">9. 탐색과 분할 정복</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sort_search_2.html">10. 버블/선택/합병/퀵 정렬</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sort_search_1.html">11. 탐색과 분할 정복</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sort_search_2.html">12. 버블/선택/합병/퀵 정렬</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">트리, 힙, 맵</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="trees_heaps_maps_1.html">11. 트리(Tree)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="trees_heaps_maps_2.html">12. 힙(Heap)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="trees_heaps_maps_3.html">13. 맵(Map)</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">재귀</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">14. 재귀</a></li>
-<li class="toctree-l1"><a class="reference internal" href="hanoi_tower.html">15. 하노이의 탑과 미로게임</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trees_heaps_maps_1.html">13. 트리(Tree)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trees_heaps_maps_2.html">14. 힙(Heap)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trees_heaps_maps_3.html">15. 맵(Map)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">동적계획법</span></p>
 <ul class="nav bd-sidenav">
@@ -421,13 +421,13 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">14.1. 재귀 함수</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">14.2. 재귀 알고리즘의 특징</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">14.3. 재귀 함수 예제</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#font-size-2-call-stack-font">14.4. 콜 스택<font size="2">Call Stack</font></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">14.5. 재귀 시각화</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">14.6. 꼬리와 재귀 일반화</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">14.7. 연습 문제</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">9.1. 재귀 함수</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">9.2. 재귀 알고리즘의 특징</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">9.3. 재귀 함수 예제</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#font-size-2-call-stack-font">9.4. 콜 스택<font size="2">Call Stack</font></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">9.5. 재귀 시각화</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">9.6. 꼬리와 재귀 일반화</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">9.7. 연습 문제</a></li>
 </ul>
             </nav>
         </div>
@@ -440,18 +440,16 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="sec-recursive-functions">
-<span id="id1"></span><h1><span class="section-number">14. </span>재귀<a class="headerlink" href="#sec-recursive-functions" title="Permalink to this heading">#</a></h1>
-<p><strong>소스코드</strong></p>
-<p>아래 내용을
-<a class="reference external" href="https://colab.research.google.com/github/codingalzi/algopy/blob/master/jupyter-book/recursive_functions.ipynb">(구글 코랩) 재귀</a>에서
-직접 실행할 수 있다.</p>
+<span id="id1"></span><h1><span class="section-number">9. </span>재귀<a class="headerlink" href="#sec-recursive-functions" title="Permalink to this heading">#</a></h1>
+<p><strong>슬라이드</strong></p>
+<p>본문 내용을 요약한 <a class="reference external" href="https://github.com/codingalzi/algopy/raw/master/slides/slides-recursive_functions.pdf">슬라이드</a>를 다운로드할 수 있다.</p>
 <p><strong>주요 내용</strong></p>
 <ul class="simple">
 <li><p>재귀 함수 정의와 구현</p></li>
 <li><p>재귀 함수 활용</p></li>
 </ul>
 <section id="id2">
-<h2><span class="section-number">14.1. </span>재귀 함수<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">9.1. </span>재귀 함수<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
 <p><strong>재귀</strong>(recursion) 주어진 문제를 해결하기 위해 보다 작은 문제로 반복적으로 쪼개서 해결하는 문제 해결 기법이다. 재귀를 사용하지 않고 해결하려 할 때 매우 어려운 문제가 재귀를 이용하여 간단하게 해결되는 경우가 많다.
 재귀 함수는 재귀를 이용하여 정의된 함수를 의미한다.</p>
 <p><strong>예제: 리스트 항목의 합 구하기</strong></p>
@@ -583,7 +581,7 @@ document.write(`
 재귀 알고리즘을 사용한 함수가 <strong>재귀 함수</strong>(recursive function)이다.</p>
 </section>
 <section id="id3">
-<h2><span class="section-number">14.2. </span>재귀 알고리즘의 특징<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">9.2. </span>재귀 알고리즘의 특징<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
 <p>재귀 알고리즘은 아래 세 가지 특징을 가져야 한다.</p>
 <ol class="arabic simple">
 <li><p>재귀 호출이 반드시 발생해야 한다.</p></li>
@@ -683,7 +681,7 @@ document.write(`
 <p>&lt;그림 출처: <a class="reference external" href="https://en.wikipedia.org/wiki/Collatz_conjecture">위키백과: 콜라츠 추측</a>&gt;</p>
 </section>
 <section id="id4">
-<h2><span class="section-number">14.3. </span>재귀 함수 예제<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">9.3. </span>재귀 함수 예제<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
 <p><strong>예제: 계승(factorial) 함수</strong></p>
 <p>음이 아닌 정수 <span class="math notranslate nohighlight">\(n\)</span>이 주어졌을 때 <span class="math notranslate nohighlight">\(1\)</span>부터 <span class="math notranslate nohighlight">\(n\)</span>까지의 곱을 <span class="math notranslate nohighlight">\(n\)</span>의 계승이며, <span class="math notranslate nohighlight">\(n!\)</span>로 표기한다.
 <span class="math notranslate nohighlight">\(n\)</span>의 계승을 계산하는 함수를 재귀를 이용하여 구현하면 다음과 같다.</p>
@@ -943,7 +941,7 @@ wollof
 </div>
 </section>
 <section id="font-size-2-call-stack-font">
-<h2><span class="section-number">14.4. </span>콜 스택<font size='2'>Call Stack</font><a class="headerlink" href="#font-size-2-call-stack-font" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">9.4. </span>콜 스택<font size='2'>Call Stack</font><a class="headerlink" href="#font-size-2-call-stack-font" title="Permalink to this heading">#</a></h2>
 <p>재귀 함수가 실행되면 재귀 호출이 발생할 때마다
 함수 호출의 실행을 관리하는 <strong>프레임</strong>(frame)이
 생성되며 스택(stack)으로 관리되며
@@ -989,7 +987,7 @@ wollof
 <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/notebooks/_images/call_stack_1.png" width="50%"></div>
 </figure></section>
 <section id="id5">
-<h2><span class="section-number">14.5. </span>재귀 시각화<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">9.5. </span>재귀 시각화<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h2>
 <p>재귀를 이해하기 위해 재귀 알고리즘의 작동과정을 시각화햅보자.
 시각화를 위해 <code class="docutils literal notranslate"><span class="pre">turtle</span></code> 모듈을 이용한다.
 예를 들어, <code class="docutils literal notranslate"><span class="pre">draw_spiral()</span></code> 함수는 아래 그림과 같은 소용돌이를 그린다.</p>
@@ -1070,7 +1068,7 @@ wollof
 <div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/tree2.png" width="45%"></div>
 </figure></section>
 <section id="id6">
-<h2><span class="section-number">14.6. </span>꼬리와 재귀 일반화<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">9.6. </span>꼬리와 재귀 일반화<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h2>
 <p>리스트에 포함된 항목들의 합을 계산하는 <code class="docutils literal notranslate"><span class="pre">list_sum()</span></code>의 실행과정을 이해하기
 위해 사용된 머리(head)와 꼬리(tail) 개념을 많은 재귀 알고리즘에 적용할 수 있다.</p>
 <p>프랙탈 트리의 경우 가지 하나를 그린 다음 가지치기가 이루어지며
@@ -1153,7 +1151,7 @@ wollof
 <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/notebooks/_images/stCallTree.png" width="50%"></div>
 </figure></section>
 <section id="id7">
-<h2><span class="section-number">14.7. </span>연습 문제<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">9.7. </span>연습 문제<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p><a class="reference external" href="https://colab.research.google.com/github/codingalzi/algopy/blob/master/excs/exc-recursive_functions.ipynb">(실습) 재귀</a></p></li>
 </ol>
@@ -1192,12 +1190,12 @@ wollof
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="trees_heaps_maps_3.html"
+       href="python_list_dict.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">13. </span>맵(Map)</p>
+        <p class="prev-next-title"><span class="section-number">8. </span>파이썬 모음 자료형 분석</p>
       </div>
     </a>
     <a class="right-next"
@@ -1205,7 +1203,7 @@ wollof
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">15. </span>하노이의 탑과 미로게임</p>
+        <p class="prev-next-title"><span class="section-number">10. </span>하노이의 탑과 미로게임</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1227,13 +1225,13 @@ wollof
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">14.1. 재귀 함수</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">14.2. 재귀 알고리즘의 특징</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">14.3. 재귀 함수 예제</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#font-size-2-call-stack-font">14.4. 콜 스택<font size="2">Call Stack</font></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">14.5. 재귀 시각화</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">14.6. 꼬리와 재귀 일반화</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">14.7. 연습 문제</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">9.1. 재귀 함수</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">9.2. 재귀 알고리즘의 특징</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">9.3. 재귀 함수 예제</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#font-size-2-call-stack-font">9.4. 콜 스택<font size="2">Call Stack</font></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">9.5. 재귀 시각화</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">9.6. 꼬리와 재귀 일반화</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">9.7. 연습 문제</a></li>
 </ul>
   </nav></div>
 
