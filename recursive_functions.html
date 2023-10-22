@@ -527,15 +527,16 @@ document.write(`
 \end{align*}
 \end{split}\]</div>
 <p><code class="docutils literal notranslate"><span class="pre">the_sum</span></code>의 값이 업데이트되는 과정을 번호를 붙히면 다음을 얻는다.</p>
-<p>\begin{equation}
+<div class="math notranslate nohighlight">
+\[\begin{split}
 \begin{align*}
-\text{the_sum}_5 &amp; = 1 + \text{the_sum}_4 \
-\text{the_sum}_4 &amp; = 3 + \text{the_sum}_3 \
-\text{the_sum}_3 &amp; = 5 + \text{the_sum}_2 \
-\text{the_sum}_2 &amp; = 7 + \text{the_sum}_1 \
+\text{the_sum}_5 &amp; = 1 + \text{the_sum}_4 \\
+\text{the_sum}_4 &amp; = 3 + \text{the_sum}_3 \\
+\text{the_sum}_3 &amp; = 5 + \text{the_sum}_2 \\
+\text{the_sum}_2 &amp; = 7 + \text{the_sum}_1 \\
 \text{the_sum}_1 &amp; = 9
 \end{align*}
-\end{equation}</p>
+\end{split}\]</div>
 <p><strong>리스트의 머리와 꼬리 활용</strong></p>
 <p><span class="math notranslate nohighlight">\(\text{the_sum}_{i}\)</span>가 결정되는 방식은 모든 <span class="math notranslate nohighlight">\(i\)</span>에 대해 동일하게 아래 형식을 따른다.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">list_sum</span><span class="p">(</span><span class="n">num_list</span><span class="p">)</span> <span class="o">=</span> <span class="n">num_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">list_sum</span><span class="p">(</span><span class="n">num_list</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
