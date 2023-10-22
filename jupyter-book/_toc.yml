@@ -25,6 +25,11 @@ parts:
     - file: time_complexity
     - file: orders
     - file: python_list_dict
+  - caption: 재귀
+    numbered: True
+    chapters:
+    - file: recursive_functions
+    - file: hanoi_tower
   - caption: 탐색과 정렬
     numbered: True
     chapters:
@@ -37,11 +42,6 @@ parts:
     - file: trees_heaps_maps_1
     - file: trees_heaps_maps_2
     - file: trees_heaps_maps_3
-  - caption: 재귀
-    numbered: True
-    chapters:
-    - file: recursive_functions
-    - file: hanoi_tower
   - caption: 동적계획법
     numbered: True
     chapters:

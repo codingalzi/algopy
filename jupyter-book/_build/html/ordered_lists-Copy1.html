@@ -158,21 +158,21 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="orders.html">7. 차수</a></li>
 <li class="toctree-l1"><a class="reference internal" href="python_list_dict.html">8. 파이썬 모음 자료형 분석</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">재귀</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="recursive_functions.html">9. 재귀</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hanoi_tower.html">10. 하노이의 탑과 미로게임</a></li>
+</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">탐색과 정렬</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="sort_search_1.html">9. 탐색과 분할 정복</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sort_search_2.html">10. 버블/선택/합병/퀵 정렬</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sort_search_1.html">11. 탐색과 분할 정복</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sort_search_2.html">12. 버블/선택/합병/퀵 정렬</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">트리, 힙, 맵</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="trees_heaps_maps_1.html">11. 트리(Tree)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="trees_heaps_maps_2.html">12. 힙(Heap)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="trees_heaps_maps_3.html">13. 맵(Map)</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">재귀</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="recursive_functions.html">14. 재귀</a></li>
-<li class="toctree-l1"><a class="reference internal" href="hanoi_tower.html">15. 하노이의 탑과 미로게임</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trees_heaps_maps_1.html">13. 트리(Tree)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trees_heaps_maps_2.html">14. 힙(Heap)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trees_heaps_maps_3.html">15. 맵(Map)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">동적계획법</span></p>
 <ul class="nav bd-sidenav">
@@ -594,7 +594,7 @@ beginning of the linked list or some place in the middle. Again,
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Add a new node&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Add a new node&quot;&quot;&quot;</span>
     <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span>
     <span class="n">previous</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">temp</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
@@ -627,44 +627,44 @@ list is now ordered.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Node</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;A node of a linked list&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;A node of a linked list&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_data</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="n">node_data</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_next</span> <span class="o">=</span> <span class="kc">None</span>
 
     <span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get node data&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;Get node data&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span>
 
     <span class="k">def</span> <span class="nf">set_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_data</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set node data&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;Set node data&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="n">node_data</span>
 
     <span class="n">data</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_data</span><span class="p">,</span> <span class="n">set_data</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">get_next</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get next node&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;Get next node&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_next</span>
 
     <span class="k">def</span> <span class="nf">set_next</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_next</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set next node&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;Set next node&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_next</span> <span class="o">=</span> <span class="n">node_next</span>
 
     <span class="nb">next</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_next</span><span class="p">,</span> <span class="n">set_next</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;String&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;String&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">)</span>
 
 
 <span class="k">class</span> <span class="nc">OrderedList</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Ordered linked list implementation&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Ordered linked list implementation&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">=</span> <span class="kc">None</span>
 
     <span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Search for a node with a specific value&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;Search for a node with a specific value&quot;&quot;&quot;</span>
         <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span>
         <span class="k">while</span> <span class="n">current</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">current</span><span class="o">.</span><span class="n">data</span> <span class="o">==</span> <span class="n">item</span><span class="p">:</span>
@@ -676,7 +676,7 @@ list is now ordered.</p>
         <span class="k">return</span> <span class="kc">False</span>
 
     <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add a new node&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;Add a new node&quot;&quot;&quot;</span>
         <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span>
         <span class="n">previous</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="n">temp</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
@@ -693,11 +693,11 @@ list is now ordered.</p>
             <span class="n">previous</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">temp</span>
 
     <span class="k">def</span> <span class="nf">is_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Is the list empty&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;Is the list empty&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">==</span> <span class="kc">None</span>
 
     <span class="k">def</span> <span class="nf">size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Size of the list&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;Size of the list&quot;&quot;&quot;</span>
         <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span>
         <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">while</span> <span class="n">current</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
