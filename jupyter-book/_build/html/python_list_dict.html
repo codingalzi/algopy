@@ -688,56 +688,73 @@ range 객체:		 0.04 초
 <thead>
 <tr class="row-odd"><th class="head text-left"><p>연산자</p></th>
 <th class="head text-left"><p>Big-O</p></th>
+<th class="head text-left"><p>비고</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td class="text-left"><p>인덱싱(<code class="docutils literal notranslate"><span class="pre">[]</span></code>)</p></td>
+<tr class="row-even"><td class="text-left"><p>인덱싱(<code class="docutils literal notranslate"><span class="pre">xs[i]</span></code>)</p></td>
 <td class="text-left"><p>O(1)</p></td>
+<td class="text-left"><p></p></td>
 </tr>
 <tr class="row-odd"><td class="text-left"><p>인덱싱 활용 항목 할당</p></td>
 <td class="text-left"><p>O(1)</p></td>
+<td class="text-left"><p></p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p>슬라이싱(<code class="docutils literal notranslate"><span class="pre">[x:y]</span></code>)</p></td>
+<tr class="row-even"><td class="text-left"><p>슬라이싱(<code class="docutils literal notranslate"><span class="pre">xs[x:y]</span></code>)</p></td>
 <td class="text-left"><p>O(k)</p></td>
+<td class="text-left"><p>k는 구간 크기</p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p>슬라이싱 활용 구간 할당</p></td>
+<tr class="row-odd"><td class="text-left"><p>구간 할당</p></td>
 <td class="text-left"><p>O(n+k)</p></td>
+<td class="text-left"><p>n은 리스트의 길이, k는 구간 크기</p></td>
 </tr>
 <tr class="row-even"><td class="text-left"><p>연결(<code class="docutils literal notranslate"><span class="pre">+</span></code>)</p></td>
 <td class="text-left"><p>O(k)</p></td>
+<td class="text-left"><p>k는 연결되는 리스트의 길이</p></td>
 </tr>
 <tr class="row-odd"><td class="text-left"><p>복제 연결(<code class="docutils literal notranslate"><span class="pre">*</span></code>)</p></td>
 <td class="text-left"><p>O(nk)</p></td>
+<td class="text-left"><p>n은 리스트의 길이, k는 곱해지는 정수</p></td>
 </tr>
 <tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">append()</span></code></p></td>
 <td class="text-left"><p>O(1)</p></td>
+<td class="text-left"><p></p></td>
 </tr>
 <tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">pop()</span></code></p></td>
 <td class="text-left"><p>O(1)</p></td>
+<td class="text-left"><p></p></td>
 </tr>
 <tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">pop(i)</span></code></p></td>
 <td class="text-left"><p>O(n)</p></td>
+<td class="text-left"><p></p></td>
 </tr>
 <tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">insert(i,item)</span></code></p></td>
 <td class="text-left"><p>O(n)</p></td>
+<td class="text-left"><p>n은 리스트의 길이</p></td>
 </tr>
 <tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">reverse()</span></code></p></td>
 <td class="text-left"><p>O(n)</p></td>
+<td class="text-left"><p>n은 리스트의 길이</p></td>
 </tr>
 <tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">sort()</span></code></p></td>
 <td class="text-left"><p>O(n log n)</p></td>
+<td class="text-left"><p>n은 리스트의 길이</p></td>
 </tr>
 <tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">del</span></code> 항목 삭제</p></td>
 <td class="text-left"><p>O(n)</p></td>
+<td class="text-left"><p>n은 리스트의 길이</p></td>
 </tr>
 <tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">del</span></code> 슬라이싱 구간 삭제</p></td>
 <td class="text-left"><p>O(n)</p></td>
+<td class="text-left"><p>n은 리스트의 길이</p></td>
 </tr>
 <tr class="row-even"><td class="text-left"><p>항목 여부 확인(<code class="docutils literal notranslate"><span class="pre">in</span></code>)</p></td>
 <td class="text-left"><p>O(n)</p></td>
+<td class="text-left"><p>n은 리스트의 길이</p></td>
 </tr>
 <tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">for</span></code> 반복</p></td>
 <td class="text-left"><p>O(n)</p></td>
+<td class="text-left"><p>n은 리스트의 길이</p></td>
 </tr>
 </tbody>
 </table>
