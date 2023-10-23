@@ -28,7 +28,8 @@ parts:
   - caption: 재귀
     numbered: True
     chapters:
-    - file: recursive_functions
+    - file: recursive_functions_1
+    - file: recursive_functions_2
     - file: hanoi_tower
   - caption: 탐색과 정렬
     numbered: True
