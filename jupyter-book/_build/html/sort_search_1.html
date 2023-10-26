@@ -459,6 +459,7 @@ document.write(`
 <li><p>순차 탐색</p></li>
 <li><p>이진 탐색</p></li>
 <li><p>분할 정복</p></li>
+<li><p>분할 정복과 재귀</p></li>
 </ul>
 <section id="id2">
 <h2><span class="section-number">12.1. </span>탐색<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
@@ -516,7 +517,7 @@ True
 </div>
 </div>
 </div>
-<p><strong>순차 탐색 시간복잡도 분석</strong></p>
+<p><strong>순차 탐색 시간복잡도</strong></p>
 <p>탐색 알고리즘의 시간복잡도 분석은 일반적으로 항목과 값의 비교를 기본 계산단위로 사용한다.
 그리고 순차탐색의 경우 모든 항목이 동일한 확률로 임의의 위치에 있을 수 있다고 가정한다.
 즉, 특별한 값이 특정 위치에 있을 확률을 별도로 고려할 필요가 없다고 가정한다.
@@ -559,12 +560,11 @@ True
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ordered_sequential_search</span><span class="p">(</span><span class="n">a_list</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
     <span class="c1"># 순차 탐색</span>
     <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">a_list</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">item</span> <span class="o">==</span> <span class="n">value</span><span class="p">:</span>    <span class="c1"># 찾은 경우 바로 True 반환</span>
+        <span class="k">if</span> <span class="n">item</span> <span class="o">==</span> <span class="n">value</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">True</span>
-        <span class="k">elif</span> <span class="n">item</span> <span class="o">&gt;</span> <span class="n">value</span><span class="p">:</span>
+        <span class="k">elif</span> <span class="n">item</span> <span class="o">&gt;</span> <span class="n">value</span><span class="p">:</span> <span class="c1"># 보다 큰 값이 확인되면 바로 탐색 중단</span>
             <span class="k">return</span> <span class="kc">False</span>
 
-    <span class="c1"># for 문을 다 돌아도 찾지 못한 경우 False 반환</span>
     <span class="k">return</span> <span class="kc">False</span>
 </pre></div>
 </div>
@@ -678,7 +678,7 @@ True
 </div>
 </div>
 </div>
-<p><strong>이진 탐색 시간복잡도 분석</strong></p>
+<p><strong>이진 탐색 시간복잡도</strong></p>
 <p>이진 탐색 알고리즘에 사용된 반복문이
 실행될 때마다 비교 횟수는 1이 늘고,
 그 다음 탐색 구간의 크기는 절반으로 줄어든다.</p>
@@ -774,7 +774,7 @@ True
 </div>
 </div>
 </div>
-<p><strong>재귀 이진 탐색 알고리즘 분석</strong></p>
+<p><strong>재귀 이진 탐색 알고리즘 시간 복잡도</strong></p>
 <p><code class="docutils literal notranslate"><span class="pre">binary_search_rec()</span></code> 함수에 사용된 이진 탐색 알고리즘의 시간복잡도는
 <code class="docutils literal notranslate"><span class="pre">binary_search()</span></code> 함수의 경우처럼 <span class="math notranslate nohighlight">\(O(\log n)\)</span>으로 보이지만 이는 정확하지 않다.
 이유는 <code class="docutils literal notranslate"><span class="pre">binary_search_rec()</span></code> 함수가 재귀호출될 때마다
