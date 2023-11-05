@@ -503,7 +503,7 @@ document.write(`
 </figure><p>다음 <code class="docutils literal notranslate"><span class="pre">bubble_sort()</span></code> 함수가 리스트를 버블 정렬한다.
 이주 <code class="docutils literal notranslate"><span class="pre">for</span></code> 반복문을 사용하며 각 반복문에서 사용되는 변수들의 역할은 다음과 같다.</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">a_pass</span></code>: 하나의 패스를 가리킴. 동시에 자리교환 인덱스 끝자리도 지정.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">a_pass</span></code>: 하나의 패스를 가리킴. 동시에 자리교환 대상의 끝자리 인덱스도 지정.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">j</span></code>: 패스 별 크기비교 및 자리교환 수행</p></li>
 </ul>
 <div class="cell docutils container">
@@ -621,7 +621,7 @@ document.write(`
 </figure><p>다음 <code class="docutils literal notranslate"><span class="pre">selection_sort()</span></code> 함수가 리스트를 선택 정렬한다.
 이주 <code class="docutils literal notranslate"><span class="pre">for</span></code> 반복문을 사용하며 각 반복문에서 사용되는 변수들의 역할은 다음과 같다.</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">a_pass</span></code>: 하나의 패스를 가리킴. 동시에 자리교환 인덱스 끝자리도 지정.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">a_pass</span></code>: 하나의 패스를 가리킴. 동시에 자리교환 대상의 끝자리 인덱스도 지정.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">max_idx</span></code>: 패스 별로 탐색된 최댓값의 위치 인덱스</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">j</span></code>: 패스 별 크기비교 수행</p></li>
 </ul>
@@ -629,27 +629,28 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">selection_sort</span><span class="p">(</span><span class="n">a_list</span><span class="p">):</span>
     
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">a_list</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">a_pass</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">a_list</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
         <span class="n">max_idx</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">a_pass</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">a_list</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">a_list</span><span class="p">[</span><span class="n">max_idx</span><span class="p">]:</span>
                 <span class="n">max_idx</span> <span class="o">=</span> <span class="n">j</span>
-        <span class="k">if</span> <span class="n">a_list</span><span class="p">[</span><span class="n">max_idx</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">a_list</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
-            <span class="n">a_list</span><span class="p">[</span><span class="n">max_idx</span><span class="p">],</span> <span class="n">a_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">a_list</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">a_list</span><span class="p">[</span><span class="n">max_idx</span><span class="p">]</span>
+        <span class="c1"># a_pass 인덱스 이전까지 찾은 최댓값과 a_pass 위치의 값 자리교환 여부 판단</span>
+        <span class="k">if</span> <span class="n">a_list</span><span class="p">[</span><span class="n">max_idx</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">a_list</span><span class="p">[</span><span class="n">a_pass</span><span class="p">]:</span>
+            <span class="n">a_list</span><span class="p">[</span><span class="n">max_idx</span><span class="p">],</span> <span class="n">a_list</span><span class="p">[</span><span class="n">a_pass</span><span class="p">]</span> <span class="o">=</span> <span class="n">a_list</span><span class="p">[</span><span class="n">a_pass</span><span class="p">],</span> <span class="n">a_list</span><span class="p">[</span><span class="n">max_idx</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">26</span><span class="p">,</span> <span class="mi">54</span><span class="p">,</span> <span class="mi">93</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">77</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">99</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">26</span><span class="p">,</span> <span class="mi">54</span><span class="p">,</span> <span class="mi">93</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">77</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">20</span><span class="p">]</span>
 <span class="n">selection_sort</span><span class="p">(</span><span class="n">a_list</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">a_list</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[17, 20, 26, 31, 44, 54, 55, 77, 93, 99]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[17, 20, 26, 31, 44, 54, 55, 77, 93]
 </pre></div>
 </div>
 </div>
@@ -676,13 +677,14 @@ document.write(`
 합병 과정에서 항목들을 크기 순으로 정렬한다.</p></li>
 </ul>
 <p><strong>분할 과정</strong></p>
-<p>분할 과정은 쉽다. 재귀적으로 리스트의 길이가 1이 될 때까지 이등분을 반복한다.</p>
+<p>분할 과정은 쉽다. 재귀적으로 리스트의 길이가 1이 될 때까지 이등분을 반복한다.
+코드 끝에서 사용된 <code class="docutils literal notranslate"><span class="pre">merge()</span></code> 함수는 합병을 담당하는 함수이며 바로 이어서 설명하고 정의한다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">merge_sort</span><span class="p">(</span><span class="n">a_list</span><span class="p">):</span>
     <span class="c1"># 분할 과정: 이등분 반복</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">a_list</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;분할&quot;</span><span class="p">,</span> <span class="n">a_list</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;분할:&quot;</span><span class="p">,</span> <span class="n">a_list</span><span class="p">)</span>
 
         <span class="n">mid</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">a_list</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
         <span class="n">left_half</span> <span class="o">=</span> <span class="n">a_list</span><span class="p">[:</span><span class="n">mid</span><span class="p">]</span>
@@ -694,13 +696,13 @@ document.write(`
 
         <span class="c1"># 합병 과정: 작은 리스트 두 개 합병하면서 정렬</span>
         <span class="n">merge</span><span class="p">(</span><span class="n">a_list</span><span class="p">,</span> <span class="n">left_half</span><span class="p">,</span> <span class="n">right_half</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;합병&quot;</span><span class="p">,</span> <span class="n">a_list</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;합병:&quot;</span><span class="p">,</span> <span class="n">a_list</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <figure>
-<div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/mergesortA.png" width="60%"></div>
+<div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/mergesortA.png" width="70%"></div>
 </figure><p><strong>합병 과정</strong></p>
 <p>합병 과정은 보다 어렵다. 이미 정렬된 두 개의 리스트를 합쳐서 정렬된 새 리스트를 만들어야 한다.
 이를 위해 사용되는 알고리즘은 다음과 같다.</p>
@@ -736,7 +738,12 @@ document.write(`
 </div>
 <figure>
 <div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/mergesortB.png" width="60%"></div>
-</figure><div class="cell docutils container">
+</figure><p><strong>분할과 합병이 재귀적으로 발생하는 순서</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">merge_sort()</span></code> 함수는
+<code class="docutils literal notranslate"><span class="pre">print()</span></code> 함수를 이용하여 분할이 발생하는 순간과 합병이 진행될 때의 결과물을
+화면에 출력한다.
+이 기능을 통해 분할과 정복이 재귀적으로 어떤 순서대로 진행되는지를 시각적으로 파악할 수 있다.</p>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">54</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">93</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">77</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">20</span><span class="p">]</span>
 <span class="n">merge_sort</span><span class="p">(</span><span class="n">a_list</span><span class="p">)</span>
@@ -744,44 +751,81 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>분할 [54, 26, 93, 17, 77, 31, 44, 55, 20]
-분할 [54, 26, 93, 17]
-분할 [54, 26]
-합병 [26, 54]
-분할 [93, 17]
-합병 [17, 93]
-합병 [17, 26, 54, 93]
-분할 [77, 31, 44, 55, 20]
-분할 [77, 31]
-합병 [31, 77]
-분할 [44, 55, 20]
-분할 [55, 20]
-합병 [20, 55]
-합병 [20, 44, 55]
-합병 [20, 31, 44, 55, 77]
-합병 [17, 20, 26, 31, 44, 54, 55, 77, 93]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>분할: [54, 26, 93, 17, 77, 31, 44, 55, 20]
+분할: [54, 26, 93, 17]
+분할: [54, 26]
+합병: [26, 54]
+분할: [93, 17]
+합병: [17, 93]
+합병: [17, 26, 54, 93]
+분할: [77, 31, 44, 55, 20]
+분할: [77, 31]
+합병: [31, 77]
+분할: [44, 55, 20]
+분할: [55, 20]
+합병: [20, 55]
+합병: [20, 44, 55]
+합병: [20, 31, 44, 55, 77]
+합병: [17, 20, 26, 31, 44, 54, 55, 77, 93]
 </pre></div>
 </div>
 </div>
 </div>
-<p><strong>합병 정렬 시간복잡도 분석</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">merge_sort</span><span class="p">(</span><span class="n">a_list</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>분할: [3, 7, 2, 1, 6, 5, 4, 0]
+분할: [3, 7, 2, 1]
+분할: [3, 7]
+합병: [3, 7]
+분할: [2, 1]
+합병: [1, 2]
+합병: [1, 2, 3, 7]
+분할: [6, 5, 4, 0]
+분할: [6, 5]
+합병: [5, 6]
+분할: [4, 0]
+합병: [0, 4]
+합병: [0, 4, 5, 6]
+합병: [0, 1, 2, 3, 4, 5, 6, 7]
+</pre></div>
+</div>
+</div>
+</div>
+<p>아래 그래프는 분할과 합병이 이뤄지는 순서를 보여준다.</p>
+<figure>
+<div align="center"><img src="https://github.com/codingalzi/algopy/blob/master/jupyter-book/imgs/merge-sort02.png?raw=true" width="70%"></div>
+</figure><p><strong>합병 정렬 시간복잡도 분석</strong></p>
 <p>분할과 합병에 필요한 시간을 분리해서 계산한다.
 입력 리스트의 크기 <span class="math notranslate nohighlight">\(n\)</span>을 입력 크기로 사용한다.</p>
 <ul class="simple">
-<li><p>분할 과정: <span class="math notranslate nohighlight">\(\log n\)</span> 번 분할 발생.</p></li>
-<li><p>합병 과정: 두 개의 리스트를 합쳐서 길이가 <span class="math notranslate nohighlight">\(m\)</span> 인 리스트를 생성할 때 필요한 연산은 두 항목의 비교와 항목 업데이트이며,
-이는 <span class="math notranslate nohighlight">\(O(m)\)</span>의 시간복잡도를 갖는다. 따라서 최정적으로 길이가 <span class="math notranslate nohighlight">\(n\)</span>인 리스트를 합병하여 생성하기에
-두 항목의 비교와 항목 업데이트에 필요한 시간은 <span class="math notranslate nohighlight">\(O(n)\)</span>이다.
-하지만 <span class="math notranslate nohighlight">\((\log n)\)</span> 번 합병 과정을 진행해야 하기에 최정적으로 <span class="math notranslate nohighlight">\(O(n \log n)\)</span>의 시간복잡도를 갖는다.</p></li>
+<li><p>분할 과정</p>
+<ul>
+<li><p>비교연산이나 위치 이동이 전혀 없음.</p></li>
 </ul>
-<p>분할과 합병 두 과정의 시간복잡도는 따라서 <span class="math notranslate nohighlight">\(O(n \log n)\)</span>이다.</p>
+</li>
+<li><p>합병 과정</p>
+<ul>
+<li><p>합병과정을 그래프로 간주하면 높이가 <code class="docutils literal notranslate"><span class="pre">int(log(n))</span> <span class="pre">+</span> <span class="pre">1</span></code> 인 가지가 두 개로 갈라지는 이진 트리임.</p></li>
+<li><p>하나의 레벨(나무의 동일한 높이)에서 합병이 여러 번 발생하는 데 각각의 합병 과정에서 발생하는
+항목 비교와 위치 이동을 다 합치면 최대 <code class="docutils literal notranslate"><span class="pre">2*n</span></code>번임.</p></li>
+<li><p>따라서 합병 과정에서 발생하는 항목 비교와 위치 이동은 최악의 경우 <span class="math notranslate nohighlight">\(O(n \log n)\)</span>의 시간 복잡도를 가짐.</p></li>
+</ul>
+</li>
+</ul>
 <p><strong>슬라이싱과 추가 메모리 사용</strong></p>
 <p>위 코드의 분할 과정에 사용된 재귀는 슬라이싱을 이용하기 때문에
 실제 시간복잡도는 <span class="math notranslate nohighlight">\(O(n^2 \log n)\)</span>이다.
-이유는 길이가 <span class="math notranslate nohighlight">\(k\)</span>인 부분 리스트를 슬라이싱을 이용하여 생성하는 알고리즘의 시간복잡도가 <span class="math notranslate nohighlight">\(O(k)\)</span>이기 때문이다.
-하지만, 슬라이싱을 직접 사용하는 대신 구간을 지정하는 기술을 적용하면
-분할 알고리즘의 시간복잡도를 <span class="math notranslate nohighlight">\(O(n \log n)\)</span>으로 만들 수 있다(연습 문제 참고).</p>
-<p><strong>참고:</strong> 슬라이싱 대신 구간을 사용하여 분할 과정을 추가 메모리 없이 진행하면
+이유는 길이가 <span class="math notranslate nohighlight">\(k\)</span>인 부분 리스트를 슬라이싱을 이용하여 생성하는 알고리즘의 시간복잡도가 <span class="math notranslate nohighlight">\(O(k)\)</span>이기 때문이다.</p>
+<p><strong>참고</strong></p>
+<p>슬라이싱을 직접 사용하는 대신 구간을 지정하는 기술을 적용하면
+분할 알고리즘의 시간복잡도를 <span class="math notranslate nohighlight">\(O(n \log n)\)</span>으로 만들 수 있다(연습 문제 참고).
+그런데 슬라이싱 대신 구간을 사용하여 분할 과정을 추가 메모리 없이 진행하면
 합병 과정에서 기존 리스트와의 충돌 방지를 위해 추가 메모리를 사용할 수 밖에 없다.
 따라서 어떤 방식이든 <span class="math notranslate nohighlight">\(O(n)\)</span>의 공간복잡도에 해당하는 메모리를 추가로 사용해야 한다.</p>
 <p><strong>퀴즈</strong></p>
@@ -804,10 +848,10 @@ document.write(`
 무엇보다도 추가 메모리를 전혀 사용하지 않기에 합병 정렬에 비해
 공간 복잡도 측면에서 큰 장점을 갖는다.</p>
 <p>퀵 정렬은 분할과 정복을 동시에 진행한다.
-피벗(기준값)으로 지정된 값보다 작은 값들은 피벗 왼쪽으로,
-같거나 큰 값듯은 피벗 오른쪽으로 이동시킨다.
+피벗(기준값)으로 지정된 값보다 작은 값은 피벗 왼쪽으로,
+같거나 큰 값은 피벗 오른쪽으로 이동시킨다.
 피벗으로 사용된 값의 위치를 기준으로 좌우 두 개의 부분 리스트로 분할한 후
-동일 과정을 재귀적으로 반복한다.</p>
+동일 과정을 반복한다.</p>
 <p><strong>피벗 지정</strong></p>
 <p>피벗은 리스트의 임의의 값을 사용해도 되지만
 여기서는 맨 왼편에 위치한 값을 사용한다.
