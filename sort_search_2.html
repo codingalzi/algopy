@@ -483,11 +483,11 @@ document.write(`
 <section id="id2">
 <h2><span class="section-number">13.1. </span>버블 정렬<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
 <p><strong>버블 정렬</strong><font size='2'>bubble sort</font> 알고리즘은 <strong>패스</strong><font size='2'>pass</font>로 구성된다.
-하나의 패스 과정 동안 연속된 두 수를 비교하여
+하나의 패스 과정 동안 연속된 위치의 두 수를 비교하여
 작은 항목은 왼쪽으로, 큰 항목은 오른쪽으로 자리를 바꾸는 일을
 리스트의 맨 왼쪽에서 시작하여 오를쪽 끝까지 진행한다.
 하나의 패스가 완료되면 패스 과정에서 확인된 가장 큰 항목이 리스트의 맨 오른쪽에 위치하게 된다.</p>
-<p>그런 다음엔 맨 오른쪽에 위치한 가장 큰 항목을 제외한 나머지를 대상으로
+<p>그런 다음엔 맨 오른쪽에 위치한 가장 큰 항목을 제외한 왼쪽 구간을 대상으로
 두번째 패스를 진행하고, 최종적으로 두번째로 큰 항목을 리스트의 맨 오른쪽 끝에서 둘째 자리에 위치시킨다.
 이런 패스 과정을 반복하면 결국에 가장 작은 항목이 리스트의 맨 왼편에,
 가장 큰 항목은 리스트의 맨 오른편에 위치하고
@@ -668,7 +668,7 @@ document.write(`
 </section>
 <section id="id4">
 <h2><span class="section-number">13.3. </span>합병 정렬<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
-<p>분할정복 기법을 이용하는 정렬 알고리즘인 합병 정렬과 퀵 정렬을 소개한다.</p>
+<p>분할 정복 기법을 이용하는 정렬 알고리즘인 합병 정렬과 퀵 정렬을 소개한다.</p>
 <p><strong>합병 정렬</strong><font size='2'>merge sort</font>에 사용되는
 분할과 정복은 다음과 같다.</p>
 <ul class="simple">
@@ -776,7 +776,7 @@ document.write(`
 <div align="center"><img src="https://github.com/codingalzi/algopy/blob/master/jupyter-book/imgs/merge-sort02.png?raw=true" width="70%"></div>
 </figure><p><strong>합병 정렬 시간복잡도 분석</strong></p>
 <p>분할과 합병에 필요한 시간을 분리해서 계산한다.
-입력 리스트의 크기 <span class="math notranslate nohighlight">\(n\)</span>을 입력 크기로 사용한다.</p>
+입력 리스트의 길이 <span class="math notranslate nohighlight">\(n\)</span>을 입력 크기로 사용한다.</p>
 <ul class="simple">
 <li><p>분할 과정</p>
 <ul>
@@ -795,13 +795,14 @@ document.write(`
 <p><strong>슬라이싱과 추가 메모리 사용</strong></p>
 <p>위 코드의 분할 과정에 사용된 재귀는 슬라이싱을 이용하기 때문에
 실제 시간복잡도는 <span class="math notranslate nohighlight">\(O(n^2 \log n)\)</span>이다.
-이유는 길이가 <span class="math notranslate nohighlight">\(k\)</span>인 부분 리스트를 슬라이싱을 이용하여 생성하는 알고리즘의 시간복잡도가 <span class="math notranslate nohighlight">\(O(k)\)</span>이기 때문이다.</p>
+이유는 길이가 <span class="math notranslate nohighlight">\(k\)</span>인 구간을 슬라이싱 하는 알고리즘의 시간복잡도가 <span class="math notranslate nohighlight">\(O(k)\)</span>이기 때문이다.</p>
 <p><strong>참고</strong></p>
 <p>슬라이싱을 직접 사용하는 대신 구간을 지정하는 기술을 적용하면
 분할 알고리즘의 시간복잡도를 <span class="math notranslate nohighlight">\(O(n \log n)\)</span>으로 만들 수 있다(연습 문제 참고).
 그런데 슬라이싱 대신 구간을 사용하여 분할 과정을 추가 메모리 없이 진행하면
 합병 과정에서 기존 리스트와의 충돌 방지를 위해 추가 메모리를 사용할 수 밖에 없다.
 따라서 어떤 방식이든 <span class="math notranslate nohighlight">\(O(n)\)</span>의 공간복잡도에 해당하는 메모리를 추가로 사용해야 한다.</p>
+<p>반면에 앞서 소개한 버블 정렬과 선택 정렬은 추가 메모리를 전혀 사용하지 않는다.</p>
 <p><strong>퀴즈</strong></p>
 <p>리스트
 <code class="docutils literal notranslate"><span class="pre">[21,</span> <span class="pre">1,</span> <span class="pre">26,</span> <span class="pre">45,</span> <span class="pre">29,</span> <span class="pre">28,</span> <span class="pre">2,</span> <span class="pre">9,</span> <span class="pre">16,</span> <span class="pre">49,</span> <span class="pre">39,</span> <span class="pre">27,</span> <span class="pre">43,</span> <span class="pre">34,</span> <span class="pre">46,</span> <span class="pre">40]</span></code>에 대해
@@ -834,10 +835,10 @@ document.write(`
 하지만 성능 차이는 기본적으로 없으며, 입력 사례에 따라 달라진다.</p>
 <figure>
 <div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/firstsplit.png" width="60%"></div>
-</figure><p><strong>분할정복</strong></p>
-<p>분할과 정복을 동시에 진행하며,
-한 번의 분할과정을 통해 두 개의 보다 작은 리스트로 분할한 후에
-분할 된 두 개의 리스트에 대해 분할과 정복을 재귀적으로 진행한다.</p>
+</figure><p><strong>분할과 정복</strong></p>
+<p>분할과 정복을 동시에 진행한다.
+분할 과정을 통해 두 개의 보다 작은 리스트로 분할할 때 정복 과정을 동시에 진행한다.
+분할 된 두 개의 리스트에 대해 동일한 과정을 반복 적용한다.</p>
 <figure>
 <div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/partitionA.png" width="60%"></div>
 </figure><p>아래 <code class="docutils literal notranslate"><span class="pre">partition()</span></code> 함수는 주어진 리스트에 대해 분할과 정복을 수행한다.</p>
@@ -871,7 +872,7 @@ document.write(`
 </div>
 </div>
 </div>
-<p><strong>재귀</strong></p>
+<p><strong>재귀 적용</strong></p>
 <p>재귀는 <code class="docutils literal notranslate"><span class="pre">partition()</span></code> 함수를 재귀적으로 활용하는 방법만을 지정한다.</p>
 <figure>
 <div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/partitionB.png" width="60%"></div>
