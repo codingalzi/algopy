@@ -16088,6 +16088,99 @@ div.jp-OutputPrompt {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<ul>
+<li>1부터 100까지의 정수 중에서 무작위로 선택된 1,000 개의 정수들로 구성된 리스트 대상</li>
+<li>조기 종료를 사용하는 버블 정렬은 조기 종료가 없는 경우보다 미세하게 느림. 이유는 <code>if</code> 명령문을 실행하기 때문에 
+  조기 종료의 장점이 상쇄되는 것으로 추정.</li>
+<li>선택 정렬이 버블 정렬 보다 두 배 정도 빠름.</li>
+<li>퀵 정렬 대 합병 정렬: 퀵 정렬이 합병 정렬보다 1.5배 정도 빠름.
+  일반적으로 퀵 정렬이 합병 정렬보다 평균적으로 2배 정도 빠르다고 알려져 있음.   </li>
+</ul>
+
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<table>
+<thead><tr>
+<th style="text-align:center">알고리즘</th>
+<th style="text-align:center">최선</th>
+<th style="text-align:center">평균</th>
+<th style="text-align:center">최악</th>
+<th style="text-align:center">모의실험</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">버블 정렬</td>
+<td style="text-align:center">n^2</td>
+<td style="text-align:center">n^2</td>
+<td style="text-align:center">n^2</td>
+<td style="text-align:center">0.022219</td>
+</tr>
+<tr>
+<td style="text-align:center">버블 정렬(조기 종료)</td>
+<td style="text-align:center">n^2</td>
+<td style="text-align:center">n^2</td>
+<td style="text-align:center">n^2</td>
+<td style="text-align:center">0.022225</td>
+</tr>
+<tr>
+<td style="text-align:center">선택 정렬</td>
+<td style="text-align:center">n^2</td>
+<td style="text-align:center">n^2</td>
+<td style="text-align:center">n^2</td>
+<td style="text-align:center">0.011253</td>
+</tr>
+<tr>
+<td style="text-align:center">합병 정렬</td>
+<td style="text-align:center">n log n</td>
+<td style="text-align:center">n log n</td>
+<td style="text-align:center">n log n</td>
+<td style="text-align:center">0.000853</td>
+</tr>
+<tr>
+<td style="text-align:center">퀵 정렬</td>
+<td style="text-align:center">n log n</td>
+<td style="text-align:center">n log n</td>
+<td style="text-align:center">n^2</td>
+<td style="text-align:center">0.000560</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<ul>
+<li>리스트의 길이를 몇 만 단위로 늘리면 퀵 정렬이 오히려 합병 정렬보다 느려짐</li>
+<li>파이썬에서 매우 긴 리스트를 다루는 방식의 한계때문으로 추정됨.</li>
+<li>리스트의 길이를 2만으로 할 경우의 모의실험 결과는 다음과 같음.</li>
+</ul>
+
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <table>
 <thead><tr>
 <th style="text-align:center">알고리즘</th>
