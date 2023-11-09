@@ -932,8 +932,49 @@ document.write(`
 </figure></section>
 <section id="id6">
 <h2><span class="section-number">13.5. </span>정렬 알고리즘 시간복잡도 비교<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h2>
-<p>1부터 100까지의 정수 중에서 무작위로 선택된 2만 개의 정수들로 구성된 리스트를 대상으로 5 개의
-알고리즘 실행시간을 모의 실험한 결과는 다음과 같다.</p>
+<p>1부터 100까지의 정수 중에서 무작위로 선택된 천 개의 정수들로 구성된 리스트를 대상으로 5 개의
+알고리즘 실행시간을 모의실험 하려 한다.
+이를 위해 먼저 조기 종료를 사용하는 버블 정렬 알고리즘과 합병 정렬 알고리즘의 이해를 위해 사용된
+<code class="docutils literal notranslate"><span class="pre">print()</span></code> 함수를 제외한다.
+그렇지 않으면 불필요한 문장이 반복해서 출력된다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">bubble_sort_early_stop</span><span class="p">(</span><span class="n">a_list</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">a_pass</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">a_list</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>  <span class="c1"># 패스. 자리교환 인덱스 끝자리 지정</span>
+        <span class="n">exchanges</span> <span class="o">=</span> <span class="kc">False</span>                         <span class="c1"># 패스 기간 내 자리교환 발생 여부 저장</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">a_pass</span><span class="p">):</span>                   <span class="c1"># 크기비교 및 자리교환</span>
+            <span class="k">if</span> <span class="n">a_list</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">a_list</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]:</span>
+                <span class="n">a_list</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">a_list</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">a_list</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="n">a_list</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+                <span class="n">exchanges</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">exchanges</span><span class="p">:</span>                         <span class="c1"># 자리교환이 발생하지 않은 경우 조기종료</span>
+<span class="c1">#             print(&quot;조기종료!&quot;)</span>
+            <span class="k">break</span>                
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">merge_sort</span><span class="p">(</span><span class="n">a_list</span><span class="p">):</span>
+    <span class="c1"># 분할 과정: 이등분 반복</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">a_list</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">:</span>
+<span class="c1">#         print(&quot;분할:&quot;, a_list)</span>
+
+        <span class="n">mid</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">a_list</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="n">left_half</span> <span class="o">=</span> <span class="n">a_list</span><span class="p">[:</span><span class="n">mid</span><span class="p">]</span>
+        <span class="n">right_half</span> <span class="o">=</span> <span class="n">a_list</span><span class="p">[</span><span class="n">mid</span><span class="p">:]</span>
+        
+        <span class="c1"># 재귀 호출</span>
+        <span class="n">merge_sort</span><span class="p">(</span><span class="n">left_half</span><span class="p">)</span>
+        <span class="n">merge_sort</span><span class="p">(</span><span class="n">right_half</span><span class="p">)</span>
+
+        <span class="c1"># 합병 과정: 작은 리스트 두 개 합병하면서 정렬</span>
+        <span class="n">merge</span><span class="p">(</span><span class="n">a_list</span><span class="p">,</span> <span class="n">left_half</span><span class="p">,</span> <span class="n">right_half</span><span class="p">)</span>
+<span class="c1">#         print(&quot;합병:&quot;, a_list)</span>
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">time</span>
@@ -944,29 +985,32 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">size</span> <span class="o">=</span> <span class="mi">20000</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="n">size</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">count</span> <span class="o">=</span> <span class="mi">100</span>
 
 <span class="n">algorithms</span> <span class="o">=</span> <span class="p">[</span><span class="n">bubble_sort</span><span class="p">,</span> <span class="n">bubble_sort_early_stop</span><span class="p">,</span> <span class="n">selection_sort</span><span class="p">,</span> <span class="n">merge_sort</span><span class="p">,</span> <span class="n">quick_sort</span><span class="p">]</span>
 
 <span class="k">for</span> <span class="n">algo</span> <span class="ow">in</span> <span class="n">algorithms</span><span class="p">:</span>
     <span class="n">running_time</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">for</span> <span class="n">count</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">count</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">count</span><span class="p">):</span>
         <span class="n">random_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">101</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="p">)]</span>
         <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
         <span class="n">algo</span><span class="p">(</span><span class="n">random_list</span><span class="p">)</span>
         <span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
         <span class="n">running_time</span> <span class="o">+=</span> <span class="n">end_time</span> <span class="o">-</span> <span class="n">start_time</span>
     
-    <span class="nb">print</span><span class="p">(</span><span class="n">algo</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">running_time</span> <span class="o">/</span> <span class="mi">10</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">algo</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">running_time</span> <span class="o">/</span> <span class="n">count</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>bubble_sort 9.12947382926941
-bubble_sort_early_stop 9.41486222743988
-selection_sort 4.3654515743255615
-merge_sort 0.02347586154937744
-quick_sort 0.05616872310638428
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>bubble_sort 0.022219448378591827
+bubble_sort_early_stop 0.022225705944761937
+selection_sort 0.01125301036638083
+merge_sort 0.0008539805809656779
+quick_sort 0.0005603890669973273
 </pre></div>
 </div>
 </div>
@@ -974,11 +1018,15 @@ quick_sort 0.05616872310638428
 <p>정리하면 다음과 같다.</p>
 <ul class="simple">
 <li><p>조기 종료를 사용하는 버블 정렬은 조기 종료가 없는 경우보다 미세하게 느리다. 이유는 <code class="docutils literal notranslate"><span class="pre">if</span></code> 명령문을 실행하기 때문에
-조기 종료의 장점이 상쇄되는 것으로 추정된다. 리스트의 길이를 보다 길게하면 다른 결과가 나올 수 있다.</p></li>
-<li><p>퀵 정렬 대 합병 정렬: 퀵 정렬이 두 배 정도 느리게 나왔다. 아무래도 퀵 정렬을 할 때 최악의 경우가 포함되었기 때문일 수 있다.
-리스트의 길이를 늘리거나 모의실험 횟수를 10회 보다 많이 하면 결과가 달라질 수 있다.
+조기 종료의 장점이 상쇄되는 것으로 추정된다.</p></li>
+<li><p>선택 정렬이 버블 정렬 보다 두 배 정도 빠르다.</p></li>
+<li><p>퀵 정렬 대 합병 정렬: 퀵 정렬이 합병 정렬보다 1.5배 정도 빠르다.
 일반적으로 퀵 정렬이 합병 정렬보다 평균적으로 2배 정도 빠르다고 알려져 있다.</p></li>
 </ul>
+<p>그런데 모의실험에 사용되는 리스트의 길이를 몇 만 단위로 늘리면 퀵 정렬이 오히려 합병 정렬보다 느려진다.
+이유는 파이썬에서 매우 긴 리스트를 다루는 방식의 한계때문으로 추정된다.
+다른 언어에서는 다른 결과가 나올 것으로 기대한다.
+예를 들어 리스트의 길이를 2만으로 할 경우의 모의실험 결과는 다음과 같다.</p>
 <table class="table">
 <thead>
 <tr class="row-odd"><th class="head text-center"><p>알고리즘</p></th>
