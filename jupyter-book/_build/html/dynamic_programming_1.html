@@ -455,9 +455,9 @@ document.write(`
 <p><strong>주요 내용</strong></p>
 <ul class="simple">
 <li><p>최적화 문제</p></li>
-<li><p>잔돈 지불 문제</p></li>
 <li><p>메모이제이션</p></li>
 <li><p>동적계획법</p></li>
+<li><p>잔돈 지불 문제</p></li>
 <li><p>이항 계수</p></li>
 </ul>
 <section id="id2">
@@ -559,7 +559,7 @@ min
 즉, 동일한 인자를 사용하는 함수 호출이 반복적으로 너무 많이 발생한다.</p>
 <figure>
 <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/notebooks/_images/callTree.png" width="80%"></div>
-</figure><p><strong>기법 3: 메모이제이션(Memoization)</strong></p>
+</figure><p><strong>기법 3: 메모이제이션</strong></p>
 <p>언급된 동일 인자에 대한 반복 호출 문제는 <strong>메모이제이션</strong><font size='2'>memoization</font> 기법으로
 간단하게 해결된다.
 메모이제이션은 작은 입력크기에 대한 반환값을 기억해두고 필요한 경우 재활용하는 기법이다.
@@ -639,8 +639,10 @@ min
 </div>
 </div>
 </div>
-<p><strong>기법 4: 동적계획법(dynamic programming)</strong></p>
-<p>동적계획법은 <strong>재귀를 사용하지 않는 대신</strong> 종료조건에서 출발하여
+<p><strong>기법 4: 동적계획법</strong></p>
+<p>동적계획법<font size='2'>dynamic programming</font>은
+<strong>재귀를 사용하지 않는 대신</strong>
+재귀 알고리즘의 종료조건에서 출발하여
 차례대로 필요한 인자에 해당하는 값까지 쌓아가는 기법이다.
 예를 들어 잔돈 63원을 지불해야 하는 경우 1원부터 출발해서
 63원까지 각각의 경우에 필요한 최소 동전 수를 계산한다.
@@ -764,18 +766,8 @@ min
 </section>
 <section id="id4">
 <h2><span class="section-number">17.3. </span>이항 계수<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
-<p><strong>파스칼의 삼각형</strong></p>
-<p><strong>파스칼의 삼각형</strong>은 이전 행의 두 원소를 더해 새로운 원소를 추가하는
-과정을 반복해서 생성하는 삼각형이다.</p>
-<div align="center"><img src="https://raw.githubusercontent.com/codingrg-hknu/FoundationsOfAlgorithms/master/slides/images/algo03/algo03-01.gif" width="200"/></div>
-<p><div style="text-align: center">&lt;그림 출처: <a href="https://en.wikipedia.org/wiki/Pascal%27s_triangle">파스칼의 삼각형(위키피디아)</a>&gt;</div></p><p><strong>이항 계수</strong></p>
-<p>파스칼의 삼각형의 n 행, k 번째 값은 <strong>이항 계수</strong><font size='2'>binomial coefficients</font></p>
-<div class="math notranslate nohighlight">
-\[
-{n\choose k} = \frac{n!}{k! \, (n-k)!}    
-\]</div>
-<p>와 동일하다.
-이항 계수의 의미는 아래 등식에서 유래한다.</p>
+<p>아래 다항 등식에서 사용되는 계수 <span class="math notranslate nohighlight">\({n \choose k}\)</span>를
+<strong>이항 계수</strong><font size='2'>binomial coefficients</font>라 한다.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align*}
@@ -783,7 +775,13 @@ min
 &amp;= \sum_{k=0}^{n} {n\choose k}a^{n-k} b^{k}
 \end{align*}
 \end{split}\]</div>
-<p>또한 이항 계수는 서로 다른 <span class="math notranslate nohighlight">\(n\)</span> 개의 구술에서 임의로 서로 다른 <span class="math notranslate nohighlight">\(k\)</span>개의 구술을
+<p>이항 계수의 실제 값은 다음과 같다.</p>
+<div class="math notranslate nohighlight">
+\[
+{n\choose k} = \frac{n!}{k! \, (n-k)!}    
+\]</div>
+<p><strong>조합</strong></p>
+<p>이항 계수는 서로 다른 <span class="math notranslate nohighlight">\(n\)</span> 개의 구술에서 임의로 서로 다른 <span class="math notranslate nohighlight">\(k\)</span>개의 구술을
 선택하는 방법을 의미하기도 한다.
 실제로 다음이 성립한다.</p>
 <div class="math notranslate nohighlight">
@@ -795,10 +793,13 @@ min
 1 &amp; , k \in \{0, n\}
 \end{cases}
 \end{split}\]</div>
-<p>이 성질을 이용하여 파스칼의 삼각형의 n 행, k 번째 값, 즉 이항 계수 <span class="math notranslate nohighlight">\({n \choose k}\)</span>
-를 계산하는 함수를 구현해보자.</p>
-<p><strong>재귀 활용</strong></p>
-<p>위 식을 그대로 재귀로 구현하면 다음과 같다.</p>
+<p><strong>파스칼의 삼각형</strong></p>
+<p>이항 계수는 또한 <strong>파스칼의 삼각형</strong>의 항목을 계산하는 방식과도 동일하다.
+파스칼의 삼각형은 아래 그림에서 보여지듯이 이전 행의 두 원소를 더해 새로운 원소를 추가하는
+과정을 반복해서 생성하는 삼각형이다.</p>
+<div align="center"><img src="https://raw.githubusercontent.com/codingrg-hknu/FoundationsOfAlgorithms/master/slides/images/algo03/algo03-01.gif" width="200"/></div>
+<p><div style="text-align: center">&lt;그림 출처: <a href="https://en.wikipedia.org/wiki/Pascal%27s_triangle">파스칼의 삼각형(위키피디아)</a>&gt;</div></p><p><strong>이항 계수 계산: 재귀 활용</strong></p>
+<p>파스칼의 삼각형에서 n 번 행의 k 번 항목을 계산하는 과정을 재귀로 구현하면 다음과 같다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">bin_coeff</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
@@ -822,8 +823,12 @@ min
 \[
 {n\choose k} \approx \frac{n^k}{k!}
 \]</div>
-<p><strong>동적계획법 적용</strong></p>
-<p><span class="math notranslate nohighlight">\({n \choose k}\)</span>를 구하기 위해 아래 그림과 같이 2차원 행렬 <span class="math notranslate nohighlight">\(B\)</span>의 항목을 채워나가야 함.</p>
+<p><strong>이항 계수 계산: 동적계획법 적용</strong></p>
+<p><span class="math notranslate nohighlight">\({n \choose k}\)</span>를 계산하기 위해
+위 파스칼의 삼각형이 만들어지는 과정을
+동적계획법을 적용하여 그대로 따라할 수 있다.</p>
+<p>아래 그림은 2차원 행렬 <span class="math notranslate nohighlight">\(B\)</span>의 항목을 파스칼의 삼각형이 만들어지는 과정과 동일한 방식으로 채운다.
+단, 숫자가 표시되지 않는 영역은 모두 0으로 채워졌다고 가정한다.</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(B[0][0]\)</span> 에서 시작</p></li>
 <li><p>위에서 아래로 재귀 관계식을 적용하여 파스칼의 삼각형을 완성해 나감</p></li>
@@ -864,7 +869,7 @@ min
 </div>
 </div>
 </div>
-<p>동일한 인자에 대해 재귀 알고리즘은 2-30초 정도 걸린다.</p>
+<p>동일한 인자에 대해 재귀 함수 <code class="docutils literal notranslate"><span class="pre">bin_coeff1()</span></code>은 2-30초 정도 걸린다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
