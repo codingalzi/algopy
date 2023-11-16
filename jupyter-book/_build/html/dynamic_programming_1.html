@@ -633,7 +633,7 @@ min
 </div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">make_change_1()</span></code> 함수의 경우보다 훨씬 빠르게 계산한다.
-실제로 <code class="docutils literal notranslate"><span class="pre">make_change_2()</span></code> 함수의 재귀 호출 횟수는 206회에 불과하다.</p>
+실제로 <code class="docutils literal notranslate"><span class="pre">make_change_2([1,</span> <span class="pre">5,</span> <span class="pre">10,</span> <span class="pre">25],</span> <span class="pre">63)</span></code> 를 실행할 때 재귀 호출 횟수는 206회에 불과하다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">make_change_2</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">],</span> <span class="mi">63</span><span class="p">)</span>
@@ -657,7 +657,7 @@ min
 1원, 2원, 3원 등부터 63원까지 <strong>모든 경우</strong>에 대해 차례대로 필요한 최소 동전 수를
 저장해 두고 재활용한다.</p>
 <p>아래 그림은 1원부터 11원까지 잔돈 지불에 필요한 최소 동전 수를 저장하는 과정을 보여준다.
-예를 들어, 11원을 지불하고자 하는 경우 아래 세 경우를 확인한 다음에 최솟값을 선택한다.</p>
+예를 들어, 11원을 지불하고자 하는 경우 미리 계산되어 저장된 아래 세 경우를 확인한 다음에 최솟값을 선택한다.</p>
 <ul class="simple">
 <li><p>1원 동전을 사용하는 경우: 나머지 10원을 지불할 때 필요한 최소 동전 수에 1을 더한 값</p></li>
 <li><p>5원 동전을 사용하는 경우: 나머지 6원을 지불할 때 필요한 최소 동전 수에 1을 더한 값</p></li>
