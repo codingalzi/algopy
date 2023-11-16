@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=c5ced968eda925caa686" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -39,9 +39,9 @@
     <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=c5ced968eda925caa686" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686" />
-  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=c5ced968eda925caa686"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -145,7 +145,6 @@ const thebe_selector_output = ".output, .cell_output"
   
 
 <a class="navbar-brand logo" href="intro.html">
-  
   
   
   
@@ -487,7 +486,7 @@ document.write(`
 <li><p>1원 동전: 3개</p></li>
 </ul>
 <p>그런데 탐욕 알고리즘이 항상 최선의 해답을 제공하지는 않는다.
-예를 들어 잔돈 30원을 지불하려면 10원 동전 3개면 된다.
+예를 들어 5원짜리 동전이 업는 상황에서 잔돈 30원을 지불하려면 10원 동전 3개면 된다.
 그런데 탐욕 기법을 따르면 25원 동전 1나와 1원 동전 5개, 총 6개의 동전이 필요하다.</p>
 <p><strong>기법 2: 완전 탐색</strong></p>
 <p>지정된 액수의 잔돈을 지불할 수 있는 최소한의 동전 개수를
@@ -563,7 +562,15 @@ min
 <p>언급된 동일 인자에 대한 반복 호출 문제는 <strong>메모이제이션</strong><font size='2'>memoization</font> 기법으로
 간단하게 해결된다.
 메모이제이션은 작은 입력크기에 대한 반환값을 기억해두고 필요한 경우 재활용하는 기법이다.
-한 번 호출되어 반환된 값을 기억하기 위해
+아래 그래프는 잔돈 11원을 지불하는 방법을 메모이제이션 기법으로 확인하는 과정을 보여준다.
+삼각형으로 표시된 부분이 한 번 계산되어 기억해둔 지불방법을 가리킨다.</p>
+<p>참고로 <code class="docutils literal notranslate"><span class="pre">make_change_1()</span></code> 함수가 사용하는 재귀에 따르면 가능한한 1원 동전을,
+그 다음에 5원 동전,
+그 다음에 10원 동전,
+그 다음에 25원 동전을 사용하도록 작동한다.</p>
+<figure>
+<div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/change01.png" width="40%"></div>
+</figure><p>한 번 호출되어 반환된 값을 기억하기 위해
 여기서는 <strong>디폴트 딕트</strong>(<code class="docutils literal notranslate"><span class="pre">defaultdict</span></code>) 객체를 활용한다.
 <code class="docutils literal notranslate"><span class="pre">defaultdict</span></code> 객체는 사전과 거의 동일한 모음 자료형이다.
 사전 객체와는 달리 키가 가리키는 값을 확인하거나 업데이트할 때 키의 포함 여부를 미리 확인할 필요가 없다.</p>
@@ -626,7 +633,7 @@ min
 </div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">make_change_1()</span></code> 함수의 경우보다 훨씬 빠르게 계산한다.
-실제로 <code class="docutils literal notranslate"><span class="pre">make_change_2()</span></code> 함수의 재귀 호출 횟수는 206회에 불과하다.</p>
+실제로 <code class="docutils literal notranslate"><span class="pre">make_change_2([1,</span> <span class="pre">5,</span> <span class="pre">10,</span> <span class="pre">25],</span> <span class="pre">63)</span></code> 를 실행할 때 재귀 호출 횟수는 206회에 불과하다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">make_change_2</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">],</span> <span class="mi">63</span><span class="p">)</span>
@@ -650,7 +657,7 @@ min
 1원, 2원, 3원 등부터 63원까지 <strong>모든 경우</strong>에 대해 차례대로 필요한 최소 동전 수를
 저장해 두고 재활용한다.</p>
 <p>아래 그림은 1원부터 11원까지 잔돈 지불에 필요한 최소 동전 수를 저장하는 과정을 보여준다.
-예를 들어, 11원을 지불하고자 하는 경우 아래 세 경우를 확인한 다음에 최솟값을 선택한다.</p>
+예를 들어, 11원을 지불하고자 하는 경우 미리 계산되어 저장된 아래 세 경우를 확인한 다음에 최솟값을 선택한다.</p>
 <ul class="simple">
 <li><p>1원 동전을 사용하는 경우: 나머지 10원을 지불할 때 필요한 최소 동전 수에 1을 더한 값</p></li>
 <li><p>5원 동전을 사용하는 경우: 나머지 6원을 지불할 때 필요한 최소 동전 수에 1을 더한 값</p></li>
@@ -1054,8 +1061,8 @@ By 코딩알지
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=c5ced968eda925caa686"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686"></script>
+  <script src="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
 
   <footer class="bd-footer">
   </footer>
