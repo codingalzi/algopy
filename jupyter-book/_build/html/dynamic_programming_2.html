@@ -466,89 +466,81 @@ document.write(`
 <h2><span class="section-number">18.1. </span>그래프 용어<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
 <p>그래프 관련 용어를 익혀두어야 한다.</p>
 <ul class="simple">
-<li><p>마디, 정점<font size='2'>vertex, node</font></p></li>
-<li><p>이음선, 에지<font size='2'>edge, arc</font></p></li>
-<li><p>방향 그래프<font size='2'>directed graph</font>: 이음선에 방향이 포함된 그래프</p></li>
-<li><p>가중치<font size='2'>weight</font></p></li>
-<li><p>가중 그래프<font size='2'>weighted graph</font></p></li>
-<li><p>경로<font size='2'>path</font>: 이음선으로 연결된 마디들의 나열. 즉, 하나의 마디에서 다른 마디로 가는 이음선의 연결.</p></li>
-<li><p>단순경로<font size='2'>simple path</font>: 같은 마디를 두 번 지나지 않는 경로</p></li>
-<li><p>순환<font size='2'>cycle</font>: 하나의 마디에서 출발하여 다시 그 마디로 돌아오는 경로</p></li>
-<li><p>순환 그래프<font size='2'>cyclic graph</font>: 순환을 갖는 그래프</p></li>
-<li><p>비순환 그래프 <font size='2'>acyclic graph</font>: 순환을 갖지 않는 그래프</p></li>
+<li><p>노드<font size='2'>node</font>: 그래프의 구성 요소. 꼭짓점<font size='2'>vertex</font> 또는 정점으로도 불림.</p></li>
+<li><p>간선<font size='2'>edge</font>: 두 개의 노드를 연결하는 선. 이음선 또는 변으로도 불림.</p></li>
+<li><p>방향 그래프<font size='2'>directed graph</font>: 간선의 방향이 정해진 그래프</p></li>
+<li><p>무방향 그래프<font size='2'>undirected graph</font>: 간선의 방향이 없는 그래프</p></li>
+<li><p>가중치<font size='2'>weight</font>: 간선에 추가된 숫자</p></li>
+<li><p>가중 그래프<font size='2'>weighted graph</font>: 가중치가 있는 간선을 사용하는 그래프</p></li>
+<li><p>경로<font size='2'>path</font>: 간선으로 연결된 노드들의 나열. 즉, 하나의 노드에서 다른 노드로 가는 간선들의 연결.</p></li>
+<li><p>단순 경로<font size='2'>simple path</font>: 같은 노드를 두 번 지나지 않는 경로</p></li>
+<li><p>순환<font size='2'>cycle</font>: 하나의 노드에서 출발하여 다시 그 노드로 돌아오는 경로</p></li>
+<li><p>순환 그래프<font size='2'>cyclic graph</font>: 순환이 포함된 그래프</p></li>
+<li><p>비순환 그래프 <font size='2'>acyclic graph</font>: 순환이 포함되지 않은 그래프</p></li>
 <li><p>경로의 길이:</p>
 <ul>
 <li><p>가중 그래프의 경우: 경로 상에 있는 가중치의 합</p></li>
-<li><p>가중치 없는 그래프의 경우: 경로 상에 있는 이음선의 수</p></li>
+<li><p>비가중 그래프의 경우: 경로 상에 있는 이음선의 수.</p></li>
 </ul>
 </li>
 </ul>
-<p><strong>예제: 가중 방향그래프</strong></p>
+<p>예를 들어 가중 방향 그래프는 다음과 같이 생겼다.</p>
 <div align="center"><img src="https://raw.githubusercontent.com/CodingRG-HKNU/FoundationsOfAlgorithms/master/slides/images/algo03/algo03-03.png" width="350"/></div></section>
 <section id="id3">
 <h2><span class="section-number">18.2. </span>최단 경로 문제<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
-<p>임의의 마디에서 다른 임의의 마디로 가는 최단 경로를 구하는 문제이다.
-이때 이음선의 가중치와 방향을 함께 고려한다.
-최단 경로는 순환을 포함하지 않는 단순 경로만 대상으로 한다.</p>
-<p><strong>응용 사례</strong></p>
-<ul class="simple">
-<li><p>도시 간의 최단 경로</p></li>
-<li><p>다구간 비행기표 여정</p></li>
-<li><p>지도앱에서 경유 추가</p></li>
-</ul>
-<p>그래프에서 <span class="math notranslate nohighlight">\(v_1\)</span>에서 <span class="math notranslate nohighlight">\(v_3\)</span>로 가는 단순경로와 경로 길이는 다음 세 종류이다.</p>
+<p>방향 그래프가 주어졌을 때
+임의의 노드에서 다른 임의의 노드로 가는 최단 경로를 구하는 문제이다.
+이때 간선의 가중치와 방향을 함께 고려한다.
+비가중 방향 그래프의 경우 모든 간선의 가중치가 1이라고 간주한다.
+최단 경로는 순환을 포함하지 않는 단순 경로만 대상으로 최단 경로를 찾는다.
+최단 경로 계산 알고리즘은 예를 들어 두 도시 간의 최단 경로를 찾아야 할 때 활용될 수 있다.</p>
+<p>위 가중 방향 그래프에서 <span class="math notranslate nohighlight">\(v_1\)</span>에서 <span class="math notranslate nohighlight">\(v_3\)</span>로 가는 단순 경로는 다음 세 종류이다.</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\([v_1, v_2, v_3]\)</span>: 경로 길이는 <span class="math notranslate nohighlight">\(1 + 3 = 4\)</span>.</p></li>
 <li><p><span class="math notranslate nohighlight">\([v_1, v_4, v_3]\)</span>: 경로 길이는 <span class="math notranslate nohighlight">\(1 + 2 = 3\)</span>.</p></li>
 <li><p><span class="math notranslate nohighlight">\([v_1, v_2, v_4, v_3]\)</span>: 경로 길이는 <span class="math notranslate nohighlight">\(1 + 2 + 2 = 5\)</span>.</p></li>
 </ul>
-<p>이중에 <span class="math notranslate nohighlight">\([v_1, v_4, v_3]\)</span>가 <span class="math notranslate nohighlight">\(v_1\)</span>에서 <span class="math notranslate nohighlight">\(v_3\)</span>로 가는 최단 경로이다.</p>
+<p>이중에서 <span class="math notranslate nohighlight">\([v_1, v_4, v_3]\)</span>가 <span class="math notranslate nohighlight">\(v_1\)</span>에서 <span class="math notranslate nohighlight">\(v_3\)</span>로 가는 최단 경로이다.</p>
 <p><strong>완전 탐색</strong></p>
 <p>완전 탐색<font size='2'>brute force</font> 알고리즘은
-두 마디 사이의 가능한 모든 경로의 길이를 계산한 후 그 중에 최단 경로를 선택한다.
-하지만 이 알고리즘은 지수보다 나쁜 시간복잡도를 가진다.</p>
-<ul>
-<li><p>가정:</p>
+두 노드 사이의 가능한 모든 경로의 길이를 계산한 후 그 중에 최단 경로를 선택한다.
+하지만 이 알고리즘은 지수 함수보다 나쁜 시간복잡도를 가진다.</p>
+<p>예를 들어 <span class="math notranslate nohighlight">\(v_1, v_2, ..., v_n\)</span>을 노드로 사용하고 모든 노드들 사이에 간선이 존재하는 그래프를 고려하자.
+이때 <span class="math notranslate nohighlight">\(v_1\)</span>에서 <span class="math notranslate nohighlight">\(v_n\)</span>으로 가는 경로 중에서 나머지 모든 노드를 한 번씩 꼭 거쳐서 가는 경로들의 수는
+다음과 같이 계산된다.</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(n\)</span> 개의 마디: <span class="math notranslate nohighlight">\(v_1, v_2, ..., v_n\)</span></p></li>
-<li><p>모든 마디들 사이에 이음선 존재</p></li>
-</ul>
-</li>
-<li><p><span class="math notranslate nohighlight">\(v_1\)</span>에서 <span class="math notranslate nohighlight">\(v_n\)</span>으로 가는 경로 중 나머지 모든 마디를 한 번씩 꼭 거쳐서 가는 경로들의 수는?</p>
-<ul>
-<li><p><span class="math notranslate nohighlight">\(v_1\)</span> 에서 출발하여 처음에 도착할 수 있는 마디의 가지 수는 <span class="math notranslate nohighlight">\((n-2)\)</span> 개</p></li>
-<li><p>그 중에 하나를 선택하면, 그 다음에 도착할 수 있는 마디의 가지 수는 <span class="math notranslate nohighlight">\((n-3)\)</span>개</p></li>
+<li><p><span class="math notranslate nohighlight">\(v_1\)</span> 에서 출발하여 첫 경유지로 사용될 수 있는 노드의 수는 <span class="math notranslate nohighlight">\((n-2)\)</span> 개</p></li>
+<li><p>그 중에 하나를 선택하면, 그 다음 경유지로 사용될 수 있는 노드의 가지 수는 <span class="math notranslate nohighlight">\((n-3)\)</span>개</p></li>
 <li><p>…</p></li>
-<li><p>따라서 총 경로의 개수는 다음과 같음:</p>
+</ul>
+<p>따라서 총 경로의 개수는 다음과 같다.</p>
 <div class="math notranslate nohighlight">
-\[(n-2)\times(n-3)\times\cdots\times 1= (n-2)!\]</div>
-</li>
-</ul>
-</li>
-</ul>
-<p><strong>동적계획법 적용</strong></p>
-<p>두 마디 사이의 최단 경로를 동적계획법으로 계산하기 위해
-주어진 방향그래프의 <strong>인접행렬</strong><font size='2'>adjacent matrix</font>을
-동적계획법 기법으로 업데이트하여 두 마디 사이의 최단 경로를 계산한다.</p>
-<p><strong>그래프의 인접행렬</strong></p>
-<p>그래프의 인접행렬은 마디와 마디를 잇는 이음선과 가중치의 정보를 표현하는 2차원 행렬이며
-다음과 같이 정의되는 <span class="math notranslate nohighlight">\(n\times n\)</span> 행렬 <span class="math notranslate nohighlight">\(W\)</span>로 표현된다.</p>
+\[(n-2)\cdot(n-3)\cdots 2\cdot 1= (n-2)!\]</div>
+<p>두 노드 사이의 최단 경로를 동적계획법으로 계산하기 위해
+주어진 방향 그래프의 <strong>인접 행렬</strong><font size='2'>adjacent matrix</font>을
+동적계획법 기법으로 업데이트하여 두 노드 사이의 최단 경로를 계산한다.</p>
+<p><strong>인접 행렬</strong></p>
+<p>가중 그래프의 인접 행렬은 노드와 노드를 잇는 간선과 가중치의 정보를 표현하는 <span class="math notranslate nohighlight">\(n\times n\)</span> 행렬이다.
+여기서 <span class="math notranslate nohighlight">\(n\)</span>은 노드의 개수를 가리킨다.
+인접 행렬은 다음과 같이 정의되는 <span class="math notranslate nohighlight">\(n\times n\)</span> 행렬 <span class="math notranslate nohighlight">\(W\)</span>로 표현된다.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 W[i][j] = 
 \begin{cases}
-\text{이음선 가중치} &amp; \quad\text{$v_i$ 에서 $v_j$ 로의 이음선이 존재하는 경우} \\
-\infty &amp; \quad\text{$v_i$ 에서 $v_j$ 로의 이음선이 존재하지 않는 경우} \\
+\text{간선 가중치} &amp; \quad\text{$v_i$ 에서 $v_j$ 로의 간선이 존재하는 경우} \\
+\infty &amp; \quad\text{$v_i$ 에서 $v_j$ 로의 간선이 존재하지 않는 경우} \\
 0 &amp; \quad \text{$i = j$ 인 경우}
 \end{cases}
 \end{split}\]</div>
-<p>위 예제 그래프의 인접행렬은 다음과 같다.</p>
+<p>앞서 예제로 언급된 가중 방향 그래프의 인접 행렬은 다음과 같다.
+단, <code class="docutils literal notranslate"><span class="pre">inf</span></code>는 두 노드 사이에 간선이 없는 경우를 가리키며
+무한<font size='2'>infinity</font>을 의미한다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 무한에 해당하는 기호 사용</span>
 <span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">inf</span>
 
-<span class="c1"># inf 는 두 마디 사이에 이음선이 없음을 의미함.</span>
+<span class="c1"># inf 는 두 노드 사이에 간선이 없음을 의미함.</span>
 <span class="n">W</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">inf</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
      <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">inf</span><span class="p">],</span>
      <span class="p">[</span><span class="n">inf</span><span class="p">,</span> <span class="n">inf</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">inf</span><span class="p">],</span>
@@ -558,44 +550,47 @@ W[i][j] =
 </div>
 </div>
 </div>
-<p><strong>최단 경로길이 행렬</strong></p>
-<p>반면에 각 마디들 사이의 최단 경로의 길이를 담은 2차원 행렬 <span class="math notranslate nohighlight">\(D\)</span>는 다음과 같다.</p>
+<p>반면에 각 노드들 사이의 최단 경로의 길이를 담은 2차원 행렬 <span class="math notranslate nohighlight">\(D\)</span>는 다음과 같다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">D</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
-    <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
-    <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>
-    <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
-    <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]</span>
+     <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+     <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>
+     <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+     <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p><strong>최단 경로 길이행렬 구하기</strong></p>
 <p>이제 남은 과제는 “어떻게 <span class="math notranslate nohighlight">\(W\)</span>에서 <span class="math notranslate nohighlight">\(D\)</span>를 구할 것인가?” 이다.</p>
-<div align="center"><img src="https://raw.githubusercontent.com/CodingRG-HKNU/FoundationsOfAlgorithms/master/slides/images/algo03/algo03-06.png" width="600"/></div><p><strong>동적계획법 전략</strong></p>
-<p>마디 <span class="math notranslate nohighlight">\(v_i\)</span>에서 마디 <span class="math notranslate nohighlight">\(v_j\)</span>로 가는 최단 경로를 계산하기 위해
-중간에 지나쳐야 하는 중간지점을 확대해 나가면서 최단 경로를 업데이트하는 전략을 사용한다.
+<p><div align="center"><img src="https://raw.githubusercontent.com/CodingRG-HKNU/FoundationsOfAlgorithms/master/slides/images/algo03/algo03-06.png" width="500"/></div></p><p><strong>동적계획법 전략</strong></p>
+<p><span class="math notranslate nohighlight">\(v_i\)</span>에서 <span class="math notranslate nohighlight">\(v_j\)</span>로 가는 최단 경로를 계산하기 위해
+경유 노드를 확대해 나가면서 최단 경로를 업데이트하는 전략을 사용한다.
 이를 위해 <span class="math notranslate nohighlight">\(k\)</span>를 <span class="math notranslate nohighlight">\(0\)</span>부터 <span class="math notranslate nohighlight">\(n\)</span>까지 변하게 하면서 아래 조건에 맞는 행렬 <span class="math notranslate nohighlight">\(D^{(k)}\)</span>를
 동적계획법으로 생성한다.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align*}
-D^{(k)}[i][j] &amp;= \text{집합 $\{v_1, v_2, \dots, v_k\}$ 에 속하는 마디만을 통해서} \\
+D^{(k)}[i][j] &amp;= \text{집합 $\{v_1, v_2, \dots, v_k\}$ 에 속하는 노드만을 경유해서} \\
 &amp; \,\,\quad\,\text{$v_i$ 에서 $v_j$ 로 가는 최단 경로의 길이}
 \end{align*}
 \end{split}\]</div>
-<p>즉, <span class="math notranslate nohighlight">\(i\)</span>번째 행, <span class="math notranslate nohighlight">\(j\)</span>번째 열에 위치한 값은 <span class="math notranslate nohighlight">\(v_i\)</span> 에서 <span class="math notranslate nohighlight">\(v_j\)</span> 로 가는 최단 경로의 길이이다.
-단, 해당 경로는 <span class="math notranslate nohighlight">\(v_1, v_2, \dots, v_k\)</span>만 경유할 수 있다.
-이제 다음이 성립한다.</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{align*}
-D^{(0)} &amp;= W \\
-D^{(n)} &amp;= D
-\end{align*}
-\end{split}\]</div>
-<p>남은 과제는 <span class="math notranslate nohighlight">\(D^{(k-1)}\)</span> 로부터 <span class="math notranslate nohighlight">\(D^{(k)}\)</span>를
+<p>먼저, 다음이 성립한다.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(D^{(0)}= W\)</span></p>
+<ul>
+<li><p>경유 없이 두 노드 사이를 직접 연결하는 간선들의 가중치로 이루어진 행렬</p></li>
+<li><p>즉 인접 행렬</p></li>
+</ul>
+</li>
+<li><p><span class="math notranslate nohighlight">\(D^{(n)}= D\)</span></p>
+<ul>
+<li><p>어떤 노드도 경유할 수 있는 최단 경로의 길이로 구성된 행렬</p></li>
+<li><p>즉, 두 노드 사이의 최단 경로의 길이로 구성된 행렬</p></li>
+</ul>
+</li>
+</ul>
+<p>이제 남은 과제는 <span class="math notranslate nohighlight">\(D^{(k-1)}\)</span> 로부터 <span class="math notranslate nohighlight">\(D^{(k)}\)</span>를
 아래 관계가 만족되도록 생성하는 것이다.</p>
 <div class="math notranslate nohighlight">
 \[
@@ -634,12 +629,12 @@ d^{(4)} &amp;= \min(\text{length}[v_2, v_4, v_5], \text{length}[v_2, v_1, v_4, v
 <div class="math notranslate nohighlight">
 \[D^{(k)}[i][j] = \min \big( D^{(k-1)}[i][j],\,D^{(k-1)}[i][k] + D^{(k-1)}[k][j] \big)\]</div>
 <ul>
-<li><p>경우 1: <span class="math notranslate nohighlight">\(\{v_1, v_2,\dots, v_k\}\)</span> 에 속한 마디들만을 통해서 <span class="math notranslate nohighlight">\(v_i\)</span>에서 <span class="math notranslate nohighlight">\(v_j\)</span>로 가는 최단 경로가 <span class="math notranslate nohighlight">\(v_k\)</span>를 거쳐가지 않는 경우.</p>
+<li><p>경우 1: <span class="math notranslate nohighlight">\(\{v_1, v_2,\dots, v_k\}\)</span> 에 속한 노드들만을 통해서 <span class="math notranslate nohighlight">\(v_i\)</span>에서 <span class="math notranslate nohighlight">\(v_j\)</span>로 가는 최단 경로가 <span class="math notranslate nohighlight">\(v_k\)</span>를 거쳐가지 않는 경우.</p>
 <div class="math notranslate nohighlight">
 \[D^{(k)}[i][j] = D^{(k-1)}[i][j]\]</div>
   <br>
 </li>
-<li><p>경우 2: <span class="math notranslate nohighlight">\(\{v_1, v_2,\dots, v_k\}\)</span> 에 속한 마디들만을 통해서 <span class="math notranslate nohighlight">\(v_i\)</span>에서 <span class="math notranslate nohighlight">\(v_j\)</span>로 가는 최단 경로가 <span class="math notranslate nohighlight">\(v_k\)</span>를 거쳐가는 경우.</p>
+<li><p>경우 2: <span class="math notranslate nohighlight">\(\{v_1, v_2,\dots, v_k\}\)</span> 에 속한 노드들만을 통해서 <span class="math notranslate nohighlight">\(v_i\)</span>에서 <span class="math notranslate nohighlight">\(v_j\)</span>로 가는 최단 경로가 <span class="math notranslate nohighlight">\(v_k\)</span>를 거쳐가는 경우.</p>
 <div class="math notranslate nohighlight">
 \[D^{(k)}[i][j] = D^{(k-1)}[i][k] + D^{(k-1)}[k][j]\]</div>
 </li>
@@ -701,15 +696,15 @@ W = D^{(0)} \longrightarrow D^{(1)}\longrightarrow D^{(2)}
 <p><strong>최단 경로 확인 알고리즘</strong></p>
 <p>이전 함수를 약간 수정하여 최단 경로를 출력하는 함수를 구현한다.
 추가되어야 하는 사항은
-두 마디 사이의 최단 경로에 사용된 마디 중에서 가장 큰 인덱스를 기억하는 행렬 <span class="math notranslate nohighlight">\(P\)</span>이다.</p>
+두 노드 사이의 최단 경로에 사용된 노드 중에서 가장 큰 인덱스를 기억하는 행렬 <span class="math notranslate nohighlight">\(P\)</span>이다.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 P[i][j] =
 \begin{cases}
-k &amp; \text{최단 경로의 중간에 사용된 마디의 인덱스 중에서 가장 큰 값이 $k$인 경우} \\
+k &amp; \text{최단 경로의 중간에 사용된 노드의 인덱스 중에서 가장 큰 값이 $k$인 경우} \\
   &amp; \text{(아래 그림에서 사용된 $v_k$의 인덱스 $k$)}\\
   &amp; \\
-0 &amp; \text{최단 경로의 중간에 사용된 마디가 없는 경우}
+0 &amp; \text{최단 경로의 중간에 사용된 노드가 없는 경우}
 \end{cases}
 \end{split}\]</div>
 <div align="center"><img src="https://raw.githubusercontent.com/CodingRG-HKNU/FoundationsOfAlgorithms/master/slides/images/algo03/algo03-07.png" width="500"/></div><div class="cell docutils container">
@@ -740,7 +735,7 @@ k &amp; \text{최단 경로의 중간에 사용된 마디의 인덱스 중에서
 </div>
 </div>
 <p><strong>최단 경로 찍어보기: 방식 1</strong></p>
-<p>아래 <code class="docutils literal notranslate"><span class="pre">path</span></code> 함수는 두 마디 사이의 최단 경로상에 위치한 마디를 순서대로 보여준다.</p>
+<p>아래 <code class="docutils literal notranslate"><span class="pre">path</span></code> 함수는 두 노드 사이의 최단 경로상에 위치한 노드를 순서대로 보여준다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">path</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
@@ -755,7 +750,7 @@ k &amp; \text{최단 경로의 중간에 사용된 마디의 인덱스 중에서
 </div>
 </div>
 </div>
-<p>예를 들어 <span class="math notranslate nohighlight">\(v_5\)</span>에서 <span class="math notranslate nohighlight">\(v_3\)</span>으로 가는 최단 경로상의 중간마디는 다음과 같다.</p>
+<p>예를 들어 <span class="math notranslate nohighlight">\(v_5\)</span>에서 <span class="math notranslate nohighlight">\(v_3\)</span>으로 가는 최단 경로상의 중간노드는 다음과 같다.</p>
 <p>참조: <a class="reference external" href="http://pythontutor.com/visualize.html#code=def%20path%28P,%20q,%20r%29%3A%0A%20%20%20%20%23%20%EC%9D%B8%EB%8D%B1%EC%8A%A4%EA%B0%80%200%EB%B6%80%ED%84%B0%20%EC%B6%9C%EB%B0%9C%ED%95%98%EA%B8%B0%EC%97%90%20-1%20%EB%98%90%EB%8A%94%20%2B1%EC%9D%84%20%EC%A0%81%EC%A0%88%ED%9E%88%20%EC%A1%B0%EC%A0%88%ED%95%B4%EC%95%BC%20%ED%95%A8.%0A%20%20%20%20if%20P%5Bq-1%5D%5Br-1%5D%20!%3D%20-1%3A%0A%20%20%20%20%20%20%20%20v%20%3D%20P%5Bq-1%5D%5Br-1%5D%0A%0A%20%20%20%20%20%20%20%20path%28P,%20q,%20v%2B1%29%0A%20%20%20%20%20%20%20%20print%28v%2B1,end%3D'%20'%29%0A%20%20%20%20%20%20%20%20path%28P,%20v%2B1,%20r%29%0A%0AP%20%3D%20%5B%5B-1,%20-1,%203,%20-1,%203%5D,%0A%20%20%20%20%5B4,%20-1,%20-1,%20-1,%203%5D,%0A%20%20%20%20%5B4,%204,%20-1,%20-1,%203%5D,%0A%20%20%20%20%5B4,%204,%20-1,%20-1,%20-1%5D,%0A%20%20%20%20%5B-1,%200,%203,%200,%20-1%5D%5D%0A%0Apath%28P,%205,%203%29%20%20%20%20%20%20%20%20%20&amp;cumulative=false&amp;curInstr=0&amp;heapPrimitives=nevernest&amp;mode=display&amp;origin=opt-frontend.js&amp;py=3&amp;rawInputLstJSON=%5B%5D&amp;textReferences=false">PythonTutor: 최단 경로 확인하기 1</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -793,7 +788,7 @@ k &amp; \text{최단 경로의 중간에 사용된 마디의 인덱스 중에서
 </div>
 </div>
 <p><strong>최단 경로 찍어보기: 방식 2</strong></p>
-<p>최단 경로 상에 위치한 마디를 리스트로 담을 수 있다.</p>
+<p>최단 경로 상에 위치한 노드를 리스트로 담을 수 있다.</p>
 <p>참조: <a class="reference external" href="http://pythontutor.com/visualize.html#code=def%20path2%28P,%20q,%20r,%20route%29%3A%0A%20%20%20%20%23%20%EC%9D%B8%EB%8D%B1%EC%8A%A4%EA%B0%80%200%EB%B6%80%ED%84%B0%20%EC%B6%9C%EB%B0%9C%ED%95%98%EA%B8%B0%EC%97%90%20-1%20%EB%98%90%EB%8A%94%20%2B1%EC%9D%84%20%EC%A0%81%EC%A0%88%ED%9E%88%20%EC%A1%B0%EC%A0%88%ED%95%B4%EC%95%BC%20%ED%95%A8.%0A%20%20%20%20if%20P%5Bq-1%5D%5Br-1%5D%20!%3D%20-1%3A%0A%20%20%20%20%20%20%20%20v%20%3D%20P%5Bq-1%5D%5Br-1%5D%0A%0A%20%20%20%20%20%20%20%20path2%28P,%20q,%20v%2B1,%20route%29%0A%20%20%20%20%20%20%20%20route.append%28v%2B1%29%0A%20%20%20%20%20%20%20%20path2%28P,%20v%2B1,%20r,%20route%29%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20return%20route%0A%20%20%20%20%0AP%20%3D%20%5B%5B-1,%20-1,%203,%20-1,%203%5D,%0A%20%20%20%20%20%5B4,%20-1,%20-1,%20-1,%203%5D,%0A%20%20%20%20%20%5B4,%204,%20-1,%20-1,%203%5D,%0A%20%20%20%20%20%5B4,%204,%20-1,%20-1,%20-1%5D,%0A%20%20%20%20%20%5B-1,%200,%203,%200,%20-1%5D%5D%0A%20%20%20%20%20%0Aprint%28path2%28P,%205,%203,%20%5B%5D%29%29&amp;cumulative=false&amp;curInstr=0&amp;heapPrimitives=nevernest&amp;mode=display&amp;origin=opt-frontend.js&amp;py=3&amp;rawInputLstJSON=%5B%5D&amp;textReferences=false">PythonTutor: 최단 경로 확인하기 2</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -864,8 +859,8 @@ k &amp; \text{최단 경로의 중간에 사용된 마디의 인덱스 중에서
 \[\begin{split}
 P[i][j] =
 \begin{cases}
-k &amp; \text{최단 경로상의 마디 중에서 $v_i$에 가장 가까운 마디의 인덱스가 $k$인 경우} \\
-0 &amp; \text{최단 경로의 중간에 사용된 마디가 없는 경우}
+k &amp; \text{최단 경로상의 노드 중에서 $v_i$에 가장 가까운 노드의 인덱스가 $k$인 경우} \\
+0 &amp; \text{최단 경로의 중간에 사용된 노드가 없는 경우}
 \end{cases}
 \end{split}\]</div>
 <div class="cell docutils container">
@@ -879,7 +874,7 @@ k &amp; \text{최단 경로상의 마디 중에서 $v_i$에 가장 가까운 마
     <span class="c1"># 경로 기억 어레이</span>
     <span class="n">P</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">n</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
     
-    <span class="c1"># P 초기화는 인접행렬의 정보 활용</span>
+    <span class="c1"># P 초기화는 인접 행렬의 정보 활용</span>
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">product</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">repeat</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
         <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">W</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">inf</span><span class="p">:</span>
             <span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">j</span>
@@ -949,7 +944,7 @@ k &amp; \text{최단 경로상의 마디 중에서 $v_i$에 가장 가까운 마
 최적의 원칙이 적용될 수 있다고 말한다.
 동적계획법에 의해 얻어진 해답이 최적이 되려면 해당 문제에 대해 <strong>최적의 원칙</strong>이 적용될 수 있어야 한다.</p>
 <p><strong>예제: 최단 경로 문제</strong></p>
-<p><span class="math notranslate nohighlight">\(v_k\)</span>를 <span class="math notranslate nohighlight">\(v_i\)</span>에서 <span class="math notranslate nohighlight">\(v_j\)</span>로 가는 최적경로 상의 마디라고 하면,
+<p><span class="math notranslate nohighlight">\(v_k\)</span>를 <span class="math notranslate nohighlight">\(v_i\)</span>에서 <span class="math notranslate nohighlight">\(v_j\)</span>로 가는 최적경로 상의 노드라고 하면,
 <span class="math notranslate nohighlight">\(v_i\)</span>에서 <span class="math notranslate nohighlight">\(v_k\)</span> 로 가는 부분경로와 <span class="math notranslate nohighlight">\(v_k\)</span>에서 <span class="math notranslate nohighlight">\(v_j\)</span>로 가는
 부분경로도 반드시 최적이어야 한다.</p>
 <div align="center"><img src="https://raw.githubusercontent.com/CodingRG-HKNU/FoundationsOfAlgorithms/master/slides/images/algo03/algo03-07.png" width="500"/></div><p><strong>예제: 최장 경로 문제</strong></p>
