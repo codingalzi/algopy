@@ -1,0 +1,137 @@
+digraph G {
+
+    subgraph a {
+        a13 [label = 13];
+        14 -> a13 [label = 1];
+        
+        subgraph aa {
+            aa12 [label=12];
+            a13 -> aa12 [label=1]
+
+            subgraph aaa {
+                aaa11 [label=11];
+                aa12 -> aaa11 [label=1]
+
+                subgraph aaaa {
+                    aaaa10 [label=10];
+                    aaa11 -> aaaa10 [label=1]
+                }
+
+                subgraph aaab {
+                    aaab6 [label=6];
+                    aaa11 -> aaab6 [label=5]
+    
+                    subgraph aaaba {
+                        aaaba5 [label=5];
+                        aaab6 -> aaaba5 [label=1]
+                    }
+    
+                    subgraph aaabb {
+                        aaabb1 [label=1];
+                        aaab6 -> aaabb1 [label=5]
+                    }
+    
+                }
+
+                subgraph aaac {
+                    aaac1 [label=1];
+                    aaa11 -> aaac1 [label=10]
+                }
+
+            }
+
+            subgraph aab {
+                aab7 [label=7];
+                aa12 -> aab7 [label=5]
+                
+                subgraph aaba {
+                    node [style=filled, shape=triangle, height=2];
+                    aaba6 [label="6"];
+                    aab7 -> aaba6:n [label=1]
+                }
+
+                subgraph aabb {
+                    aabb2 [label="2"];
+                    aab7 -> aabb2 [label=5]
+
+                    subgraph aaaba {
+                        aaaba1 [label="1"];
+                        aabb2 -> aaaba1 [label=1]
+                    }
+
+                }
+
+            }
+            
+            subgraph aac {
+                node [style=filled, shape=triangle, height=2];
+                aac2 [label=2];
+                aa12 -> aac2:n [label=10]
+            }
+                
+        }
+        
+        subgraph ab {
+            ab8 [label=8];
+            a13 -> ab8 [label=5]
+            
+            subgraph aba {
+                node [style=filled, shape=triangle, height=2];
+                aba7 [label=7];
+                ab8 -> aba7:n [label=1];
+            }
+
+            subgraph abb {
+                abb3 [label=3];
+                ab8 -> abb3 [label=5];
+
+                subgraph abba {
+                    node [style=filled, shape=triangle, height=2];
+                    aabba2 [label=2];
+                    abb3 -> aabba2:n [label=1]
+                }
+                
+            }
+
+        }
+        
+        subgraph ac {
+            node [style=filled, shape=triangle, height=2];
+            ac3 [label=3];
+            a13 -> ac3:n [label=10]
+        }
+
+    }
+
+    subgraph b {
+        b9 [label = 9];
+        14 -> b9 [label=5]
+        
+        subgraph ba {
+            node [style=filled, shape=triangle, height=2];
+            ba8 [label=8];
+            b9 -> ba8:n [label=1]
+        }
+
+        subgraph bb {
+            bb4 [label=4];
+            b9 -> bb4 [label=5]
+
+            subgraph bba {
+                node [style=filled, shape=triangle, height=2];
+                bba3 [label=3];
+                bb4 -> bba3 [label=1]
+            }
+
+        }
+
+    }
+    
+    subgraph c {
+        node [style=filled, shape=triangle, height=2];
+        c4 [label = 4];
+        14 -> c4:n [label=10]
+
+    }
+
+}
