@@ -465,25 +465,54 @@ document.write(`
 <section id="id2">
 <h2><span class="section-number">18.1. </span>그래프 용어<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
 <p>그래프 관련 용어를 익혀두어야 한다.</p>
-<ul class="simple">
-<li><p>노드<font size='2'>node</font>: 그래프의 구성 요소. 꼭짓점<font size='2'>vertex</font> 또는 정점으로도 불림.</p></li>
-<li><p>간선<font size='2'>edge</font>: 두 개의 노드를 연결하는 선. 이음선 또는 변으로도 불림.</p></li>
-<li><p>방향 그래프<font size='2'>directed graph</font>: 간선의 방향이 정해진 그래프</p></li>
-<li><p>무방향 그래프<font size='2'>undirected graph</font>: 간선의 방향이 없는 그래프</p></li>
-<li><p>가중치<font size='2'>weight</font>: 간선에 추가된 숫자</p></li>
-<li><p>가중 그래프<font size='2'>weighted graph</font>: 가중치가 있는 간선을 사용하는 그래프</p></li>
-<li><p>경로<font size='2'>path</font>: 간선으로 연결된 노드들의 나열. 즉, 하나의 노드에서 다른 노드로 가는 간선들의 연결.</p></li>
-<li><p>단순 경로<font size='2'>simple path</font>: 같은 노드를 두 번 지나지 않는 경로</p></li>
-<li><p>순환<font size='2'>cycle</font>: 하나의 노드에서 출발하여 다시 그 노드로 돌아오는 경로</p></li>
-<li><p>순환 그래프<font size='2'>cyclic graph</font>: 순환이 포함된 그래프</p></li>
-<li><p>비순환 그래프 <font size='2'>acyclic graph</font>: 순환이 포함되지 않은 그래프</p></li>
-<li><p>경로의 길이:</p>
-<ul>
-<li><p>가중 그래프의 경우: 경로 상에 있는 가중치의 합</p></li>
-<li><p>비가중 그래프의 경우: 경로 상에 있는 이음선의 수.</p></li>
-</ul>
-</li>
-</ul>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>용어</p></th>
+<th class="head text-left"><p>개념</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>노드<font size='2'>node</font></p></td>
+<td class="text-left"><p>그래프의 구성 요소. 꼭짓점<font size='2'>vertex</font> 또는 정점으로도 불림.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>간선<font size='2'>edge</font></p></td>
+<td class="text-left"><p>두 개의 노드를 연결하는 선. 이음선 또는 변으로도 불림.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>방향 그래프<font size='2'>directed graph</font></p></td>
+<td class="text-left"><p>간선의 방향이 정해진 그래프</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>무방향 그래프<font size='2'>undirected graph</font></p></td>
+<td class="text-left"><p>간선의 방향이 없는 그래프</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>가중치<font size='2'>weight</font></p></td>
+<td class="text-left"><p>간선에 추가된 숫자</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>가중 그래프<font size='2'>weighted graph</font></p></td>
+<td class="text-left"><p>가중치가 있는 간선을 사용하는 그래프</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>경로<font size='2'>path</font></p></td>
+<td class="text-left"><p>간선으로 연결된 노드들의 나열. 즉, 하나의 노드에서 다른 노드로 가는 간선들의 연결.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>단순 경로<font size='2'>simple path</font></p></td>
+<td class="text-left"><p>같은 노드를 두 번 지나지 않는 경로</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>순환<font size='2'>cycle</font></p></td>
+<td class="text-left"><p>하나의 노드에서 출발하여 다시 그 노드로 돌아오는 경로</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>순환 그래프<font size='2'>cyclic graph</font></p></td>
+<td class="text-left"><p>순환이 포함된 그래프</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>비순환 그래프 <font size='2'>acyclic graph</font></p></td>
+<td class="text-left"><p>순환이 포함되지 않은 그래프</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>경로의 길이</p></td>
+<td class="text-left"><p>가중 그래프의 경우: 경로 상에 있는 가중치의 합</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p></p></td>
+<td class="text-left"><p>비가중 그래프의 경우: 경로 상에 있는 이음선의 수</p></td>
+</tr>
+</tbody>
+</table>
 <p>예를 들어 가중 방향 그래프는 다음과 같이 생겼다.</p>
 <p>참고: 아래 코드는 <code class="docutils literal notranslate"><span class="pre">graphviz</span></code> 라이브러리를 이용하여 그래프를 그려준다.
 알고리즘 이해와는 상관없기에 코드가 아닌 그래프 결과물에만 집중하면 된다.</p>
@@ -911,7 +940,7 @@ k &amp; \quad\text{$v_i$ 에서 $v_j$ 로의 최단 경로의 경유지로 사�
 동적계획법에 의해 얻어진 해답이 최적이 되려면 해당 문제에 대해 최적의 원칙이 적용될 수 있어야 한다.</p>
 <p>최적의 원칙이 적용되는 예제와 그렇지 않은 예제를 하나씩 살펴 본다.</p>
 <p><strong>예제: 최단 경로 문제</strong></p>
-<p><span class="math notranslate nohighlight">\(v_k\)</span>가 <span class="math notranslate nohighlight">\(v_i\)</span>에서 <span class="math notranslate nohighlight">\(v_j\)</span>로 가는 비순환 최단 경로 상에 위치하며 가장 큰 인덱스를 갖는 노드라고 하면,
+<p><span class="math notranslate nohighlight">\(v_k\)</span>가 <span class="math notranslate nohighlight">\(v_i\)</span>에서 <span class="math notranslate nohighlight">\(v_j\)</span>로 가는 단순 최단 경로 상에 위치하며 가장 큰 인덱스를 갖는 노드라고 하면,
 <span class="math notranslate nohighlight">\(v_i\)</span>에서 <span class="math notranslate nohighlight">\(v_k\)</span> 로 가는 부분경로와 <span class="math notranslate nohighlight">\(v_k\)</span>에서 <span class="math notranslate nohighlight">\(v_j\)</span>로 가는 부분경로 또한
 두 노드 사이의 최단 경로이다.
 이유는 아래 식대로 두 노드 사이의 최단 경로가 계산되었기 때문이다.</p>
@@ -919,7 +948,7 @@ k &amp; \quad\text{$v_i$ 에서 $v_j$ 로의 최단 경로의 경유지로 사�
 \[D^{(k)}[i][j] = \min \big( D^{(k-1)}[i][j],\,D^{(k-1)}[i][k] + D^{(k-1)}[k][j] \big)\]</div>
 <p>결론적으로 최단 경로 문제를 해결하는 동적계획법 알고리즘은 최적의 원칙을 만족시킨다.</p>
 <p><strong>예제: 최장 경로 문제</strong></p>
-<p>아래 그래프에서 <span class="math notranslate nohighlight">\(v_0\)</span>에서 <span class="math notranslate nohighlight">\(v_3\)</span>로의 비순환 최장 경로는 <span class="math notranslate nohighlight">\(v_0 \to v_2 \to v_1 \to v_3\)</span>이다.
+<p>아래 그래프에서 <span class="math notranslate nohighlight">\(v_0\)</span>에서 <span class="math notranslate nohighlight">\(v_3\)</span>로의 단순 최장 경로는 <span class="math notranslate nohighlight">\(v_0 \to v_2 \to v_1 \to v_3\)</span>이다.
 그러나 이 경로의 부분 경로인 <span class="math notranslate nohighlight">\(v_0\)</span>에서 <span class="math notranslate nohighlight">\(v_2\)</span>으로의 비순환 최장 경로는
 <span class="math notranslate nohighlight">\(v_0 \to v_2\)</span>가 아니라 <span class="math notranslate nohighlight">\(v_0 \to v_1\to v_2\)</span> 이다.
 즉, 최장 경로 문제를 찾는 알고리즘은 최적의 원칙을 만족시키지 못한다.</p>
