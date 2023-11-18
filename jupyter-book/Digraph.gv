@@ -1,0 +1,14 @@
+// The Round Table
+digraph {
+	v0 [pos="0,2!"]
+	v1 [pos="2,2!"]
+	v2 [pos="2,0!"]
+	v3 [pos="0,0!"]
+	v4 [pos="-1,1!"]
+	v0 -> v1
+	v0 -> v3
+	v0 -> v4
+	v1 -> v0
+	v1 -> v2
+	v1 -> v3
+}
