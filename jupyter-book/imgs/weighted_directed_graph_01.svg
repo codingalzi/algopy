@@ -24,8 +24,8 @@
 <!-- v0&#45;&gt;v1 -->
 <g id="edge1" class="edge">
 <title>v0&#45;&gt;v1</title>
-<path fill="none" stroke="black" d="M66.45,-269.78C54.09,-264.2 39.92,-255.53 32,-243 27.77,-236.31 25.91,-228.08 25.27,-220.24"/>
-<polygon fill="black" stroke="black" points="28.77,-219.9 25.05,-209.98 21.77,-220.05 28.77,-219.9"/>
+<path fill="none" stroke="blue" d="M66.45,-269.78C54.09,-264.2 39.92,-255.53 32,-243 27.77,-236.31 25.91,-228.08 25.27,-220.24"/>
+<polygon fill="blue" stroke="blue" points="28.77,-219.9 25.05,-209.98 21.77,-220.05 28.77,-219.9"/>
 <text text-anchor="middle" x="37" y="-231.8" font-family="Times,serif" font-size="14.00">1</text>
 </g>
 <!-- v3 -->
@@ -37,8 +37,8 @@
 <!-- v0&#45;&gt;v3 -->
 <g id="edge2" class="edge">
 <title>v0&#45;&gt;v3</title>
-<path fill="none" stroke="black" d="M88.01,-260.88C84.54,-231 77.34,-169.11 73.17,-133.27"/>
-<polygon fill="black" stroke="black" points="76.61,-132.58 71.98,-123.05 69.66,-133.39 76.61,-132.58"/>
+<path fill="none" stroke="red" d="M88.01,-260.88C84.54,-231 77.34,-169.11 73.17,-133.27"/>
+<polygon fill="red" stroke="red" points="76.61,-132.58 71.98,-123.05 69.66,-133.39 76.61,-132.58"/>
 <text text-anchor="middle" x="86" y="-188.3" font-family="Times,serif" font-size="14.00">1</text>
 </g>
 <!-- v4 -->
@@ -70,15 +70,15 @@
 <!-- v1&#45;&gt;v2 -->
 <g id="edge5" class="edge">
 <title>v1&#45;&gt;v2</title>
-<path fill="none" stroke="black" d="M25.4,-173.68C23.75,-153.01 21.71,-117.44 24,-87 25.11,-72.21 26.23,-68.57 29,-54 29.51,-51.34 30.07,-48.57 30.66,-45.81"/>
-<polygon fill="black" stroke="black" points="34.08,-46.56 32.84,-36.04 27.25,-45.03 34.08,-46.56"/>
+<path fill="none" stroke="blue" d="M25.4,-173.68C23.75,-153.01 21.71,-117.44 24,-87 25.11,-72.21 26.23,-68.57 29,-54 29.51,-51.34 30.07,-48.57 30.66,-45.81"/>
+<polygon fill="blue" stroke="blue" points="34.08,-46.56 32.84,-36.04 27.25,-45.03 34.08,-46.56"/>
 <text text-anchor="middle" x="29" y="-101.3" font-family="Times,serif" font-size="14.00">3</text>
 </g>
 <!-- v1&#45;&gt;v3 -->
 <g id="edge6" class="edge">
 <title>v1&#45;&gt;v3</title>
-<path fill="none" stroke="black" d="M35.29,-174.61C41.48,-162.38 50.05,-145.44 57.12,-131.46"/>
-<polygon fill="black" stroke="black" points="60.34,-132.84 61.73,-122.34 54.1,-129.68 60.34,-132.84"/>
+<path fill="none" stroke="blue" d="M35.29,-174.61C41.48,-162.38 50.05,-145.44 57.12,-131.46"/>
+<polygon fill="blue" stroke="blue" points="60.34,-132.84 61.73,-122.34 54.1,-129.68 60.34,-132.84"/>
 <text text-anchor="middle" x="56" y="-144.8" font-family="Times,serif" font-size="14.00">2</text>
 </g>
 <!-- v2&#45;&gt;v3 -->
@@ -91,8 +91,8 @@
 <!-- v3&#45;&gt;v2 -->
 <g id="edge8" class="edge">
 <title>v3&#45;&gt;v2</title>
-<path fill="none" stroke="black" d="M53,-90.84C46.72,-84.92 40.33,-77.38 37,-69 34.21,-61.98 33.32,-53.96 33.36,-46.42"/>
-<polygon fill="black" stroke="black" points="36.86,-46.43 33.92,-36.25 29.87,-46.04 36.86,-46.43"/>
+<path fill="none" stroke="red" d="M53,-90.84C46.72,-84.92 40.33,-77.38 37,-69 34.21,-61.98 33.32,-53.96 33.36,-46.42"/>
+<polygon fill="red" stroke="red" points="36.86,-46.43 33.92,-36.25 29.87,-46.04 36.86,-46.43"/>
 <text text-anchor="middle" x="42" y="-57.8" font-family="Times,serif" font-size="14.00">2</text>
 </g>
 <!-- v3&#45;&gt;v4 -->
