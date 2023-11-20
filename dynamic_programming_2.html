@@ -735,12 +735,12 @@ W = D^{(0)} \longrightarrow D^{(1)}\longrightarrow D^{(2)}
     <span class="n">D</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span> 
 
     <span class="c1"># D^(0) 지정</span>
-    <span class="c1"># 주의: deepcopy를 사용하지 않으면 W에 혼란을 발생시킴</span>
+    <span class="c1"># 주의: deepcopy를 사용하지 않으면 W가 수정됨</span>
     <span class="n">D</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">W</span><span class="p">)</span>
 
     <span class="c1"># D^(k) 로부터 D^(k+1)를 생성</span>
     <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
-        <span class="n">D</span><span class="p">[</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">D</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+        <span class="n">D</span><span class="p">[</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">D</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
         <span class="c1"># 행렬의 인덱스는 0부터 (n-1)까지 이동</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
             <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
@@ -777,6 +777,8 @@ W = D^{(0)} \longrightarrow D^{(1)}\longrightarrow D^{(2)}
 따라서 <code class="docutils literal notranslate"><span class="pre">D[k]</span></code>를 생성하기 위해 최대 <span class="math notranslate nohighlight">\(2 n^2\)</span> 번 항목을 계산한다.
 이 과정을 <code class="docutils literal notranslate"><span class="pre">n</span></code> 번 반복하기에 플로이드-워셜 알고리즘의
 시간 복잡도는 <span class="math notranslate nohighlight">\(O(n^3)\)</span>이다.</p>
+<p><strong>공간 복잡도</strong></p>
+<p>위</p>
 <p><strong>최단 경로 확인 알고리즘</strong></p>
 <p>이전 함수를 약간 수정하여 최단 경로를 출력하는 함수를 구현한다.
 추가되어야 하는 사항은
@@ -806,12 +808,12 @@ k &amp; \quad\text{$v_i$ 에서 $v_j$ 로의 최단 경로의 경유지로 사�
     <span class="n">P</span> <span class="o">=</span> <span class="p">[[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">n</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span> <span class="c1"># -1로 초기화</span>
 
     <span class="c1"># D^(0) 지정</span>
-    <span class="c1"># 주의: deepcopy를 사용하지 않으면 W에 혼란을 발생시킴</span>
+    <span class="c1"># 주의: deepcopy를 사용하지 않으면 W가 수정됨</span>
     <span class="n">D</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">W</span><span class="p">)</span>
 
     <span class="c1"># D^(k) 로부터 D^(k+1)를 생성</span>
     <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
-        <span class="n">D</span><span class="p">[</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">D</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+        <span class="n">D</span><span class="p">[</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">D</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
         <span class="c1"># 행렬의 인덱스는 0부터 (n-1)까지 이동</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
             <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
