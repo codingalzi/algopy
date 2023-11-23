@@ -775,10 +775,16 @@ W = D^{(0)} \longrightarrow D^{(1)}\longrightarrow D^{(2)}
 그러면 <code class="docutils literal notranslate"><span class="pre">D[k]</span></code>의 항목을 초기화하는 데에 <span class="math notranslate nohighlight">\(n^2\)</span>의 항목을 복사한다.
 이후에 <code class="docutils literal notranslate"><span class="pre">D[k]</span></code>의 항목을 최대 <span class="math notranslate nohighlight">\(n^2\)</span> 번 업데이트 한다.
 따라서 <code class="docutils literal notranslate"><span class="pre">D[k]</span></code>를 생성하기 위해 최대 <span class="math notranslate nohighlight">\(2 n^2\)</span> 번 항목을 계산한다.
-이 과정을 <code class="docutils literal notranslate"><span class="pre">n</span></code> 번 반복하기에 플로이드-워셜 알고리즘의
-시간 복잡도는 <span class="math notranslate nohighlight">\(O(n^3)\)</span>이다.</p>
+이 과정을 <code class="docutils literal notranslate"><span class="pre">n</span></code> 번 반복하기에 최대 <span class="math notranslate nohighlight">\(2 n^3\)</span> 번 항목을 계산한다.
+따라서 플로이드-워셜 알고리즘의 시간 복잡도는 <span class="math notranslate nohighlight">\(O(n^3)\)</span>이다.</p>
 <p><strong>공간 복잡도</strong></p>
-<p>위</p>
+<p>위 코드만 보면 <code class="docutils literal notranslate"><span class="pre">(n,</span> <span class="pre">n)</span></code> 모양의 행렬 <code class="docutils literal notranslate"><span class="pre">D[k]</span></code> 를 <code class="docutils literal notranslate"><span class="pre">n+1</span></code> 개 생성하는 것으로 보인다.
+하지만 실제 메모리 상에서는 <code class="docutils literal notranslate"><span class="pre">D[0]</span></code> 행렬만 새로 생성하고
+나머지 <code class="docutils literal notranslate"><span class="pre">D[k]</span></code>는 <code class="docutils literal notranslate"><span class="pre">D[k-1]</span></code> 의 항목을 직접 업데이트하는 방식으로 진행된다.
+따라서 플로이드-워셜 알고리즘의 공간 복잡도는 <span class="math notranslate nohighlight">\(O(n^2)\)</span> 이다.</p>
+<p>참고로 <code class="docutils literal notranslate"><span class="pre">D[k+1][i][j]</span></code> 계산에 필요한 <code class="docutils literal notranslate"><span class="pre">D[k][i][k]</span></code>와 <code class="docutils literal notranslate"><span class="pre">D[k][k][j]</span></code> 가
+각각 <code class="docutils literal notranslate"><span class="pre">D[k+1][i][k]</span></code>와 <code class="docutils literal notranslate"><span class="pre">D[k+1][k][j]</span></code>에 의해 먼저 업데이트될 가능성은 없다.
+이유는 <code class="docutils literal notranslate"><span class="pre">D[k+1][i][k]</span></code> 와 <code class="docutils literal notranslate"><span class="pre">D[k][i][k]</span></code>, 그리고 <code class="docutils literal notranslate"><span class="pre">D[k+1][k][j]</span></code>와 <code class="docutils literal notranslate"><span class="pre">D[k+1][k][j]</span></code>는 동일하기 때문이다.</p>
 <p><strong>최단 경로 확인 알고리즘</strong></p>
 <p>이전 함수를 약간 수정하여 최단 경로를 출력하는 함수를 구현한다.
 추가되어야 하는 사항은
