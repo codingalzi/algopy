@@ -771,11 +771,14 @@ W = D^{(0)} \longrightarrow D^{(1)}\longrightarrow D^{(2)}
 <p><strong>시간 복잡도</strong></p>
 <p>플로이드-워셜 알고리즘의 시간 복잡도를 계산하기 위해
 기본 계산단위를 행렬의 항목을 계산하는 명령문으로 지정한다.
-그러면 <code class="docutils literal notranslate"><span class="pre">D[k]</span></code>의 항목을 초기화하는 데에 <span class="math notranslate nohighlight">\(n^2\)</span>의 항목을 복사한다.
-이후에 <code class="docutils literal notranslate"><span class="pre">D[k]</span></code>의 항목을 최대 <span class="math notranslate nohighlight">\(n^2\)</span> 번 업데이트 한다.
-따라서 <code class="docutils literal notranslate"><span class="pre">D[k]</span></code>를 생성하기 위해 최대 <span class="math notranslate nohighlight">\(2 n^2\)</span> 번 항목을 계산한다.
-이 과정을 <code class="docutils literal notranslate"><span class="pre">n</span></code> 번 반복하기에 최대 <span class="math notranslate nohighlight">\(2 n^3\)</span> 번 항목을 계산한다.
-따라서 플로이드-워셜 알고리즘의 시간 복잡도는 <span class="math notranslate nohighlight">\(O(n^3)\)</span>이다.</p>
+알고리즘 진행 과정은 다음과 같다.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">D[0]</span></code>의 항목을 초기화하는 데에 <span class="math notranslate nohighlight">\(n^2\)</span>의 항목을 복사한다.</p></li>
+<li><p>이후에 <code class="docutils literal notranslate"><span class="pre">D[k+1]</span></code>을 계산하기 위해 <code class="docutils literal notranslate"><span class="pre">D[k]</span></code>의 항목을 최대 <span class="math notranslate nohighlight">\(n^2\)</span> 번 업데이트 한다.
+<code class="docutils literal notranslate"><span class="pre">D[k+1]</span></code>을 초기화할 때는 파이썬 언어의 특성상 새로운 리스트를 생성하지 않고 기존에 정의된 <code class="docutils literal notranslate"><span class="pre">D[k]</span></code>를 그대로 가리킨다.</p></li>
+<li><p>업데이트를 <code class="docutils literal notranslate"><span class="pre">n</span></code> 번 반복하기에 최대 <span class="math notranslate nohighlight">\(n^3 + n^2\)</span> 번 항목을 계산한다.</p></li>
+</ul>
+<p>따라서 플로이드-워셜 알고리즘의 시간 복잡도는 <span class="math notranslate nohighlight">\(O(n^3)\)</span>이다.</p>
 <p><strong>공간 복잡도</strong></p>
 <p>위 코드만 보면 <code class="docutils literal notranslate"><span class="pre">(n,</span> <span class="pre">n)</span></code> 모양의 행렬 <code class="docutils literal notranslate"><span class="pre">D[k]</span></code> 를 <code class="docutils literal notranslate"><span class="pre">n+1</span></code> 개 생성하는 것으로 보인다.
 하지만 실제 메모리 상에서는 <code class="docutils literal notranslate"><span class="pre">D[0]</span></code> 행렬만 새로 생성하고
