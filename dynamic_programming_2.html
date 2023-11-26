@@ -769,7 +769,64 @@ W = D^{(0)} \longrightarrow D^{(1)}\longrightarrow D^{(2)}
 </div>
 </div>
 </div>
-<p><strong>시간 복잡도</strong></p>
+<p><strong>얕은 복사 대 깊은 복사</strong></p>
+<p>리스트의 <code class="docutils literal notranslate"><span class="pre">copy()</span></code> 메서드는 얕은 복사<font size='2'>shallow copy</font> 용도로 사용된다.
+얕은 복사의 경우 단순 리스트일 경우 새로운 리스트를 복사해서 만들어 내지만
+중첩 리스트인 경우 모든 것을 복사하지는 않는다.
+아래 코드가 얕은 복사가 단순 리스트와 중첩 리스트의 다르게 작동함을 잘 보여준다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 얕은 복사</span>
+<span class="n">aList</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="n">bList</span> <span class="o">=</span> <span class="n">aList</span>
+<span class="n">cList</span> <span class="o">=</span> <span class="n">aList</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">aList</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;얕은 복사:&quot;</span><span class="p">,</span> <span class="n">aList</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">cList</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="n">dList</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">]]</span>
+<span class="n">eList</span> <span class="o">=</span> <span class="n">dList</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">dList</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">60</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;얕은 복사:&quot;</span><span class="p">,</span> <span class="n">dList</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">eList</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>얕은 복사: False
+얕은 복사: True
+</pre></div>
+</div>
+</div>
+</div>
+<div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo05/algo05-13.png" width="800"/></div><p>중첩 리스트를 복사하려면 깊은 복사<font size='2'>deep copy</font>를 사용해야 한다.
+아래 코드는 얕은 복사를 지원하는 <code class="docutils literal notranslate"><span class="pre">copy</span></code> 모듈의 <code class="docutils literal notranslate"><span class="pre">copy()</span></code> 함수와 깊은
+복사를 지원하는 <code class="docutils literal notranslate"><span class="pre">deepcopy()</span></code> 함수를 이용하여 깊은 복사가
+얕은 복사와 다르게 작동함을 보여준다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 얕은 복사 vs. 얕은 복사</span>
+<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">copy</span><span class="p">,</span> <span class="n">deepcopy</span>
+
+<span class="n">aList</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="n">bList</span> <span class="o">=</span> <span class="n">aList</span>
+<span class="n">cList</span> <span class="o">=</span> <span class="n">copy</span><span class="p">(</span><span class="n">aList</span><span class="p">)</span>
+<span class="n">aList</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;얕은 복사:&quot;</span><span class="p">,</span> <span class="n">aList</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">cList</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="n">dList</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">]]</span>
+<span class="n">eList</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">dList</span><span class="p">)</span>
+<span class="n">dList</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">60</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;깊은 복사:&quot;</span><span class="p">,</span> <span class="n">dList</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">eList</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>얕은 복사: False
+깊은 복사: False
+</pre></div>
+</div>
+</div>
+</div>
+<div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo05/algo05-14.png" width="800"/></div><p><strong>시간 복잡도</strong></p>
 <p>플로이드-워셜 알고리즘의 시간 복잡도를 계산하기 위해
 기본 계산단위를 행렬의 항목을 계산하는 명령문으로 지정한다.
 알고리즘 진행 과정은 다음과 같다.</p>
