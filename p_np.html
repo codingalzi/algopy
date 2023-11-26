@@ -543,6 +543,21 @@ W(n) \in O(p(n))
 </ul>
 </li>
 </ul>
+<p><strong>외판원 문제</strong></p>
+<p>가중치 방향 그래프가 주어졌을 때 하나의 노드(도시)에서 출발하여
+다른 모든 노드(도시)를 한 번씩만 들린 후 출발 노드(도시)로 돌아오는 일주 경로 중에서
+최단 경로를 찾는 문제이다.
+어차피 일주 경로를 찾는 문제이기에 출발 노드(도시)가 최단 일주 경로와는 무관하다.</p>
+<p>예를 들어 아래 가중 방향 그래프에서 노드 <code class="docutils literal notranslate"><span class="pre">v0</span></code> 에서 출발하는 일주 경로는 세 개 존재한다.</p>
+<ul class="simple">
+<li><p>일주 경로 1: <code class="docutils literal notranslate"><span class="pre">v0</span> <span class="pre">-&gt;</span> <span class="pre">v1</span> <span class="pre">-&gt;</span>&#160; <span class="pre">v_2</span> <span class="pre">-&gt;</span> <span class="pre">v_3</span> <span class="pre">-&gt;</span> <span class="pre">v_0</span></code></p></li>
+<li><p>일주 경로 2: <code class="docutils literal notranslate"><span class="pre">v_0</span> <span class="pre">-&gt;</span> <span class="pre">v_2</span> <span class="pre">-&gt;</span> <span class="pre">v_1</span> <span class="pre">-&gt;</span> <span class="pre">v_3</span> <span class="pre">-&gt;</span> <span class="pre">v_0</span></code></p></li>
+<li><p>일주 경로 3: <code class="docutils literal notranslate"><span class="pre">v_0</span> <span class="pre">-&gt;</span> <span class="pre">v_2</span> <span class="pre">-&gt;</span> <span class="pre">v_3</span> <span class="pre">-&gt;</span> <span class="pre">v_1</span> <span class="pre">-&gt;</span> <span class="pre">v_0</span></code></p></li>
+</ul>
+<p>이중 마지막 경로가 최단 일주 경로이다.</p>
+<div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/salesman-01.png" width="170"/></div><p>외판원 문제를 해결하는 쉬운 알고리즘은 알려지지 않았다.
+동적계획법 등을 이용한 알고리즘의 시간 복잡도는  <span class="math notranslate nohighlight">\(O(n^2\, 2^n)\)</span> 이다.
+여기에 더하여 <span class="math notranslate nohighlight">\(O(n\, 2^n)\)</span>의 공간 복잡도도 갖는다.</p>
 </section>
 <section id="id2">
 <h2><span class="section-number">24.2. </span>P 대 NP<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
@@ -557,8 +572,7 @@ W(n) \in O(p(n))
 그런데 이 외판원 문제가 집합 P에 속하는지 여부는 아직 모른다.
 이 문제에 대해 다항 시간 알고리즘이 알려지지 않았지만
 다항 시간 알고리즘이 존재하지 않는다는 증명도 아직 없다.</p>
-<div align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/GLPK_solution_of_a_travelling_salesman_problem.svg/1920px-GLPK_solution_of_a_travelling_salesman_problem.svg.png" width="300"/></div>
-<p><div style="text-align: center">&lt;그림 출처: <a href="https://ko.wikipedia.org/wiki/%EC%99%B8%ED%8C%90%EC%9B%90_%EB%AC%B8%EC%A0%9C">(위키백과)외판원 문제</a>&gt;</div></p><p><strong>집합 NP</strong></p>
+<p><strong>집합 NP</strong></p>
 <p>비결정론적 다항 시간 알고리즘으로 진위여부를 해결할 수 있는 문제들의 집합을 NP로 표기한다.</p>
 <p><strong>비결정론적 다항 시간</strong><font size='2'>non-deterministical polynomial</font>
 알고리즘이란 해당 알고리즘이 문제를 제대로 해결하는지 여부를 검증하는 데에 다항 시간이 요구되는 알고리즘을 일컫는다.</p>
