@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>23. 제네릭 프로그래밍 &#8212; 문제해결 알고리즘</title>
+    <title>부록: 제네릭 프로그래밍 활용 &#8212; 문제해결 알고리즘</title>
   
   
   
@@ -63,11 +63,9 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'generic_programming';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Algo-05-Backtracking-2';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="24. P-NP 문제" href="p_np.html" />
-    <link rel="prev" title="22. 되추적 기법" href="back_tracking.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -200,9 +198,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="greedy_algorithm_3.html">21. 탐욕 기법 대 동적계획법</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">되추적 기법과 제네릭 프로그래밍</span></p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="back_tracking.html">22. 되추적 기법</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">23. 제네릭 프로그래밍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generic_programming.html">23. 제네릭 프로그래밍</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">NP 이론</span></p>
 <ul class="nav bd-sidenav">
@@ -261,7 +259,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://colab.research.google.com/github/codingalzi/algopy/blob/master/jupyter-book/generic_programming.ipynb" target="_blank"
+      <li><a href="https://colab.research.google.com/github/codingalzi/algopy/blob/master/jupyter-book/Algo-05-Backtracking-2.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch onColab"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -309,7 +307,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/codingalzi/algopy/issues/new?title=Issue%20on%20page%20%2Fgeneric_programming.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/codingalzi/algopy/issues/new?title=Issue%20on%20page%20%2FAlgo-05-Backtracking-2.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -339,7 +337,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="_sources/generic_programming.ipynb" target="_blank"
+      <li><a href="_sources/Algo-05-Backtracking-2.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -421,7 +419,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>제네릭 프로그래밍</h1>
+    <h1>부록: 제네릭 프로그래밍 활용</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -431,28 +429,28 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">23.1. 모듈 활용</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">23.1.1. 되추적 알고리즘: 고차 함수 활용</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">23.1.2. 예제: 4-퀸과 4-색칠하기 문제</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">23.1.2.1. 4-퀸 문제 해결</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">23.1.2.2. 4-색칠하기 문제 해결</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">모듈 활용</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">되추적 알고리즘: 고차 함수 활용</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">예제: 4-퀸과 4-색칠하기 문제</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">4-퀸 문제 해결</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">4-색칠하기 문제 해결</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">23.2. 다형성 활용</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">23.2.1. 클래스 활용</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">23.2.1.1. 제네릭 클래스</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">23.2.1.2. 추상클래스와 추상메서드</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">다형성 활용</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">클래스 활용</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">제네릭 클래스</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">추상클래스와 추상메서드</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">23.2.2. 되추적 알고리즘 구현: 클래스 활용</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">23.2.2.1. 제네릭 클래스 선언</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">23.2.2.2. 8-퀸 문제 해결하기</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">되추적 알고리즘 구현: 클래스 활용</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">제네릭 클래스 선언</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">8-퀸 문제 해결하기</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">23.2.3. 4-퀸 문제</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">23.2.4. 4-색칠하기</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">4-퀸 문제</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">4-색칠하기</a></li>
 </ul>
 </li>
 </ul>
@@ -466,8 +464,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="sec-generic-programming">
-<span id="id1"></span><h1><span class="section-number">23. </span>제네릭 프로그래밍<a class="headerlink" href="#sec-generic-programming" title="Permalink to this heading">#</a></h1>
+  <section id="id1">
+<h1>부록: 제네릭 프로그래밍 활용<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
 <ul class="simple">
 <li><p>특정 데이터 형식에 의존하지 않으면서 보다 일반적인 유형(type)에 대해 작동하는 알고리즘 작성 기법</p></li>
 </ul>
@@ -491,7 +489,7 @@ document.write(`
 </li>
 </ul>
 <section id="id2">
-<h2><span class="section-number">23.1. </span>모듈 활용<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<h2>모듈 활용<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>n-퀸 문제의 되추적 함수 <code class="docutils literal notranslate"><span class="pre">backtracking_search_queens()</span></code>와
 m-색칠하기 문제의 되추적 함수 <code class="docutils literal notranslate"><span class="pre">backtracking_search_colors()</span></code>는
@@ -509,7 +507,7 @@ m-색칠하기 문제의 되추적 함수 <code class="docutils literal notransl
 </li>
 </ul>
 <section id="id3">
-<h3><span class="section-number">23.1.1. </span>되추적 알고리즘: 고차 함수 활용<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<h3>되추적 알고리즘: 고차 함수 활용<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">promissing</span></code> 매개변수 추가: 유망성 확인 함수를 인자로 받음.</p></li>
 </ul>
@@ -563,7 +561,7 @@ m-색칠하기 문제의 되추적 함수 <code class="docutils literal notransl
 </div>
 </section>
 <section id="id4">
-<h3><span class="section-number">23.1.2. </span>예제: 4-퀸과 4-색칠하기 문제<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
+<h3>예제: 4-퀸과 4-색칠하기 문제<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>아래 코드는 4-퀸과 4-색칠하기 문제를 준비하는 세팅과정임.</p>
 <ul>
@@ -587,7 +585,7 @@ m-색칠하기 문제의 되추적 함수 <code class="docutils literal notransl
 </div>
 </div>
 <section id="id5">
-<h4><span class="section-number">23.1.2.1. </span>4-퀸 문제 해결<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h4>
+<h4>4-퀸 문제 해결<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">constraint_queens</span> <span class="kn">import</span> <span class="n">promissing</span>
@@ -604,7 +602,7 @@ m-색칠하기 문제의 되추적 함수 <code class="docutils literal notransl
 </div>
 </section>
 <section id="id6">
-<h4><span class="section-number">23.1.2.2. </span>4-색칠하기 문제 해결<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h4>
+<h4>4-색칠하기 문제 해결<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
 <li><p>3 가직 색상만 사용되는 것에 주의할 것.</p></li>
 </ul>
@@ -626,7 +624,7 @@ m-색칠하기 문제의 되추적 함수 <code class="docutils literal notransl
 </section>
 </section>
 <section id="id7">
-<h2><span class="section-number">23.2. </span>다형성 활용<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h2>
+<h2>다형성 활용<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>n-퀸과 m-색칠하기 문제에서 변수 또는 도메인 값들이 숫자가 아닌 문자열 등 다른 자료형이 사용될 수 있음.</p>
 <ul>
@@ -644,7 +642,7 @@ m-색칠하기 문제의 되추적 함수 <code class="docutils literal notransl
 숫자를 다루는 경우와 문자열을 다루는 경우는 조금 다를 수밖에 없음.</p></li>
 </ul>
 <section id="id8">
-<h3><span class="section-number">23.2.1. </span>클래스 활용<a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h3>
+<h3>클래스 활용<a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>서로 연관된 속성과 함수들을 하나의 클래스로 묶어서 활용할 수도 있음.</p>
 <ul>
@@ -662,7 +660,7 @@ m-색칠하기 문제의 되추적 함수 <code class="docutils literal notransl
 </li>
 </ul>
 <section id="id9">
-<h4><span class="section-number">23.2.1.1. </span>제네릭 클래스<a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h4>
+<h4>제네릭 클래스<a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
 <li><p>문제마다 사용되는 자료형이 다를 수 있음.</p>
 <ul>
@@ -693,7 +691,7 @@ m-색칠하기 문제의 되추적 함수 <code class="docutils literal notransl
 </ul>
 </section>
 <section id="id10">
-<h4><span class="section-number">23.2.1.2. </span>추상클래스와 추상메서드<a class="headerlink" href="#id10" title="Permalink to this heading">#</a></h4>
+<h4>추상클래스와 추상메서드<a class="headerlink" href="#id10" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
 <li><p>유망성 확인 함수인 <code class="docutils literal notranslate"><span class="pre">promissing()</span></code> 메서드는 추상메서드(abstract method)로 지정한 후
 문제에 따라 다르게 정의해야 함.</p></li>
@@ -725,14 +723,14 @@ m-색칠하기 문제의 되추적 함수 <code class="docutils literal notransl
 </section>
 </section>
 <section id="id11">
-<h3><span class="section-number">23.2.2. </span>되추적 알고리즘 구현: 클래스 활용<a class="headerlink" href="#id11" title="Permalink to this heading">#</a></h3>
+<h3>되추적 알고리즘 구현: 클래스 활용<a class="headerlink" href="#id11" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>이후에 사용되는 코드는
 <a class="reference external" href="https://github.com/davecom/ClassicComputerScienceProblemsInPython">고전 컴퓨터 알고리즘 인 파이썬</a> 의
 3장 코드를 단순화하였음.</p></li>
 </ul>
 <section id="id12">
-<h4><span class="section-number">23.2.2.1. </span>제네릭 클래스 선언<a class="headerlink" href="#id12" title="Permalink to this heading">#</a></h4>
+<h4>제네릭 클래스 선언<a class="headerlink" href="#id12" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
 <li><p>제네릭 클래스 선언에 필요한 제네릭 변수 지정</p>
 <ul>
@@ -827,7 +825,7 @@ m-색칠하기 문제의 되추적 함수 <code class="docutils literal notransl
 </div>
 </section>
 <section id="id13">
-<h4><span class="section-number">23.2.2.2. </span>8-퀸 문제 해결하기<a class="headerlink" href="#id13" title="Permalink to this heading">#</a></h4>
+<h4>8-퀸 문제 해결하기<a class="headerlink" href="#id13" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
 <li><p>8개의 퀸과 8개의 열 사용하기</p>
 <ul>
@@ -917,7 +915,7 @@ m-색칠하기 문제의 되추적 함수 <code class="docutils literal notransl
 </section>
 </section>
 <section id="id14">
-<h3><span class="section-number">23.2.3. </span>4-퀸 문제<a class="headerlink" href="#id14" title="Permalink to this heading">#</a></h3>
+<h3>4-퀸 문제<a class="headerlink" href="#id14" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 변수: 네 개의 퀸 1, 2, 3, 4</span>
@@ -953,7 +951,7 @@ m-색칠하기 문제의 되추적 함수 <code class="docutils literal notransl
 </div>
 </section>
 <section id="id15">
-<h3><span class="section-number">23.2.4. </span>4-색칠하기<a class="headerlink" href="#id15" title="Permalink to this heading">#</a></h3>
+<h3>4-색칠하기<a class="headerlink" href="#id15" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>색상을 번호가 아닌 RGB(빨강, 녹색, 파랑)으로 표현</p>
 <ul>
@@ -1051,24 +1049,6 @@ m-색칠하기 문제의 되추적 함수 <code class="docutils literal notransl
                 <footer class="prev-next-footer">
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="back_tracking.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">22. </span>되추적 기법</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="p_np.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">24. </span>P-NP 문제</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
@@ -1084,28 +1064,28 @@ m-색칠하기 문제의 되추적 함수 <code class="docutils literal notransl
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">23.1. 모듈 활용</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">23.1.1. 되추적 알고리즘: 고차 함수 활용</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">23.1.2. 예제: 4-퀸과 4-색칠하기 문제</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">23.1.2.1. 4-퀸 문제 해결</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">23.1.2.2. 4-색칠하기 문제 해결</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">모듈 활용</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">되추적 알고리즘: 고차 함수 활용</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">예제: 4-퀸과 4-색칠하기 문제</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">4-퀸 문제 해결</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">4-색칠하기 문제 해결</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">23.2. 다형성 활용</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">23.2.1. 클래스 활용</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">23.2.1.1. 제네릭 클래스</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">23.2.1.2. 추상클래스와 추상메서드</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">다형성 활용</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">클래스 활용</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">제네릭 클래스</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">추상클래스와 추상메서드</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">23.2.2. 되추적 알고리즘 구현: 클래스 활용</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">23.2.2.1. 제네릭 클래스 선언</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">23.2.2.2. 8-퀸 문제 해결하기</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">되추적 알고리즘 구현: 클래스 활용</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">제네릭 클래스 선언</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">8-퀸 문제 해결하기</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">23.2.3. 4-퀸 문제</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">23.2.4. 4-색칠하기</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">4-퀸 문제</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">4-색칠하기</a></li>
 </ul>
 </li>
 </ul>
