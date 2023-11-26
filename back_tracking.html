@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=c5ced968eda925caa686" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -39,9 +39,9 @@
     <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=c5ced968eda925caa686" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686" />
-  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=c5ced968eda925caa686"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -475,10 +475,10 @@ document.write(`
 <ul class="simple">
 <li><p>변수: 1번부터 4번까지 이름이 붙은 네 개의 여왕말</p></li>
 <li><p>도메인: <code class="docutils literal notranslate"><span class="pre">4x4</span></code> 모양의 체스판에 포함된 1번 열부터 4번 열.</p></li>
-<li><p>조건: 두 개의 퀸이 하나의 행, 열, 또는 대각선 상에 위치하지 않음.</p></li>
+<li><p>조건: 두 개의 여왕말이 하나의 행, 열, 또는 대각선 상에 위치하지 않음.</p></li>
 </ul>
 <p>아래 그림은 4개의 여왕말이 앞서 언급된 조건을 만족시키거나 못하는 경우를 함께 보여준다.</p>
-<div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo05/algo05-01a.png" width="150"/></div></section>
+<p><div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo05/algo05-01a.png" width="150"/></div></p></section>
 <section id="id3">
 <h2><span class="section-number">22.2. </span>되추적 기법<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
 <p>되추적 기법은 제약 충족 문제를 해결하는 기법이며
@@ -488,92 +488,67 @@ document.write(`
 <p>되추적 기법 이해에 필요한 개념은 다음과 같다.</p>
 <ul class="simple">
 <li><p>깊이 우선 탐색</p></li>
-<li><p>상태 공간 나무</p></li>
+<li><p>상태 공간 트리</p></li>
 <li><p>노드의 유망성</p></li>
 <li><p>가지치기</p></li>
 </ul>
-<p><strong>깊이우선 탐색</strong></p>
+<p><strong>깊이 우선 탐색</strong></p>
+<p>깊이 우선 탐색<font size='2'>depth-first-search</font>(DFS)은 (루트 지정) 트리(rooted tree)를 대상으로 하는 탐색 기법이며
+아래 과정을 반복한다.</p>
 <ul class="simple">
-<li><p>DFS(depth-first-search): 뿌리 지정 나무(rooted tree)를 대상으로 하는 탐색기법.</p></li>
+<li><p>루트 노드에서 시작해서 갈 수 있는 한 가장 왼쪽 자식 노드로 탐색 진행</p></li>
+<li><p>잎 노드에 다달한 경우 탐색 대상이 될 수 있는 자식 노드를 갖는 가장 가까운 조상 노드로 이동해서 깊이 우선 탐색 진행.
+단, 한 번 탐색한 자식 노드는 무시.</p></li>
 </ul>
+<p>위 과정을 반복하다가 더 이상 탐색 대상이 되는 노드가 존재하지 않는 경우 탐색을 중지한다.
+아래 그림은 루트 노드에서 시작하여 깊이 우선 탐색의 대상이 되는 노드들의 순서를 보여준다.</p>
+<p><p><div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo05/algo05-02.png" width="400"/></div></p></p><p><strong>상태 공간 트리</strong></p>
+<p>상태 공간 트리<font size='2'>state space tree</font>는
+변수가 가질 수 있는 모든 값으로 구성된 트리이다.
+아래에 보여지는 트리는 <code class="docutils literal notranslate"><span class="pre">4x4</span></code>로 이루어진 체스판에 네 개의 체스 여왕말을 놓을 수 있는 위치를
+노드로 표현한 상태 공간 트리이다.</p>
 <ul class="simple">
-<li><p>왼편으로 끝(잎노드)까지 탐색한 후에 오른편 형제자매 노드로 이동</p></li>
+<li><p>루트: 출발 노드이며 여왕말의 위치와는 무관함.</p></li>
+<li><p>깊이 <span class="math notranslate nohighlight">\(k\)</span>의 노드: <span class="math notranslate nohighlight">\(k\)</span> 번째 여왕말이 놓일 수 있는 열 위치</p></li>
 </ul>
+<p>여기서 <strong>깊이</strong>는 노드가 루트로부터의 경로의 길이를 가리킨다.</p>
+<p><p><div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo05/algo05-03.png" width="500"/></div></p></p><p><strong>노드의 유망성</strong></p>
+<p>노드가 특정 조건을 만족시키는 경우 <strong>유망하다</strong><font size='2'>promissing</font>고 말한다.
+예를 들어, 아래 그림에서
+첫째 여왕말의 위치에 따라 둘째 여왕말이 놓일 수 있는 위치에 해당하는 노드의 유망성이 결정된다.
+둘째 여왕말에 대해 1번, 2번 칸에 해당하는 노드는 유망하지 않다.</p>
+<p><div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo05/algo05-04.png" width="300"/></div></p><p><strong>가지치기</strong></p>
+<p>가지치기<font size='2'>pruning</font>특정 노드에서 시작되는 가지를 제거하는 과정을 가리킨다.
+아래 그림은 <code class="docutils literal notranslate"><span class="pre">4x4</span></code>로 이루어진 체스판에 네 개의 여왕말을 놓을 수 있는 위치를
+노드로 표현한 상태 공간 트리에서 유망하지 않은 노드를 가지치기한 결과를 보여준다.</p>
+<p><div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo05/algo05-05.png" width="600"/></div></p><p><strong>4-여왕말 문제 되추적 알고리즘</strong></p>
+<p>4 개의 여왕말을 서로 공격하지 못하도록 위치시키는 4-여왕말 문제를 해결하는 되추적 알고리즘은
+상태 공간 트리를 대상으로 깊이 우선 탐색, 노드의 유망성 판단, 가지치기를
+아래 과정에 따라 반복 실행한다.</p>
 <ul class="simple">
-<li><p>예제:</p>
-<ul>
-<li><p>아래 뿌리 지정 나무의 뿌리에서 출발하여 왼편 아랫쪽 방향으로 진행.</p></li>
-<li><p>더 이상 아래 방향으로 진행할 수 없으면 부모 노드로 돌아간 후 다른 형제자매 노드 중 가장
-왼편에 위치한 노드로 이동 후 왼편 아랫쪽 방향으로의 이동 반복</p></li>
-</ul>
-</li>
-</ul>
-<div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo05/algo05-02.png" width="400"/></div><p><strong>상태 공간 나무(state space tree)</strong></p>
-<ul class="simple">
-<li><p>변수가 가질 수 있는 모든 값을 노드(node)로 갖는 뿌리 지정 나무</p></li>
-</ul>
-<ul class="simple">
-<li><p><strong>깊이</strong>: 깊이가 0인 뿌리에서 출발하여 아래로 내려갈 수록 깊이가 1씩 증가.</p></li>
-</ul>
-<ul class="simple">
-<li><p>예제: <code class="docutils literal notranslate"><span class="pre">4x4</span></code>로 이루어진 체스판에 네 개의 체스 퀸을 놓을 수 있는 위치를
-노드로 표현한 상태 공간 나무</p>
-<ul>
-<li><p>뿌리는 출발 노드로 표현하며, 체스 퀸의 위치와 상관 없음.</p></li>
-<li><p>깊이 <span class="math notranslate nohighlight">\(k\)</span>의 노드: <span class="math notranslate nohighlight">\(k\)</span> 째 퀸이 놓일 수 있는 위치</p></li>
-</ul>
-</li>
-</ul>
-<div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo05/algo05-03.png" width="500"/></div><p><strong>노드의 유망성</strong></p>
-<ul class="simple">
-<li><p>지정된 특정 조건에 해당하는 노드를 __유망하다__라고 부름.</p></li>
-</ul>
-<ul class="simple">
-<li><p>예제: 네 개의 퀸을 위치시켜야 할 경우 첫째 퀸의 위치에 따라
-둘째 퀸이 놓일 수 있는 위치의 유망성이 결정됨.</p>
-<ul>
-<li><p>아래 그림에서 2번 행의 1, 2번 칸은 유망하지 않음.</p></li>
-</ul>
-</li>
-</ul>
-<div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo05/algo05-04.png" width="300"/></div><p><strong>가지치기(pruning)</strong></p>
-<ul class="simple">
-<li><p>특정 노드에서 시작되는 가지 제거하기</p></li>
-</ul>
-<ul class="simple">
-<li><p>예제: 4 x 4로 이루어진 체스판에 네 개의 체스 퀸을 놓을 수 있는 위치를
-노드로 표현한 상태 공간 나무에서 유망하지 않은 노드에서 가지치기를 실행하면 아래 그림이 생성됨.</p></li>
-</ul>
-<div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo05/algo05-05.png" width="600"/></div><p><strong>4-여왕말 문제 되추적 알고리즘</strong></p>
-<ol class="arabic simple">
-<li><p>상태 공간 나무의 뿌리로부터 깊이우선 탐색(DFS) 실행.
-<br></p></li>
-<li><p>탐색 과정에서 유망하지 않은 노드를 만나면 가지치기 실행 후 부모 노드로 되돌아감(되추적, backtracking).
-<br></p></li>
-<li><p>이후 다른 형제자매 노드를 대상으로 깊이우선 탐색 반복.
-더 이상의 형제자매 노드가 없으면 형제자매가 있는 조상까지 되추적 실행.
-<br></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">4x4</span></code>로 이루어진 체스판에 네 개의 체스 여왕말을 놓을 수 있는 위치를 노드로 표현한 상태 공간 트리의
+루트에서부터 깊이 우선 탐색 실행</p></li>
+<li><p>탐색 과정에서 유망하지 않은 노드를 만나면 가지치기 실행 후 깊이 우선 탐색 대상이 될 수 있는 자식 노드를
+갖는 조상 노드로 되돌아가서, 즉 되추적하여 그곳에서부터 깊이 우선 탐색 실행.
+단, 이미 탐색한 자식 노드는 제외</p></li>
 <li><p>탐색이 더 이상 진행할 수 없는 경우 알고리즘 종료</p></li>
-</ol>
-<p><strong>예제: 되추적 알고리즘을 활용한 4-여왕말 문제 해결</strong></p>
-<div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo05/algo05-06.png" width="600"/></div><p><strong>깊이우선 탐색 대 되추적 알고리즘 비교</strong></p>
-<ul class="simple">
-<li><p>4-여왕말 문제를 순수한 깊이우선 탐색으로 해결하고자 할 경우: 155 노드 검색</p></li>
 </ul>
-<ul class="simple">
-<li><p>4-여왕말 문제를 되추적 알고리즘으로 해결하고자 하는 경우: 27 노드 검색</p></li>
-</ul>
+<p>아래 그림은 4-여왕말 문제에 대해 되추적 알고리즘을 적용하는 과정을 보여준다.</p>
+<p><div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo05/algo05-06.png" width="600"/></div></p><p>유망하지 않은 노드에서 가지치기를 하는 되추적 알고리즘은
+그렇지 않은 일반 깊이 우선 탐색에 비해 훨씬 적은 수의 노드를 대상으로 탐색한다.
+예를 들어 4-여왕말 문제를 일반 깊이 우선 탐색으로 해결하고자 할 경우 155 개의 노드를
+탐색해야 하지만 되추적 알고리즘울 적용하면 27개의 노드만 탐색하면 된다.</p>
 </section>
 <section id="n">
 <h2><span class="section-number">22.3. </span>n-여왕말 문제<a class="headerlink" href="#n" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>4-여왕말 문제를 일반화시킨 n-문제를 해결하는 되추적 알고리즘 구현하기</p></li>
-<li><p>문제: n 개의 퀸(queen)을 서로 상대방을 위협하지 않도록 n x n 체스판에 위치시키기
+<li><p>문제: n 개의 여왕말(queen)을 서로 상대방을 위협하지 않도록 n x n 체스판에 위치시키기
 <br></p>
 <ul>
-<li><p>변수: n 개의 퀸</p>
+<li><p>변수: n 개의 여왕말</p>
 <ul>
-<li><p>즉, 1번 퀸부터 n번 퀸.
+<li><p>즉, 1번 여왕말부터 n번 여왕말.
 <br>
 <br></p></li>
 </ul>
@@ -585,13 +560,13 @@ document.write(`
 <br></p></li>
 </ul>
 </li>
-<li><p>조건: 두 개의 퀸이 하나의 행, 열, 또는 대각선 상에 위치하지 않음.</p></li>
+<li><p>조건: 두 개의 여왕말이 하나의 행, 열, 또는 대각선 상에 위치하지 않음.</p></li>
 </ul>
 </li>
 </ul>
 <p><strong>유망성 판단</strong></p>
 <ul>
-<li><p>두 개의 퀸 <span class="math notranslate nohighlight">\(q_1, q_2\)</span>가 같은 대각선 상에 위치하려면 행과 열의 차이의 절댓값이 동일해야 함.
+<li><p>두 개의 여왕말 <span class="math notranslate nohighlight">\(q_1, q_2\)</span>가 같은 대각선 상에 위치하려면 행과 열의 차이의 절댓값이 동일해야 함.
 (아래 그림 참조)</p>
 <div class="math notranslate nohighlight">
 \[
@@ -601,15 +576,15 @@ document.write(`
 각각 <span class="math notranslate nohighlight">\(q_1\)</span>과 <span class="math notranslate nohighlight">\(q_2\)</span>가 위치한 행과 열의 좌표를 가리킴.</p>
 </li>
 </ul>
-<div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo05/algo05-07.png" width="300"/></div><p><strong>예제: 4-여왕말 문제 해결 되추적 알고리즘</strong></p>
+<p><div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo05/algo05-07.png" width="300"/></div></p><p><strong>예제: 4-여왕말 문제 해결 되추적 알고리즘</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span>
 
-<span class="c1"># 변수: 네 개의 퀸의 번호, 즉, 1, 2, 3, 4</span>
+<span class="c1"># 변수: 네 개의 여왕말의 번호, 즉, 1, 2, 3, 4</span>
 <span class="n">variables</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
 
-<span class="c1"># 도메인: 각각의 퀸이 자리잡을 수 있는 가능한 모든 열의 위치. </span>
+<span class="c1"># 도메인: 각각의 여왕말이 자리잡을 수 있는 가능한 모든 열의 위치. </span>
 <span class="n">domains</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
 <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">variables</span><span class="p">:</span>
@@ -619,7 +594,7 @@ document.write(`
 </div>
 </div>
 <ul class="simple">
-<li><p>4-여왕말 문제의 경우 각각의 퀸 모두 동일하게 1열부터 4열 어딘가에 위치할 수 있음.
+<li><p>4-여왕말 문제의 경우 각각의 여왕말 모두 동일하게 1열부터 4열 어딘가에 위치할 수 있음.
 단, 그 중에서 조건을 만족시키는 열을 찾아야 함.</p></li>
 </ul>
 <div class="cell docutils container">
@@ -682,14 +657,14 @@ document.write(`
 <span class="sd">    assignment에 대해 만족되는지 여부 확인</span>
 
 <span class="sd">    n-여왕말 문제의 경우: 제약조건이 모든 변수에 대해 일정함.</span>
-<span class="sd">                   즉, 새로 위치시켜야 하는 퀸이 기존에 이미 자리잡은 퀸들 중 하나와</span>
+<span class="sd">                   즉, 새로 위치시켜야 하는 여왕말이 기존에 이미 자리잡은 여왕말들 중 하나와</span>
 <span class="sd">                   동일 행, 열, 대각산 상에 위치하는지 여부를 확인함&quot;&quot;&quot;</span>
 
-    <span class="c1"># q1r, q1c: 첫째 퀸이 놓인 노드의 열과 행</span>
+    <span class="c1"># q1r, q1c: 첫째 여왕말이 놓인 노드의 열과 행</span>
     <span class="k">for</span> <span class="n">q1r</span><span class="p">,</span> <span class="n">q1c</span> <span class="ow">in</span> <span class="n">assignment</span><span class="o">.</span><span class="n">items</span><span class="p">():</span> 
-        <span class="c1"># q2r = 첫째 퀸 아래에 위치한 다른 모든 퀸들을 대상으로 조건만족여부 확인</span>
+        <span class="c1"># q2r = 첫째 여왕말 아래에 위치한 다른 모든 여왕말들을 대상으로 조건만족여부 확인</span>
         <span class="k">for</span> <span class="n">q2r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">q1r</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">assignment</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span> 
-            <span class="n">q2c</span> <span class="o">=</span> <span class="n">assignment</span><span class="p">[</span><span class="n">q2r</span><span class="p">]</span> <span class="c1"># 둘째 퀸의 열</span>
+            <span class="n">q2c</span> <span class="o">=</span> <span class="n">assignment</span><span class="p">[</span><span class="n">q2r</span><span class="p">]</span> <span class="c1"># 둘째 여왕말의 열</span>
             <span class="k">if</span> <span class="n">q1c</span> <span class="o">==</span> <span class="n">q2c</span><span class="p">:</span> <span class="c1"># 동일 열에 위치?</span>
                 <span class="k">return</span> <span class="kc">False</span>
             <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">q1r</span> <span class="o">-</span> <span class="n">q2r</span><span class="p">)</span> <span class="o">==</span> <span class="nb">abs</span><span class="p">(</span><span class="n">q1c</span> <span class="o">-</span> <span class="n">q2c</span><span class="p">):</span> <span class="c1"># 대각선상에 위치?</span>
@@ -715,7 +690,7 @@ document.write(`
 </div>
 <p><strong>n-여왕말 문제 되추적 알고리즘의 시간 복잡도</strong></p>
 <ul>
-<li><p>n 개의 퀸이 주어졌을 때 상태공간트리의 노드의 수는 다음과 같음.</p>
+<li><p>n 개의 여왕말이 주어졌을 때 상태공간트리의 노드의 수는 다음과 같음.</p>
 <div class="math notranslate nohighlight">
 \[
     1 + n + n^2 + n^3 + \cdots + n^n = \frac{n^{n+1}-1}{n-1}
@@ -723,10 +698,10 @@ document.write(`
 </li>
 </ul>
 <ul class="simple">
-<li><p>따라서 되추적 알고리즘이 최대 n의 지수승 만큼 많은 수의 노드를 검색해야 할 수도 있음.</p></li>
+<li><p>따라서 되추적 알고리즘이 최대 n의 지수승 만큼 많은 수의 노드를 탐색해야 할 수도 있음.</p></li>
 </ul>
 <ul class="simple">
-<li><p>하지만 검색해야 하는 노드 수는 경우마다 다름.</p></li>
+<li><p>하지만 탐색해야 하는 노드 수는 경우마다 다름.</p></li>
 </ul>
 <ul class="simple">
 <li><p>효율적인 알고리즘이 아직 알려지지 않음.</p></li>
@@ -743,10 +718,10 @@ document.write(`
 <ul class="simple">
 <li><p>아래 그래프에 대한 2-색칠하기 문제의 해답은 없음.</p></li>
 </ul>
-<div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo05/algo05-08c.png" width="200"/></div><ul class="simple">
+<p><div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo05/algo05-08c.png" width="200"/></div></p><ul class="simple">
 <li><p>3-색칠하기 문제에 대해서는 해답 존재.</p></li>
 </ul>
-<div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo05/algo05-08d.png" width="200"/></div><p><strong>주요 응용분야</strong></p>
+<p><div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo05/algo05-08d.png" width="200"/></div></p><p><strong>주요 응용분야</strong></p>
 <ul class="simple">
 <li><p>지도 색칠하기</p></li>
 </ul>
@@ -767,12 +742,12 @@ document.write(`
 <ul class="simple">
 <li><p>왼편의 지도를 오른편의 평면그래프로 변환 가능함.</p></li>
 </ul>
-<div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo05/algo05-09a.png" width="400"/></div><p><strong>예제: 3-색칠하기 문제 해결 되추적 알고리즘</strong></p>
+<p><div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo05/algo05-09a.png" width="400"/></div></p><p><strong>예제: 3-색칠하기 문제 해결 되추적 알고리즘</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="n">빨강</span><span class="p">,</span> <span class="n">파랑</span><span class="p">,</span> <span class="n">갈색</span><span class="p">]</span>
        <span class="o">=</span> <span class="p">[</span><span class="mi">1</span>  <span class="p">,</span> <span class="mi">2</span>  <span class="p">,</span> <span class="mi">3</span>  <span class="p">]</span>
 </pre></div>
 </div>
-<div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo05/algo05-08d.png" width="200"/></div><div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo05/algo05-11.png" width="400"/></div><div class="cell docutils container">
+<p><div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo05/algo05-08d.png" width="200"/></div></p><p><div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo05/algo05-11.png" width="400"/></div></p><div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span>
 
@@ -894,10 +869,10 @@ document.write(`
 </li>
 </ul>
 <ul class="simple">
-<li><p>따라서 되추적 알고리즘이 최대 m과 n의 지승 만큼 많은 수의 노드를 검색해야 할 수도 있음.</p></li>
+<li><p>따라서 되추적 알고리즘이 최대 m과 n의 지승 만큼 많은 수의 노드를 탐색해야 할 수도 있음.</p></li>
 </ul>
 <ul class="simple">
-<li><p>하지만 검색해야 하는 노드 수는 경우마다 다름.</p></li>
+<li><p>하지만 탐색해야 하는 노드 수는 경우마다 다름.</p></li>
 </ul>
 <ul class="simple">
 <li><p>효율적인 알고리즘이 아직 알려지지 않음.</p></li>
@@ -908,7 +883,7 @@ document.write(`
 <ul class="simple">
 <li><p>4-색칠하기 문제는 언제나 해결가능함.</p></li>
 </ul>
-<div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo05/algo05-12a.png" width="600"/></div>
+<p><div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo05/algo05-12a.png" width="600"/></div></p>
 <p>&lt;그림 출처: <a class="reference external" href="https://ko.wikipedia.org/wiki/4%EC%83%89%EC%A0%95%EB%A6%AC">위키피디아: 4색정리</a>&gt;</p>
 <ul class="simple">
 <li><p>1852년에 영국인 Francis Guthrie가 영국 지도를 작성할 때
@@ -1057,8 +1032,8 @@ By 코딩알지
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=c5ced968eda925caa686"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686"></script>
+  <script src="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
 
   <footer class="bd-footer">
   </footer>
