@@ -58,7 +58,7 @@ parts:
   - caption: 되추적 기법과 제네릭 프로그래밍
     numbered: True
     chapters:
-    - file: back_tracking
+    - file: backtracking
     - file: generic_programming
   - caption: NP 이론
     numbered: True
