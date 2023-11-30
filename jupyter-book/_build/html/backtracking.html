@@ -436,7 +436,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">22.1. 제약 충족 문제</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">22.2. 되추적 기법</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#n">22.3. n-여왕말 문제</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">22.4. 그래프 색칠하기</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">22.4. 그래프 색칠 문제와 4색 문제</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">22.4.1. 평면그래프</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">22.4.2. 4색 정리</a></li>
 </ul>
@@ -740,20 +740,25 @@ n-여왕말 문제를 정의하는 변수, 도메인, 제약 조건은 다음과
 하지만 이보다 더 효율적인 알고리즘은 아직 알려지지 않았다.</p>
 </section>
 <section id="id4">
-<h2><span class="section-number">22.4. </span>그래프 색칠하기<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
-<p><strong>m-색칠하기</strong></p>
-<ul class="simple">
-<li><p>주어진 비방향그래프에서 서로 인접한 노드를 최대 m 개의 색상을 이용하여
-서로 다른 색을 갖도록 색칠하는 문제</p></li>
-</ul>
-<p><strong>예제</strong></p>
-<ul class="simple">
-<li><p>아래 그래프에 대한 2-색칠하기 문제의 해답은 없음.</p></li>
-</ul>
-<p><div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo05/algo05-08c.png" width="200"/></div></p><ul class="simple">
-<li><p>3-색칠하기 문제에 대해서는 해답 존재.</p></li>
-</ul>
-<p><div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo05/algo05-08d.png" width="200"/></div></p><p><strong>주요 응용분야</strong></p>
+<h2><span class="section-number">22.4. </span>그래프 색칠 문제와 4색 문제<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
+<p>m-색 문제는
+최대 m 개의 색<font size='2'>color</font>을 이용하여
+<strong>무방향 그래프의 서로 인접한 노드가 서로 다른 색을 갖는다</strong>는
+색칠 조건이 만족되도록 색칠하는 문제이다.
+예를 들어 아래 무방향 그래프에 대해서는
+최소 세 종류의 색을 사용해야 색칠 조건이 만족될 수 있음을 보여준다.</p>
+<p>
+<table class="field">
+  <tr>
+    <td style="padding:0 50px 0 50px;">
+      <div><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo05/algo05-08c.png" width="200"/></div>
+    </td>
+    <td style="padding:0 50px 0 50px;">
+      <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo05/algo05-08d.png" width="200"/></div>
+      </td>
+  </tr>
+</table>
+</p><p><strong>주요 응용분야</strong></p>
 <ul class="simple">
 <li><p>지도 색칠하기</p></li>
 </ul>
@@ -1018,7 +1023,7 @@ n-여왕말 문제를 정의하는 변수, 도메인, 제약 조건은 다음과
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">22.1. 제약 충족 문제</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">22.2. 되추적 기법</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#n">22.3. n-여왕말 문제</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">22.4. 그래프 색칠하기</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">22.4. 그래프 색칠 문제와 4색 문제</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">22.4.1. 평면그래프</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">22.4.2. 4색 정리</a></li>
 </ul>
