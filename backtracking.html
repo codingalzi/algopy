@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -39,9 +39,9 @@
     <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
-  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -145,7 +145,6 @@ const thebe_selector_output = ".output, .cell_output"
   
 
 <a class="navbar-brand logo" href="intro.html">
-  
   
   
   
@@ -781,7 +780,7 @@ n-여왕말 문제를 정의하는 변수, 도메인, 제약 조건은 다음과
 </ul>
 <p>예를 들어 4 개의 노드로 구성된 평면 그래프에 대한 3-색 문제를 정의하는 변수와 도메인은 다음과 같다.
 각각의 노드에 동일하게 빨강(1), 파랑(2), 갈색(3) 어느 색도 취할 수 있다.
-단, 제약 조검을 만족시켜야 한다.</p>
+단, 제약 조건을 만족시켜야 한다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
@@ -813,6 +812,18 @@ n-여왕말 문제를 정의하는 변수, 도메인, 제약 조건은 다음과
 </div>
 </div>
 <p><strong>유망성 판단</strong></p>
+<p>새로운 노드의 색을 지정할 때 두 해당 노드와 간선으로 연결된 노드들의 색상을 확인해야 한다.
+따라서 노드의 유망성을 확인할 때 간선에 대한 정보와 그때까지 색칠해진 노드의 색 정보를
+알아야 한다.</p>
+<p>아래 <code class="docutils literal notranslate"><span class="pre">promissing_colors()</span></code> 함수는
+평면 그래프의 간선 정보가 주어졌을 때
+새로운 노드에 할당된 색이 기존에 지정된 노드들의 색과 함께
+제약 조건을 만족시키는지 여부를 판단한다.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">variable</span></code>: 새롭게 색이 할당된 노드</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">constraints</span></code>: 평면 그래프의 간선 정보를 담은 사전</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">assigment</span></code>: 되추적 기법 적용 기간동안 색이 할당된 노드들의 정보를 담은 사전</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">promissing_colors</span><span class="p">(</span><span class="n">variable</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">constraints</span><span class="o">=</span><span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">),</span> <span class="n">assignment</span><span class="o">=</span><span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)):</span>
@@ -829,8 +840,24 @@ n-여왕말 문제를 정의하는 변수, 도메인, 제약 조건은 다음과
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="k">def</span> <span class="nf">promissing_colors</span><span class="p">(</span><span class="n">variable</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">constraints</span><span class="o">=</span><span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">),</span> <span class="n">assignment</span><span class="o">=</span><span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)):</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;새로운 노드인 variable에 색을 할당할 때 </span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span><span class="sd">     간선으로 연결된 이웃 노드와의 색이 달라야 한다는</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span><span class="sd">     제약조건을 assignment가 만족하는지 여부 확인</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span>     <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">constraints</span><span class="p">[</span><span class="n">variable</span><span class="p">]:</span>
+
+<span class="ne">NameError</span>: name &#39;defaultdict&#39; is not defined
+</pre></div>
 </div>
-<div class="cell docutils container">
+</div>
+</div>
+<p>예를 들어 아래 평면 그래프의 간선 정보는 다음과 같다.</p>
+<p><div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo05/algo05-08c.png" width="200"/></div></p><div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 각 노드에 대한 이웃 노드의 리스트</span>
 <span class="n">constraints</span> <span class="o">=</span> <span class="p">{</span>
@@ -844,15 +871,20 @@ n-여왕말 문제를 정의하는 변수, 도메인, 제약 조건은 다음과
 </div>
 </div>
 <p><strong>되추적 함수 구현</strong></p>
+<p>아래 <code class="docutils literal notranslate"><span class="pre">backtracking_search_colors()</span></code> 함수는 m-색칠 문제를 되추적 기법으로 해결한다.
+함수 정의에 사용된 변수들의 기능은 다음과 같다.</p>
 <ul class="simple">
-<li><p>아래 되추적 함수 <code class="docutils literal notranslate"><span class="pre">backtracking_search_colors()</span></code>는 일반적인 m-색칠하기 문제를 해결함.</p>
-<ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">assignment</span></code> 인자: 되추적 과정에서 일부의 변수에 대해 할당된 도메인 값의 정보를 담은 사전을 가리킴.</p></li>
-<li><p>인자가 들어오면 아직 값을 할당받지 못한 변수를 대상으로 유망성을 확인한 후 되추적 알고리즘 진행.</p></li>
-<li><p>되추적 알고리즘이 진행되면서 <code class="docutils literal notranslate"><span class="pre">assignment</span></code>가 확장되며 모든 변수에 대해 도메인 값이 지정될 때가지 재귀적으로
-알고리즘이 진행됨.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_nodes</span></code>: 노드의 수</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_colors</span></code>: 사용 가능한 색의 수</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">constraints</span></code>: 평면 그래프의 간선 정보를 담은 사전</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">assigment</span></code>: 되추적 기법 적용 기간동안 색이 할당된 노드들의 정보를 담은 사전</p></li>
 </ul>
-</li>
+<p>함수 본체에 사용되는 <code class="docutils literal notranslate"><span class="pre">for</span></code> 반복문은
+새로운 노드의 색을 지정하기 위해 사용 가능한 모든 색을 대상으로 되추적 기법을 아래와 같이 적용한다.</p>
+<ul class="simple">
+<li><p>유망성이 확인되면 되추적 기법을 재귀적으로 적용</p></li>
+<li><p>유망성이 확인되지 않으면 바로 재귀 적용 중지 후 가장 가까운 조상 노드의
+형제 노드로 이동하여 되추적 기법 재귀 적용</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -898,7 +930,8 @@ n-여왕말 문제를 정의하는 변수, 도메인, 제약 조건은 다음과
 </div>
 </div>
 </div>
-<p>세 가지 색으로 칠하는 방법은 다음과 같다.</p>
+<p>앞서 언급한 간선 정보를 가지며 4개의 노드를 사용하는 평면 그래프를
+세 가지 색으로 칠하는 방법은 다음과 같다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">backtracking_search_colors</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">constraints</span><span class="p">)</span>
@@ -1067,8 +1100,8 @@ By 코딩알지
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+  <script src="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
 
   <footer class="bd-footer">
   </footer>
