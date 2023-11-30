@@ -15468,7 +15468,8 @@ div.jp-OutputPrompt {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">backtracking_search_queens</span><span class="p">(</span><span class="n">num_queens</span><span class="p">,</span> <span class="n">assignment</span><span class="o">=</span><span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)):</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">backtracking_search_queens</span><span class="p">(</span><span class="n">num_queens</span><span class="p">,</span> 
+                               <span class="n">assignment</span><span class="o">=</span><span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)):</span>
     
     <span class="n">variables</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_queens</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">domains</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
@@ -15481,14 +15482,15 @@ div.jp-OutputPrompt {
         <span class="k">return</span> <span class="n">assignment</span>
     
     <span class="n">unassigned</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">variables</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">assignment</span><span class="p">]</span>
-    <span class="n">first</span> <span class="o">=</span> <span class="n">unassigned</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># 다음 대상 여왕말</span>
+    <span class="n">first</span> <span class="o">=</span> <span class="n">unassigned</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     
     <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">domains</span><span class="p">[</span><span class="n">first</span><span class="p">]:</span>
         <span class="n">local_assignment</span> <span class="o">=</span> <span class="n">assignment</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
         <span class="n">local_assignment</span><span class="p">[</span><span class="n">first</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
 
         <span class="k">if</span> <span class="n">promissing_queens</span><span class="p">(</span><span class="n">local_assignment</span><span class="p">):</span>
-            <span class="n">result</span> <span class="o">=</span> <span class="n">backtracking_search_queens</span><span class="p">(</span><span class="n">num_queens</span><span class="p">,</span> <span class="n">local_assignment</span><span class="p">)</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">backtracking_search_queens</span><span class="p">(</span><span class="n">num_queens</span><span class="p">,</span> 
+                                                <span class="n">local_assignment</span><span class="p">)</span>
 
             <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">result</span>
@@ -15536,7 +15538,7 @@ $$
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <ul>
-<li>이보다 더 효율적인 알고리즘은 아직 알려지지 않았다.</li>
+<li>이보다 더 효율적인 알고리즘은 아직 알려지지 않았음.</li>
 </ul>
 
 </div>
@@ -15549,7 +15551,18 @@ $$
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="%EA%B7%B8%EB%9E%98%ED%94%84-%EC%83%89%EC%B9%A0%ED%95%98%EA%B8%B0">&#44536;&#47000;&#54532; &#49353;&#52832;&#54616;&#44592;<a class="anchor-link" href="#%EA%B7%B8%EB%9E%98%ED%94%84-%EC%83%89%EC%B9%A0%ED%95%98%EA%B8%B0">&#182;</a></h2>
+<h2 id="m-%EC%83%89%EC%B9%A0-%EB%AC%B8%EC%A0%9C%EC%99%80-4%EC%83%89-%EC%A0%95%EB%A6%AC">m-&#49353;&#52832; &#47928;&#51228;&#50752; 4&#49353; &#51221;&#47532;<a class="anchor-link" href="#m-%EC%83%89%EC%B9%A0-%EB%AC%B8%EC%A0%9C%EC%99%80-4%EC%83%89-%EC%A0%95%EB%A6%AC">&#182;</a></h2>
+</div>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="m-%EC%83%89%EC%B9%A0-%EB%AC%B8%EC%A0%9C">m-&#49353;&#52832; &#47928;&#51228;<a class="anchor-link" href="#m-%EC%83%89%EC%B9%A0-%EB%AC%B8%EC%A0%9C">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -15560,8 +15573,535 @@ $$
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>준비중 ...</p>
+<ul>
+<li>최대 m 개의 색을 이용하여 <strong>무방향 그래프의 서로 인접한 노드가 서로 다른 색을 갖는다</strong>는 
+  색칠 조건이 만족되도록 색칠하는 문제</li>
+</ul>
 
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>
+<table class="field">
+  <tr>
+    <td style="padding:0 50px 0 50px;">
+      <div><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo05/algo05-08c.png" width="200"/></div>
+    </td>
+    <td style="padding:0 50px 0 50px;">
+      <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo05/algo05-08d.png" width="200"/></div>
+      </td>
+  </tr>
+</table>
+</p>
+</div>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="%EC%A7%80%EB%8F%84-%EC%83%89%EC%B9%A0">&#51648;&#46020; &#49353;&#52832;<a class="anchor-link" href="#%EC%A7%80%EB%8F%84-%EC%83%89%EC%B9%A0">&#182;</a></h3>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p><div align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Four_Colour_Map_Example.svg/1920px-Four_Colour_Map_Example.svg.png" width="300"/></div></p>
+</div>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<ul>
+<li>지도와 지도를 평면 그래프로 서로 일대일 대응</li>
+<li>평면 그래프: 서로 교차하는 간선이 없는 무방향 그래프<ul>
+<li>노드: 지도에 사용된 국가, 지역 등의 영역</li>
+<li>간선: 서로 인접한 두 영역 연결</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p><div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo05/algo05-09a.png" width="400"/></div></p>
+</div>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="m-%EC%83%89%EC%B9%A0-%EB%AC%B8%EC%A0%9C%EC%99%80-%EB%90%98%EC%B6%94%EC%A0%81-%EA%B8%B0%EB%B2%95">m-&#49353;&#52832; &#47928;&#51228;&#50752; &#46104;&#52628;&#51201; &#44592;&#48277;<a class="anchor-link" href="#m-%EC%83%89%EC%B9%A0-%EB%AC%B8%EC%A0%9C%EC%99%80-%EB%90%98%EC%B6%94%EC%A0%81-%EA%B8%B0%EB%B2%95">&#182;</a></h3>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<ul>
+<li>(대상) 변수: 1번부터 n번까지 이름이 붙은 n 개의 노드</li>
+<li>도메인: 1번부터 m번까지 이름이 붙은 m 종류의 색</li>
+<li>제약 조건: 간선으로 연결된 이웃 노드는 서로 다른 색을 가져야 함.</li>
+</ul>
+
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>
+<table class="field">
+  <tr>
+    <td style="padding:0 50px 0 50px;">
+      <div><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo05/algo05-08d.png" width="200"/></div>
+    </td>
+    <td style="padding:0 50px 0 50px;">
+      <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo05/algo05-11.png" width="400"/></div>
+      </td>
+  </tr>
+</table>
+</p>
+</div>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="3-%EC%83%89%EC%B9%A0-%EB%AC%B8%EC%A0%9C-%EC%98%88%EC%A0%9C">3-&#49353;&#52832; &#47928;&#51228; &#50696;&#51228;<a class="anchor-link" href="#3-%EC%83%89%EC%B9%A0-%EB%AC%B8%EC%A0%9C-%EC%98%88%EC%A0%9C">&#182;</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+
+<span class="c1"># 변수: 네 노드의 번호, 즉, 1, 2, 3, 4</span>
+<span class="n">variables</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+
+<span class="c1"># 도메인: 각각의 노드에 칠할 수 있는 가능한 모든 색상</span>
+<span class="c1"># 3-색칠하기: 1(빨강), 2(파랑), 3(갈색)</span>
+<span class="n">domains</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">variables</span><span class="p">:</span>
+    <span class="n">domains</span><span class="p">[</span><span class="n">var</span><span class="p">]</span> <span class="o">=</span> <span class="n">colors</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">domains</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[6]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>defaultdict(list, {1: [1, 2, 3], 2: [1, 2, 3], 3: [1, 2, 3], 4: [1, 2, 3]})</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="%EC%9C%A0%EB%A7%9D%EC%84%B1-%ED%8C%90%EB%8B%A8">&#50976;&#47581;&#49457; &#54032;&#45800;<a class="anchor-link" href="#%EC%9C%A0%EB%A7%9D%EC%84%B1-%ED%8C%90%EB%8B%A8">&#182;</a></h3>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<ul>
+<li><code>variable</code>: 새롭게 색이 할당된 노드</li>
+<li><code>constraints</code>: 평면 그래프의 간선 정보를 담은 사전</li>
+<li><code>assigment</code>: 되추적 기법 적용 기간동안 색이 할당된 노드들의 정보를 담은 사전</li>
+</ul>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">promissing_colors</span><span class="p">(</span><span class="n">variable</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> 
+                      <span class="n">constraints</span><span class="o">=</span><span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">),</span> 
+                      <span class="n">assignment</span><span class="o">=</span><span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)):</span>
+
+    <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">constraints</span><span class="p">[</span><span class="n">variable</span><span class="p">]:</span> <span class="c1"># 이웃 노드에 대해 조건 확인</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">var</span> <span class="ow">in</span> <span class="n">assignment</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">assignment</span><span class="p">[</span><span class="n">var</span><span class="p">]</span> <span class="o">==</span> <span class="n">assignment</span><span class="p">[</span><span class="n">variable</span><span class="p">]):</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">return</span> <span class="kc">True</span> 
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="%EA%B0%84%EC%84%A0-%EC%A0%95%EB%B3%B4-%EC%98%88%EC%A0%9C">&#44036;&#49440; &#51221;&#48372; &#50696;&#51228;<a class="anchor-link" href="#%EA%B0%84%EC%84%A0-%EC%A0%95%EB%B3%B4-%EC%98%88%EC%A0%9C">&#182;</a></h3>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p><div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo05/algo05-08c.png" width="200"/></div></p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 각 노드에 대한 이웃 노드의 리스트</span>
+<span class="n">constraints</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mi">1</span> <span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+    <span class="mi">2</span> <span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+    <span class="mi">3</span> <span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+    <span class="mi">4</span> <span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="%EB%90%98%EC%B6%94%EC%A0%81-%ED%95%A8%EC%88%98-%EA%B5%AC%ED%98%84">&#46104;&#52628;&#51201; &#54632;&#49688; &#44396;&#54788;<a class="anchor-link" href="#%EB%90%98%EC%B6%94%EC%A0%81-%ED%95%A8%EC%88%98-%EA%B5%AC%ED%98%84">&#182;</a></h3>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<ul>
+<li>재귀는 새로운 노드에 색을 지정할 때마다 호출</li>
+</ul>
+
+</div>
+</div>
+</div>
+</div></section></section><section><section><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">backtracking_search_colors</span><span class="p">(</span><span class="n">num_nodes</span><span class="p">,</span> 
+                               <span class="n">num_colors</span><span class="p">,</span> 
+                               <span class="n">constraints</span><span class="o">=</span><span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">),</span> 
+                               <span class="n">assignment</span><span class="o">=</span><span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)):</span>
+
+    <span class="n">variables</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_nodes</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">domains</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+    <span class="n">colors</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_colors</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">variables</span><span class="p">:</span>
+        <span class="n">domains</span><span class="p">[</span><span class="n">var</span><span class="p">]</span> <span class="o">=</span> <span class="n">colors</span>
+        
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">assignment</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">variables</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">assignment</span>
+    
+    <span class="n">unassigned</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">variables</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">assignment</span><span class="p">]</span>
+    <span class="n">first</span> <span class="o">=</span> <span class="n">unassigned</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">domains</span><span class="p">[</span><span class="n">first</span><span class="p">]:</span>
+        <span class="n">local_assignment</span> <span class="o">=</span> <span class="n">assignment</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">local_assignment</span><span class="p">[</span><span class="n">first</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+
+        <span class="k">if</span> <span class="n">promissing_colors</span><span class="p">(</span><span class="n">first</span><span class="p">,</span> <span class="n">constraints</span><span class="p">,</span> <span class="n">local_assignment</span><span class="p">):</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">backtracking_search_colors</span><span class="p">(</span><span class="n">num_nodes</span><span class="p">,</span> <span class="n">num_colors</span><span class="p">,</span> 
+                                                <span class="n">constraints</span><span class="p">,</span> <span class="n">local_assignment</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">result</span>
+
+    <span class="k">return</span> <span class="kc">None</span>    
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div></section></section><section><section><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">backtracking_search_colors</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">constraints</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[10]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>defaultdict(int, {1: 1, 2: 2, 3: 3, 4: 2})</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">if</span> <span class="ow">not</span> <span class="n">backtracking_search_colors</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">constraints</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"두 가지 색으로 색칠 제약조건 충족 불가능"</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>두 가지 색으로 색칠 제약조건 충족 불가능
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="m-%EC%83%89%EC%B9%A0-%EB%AC%B8%EC%A0%9C-%EB%90%98%EC%B6%94%EC%A0%81-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98%EC%9D%98-%EC%8B%9C%EA%B0%84-%EB%B3%B5%EC%9E%A1%EB%8F%84">m-&#49353;&#52832; &#47928;&#51228; &#46104;&#52628;&#51201; &#50508;&#44256;&#47532;&#51608;&#51032; &#49884;&#44036; &#48373;&#51105;&#46020;<a class="anchor-link" href="#m-%EC%83%89%EC%B9%A0-%EB%AC%B8%EC%A0%9C-%EB%90%98%EC%B6%94%EC%A0%81-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98%EC%9D%98-%EC%8B%9C%EA%B0%84-%EB%B3%B5%EC%9E%A1%EB%8F%84">&#182;</a></h3>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<ul>
+<li>n 개의 노드를 m 개의 색으로 칠해야 하는 문제의 상태 공간 트리의 노드의 수</li>
+</ul>
+$$
+1 + m + m^2 + m^3 + \cdots + m^n = \frac{m^{n+1}-1}{m-1}
+$$
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<ul>
+<li>이보다 더 효율적인 알고리즘은 아직 알려지지 않았음.</li>
+</ul>
+
+</div>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="4%EC%83%89-%EC%A0%95%EB%A6%AC">4&#49353; &#51221;&#47532;<a class="anchor-link" href="#4%EC%83%89-%EC%A0%95%EB%A6%AC">&#182;</a></h3>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<ul>
+<li>1852년: 영국인 프랜시스 구쓰리<font size='2'>Francis Guthrie</font>가 세운 가설. 영국의 인접한 두 개의 주를 서로 다른 색으로 칠하기 위해 필요한 색이 최소 4개</li>
+<li>1976년: K. Appel과 W. Haken이 최초의 증명 제시. 500 여쪽 논문. 일부 내용은 컴퓨터 프로그램 사용</li>
+<li>2005년: 조지 곤티에<font size='2'>George Gonthier</font>가 두 사람의 증명 검증</li>
+</ul>
+
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p><div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/england-4color-map.png" width="300"/></div></p>
 </div>
 </div>
 </div>
