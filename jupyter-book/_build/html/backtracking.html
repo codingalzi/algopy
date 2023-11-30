@@ -436,12 +436,12 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">22.1. 제약 충족 문제</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">22.2. 되추적 기법</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#n">22.3. n-여왕말 문제</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">22.4. 그래프 색칠 문제와 4색 문제</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">22.4.1. 평면그래프</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">22.4.2. 4색 정리</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#m-4">22.4. m-색칠 문제와 4색 정리</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#m">22.4.1. m-색칠 문제</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">22.4.2. 4색 정리</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">22.5. 연습문제</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">22.5. 연습문제</a></li>
 </ul>
             </nav>
         </div>
@@ -551,7 +551,9 @@ n-여왕말 문제를 정의하는 변수, 도메인, 제약 조건은 다음과
 <li><p>도메인: <code class="docutils literal notranslate"><span class="pre">nxn</span></code> 모양의 체스판에 포함된 1번부터 n번 열</p></li>
 <li><p>제약 조건: 서로 다른 두 개의 여왕말이 하나의 행, 열, 또는 대각선 상에 위치하지 않음</p></li>
 </ul>
-<p>예를 들어 8-여왕말 문제를 정의하는 변수와 도메인은 다음과 같다.</p>
+<p>예를 들어 8-여왕말 문제를 정의하는 변수와 도메인은 다음과 같다.
+8개의 여왕말 모두 1열부터 8열 어딘가에 위치할 수 있다.
+단, 그 중에서 제약 조건을 만족하는 열을 찾아야 한다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
@@ -569,8 +571,6 @@ n-여왕말 문제를 정의하는 변수, 도메인, 제약 조건은 다음과
 </div>
 </div>
 </div>
-<p>8개의 여왕말 모두 1열부터 8열 어딘가에 위치할 수 있다.
-단, 그 중에서 제약 조건을 만족하는 열을 찾아야 한다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">domains</span>
@@ -667,7 +667,7 @@ n-여왕말 문제를 정의하는 변수, 도메인, 제약 조건은 다음과
     <span class="c1"># 변수</span>
     <span class="n">variables</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_queens</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
     
-    <span class="c1"># 도메인</span>
+    <span class="c1"># 도메인: 각각의 여왕말이 위치할 수 있는 칸</span>
     <span class="n">domains</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
 
     <span class="n">columns</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_queens</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
@@ -739,9 +739,11 @@ n-여왕말 문제를 정의하는 변수, 도메인, 제약 조건은 다음과
 최대 n의 지수승 만큼 많은 수의 노드를 탐색해야 할 수도 있다.
 하지만 이보다 더 효율적인 알고리즘은 아직 알려지지 않았다.</p>
 </section>
-<section id="id4">
-<h2><span class="section-number">22.4. </span>그래프 색칠 문제와 4색 문제<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
-<p>m-색 문제는
+<section id="m-4">
+<h2><span class="section-number">22.4. </span>m-색칠 문제와 4색 정리<a class="headerlink" href="#m-4" title="Permalink to this heading">#</a></h2>
+<section id="m">
+<h3><span class="section-number">22.4.1. </span>m-색칠 문제<a class="headerlink" href="#m" title="Permalink to this heading">#</a></h3>
+<p>m-색칠<font size='2'>m-coloring</font> 문제는
 최대 m 개의 색<font size='2'>color</font>을 이용하여
 <strong>무방향 그래프의 서로 인접한 노드가 서로 다른 색을 갖는다</strong>는
 색칠 조건이 만족되도록 색칠하는 문제이다.
@@ -758,53 +760,47 @@ n-여왕말 문제를 정의하는 변수, 도메인, 제약 조건은 다음과
       </td>
   </tr>
 </table>
-</p><p><strong>주요 응용분야</strong></p>
+</p><p>m-색칠 문제는 지도를 색칠할 때 유용하게 활용된다.</p>
+<p><div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo05/algo05-12a.png" width="800"/></div></p>
+<p><div style="text-align: center">&lt;그림 출처: <a href="https://ko.wikipedia.org/wiki/4색정리">위키피디아: 4색정리</a>&gt;</div></p><p>지도를 평면 그래프로 변환한다.
+평면 그래프는 서로 교차하는 간선이 없는 무방향 그래프이다.
+예를 들어 아래 왼쪽 지도와 오른쪽 평면 그래프는 서로 일대일 대응된다.</p>
 <ul class="simple">
-<li><p>지도 색칠하기</p></li>
+<li><p>노드: 지도에 사용된 국가, 지역 등의 영역</p></li>
+<li><p>간선: 서로 인접한 두 영역 연결</p></li>
 </ul>
-<section id="id5">
-<h3><span class="section-number">22.4.1. </span>평면그래프<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h3>
+<p><div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo05/algo05-09a.png" width="400"/></div></p><p>m-색칠 문제를 알고리즘을 되추적 기법으로 해결할 수 있다.
+설명을 위해 먼저 앞서 언급한 그래프를 대상으로 3-색칠 문제에 되추적 기법을 적용하는 과정을 살펴 본다.</p>
+<p><div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo05/algo05-08d.png" width="200"/></div></p><p>아래 그래프는 깊이 우선 탐색에 노드의 유망성과 가지치기를 적용한 결과를 보여준다.
+단, 1, 2, 3은 각각 빨강, 파랑, 갈색을 가리킨다.</p>
+<p><div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo05/algo05-11.png" width="400"/></div></p><p>m-색칠 문제를 해결하는 되추적 알고리즘 구현하려 하기 위해
+먼저 m-색칠 문제를 정의하는 변수, 도메인, 제약 조건을 확인하면 다음과 같다.</p>
 <ul class="simple">
-<li><p>서로 교차하는 이음선이 없는 그래프</p></li>
+<li><p>(대상) 변수: 1번부터 n번까지 이름이 붙은 n 개의 노드</p></li>
+<li><p>도메인: 1번부터 m번까지 이름이 붙은 m 종류의 색</p></li>
+<li><p>제약 조건: 간선으로 연결된 이웃 노드는 서로 다른 색을 가져야 함.</p></li>
 </ul>
-<ul class="simple">
-<li><p>지도를 평면그래프로 변환 가능</p>
-<ul>
-<li><p>노드: 지도의 한 지역</p></li>
-<li><p>이음선: 서로 인접한 두 지역 연결</p></li>
-</ul>
-</li>
-</ul>
-<p><strong>예제</strong></p>
-<ul class="simple">
-<li><p>왼편의 지도를 오른편의 평면그래프로 변환 가능함.</p></li>
-</ul>
-<p><div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo05/algo05-09a.png" width="400"/></div></p><p><strong>예제: 3-색칠하기 문제 해결 되추적 알고리즘</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="n">빨강</span><span class="p">,</span> <span class="n">파랑</span><span class="p">,</span> <span class="n">갈색</span><span class="p">]</span>
-       <span class="o">=</span> <span class="p">[</span><span class="mi">1</span>  <span class="p">,</span> <span class="mi">2</span>  <span class="p">,</span> <span class="mi">3</span>  <span class="p">]</span>
-</pre></div>
-</div>
-<p><div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo05/algo05-08d.png" width="200"/></div></p><p><div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo05/algo05-11.png" width="400"/></div></p><div class="cell docutils container">
+<p>예를 들어 4 개의 노드로 구성된 평면 그래프에 대한 3-색 문제를 정의하는 변수와 도메인은 다음과 같다.
+각각의 노드에 동일하게 빨강(1), 파랑(2), 갈색(3) 어느 색도 취할 수 있다.
+단, 제약 조검을 만족시켜야 한다.</p>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
 
 <span class="c1"># 변수: 네 노드의 번호, 즉, 1, 2, 3, 4</span>
 <span class="n">variables</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
 
 <span class="c1"># 도메인: 각각의 노드에 칠할 수 있는 가능한 모든 색상</span>
 <span class="c1"># 3-색칠하기: 1(빨강), 2(파랑), 3(갈색)</span>
-<span class="n">domains</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">domains</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+
 <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">variables</span><span class="p">:</span>
-    <span class="n">domains</span><span class="p">[</span><span class="n">var</span><span class="p">]</span> <span class="o">=</span> <span class="n">columns</span>
+    <span class="n">domains</span><span class="p">[</span><span class="n">var</span><span class="p">]</span> <span class="o">=</span> <span class="n">colors</span>
 </pre></div>
 </div>
 </div>
 </div>
-<ul class="simple">
-<li><p>3-색칠하기 문제의 경우 각각의 노드에 동일하게 빨강, 파랑, 갈색 어느 색도 취할 수 있음.
-단, 그 중에서 제약 조건을 만족시키는 색상을 찾아야 함.</p></li>
-</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">domains</span>
@@ -812,7 +808,38 @@ n-여왕말 문제를 정의하는 변수, 도메인, 제약 조건은 다음과
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{1: [1, 2, 3], 2: [1, 2, 3], 3: [1, 2, 3], 4: [1, 2, 3]}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>defaultdict(list, {1: [1, 2, 3], 2: [1, 2, 3], 3: [1, 2, 3], 4: [1, 2, 3]})
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>유망성 판단</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">promissing_colors</span><span class="p">(</span><span class="n">variable</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">constraints</span><span class="o">=</span><span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">),</span> <span class="n">assignment</span><span class="o">=</span><span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;새로운 노드인 variable에 색을 할당할 때 </span>
+<span class="sd">    간선으로 연결된 이웃 노드와의 색이 달라야 한다는</span>
+<span class="sd">    제약조건을 assignment가 만족하는지 여부 확인</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">constraints</span><span class="p">[</span><span class="n">variable</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">var</span> <span class="ow">in</span> <span class="n">assignment</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">assignment</span><span class="p">[</span><span class="n">var</span><span class="p">]</span> <span class="o">==</span> <span class="n">assignment</span><span class="p">[</span><span class="n">variable</span><span class="p">]):</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">return</span> <span class="kc">True</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 각 노드에 대한 이웃 노드의 리스트</span>
+<span class="n">constraints</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mi">1</span> <span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+    <span class="mi">2</span> <span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+    <span class="mi">3</span> <span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+    <span class="mi">4</span> <span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -830,127 +857,98 @@ n-여왕말 문제를 정의하는 변수, 도메인, 제약 조건은 다음과
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">backtracking_search_colors</span><span class="p">(</span><span class="n">assignment</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">backtracking_search_colors</span><span class="p">(</span><span class="n">num_nodes</span><span class="p">,</span> <span class="n">num_colors</span><span class="p">,</span> <span class="n">constraints</span><span class="o">=</span><span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">),</span> <span class="n">assignment</span><span class="o">=</span><span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;assignment: 각각의 변수를 키로 사용하고 키값은 해당 변수에 할당될 값&quot;&quot;&quot;</span>
 
-    <span class="c1"># 모든 변수에 대한 값이 지정된 경우 제약 조건을 만족시키는 해가 완성된 것임</span>
+    <span class="c1"># 변수</span>
+    <span class="n">variables</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_nodes</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># 도메인: 각각의 노드에 칠할 수 있는 가능한 모든 색상</span>
+    <span class="n">domains</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+    <span class="n">colors</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_colors</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">variables</span><span class="p">:</span>
+        <span class="n">domains</span><span class="p">[</span><span class="n">var</span><span class="p">]</span> <span class="o">=</span> <span class="n">colors</span>
+        
+    <span class="c1"># 재귀 종료 조건: 모든 변수에 대한 값이 지정된 경우</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">assignment</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">variables</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">assignment</span>
-    <span class="c1"># 아직 값을 갖지 않은 변수들이 존재하면 되추적 알고리즘을 아직 할당되지 않은 값을 대상으로 이어서 진행</span>
-    <span class="n">unassigned</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">variables</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">assignment</span><span class="p">]</span>
-    <span class="n">first</span> <span class="o">=</span> <span class="n">unassigned</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     
+    <span class="c1"># 재귀 실행: 아직 색이 지정되지 않은 노드가 존재하는 경우</span>
+    <span class="n">unassigned</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">variables</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">assignment</span><span class="p">]</span>
+    <span class="n">first</span> <span class="o">=</span> <span class="n">unassigned</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># 다음 대상 노드</span>
+    
+    <span class="c1"># first 노드 색칠하기. 재귀 적용</span>
     <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">domains</span><span class="p">[</span><span class="n">first</span><span class="p">]:</span>
         <span class="c1"># 주의: 기존의 assignment를 보호하기 위해 복사본 활용</span>
         <span class="c1"># 되추적이 발생할 때 이전 할당값을 기억해 두기 위해서임.</span>
         <span class="n">local_assignment</span> <span class="o">=</span> <span class="n">assignment</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
         <span class="n">local_assignment</span><span class="p">[</span><span class="n">first</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+        
         <span class="c1"># local_assignment 값이 유망하면 재귀 호출을 사용하여 변수 할당 이어감.</span>
-        <span class="k">if</span> <span class="n">promissing_colors</span><span class="p">(</span><span class="n">first</span><span class="p">,</span> <span class="n">local_assignment</span><span class="p">):</span>
-            <span class="n">result</span> <span class="o">=</span> <span class="n">backtracking_search_colors</span><span class="p">(</span><span class="n">local_assignment</span><span class="p">)</span>
-            <span class="c1"># 유망성을 이어가지 못하면 되추적 실행</span>
+        <span class="k">if</span> <span class="n">promissing_colors</span><span class="p">(</span><span class="n">first</span><span class="p">,</span> <span class="n">constraints</span><span class="p">,</span> <span class="n">local_assignment</span><span class="p">):</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">backtracking_search_colors</span><span class="p">(</span><span class="n">num_nodes</span><span class="p">,</span> <span class="n">num_colors</span><span class="p">,</span> <span class="n">constraints</span><span class="p">,</span> <span class="n">local_assignment</span><span class="p">)</span>
+
+            <span class="c1"># 모든 노드의 색이 지정되었을 때 해당 정보 반환</span>
             <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">result</span>
 
+    <span class="c1"># 유망성 확인에 실패한 경우 재귀 종료. 즉 가지치기 실행.</span>
     <span class="k">return</span> <span class="kc">None</span>    
 </pre></div>
 </div>
 </div>
 </div>
-<p><strong>유망성 확인 함수</strong></p>
+<p>세 가지 색으로 칠하는 방법은 다음과 같다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">promissing_colors</span><span class="p">(</span><span class="n">variable</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">assignment</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;새로운 변수 variable에 값을 할당 하면서 해당 변수와 연관된 변수들 사이의 제약조건이 </span>
-<span class="sd">    assignment에 대해 만족되는지 여부 확인</span>
-
-<span class="sd">    m-색칠하기 문제의 경우: 이웃노드의 상태에 따라 제약조건이 달라짐.</span>
-<span class="sd">                       즉, 노드 variable에 할당된 색이 이웃노드의 색과 달라야 함.</span>
-<span class="sd">                       이를 위해 각각의 노드가 갖는 이웃노드들의 리스트를 먼저 확인해야 함.&quot;&quot;&quot;</span>
-    <span class="c1"># 각 노드에 대한 이웃노드의 리스트</span>
-    <span class="n">constraints</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="mi">1</span> <span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
-        <span class="mi">2</span> <span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
-        <span class="mi">3</span> <span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
-        <span class="mi">4</span> <span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
-    <span class="p">}</span>
-
-    <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">constraints</span><span class="p">[</span><span class="n">variable</span><span class="p">]:</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">var</span> <span class="ow">in</span> <span class="n">assignment</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">assignment</span><span class="p">[</span><span class="n">var</span><span class="p">]</span> <span class="o">==</span> <span class="n">assignment</span><span class="p">[</span><span class="n">variable</span><span class="p">]):</span>
-            <span class="k">return</span> <span class="kc">False</span>
-
-    <span class="k">return</span> <span class="kc">True</span> 
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">backtracking_search_colors</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">backtracking_search_colors</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">constraints</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{1: 1, 2: 2, 3: 3, 4: 2}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>defaultdict(int, {1: 1, 2: 2, 3: 3, 4: 2})
 </pre></div>
 </div>
 </div>
 </div>
-<p><strong>m-색칠하기 문제 되추적 알고리즘의 시간 복잡도</strong></p>
-<ul>
-<li><p>n 개의 노드를 m 개의 색으로 칠해야 하는 문제의 상태공간트리의 노드의 수는 다음과 같음.</p>
+<p>하지만 앞서 설명한 대로 두 가지 색으로는 칠할 수 없다.
+즉, 아래 함수의 실행값이 <code class="docutils literal notranslate"><span class="pre">None</span></code> 이다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="ow">not</span> <span class="n">backtracking_search_colors</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">constraints</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;두 가지 색으로 색칠 제약조건 충족 불가능&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>두 가지 색으로 색칠 제약조건 충족 불가능
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>m-색칠 문제 되추적 알고리즘의 시간 복잡도</strong></p>
+<p>n 개의 노드를 m 개의 색으로 칠해야 하는 문제의 상태 공간 트리의 노드의 수는 다음과 같다.</p>
 <div class="math notranslate nohighlight">
 \[
-    1 + m + m^2 + m^3 + \cdots + m^n = \frac{m^{n+1}-1}{m-1}
-    \]</div>
-</li>
-</ul>
-<ul class="simple">
-<li><p>따라서 되추적 알고리즘이 최대 m과 n의 지승 만큼 많은 수의 노드를 탐색해야 할 수도 있음.</p></li>
-</ul>
-<ul class="simple">
-<li><p>하지만 탐색해야 하는 노드 수는 경우마다 다름.</p></li>
-</ul>
-<ul class="simple">
-<li><p>효율적인 알고리즘이 아직 알려지지 않음.</p></li>
-</ul>
+1 + m + m^2 + m^3 + \cdots + m^n = \frac{m^{n+1}-1}{m-1}
+\]</div>
+<p>따라서 되추적 알고리즘이 최대 m과 n의 지승 만큼 많은 수의 노드를 탐색해야 할 수도 있다.
+하지만 이보다 더 효율적인 알고리즘은 아직 알려지지 않았다.</p>
 </section>
-<section id="id6">
-<h3><span class="section-number">22.4.2. </span>4색 정리<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p>4-색칠하기 문제는 언제나 해결가능함.</p></li>
-</ul>
-<p><div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo05/algo05-12a.png" width="600"/></div></p>
-<p>&lt;그림 출처: <a class="reference external" href="https://ko.wikipedia.org/wiki/4%EC%83%89%EC%A0%95%EB%A6%AC">위키피디아: 4색정리</a>&gt;</p>
-<ul class="simple">
-<li><p>1852년에 영국인 Francis Guthrie가 영국 지도를 작성할 때
-인접한 각 주를 다른 색으로 칠하기 위해 필요한 최소한의 색상의 수에 대한 질문에서 유래한 문제임.</p></li>
-</ul>
-<ul class="simple">
-<li><p>해결</p>
-<ul>
-<li><p>1976년에 K. Appel과 W. Haken 이 해결</p></li>
-<li><p>500페이지 이상의 증명으로 이루어졌으며 일부 증명은 컴퓨터 프로그램을 사용하였음.</p></li>
-<li><p>증명에 사용된 컴퓨터 프로그램에 대한 신뢰성 때문에 100% 인정받지 못하였음.
-하지만 사용된 컴퓨터 프로그램의 문제가 발견된 것은 아님.</p></li>
-<li><p>2005년에 G. Gonthier에 의해 두 사람의 증명이 옳았음이 검증됨.</p></li>
-</ul>
-</li>
-</ul>
-<p><strong><span class="math notranslate nohighlight">\(m\)</span>-색칠하기 문제 해결가능성 판단 알고리즘</strong></p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(m\)</span> 이 1 또는 2인 경우: 쉽게 판단됨.</p></li>
-<li><p><span class="math notranslate nohighlight">\(m = 3\)</span> 인 경우: 효율적인 알고리즘 아직 찾지 못함.</p>
-<ul>
-<li><p>즉, 임의의 평면 지도에 대해 서로 인접한 지역은 다른 색상을 갖도록 3 가지 색상만을 이용하여 색칠할 수 있는지
-여부를 판단하는 일이 매우 어려움.</p></li>
-</ul>
-</li>
-</ul>
+<section id="id4">
+<h3><span class="section-number">22.4.2. </span>4색 정리<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
+<p>1852년에 영국인 프랜시스 구쓰리<font size='2'>Francis Guthrie</font>가 영국 지도를 작성할 때
+인접한 두 개의 주를 서로 다른 색으로 칠하기 위해 필요한 색이 최소 4개면 된다는 4색 정리를 주장하였다.
+하지만 이 4색 정리가 증명되기까지 124년이 걸렸다.</p>
+<p>최초의 증명은 1976년에 K. Appel과 W. Haken이 제시하였다.
+두 사람의 증명이 500 쪽 논문으로 제시되었는데 일부 내용은 컴퓨터 프로그램을 사용하도록 되어 있다.
+그런데 증명에 사용된 컴퓨터 프로그램에 대한 신뢰성 때문에 오랜 시간동안 100% 인정받지 못하다가
+2005년에 G. Gonthier에 의해 두 사람의 사용한 증명이 모두 옳았음이 검증되었다.</p>
 </section>
 </section>
-<section id="id7">
-<h2><span class="section-number">22.5. </span>연습문제<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h2>
+<section id="id5">
+<h2><span class="section-number">22.5. </span>연습문제<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p><a class="reference external" href="https://colab.research.google.com/github/codingalzi/algopy/blob/master/excs/exc-backtracking.ipynb">(실습) 되추적 기법</a></p></li>
 </ol>
@@ -1023,12 +1021,12 @@ n-여왕말 문제를 정의하는 변수, 도메인, 제약 조건은 다음과
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">22.1. 제약 충족 문제</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">22.2. 되추적 기법</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#n">22.3. n-여왕말 문제</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">22.4. 그래프 색칠 문제와 4색 문제</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">22.4.1. 평면그래프</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">22.4.2. 4색 정리</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#m-4">22.4. m-색칠 문제와 4색 정리</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#m">22.4.1. m-색칠 문제</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">22.4.2. 4색 정리</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">22.5. 연습문제</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">22.5. 연습문제</a></li>
 </ul>
   </nav></div>
 
