@@ -13,10 +13,11 @@ def promissing(variable: int, assignment: Dict[int, int]):
     
     # 마디 별 이웃마디의 리스트
     constraints = {
-        1 : [2, 3, 4],
-        2 : [1, 3],
+        1 : [2, 3, 4, 5],
+        2 : [1, 3, 4, 5],
         3 : [1, 2, 4],
-        4 : [1, 3]
+        4 : [1, 2, 3, 5],
+        5 : [1, 2, 4]
     }
 
     for var in constraints[variable]:
