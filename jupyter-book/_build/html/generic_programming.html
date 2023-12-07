@@ -449,6 +449,10 @@ document.write(`
 <p><strong>슬라이드</strong></p>
 <p>본문 내용을 요약한 <a class="reference external" href="https://github.com/codingalzi/algopy/raw/master/slides/slides-generic_programming.pdf">슬라이드</a>를 다운로드할 수 있다.</p>
 <p><strong>주요 내용</strong></p>
+<ul class="simple">
+<li><p>제네릭 프로그래밍 소개</p></li>
+<li><p>제네릭 되추적 알고리즘</p></li>
+</ul>
 <section id="id2">
 <h2><span class="section-number">23.1. </span>제네릭 프로그래밍이란?<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
 <p>제네릭 프로그래밍<font size='2'>generic programming</font>은
@@ -640,7 +644,18 @@ document.write(`
 </div>
 <p>아래 그래프와 같은 4-색칠 문제 해결에 사용되는 유망성 판단 함수는 다음과 같으며
 <code class="docutils literal notranslate"><span class="pre">constraint_colors</span></code> 모듈에 저장되어 있다고 가정한다.</p>
-<p><div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/four-colors01.png" width="400"/></div></p><div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<p>
+<table class="field">
+  <tr>
+    <td style="padding:0 50px 0 50px;">
+      <div><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/four-colors01a.png" width="200"/>
+    </td>
+    <td style="padding:0 50px 0 50px;">
+      <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/four-colors01.png" width="400"/>
+      </td>
+  </tr>
+</table>
+</p><div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span>
 
 <span class="k">def</span> <span class="nf">promissing</span><span class="p">(</span><span class="n">variable</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">assignment</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]):</span>
@@ -684,7 +699,18 @@ document.write(`
 </div>
 </div>
 <p>결과를 그림으로 나타내면 다음과 같다.</p>
-<p><div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/four-colors02.png" width="400"/></div></p></section>
+<p>
+<table class="field">
+  <tr>
+    <td style="padding:0 50px 0 50px;">
+      <div><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/four-colors02a.png" width="200"/>
+    </td>
+    <td style="padding:0 50px 0 50px;">
+      <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/four-colors02.png" width="400"/>
+      </td>
+  </tr>
+</table>
+</p></section>
 <section id="id4">
 <h2><span class="section-number">23.3. </span>다형성 활용<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
