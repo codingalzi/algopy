@@ -36,7 +36,7 @@ parts:
     chapters:
     - file: sort_search_1
     - file: sort_search_2
-#     - file: sort_search_3
+    - file: sort_search_3
   - caption: 트리, 힙, 맵
     numbered: True
     chapters:
