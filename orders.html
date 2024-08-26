@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>7. 차수 &#8212; 문제해결 알고리즘</title>
   
@@ -15,50 +14,50 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=ca93fcec" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
-  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'orders';</script>
@@ -75,27 +74,23 @@
 
   
   
-  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -117,8 +112,13 @@
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
     </header>
   
 
@@ -142,6 +142,8 @@
         <div class="sidebar-primary-item">
 
   
+    
+  
 
 <a class="navbar-brand logo" href="intro.html">
   
@@ -157,7 +159,7 @@
 
  <script>
  document.write(`
-   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass"></i>
     <span class="search-button__default-text">Search</span>
     <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
@@ -234,7 +236,7 @@
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -243,14 +245,14 @@
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -275,14 +277,14 @@
       
       <li><a href="https://colab.research.google.com/github/codingalzi/algopy/blob/master/jupyter-book/orders.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch onColab"
+   title="Launch on Colab"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img src="_static/images/logo_colab.png">
+    <img alt="Colab logo" src="_static/images/logo_colab.png">
   </span>
 <span class="btn__text-container">Colab</span>
 </a>
@@ -406,10 +408,10 @@
 
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script>
@@ -417,14 +419,14 @@ document.write(`
 
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -470,7 +472,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="sec-orders">
-<span id="id1"></span><h1><span class="section-number">7. </span>차수<a class="headerlink" href="#sec-orders" title="Permalink to this heading">#</a></h1>
+<span id="id1"></span><h1><span class="section-number">7. </span>차수<a class="headerlink" href="#sec-orders" title="Link to this heading">#</a></h1>
 <p><strong>슬라이드</strong></p>
 <p>본문 내용을 요약한 <a class="reference external" href="https://github.com/codingalzi/algopy/raw/master/slides/slides-orders.pdf">슬라이드</a>를 다운로드할 수 있다.</p>
 <p><strong>주요 내용</strong></p>
@@ -479,7 +481,7 @@ document.write(`
 <li><p><span class="math notranslate nohighlight">\(O\)</span>, <span class="math notranslate nohighlight">\(\Omega\)</span>, <span class="math notranslate nohighlight">\(\Theta\)</span> 정의</p></li>
 </ul>
 <section id="id2">
-<h2><span class="section-number">7.1. </span>시간 복잡도 함수의 차수 이해<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">7.1. </span>시간 복잡도 함수의 차수 이해<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
 <p>일반적으로 고차 다항식의 시간 복잡도를 갖는 알고리즘이 실행 시간 측면에서 비효율적이다.
 하지만 최고차 항의 계수가 상대적으로 작으면 입력값의 크기에 따라 충분히 좋은 알고리즘으로 사용될 수 있다.</p>
 <p>반면에 최고차 항의 계수가 아무리 작더라도 입력값의 크기가 어느 정도 이상 크면
@@ -487,9 +489,9 @@ document.write(`
 <p><em>“입력값의 크기가 어느 정도 이상 크면 실행시간이 …. 보다 오래 걸린다”</em> 라는 의미를 가리키는
 <strong>궁극적으로 느리다/빠르다</strong>의 개념을 소개한다.</p>
 <section id="id3">
-<h3><span class="section-number">7.1.1. </span>궁극적으로 빠르다? 느리다?<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">7.1.1. </span>궁극적으로 빠르다? 느리다?<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
 <p>동일한 문제를 해결하는 아래 두 알고리즘 중에서 어떤 알고리즘을 선택해야 할까?</p>
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head text-center"><p>알고리즘</p></th>
 <th class="head text-center"><p>일정 시간 복잡도</p></th>
@@ -504,8 +506,9 @@ document.write(`
 </tr>
 </tbody>
 </table>
+</div>
 <p>위 두 알고리즘의 경우 입력 크기 1만을 기준으로 다르게 선택할 수 있다.</p>
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head text-center"><p>입력 크기 n</p></th>
 <th class="head text-center"><p>선택 알고리즘</p></th>
@@ -520,6 +523,7 @@ document.write(`
 </tr>
 </tbody>
 </table>
+</div>
 <p>이유는 다음과 같이, <span class="math notranslate nohighlight">\(n\)</span>이 1만보다 큰 경우에만 <span class="math notranslate nohighlight">\(100 n\)</span>이
 <span class="math notranslate nohighlight">\(0.01 n^2\)</span> 보다 작기 때문이다.</p>
 <div class="math notranslate nohighlight">
@@ -538,7 +542,7 @@ document.write(`
 </ul>
 </section>
 <section id="id4">
-<h3><span class="section-number">7.1.2. </span>시간 복잡도 함수의 차수<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">7.1.2. </span>시간 복잡도 함수의 차수<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
 <p>동일한 문제를 해결하는
 두 개의 알고리즘 A와 B를 비교할 때 “궁극적으로 느리다/빠르다”를
 판단하는 다양한 방식이 존재하며, 그 중에 하나로
@@ -553,7 +557,7 @@ document.write(`
 언급되는 차수를 살펴 본다.</p>
 <p><strong>차수 예제</strong></p>
 <p>먼저, 상수, 1차, 2차, 3차 차수의 시간 복잡도를 표기하는 방법과 함수들의 예제는 다음과 같다.</p>
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head text-left"><p>기호</p></th>
 <th class="head text-left"><p>시간 복잡도</p></th>
@@ -579,8 +583,9 @@ document.write(`
 </tr>
 </tbody>
 </table>
+</div>
 <p>다음은 <span class="math notranslate nohighlight">\(\log n\)</span>과 <span class="math notranslate nohighlight">\(n \log n\)</span> 의 시간 복잡도를 표기하는 방법과 함수들의 예제를 보여준다.</p>
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head text-left"><p>기호</p></th>
 <th class="head text-left"><p>시간 복잡도</p></th>
@@ -598,8 +603,9 @@ document.write(`
 </tr>
 </tbody>
 </table>
+</div>
 <p>앞서 언급된 시간 복잡도를 사용 효율성 측면에서 구분하면 다음과 같다.</p>
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head text-center"><p>효율성</p></th>
 <th class="head text-left"><p>알고리즘 복잡도</p></th>
@@ -617,13 +623,14 @@ document.write(`
 </tr>
 </tbody>
 </table>
+</div>
 </section>
 </section>
 <section id="id5">
-<h2><span class="section-number">7.2. </span>차수의 정의<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">7.2. </span>차수의 정의<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
 <p>차수(<span class="math notranslate nohighlight">\(\Theta\)</span>)를 엄밀하게 정의하려면 Big-<span class="math notranslate nohighlight">\(O\)</span>와 <span class="math notranslate nohighlight">\(\Omega\)</span>(Omega, 오메가) 개념이 요구된다.</p>
 <section id="big-o">
-<h3><span class="section-number">7.2.1. </span>Big-<span class="math notranslate nohighlight">\(O\)</span> 표기법<a class="headerlink" href="#big-o" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">7.2.1. </span>Big-<span class="math notranslate nohighlight">\(O\)</span> 표기법<a class="headerlink" href="#big-o" title="Link to this heading">#</a></h3>
 <p>다음 성질을 갖는 양의 실수 <span class="math notranslate nohighlight">\(c\)</span> 와 양의 정수 <span class="math notranslate nohighlight">\(N\)</span> 이 존재할 때 <span class="math notranslate nohighlight">\(g(n)\in O(f(n))\)</span> 으로 표현한다.</p>
 <div class="math notranslate nohighlight">
 \[\text{$n \ge N$인 임의의 정수 $n$에 대해 $g(n) \le c\cdot f(n)$}\]</div>
@@ -672,7 +679,7 @@ document.write(`
 아래 그림은 <span class="math notranslate nohighlight">\(O(n^2)\)</span>에 속하는 시간 복잡도 함수들의 집합을 잘 묘사한다.</p>
 <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo01/algo01-10.png" width="250"/></div></section>
 <section id="omega">
-<h3><span class="section-number">7.2.2. </span><span class="math notranslate nohighlight">\(\Omega\)</span> 표기법<a class="headerlink" href="#omega" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">7.2.2. </span><span class="math notranslate nohighlight">\(\Omega\)</span> 표기법<a class="headerlink" href="#omega" title="Link to this heading">#</a></h3>
 <p>다음 성질을 갖는 양의 실수 <span class="math notranslate nohighlight">\(c\)</span> 와 양의 정수 <span class="math notranslate nohighlight">\(N\)</span> 이 존재할 때 <span class="math notranslate nohighlight">\(g(n)\in \Omega(f(n))\)</span> 으로 표현한다.</p>
 <div class="math notranslate nohighlight">
 \[\text{$n \ge N$인 임의의 정수 $n$에 대해 $g(n) \ge c\cdot f(n)$}\]</div>
@@ -719,7 +726,7 @@ document.write(`
 아래 그림은 <span class="math notranslate nohighlight">\(\Omega(n^2)\)</span>에 속하는 시간 복잡도 함수들의 집합을 잘 묘사한다.</p>
 <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo01/algo01-12.png" width="250"/></div></section>
 <section id="theta">
-<h3><span class="section-number">7.2.3. </span>차수(<span class="math notranslate nohighlight">\(\Theta\)</span>) 표기법<a class="headerlink" href="#theta" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">7.2.3. </span>차수(<span class="math notranslate nohighlight">\(\Theta\)</span>) 표기법<a class="headerlink" href="#theta" title="Link to this heading">#</a></h3>
 <p>차수(<span class="math notranslate nohighlight">\(\Theta\)</span>)의 엄밀한 정의는 다음과 같다.</p>
 <div class="math notranslate nohighlight">
 \[\Theta(f(n)) = O(f(n)) \cap \Omega(f(n))\]</div>
@@ -730,7 +737,7 @@ document.write(`
 즉, 기본적으로 <span class="math notranslate nohighlight">\(f(n)\)</span>의 시간 내에 실행이 종료되며, 아래 그림이 이를 잘 반영한다.</p>
 <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo01/algo01-13.png" width="300"/></div></section>
 <section id="id6">
-<h3><span class="section-number">7.2.4. </span>차수의 특성<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">7.2.4. </span>차수의 특성<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
 <p>다음 세 가지 성질을 직관적으로 이해하고 기억해두어야 한다.</p>
 <p>첫째, <span class="math notranslate nohighlight">\(g(n) \in O(f(n))\)</span> 이 성립하면 <span class="math notranslate nohighlight">\(f(n) \in \Omega(g(n))\)</span> 도 성립한다.</p>
 <p>둘째, <span class="math notranslate nohighlight">\(f(n) \in \Omega(g(n))\)</span> 이 성립하면 <span class="math notranslate nohighlight">\(g(n) \in O(f(n))\)</span> 도 성립한다.</p>
@@ -747,7 +754,7 @@ document.write(`
 </section>
 </section>
 <section id="id7">
-<h2><span class="section-number">7.3. </span>연습문제<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">7.3. </span>연습문제<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p><a class="reference external" href="https://colab.research.google.com/github/codingalzi/algopy/blob/master/excs/exc-orders.ipynb">(실습) 차수</a></p></li>
 </ol>
@@ -781,7 +788,7 @@ document.write(`
               
               
               
-                <footer class="prev-next-footer">
+                <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
     <a class="left-prev"
@@ -872,8 +879,8 @@ By 코딩알지
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>
