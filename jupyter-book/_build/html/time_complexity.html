@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>6. 시간 복잡도 &#8212; 문제해결 알고리즘</title>
   
@@ -15,50 +14,50 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=ca93fcec" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
-  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'time_complexity';</script>
@@ -75,27 +74,23 @@
 
   
   
-  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -117,8 +112,13 @@
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
     </header>
   
 
@@ -142,6 +142,8 @@
         <div class="sidebar-primary-item">
 
   
+    
+  
 
 <a class="navbar-brand logo" href="intro.html">
   
@@ -157,7 +159,7 @@
 
  <script>
  document.write(`
-   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass"></i>
     <span class="search-button__default-text">Search</span>
     <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
@@ -234,7 +236,7 @@
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -243,14 +245,14 @@
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -275,14 +277,14 @@
       
       <li><a href="https://colab.research.google.com/github/codingalzi/algopy/blob/master/jupyter-book/time_complexity.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch onColab"
+   title="Launch on Colab"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img src="_static/images/logo_colab.png">
+    <img alt="Colab logo" src="_static/images/logo_colab.png">
   </span>
 <span class="btn__text-container">Colab</span>
 </a>
@@ -406,10 +408,10 @@
 
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script>
@@ -417,14 +419,14 @@ document.write(`
 
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -475,7 +477,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="sec-time-complexity">
-<span id="id1"></span><h1><span class="section-number">6. </span>시간 복잡도<a class="headerlink" href="#sec-time-complexity" title="Permalink to this heading">#</a></h1>
+<span id="id1"></span><h1><span class="section-number">6. </span>시간 복잡도<a class="headerlink" href="#sec-time-complexity" title="Link to this heading">#</a></h1>
 <p><strong>슬라이드</strong></p>
 <p>본문 내용을 요약한 <a class="reference external" href="https://github.com/codingalzi/algopy/raw/master/slides/slides-time_complexity.pdf">슬라이드</a>를 다운로드할 수 있다.</p>
 <p><strong>주요 내용</strong></p>
@@ -484,7 +486,7 @@ document.write(`
 <li><p>시간복잡도와 “Big-O” 표기법</p></li>
 </ul>
 <section id="id2">
-<h2><span class="section-number">6.1. </span>알고리즘 분석<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">6.1. </span>알고리즘 분석<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
 <p>동일한 문제를 해결하는 프로그램 두 개의 성능을 어떻게 비교할 수 있을까? 라는 질문에 대답하려면
 먼저 <strong>알고리즘</strong>과 <strong>프로그램</strong>의 차이점을 이해해야 한다.</p>
 <ul class="simple">
@@ -515,7 +517,7 @@ document.write(`
 </li>
 </ul>
 <section id="id3">
-<h3><span class="section-number">6.1.1. </span>문제와 알고리즘<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.1.1. </span>문제와 알고리즘<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
 <p>예를 들어, ‘두 정수의 최대공약수 구하기’ <strong>문제</strong>를 해결하는 <strong>알고리즘</strong>은
 임의의 두 정수에 대해 동일한 방식으로 최대공약수를 구해야 한다.
 즉, 문제를 해결하는 알고리즘은 <strong>문제의 특정 사례</strong>에 의존하지 않아야 한다.</p>
@@ -606,7 +608,7 @@ document.write(`
 이 기준에서 보면 위 두 프로그램은 매우 유사한데, 이유는 두 프로그램 모두 동일한 알고리즘을 사용하기 때문이다.</p>
 </section>
 <section id="id4">
-<h3><span class="section-number">6.1.2. </span>컴퓨팅 자원<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.1.2. </span>컴퓨팅 자원<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
 <p>컴퓨팅 자원이 의미하는 바는 두 가지이다.
 아래 설명에서 사용되는 알고리즘의 입력값은 주어진 문제의 사례를 지정하는 값을 가리킨다.
 예를 들어, 양의 정수 n이 주어지면 1부터 n까지의 합을 계산해야 하는 문제를 해결하는 알고리즘은
@@ -796,7 +798,7 @@ document.write(`
 </section>
 </section>
 <section id="id5">
-<h2><span class="section-number">6.2. </span>시간복잡도<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">6.2. </span>시간복잡도<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
 <p>실행 시간이 <code class="docutils literal notranslate"><span class="pre">sum_of_n()</span></code> 함수보다 훨씬 빠르다.
 그런데 프로그램 실행시간은 사용되는 컴퓨터, 실행 환경, 컴파일러, 프로그래밍언어 등등에 의존하기 때문에 앞서
 확인된 실행시간을 절대적인 기준으로 삼을 수는 없다.
@@ -884,7 +886,7 @@ T(n) &amp;= 3 + 3n^{2} + 2n + 1 \\
 \end{align*}
 \end{split}\]</div>
 <section id="big-o">
-<h3><span class="section-number">6.2.1. </span>Big-O 표기법 직관적 소개<a class="headerlink" href="#big-o" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.1. </span>Big-O 표기법 직관적 소개<a class="headerlink" href="#big-o" title="Link to this heading">#</a></h3>
 <p>입력 크기에 의존하는 실행시간 함수 <span class="math notranslate nohighlight">\(T(n)\)</span>의 정의에 사용되는 수식을 분석할 때
 수식에 사용되는 모든 항을 다룰 필요가 없다.
 예를 들어 <span class="math notranslate nohighlight">\(T(n) = n + 1\)</span> 에서 <span class="math notranslate nohighlight">\(1\)</span>은 별로 중요하지 않다.
@@ -933,9 +935,9 @@ T(n) \in O(1)
 \]</div>
 </section>
 <section id="id6">
-<h3><span class="section-number">6.2.2. </span>주요 시간복잡도 함수<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.2. </span>주요 시간복잡도 함수<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
 <p>알고리즘 분석에 가장 많이 사용되는 주요 시간복잡도 함수는 다음과 같다.</p>
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p><strong>시간복잡도</strong></p></th>
 <th class="head"><p><strong>의미</strong></p></th>
@@ -968,19 +970,20 @@ T(n) \in O(1)
 </tr>
 </tbody>
 </table>
+</div>
 <p>아래 그림은 주요 Big-O 함수들의 그래프를 담고 있다.
 <span class="math notranslate nohighlight">\(n\)</span>이 커질 때 함수값 변화의 차이를 잘 보여준다.</p>
 <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/notebooks/_images/big-o1.png" width="70%"></div>
 <p>&lt;그림 출처: <a class="reference external" href="https://www.bigocheatsheet.com/">Big-O Cheat Sheet</a>&gt;</p>
 </section>
 <section id="sec-running-time">
-<span id="id7"></span><h3><span class="section-number">6.2.3. </span>시간복잡도와 실행시간<a class="headerlink" href="#sec-running-time" title="Permalink to this heading">#</a></h3>
+<span id="id7"></span><h3><span class="section-number">6.2.3. </span>시간복잡도와 실행시간<a class="headerlink" href="#sec-running-time" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>가정: 기본 계산단위 실행시간 = 1 ns(나노 초, 10억 분의 1 초)</p></li>
 <li><p><span class="math notranslate nohighlight">\(\mu\)</span>s(마이크로 초): 100만 분의 1초</p></li>
 <li><p>ms(밀리 초): 천 분의 1초</p></li>
 </ul>
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head text-right"><p>입력 크기(n)</p></th>
 <th class="head text-right"><p><div style="width:80px"><span class="math notranslate nohighlight">\(\lg n\)</span></div></p></th>
@@ -1098,18 +1101,19 @@ T(n) \in O(1)
 </tr>
 </tbody>
 </table>
+</div>
 <p>&lt;테이블 출처: <a class="reference external" href="http://www.hongpub.co.kr/shop/item.php?it_id=20170324151353">알고리즘 기초, Neopolitan 저, 홍릉</a>&gt;</p>
 </section>
 </section>
 <section id="id8">
-<h2><span class="section-number">6.3. </span>최선, 최악, 평균 시간복잡도<a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">6.3. </span>최선, 최악, 평균 시간복잡도<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
 <p>알고리즘의 시간복잡도가 입력 크기뿐만 아니라
 입력값 자체에 의존하기도 한다.
 이런 경우엔 일정 시간복잡도 <span class="math notranslate nohighlight">\(T(n)\)</span> 계산이 불가능하며,
 대신에 최선, 최악, 평균 시간복잡도를 계산한다.</p>
 <p>순차 탐색과 어구전철 확인 두 예제를 이용하여 최선, 최악, 평균 시간복잡도를 설명한다.</p>
 <section id="id9">
-<h3><span class="section-number">6.3.1. </span>순차 탐색<a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.3.1. </span>순차 탐색<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
 <p>주어진 리스트에서 특정 값의 포함 여부를 판단할 때
 인덱스를 따라가면서 해당 항목을 확인할 수 있다.
 이를 <strong>순차 탐색</strong>이라 하며 다음 그림처럼 작동한다.</p>
@@ -1168,7 +1172,7 @@ True
 이를 각각 해당 알고리즘의 <strong>최선</strong>(best), <strong>최악</strong>(worst), <strong>평균</strong>(average) 시간복잡도라 한다.</p>
 <p><code class="docutils literal notranslate"><span class="pre">sequentialSearch()</span></code> 함수의 최선, 최악, 평균 시간 복잡도를 리스트의 길이에 대한 함수로
 계산하면 다음과 같다.</p>
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head text-center"><p></p></th>
 <th class="head text-center"><p>최선</p></th>
@@ -1189,6 +1193,7 @@ True
 </tr>
 </tbody>
 </table>
+</div>
 <p>주어진 알고리즘의 최대, 최소, 평균 시간복잡도를 각각 <span class="math notranslate nohighlight">\(B(n)\)</span>, <span class="math notranslate nohighlight">\(W(n)\)</span>, <span class="math notranslate nohighlight">\(A(n)\)</span>이라 했을 때 다음이 성립한다.</p>
 <ul>
 <li><p>일정 시간복잡도 <span class="math notranslate nohighlight">\(T(n)\)</span>이 존재할 때:</p>
@@ -1202,7 +1207,7 @@ True
 </ul>
 </section>
 <section id="id10">
-<h3><span class="section-number">6.3.2. </span>어구전철<a class="headerlink" href="#id10" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.3.2. </span>어구전철<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
 <p><strong>어구전철</strong>은 단어를 구성하는 문자의 순서를 바꾸어 새로운 단어를 생성하는 것을 나타내며,
 영어로 <strong>애너그램</strong><font size='2'>anagram</font>이라 한다.
 예를 들어 “국왕” 과 “왕국”, “감동”과 “동감”, “다들 힘내”와 “힘내 다들” 또는 “내 힘들다”,
@@ -1469,7 +1474,7 @@ T(n) = 2n + 26 \in O(n)
 </section>
 </section>
 <section id="id11">
-<h2><span class="section-number">6.4. </span>공간 복잡도 문제<a class="headerlink" href="#id11" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">6.4. </span>공간 복잡도 문제<a class="headerlink" href="#id11" title="Link to this heading">#</a></h2>
 <p>알고리즘 <code class="docutils literal notranslate"><span class="pre">anagram_solution_4()</span></code>의 시간복잡도는 이전 세 알고리즘에 비해 훨씬 좋다.
 하지만 그 대신에 빈도 리스트를 새로 생성하기 위해 보다 많은 메모리를 사용한다.
 여기서는 겨우 길이가 26인 리스트 두 개를 생성하기에 별 문제가 아니지만
@@ -1485,7 +1490,7 @@ T(n) = 2n + 26 \in O(n)
 <p>따라서 어떤 알고리즘을 사용하는 게 좋을지 환경과 상황에 따라 결정해야 한다.</p>
 </section>
 <section id="id12">
-<h2><span class="section-number">6.5. </span>연습문제<a class="headerlink" href="#id12" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">6.5. </span>연습문제<a class="headerlink" href="#id12" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p><a class="reference external" href="https://colab.research.google.com/github/codingalzi/algopy/blob/master/excs/exc-time_complexity.ipynb">(실습) 시간 복잡도</a></p></li>
 </ol>
@@ -1519,7 +1524,7 @@ T(n) = 2n + 26 \in O(n)
               
               
               
-                <footer class="prev-next-footer">
+                <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
     <a class="left-prev"
@@ -1615,8 +1620,8 @@ By 코딩알지
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>제어 구조와 함수 &#8212; 문제해결 알고리즘</title>
   
@@ -15,50 +14,50 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=ca93fcec" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
-  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'python_basic_2';</script>
@@ -73,27 +72,23 @@
 
   
   
-  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -115,8 +110,13 @@
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
     </header>
   
 
@@ -142,6 +142,8 @@
         <div class="sidebar-primary-item">
 
   
+    
+  
 
 <a class="navbar-brand logo" href="intro.html">
   
@@ -157,7 +159,7 @@
 
  <script>
  document.write(`
-   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass"></i>
     <span class="search-button__default-text">Search</span>
     <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
@@ -234,7 +236,7 @@
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -243,14 +245,14 @@
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -275,14 +277,14 @@
       
       <li><a href="https://colab.research.google.com/github/codingalzi/algopy/blob/master/jupyter-book/python_basic_2.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch onColab"
+   title="Launch on Colab"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img src="_static/images/logo_colab.png">
+    <img alt="Colab logo" src="_static/images/logo_colab.png">
   </span>
 <span class="btn__text-container">Colab</span>
 </a>
@@ -406,10 +408,10 @@
 
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script>
@@ -417,14 +419,14 @@ document.write(`
 
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -469,7 +471,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="sec-python-basic-2">
-<span id="id1"></span><h1>제어 구조와 함수<a class="headerlink" href="#sec-python-basic-2" title="Permalink to this heading">#</a></h1>
+<span id="id1"></span><h1>제어 구조와 함수<a class="headerlink" href="#sec-python-basic-2" title="Link to this heading">#</a></h1>
 <p><strong>소스코드</strong></p>
 <p>아래 내용을
 <a class="reference external" href="https://colab.research.google.com/github/codingalzi/algopy/blob/master/jupyter-book/python_basic_2.ipynb">(구글 코랩) 파이썬 기초 2부: 제어 구조와 함수</a>에서
@@ -483,7 +485,7 @@ document.write(`
 <li><p>함수 정의</p></li>
 </ul>
 <section id="id2">
-<h2>입력과 출력<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<h2>입력과 출력<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">input()</span></code> 함수는 사용자로부터 임의의 문자열을 입력받아 문자열로 반환한다.
 또한 문자열을 인자로 사용하여 사용자에게 입력할 문자열에 대한 정보를 제공할 수 있다.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a_name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;영문 과목명: &quot;</span><span class="p">)</span>
@@ -519,7 +521,7 @@ document.write(`
 </div>
 </section>
 <section id="id3">
-<h2>문자열 서식<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
+<h2>문자열 서식<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">print()</span></code> 함수의 키워드 인자를 활용하여 문자열을 다양한 형식에 맞추어 출력할 수 있다.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">sep='</span> <span class="pre">'</span></code> 키워드 인자: 입력받은 여러 개의 인자를 스페이스를 기준으로 분리해서 출력하는 것이 기본이며,
@@ -622,7 +624,7 @@ document.write(`
 <li><p><code class="docutils literal notranslate"><span class="pre">%d</span></code>: 정수로 변환하여 지정된 자리에 위치시킴</p></li>
 </ul>
 <p>이것들을 포함하여 주요 서식 지정자는 다음과 같다.</p>
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head text-center"><p><strong>기호</strong></p></th>
 <th class="head text-center"><p><strong>출력 서식</strong></p></th>
@@ -655,8 +657,9 @@ document.write(`
 </tr>
 </tbody>
 </table>
+</div>
 <p>다음은 추가 서식 옵션을 설명한다.</p>
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head text-center"><p><strong>기호</strong></p></th>
 <th class="head text-center"><p><strong>예제</strong></p></th>
@@ -690,6 +693,7 @@ document.write(`
 </tr>
 </tbody>
 </table>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">price</span> <span class="o">=</span> <span class="mi">24</span>
@@ -778,7 +782,7 @@ document.write(`
 <p><strong>서식 3</strong></p>
 <p><strong>f_string</strong> 서식은 파이썬 3.6 버전부터 제공되는 서식 양식이며 앞으로 계속해서 이 양식을 사용한다.
 정렬 기호가 이전과 다름에 주의하라.</p>
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head text-center"><p><strong>기호</strong></p></th>
 <th class="head text-center"><p><strong>예제</strong></p></th>
@@ -812,6 +816,7 @@ document.write(`
 </tr>
 </tbody>
 </table>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The </span><span class="si">{</span><span class="n">item</span><span class="si">:</span><span class="s2">10</span><span class="si">}</span><span class="s2"> costs </span><span class="si">{</span><span class="n">price</span><span class="si">:</span><span class="s2">10.2f</span><span class="si">}</span><span class="s2"> cents&quot;</span><span class="p">)</span>
@@ -895,10 +900,10 @@ document.write(`
 </div>
 </section>
 <section id="id4">
-<h2>제어 구조<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
+<h2>제어 구조<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
 <p>파이썬이 제공하는 __반복__과 <strong>조건 선택</strong> 관련 제어 구조를 살펴본다.</p>
 <section id="while">
-<h3><code class="docutils literal notranslate"><span class="pre">while</span></code> 반복문<a class="headerlink" href="#while" title="Permalink to this heading">#</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">while</span></code> 반복문<a class="headerlink" href="#while" title="Link to this heading">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">while</span></code> 반복문 특정 조건이 참(<code class="docutils literal notranslate"><span class="pre">True</span></code>)인 동안 지정된 명령문을 반복한다.
 예를 들어, 아래 코드는 <code class="docutils literal notranslate"><span class="pre">counter</span></code> 변수가 참조하는 값이 5보다 커지기 전까지
 <code class="docutils literal notranslate"><span class="pre">Hello,</span> <span class="pre">world</span></code> 문장을 총 5번 출력한다.</p>
@@ -930,7 +935,7 @@ Hello, world
 </div>
 </section>
 <section id="for">
-<h3><code class="docutils literal notranslate"><span class="pre">for</span></code> 반복문<a class="headerlink" href="#for" title="Permalink to this heading">#</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">for</span></code> 반복문<a class="headerlink" href="#for" title="Link to this heading">#</a></h3>
 <p>모음 자료형에 포함된 항목들을 대상으로 반복문을 실행하려면 <code class="docutils literal notranslate"><span class="pre">for</span></code> 반복문을 사용한다.</p>
 <p><strong>주의사항</strong>: 영어 원문과는 달리 파이썬 최신 버전은 집합, 사전 등 순차 자료형이 아니어도
 <code class="docutils literal notranslate"><span class="pre">for</span></code> 반복문에 활용될 수 있다.</p>
@@ -994,7 +999,7 @@ Hello, world
 </div>
 </section>
 <section id="id5">
-<h3>조건문<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h3>
+<h3>조건문<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
 <p>조건에 따라 선택된 명령문을 수행하도록 하려면 <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">...</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">...</span> <span class="pre">else</span> <span class="pre">...</span></code> 명령문을 사용한다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1087,7 +1092,7 @@ Hello, world
 </section>
 </section>
 <section id="id6">
-<h2>리스트 조건제시법<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h2>
+<h2>리스트 조건제시법<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
 <p>특정 조건을 만족하는 값들로 이루어진 리스트를 <strong>조건제시법</strong>(list comprehension)으로
 쉽게 생성할 수 있다.
 이를 위해 <code class="docutils literal notranslate"><span class="pre">for</span></code> 반복문의 변형이 사용된다.</p>
@@ -1169,7 +1174,7 @@ Hello, world
 </div>
 </section>
 <section id="id7">
-<h2>예외 처리<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h2>
+<h2>예외 처리<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
 <p>프로그램 실행 오류는 주로 두 종류이다.</p>
 <ul class="simple">
 <li><p><strong>구문 오류</strong>(syntax error): 규칙 또는 문법에 맞게 명령문 또는 식(expression)을 작성하지 않은 경우</p></li>
@@ -1245,7 +1250,7 @@ Hello, world
 보다 자세한 사항은 <a class="reference external" href="https://docs.python.org/3/library/exceptions.html">파이썬 공식 문서</a>를 참조한다.</p>
 </section>
 <section id="id8">
-<h2>함수 정의<a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h2>
+<h2>함수 정의<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
 <p>함수는 특정 명령문에 이름을 지정하여 해당 명령문은 반복해서 사용하도록 하는 기능이다.
 함수 정의는 함수의 이름, 매개변수, 함수 본체, 반환값으로 구성된다.
 사용자 입장에서 함수는 기능만 이해하면 언제든지 재활용할 수 있다.</p>
@@ -1403,7 +1408,7 @@ Hello, world
 </div>
 </section>
 <section id="id9">
-<h2>연습문제<a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h2>
+<h2>연습문제<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p><a class="reference external" href="https://colab.research.google.com/github/codingalzi/algopy/blob/master/excs/exc-python_basic_2.ipynb">(실습) 파이썬 기초 2부: 제어 구조와 함수</a></p></li>
 </ol>
@@ -1437,7 +1442,7 @@ Hello, world
               
               
               
-                <footer class="prev-next-footer">
+                <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
 </div>
@@ -1509,8 +1514,8 @@ By 코딩알지
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>
