@@ -647,7 +647,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;__main__.Fraction object at 0x7f8ac8e38ce0&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;__main__.Fraction object at 0x7f3bf07a1730&gt;
 </pre></div>
 </div>
 </div>
@@ -767,7 +767,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;__main__.Fraction at 0x7f8ac79b0740&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;__main__.Fraction at 0x7f3bf076b110&gt;
 </pre></div>
 </div>
 </div>
@@ -1010,13 +1010,6 @@ document.write(`
 </div>
 </div>
 </div>
-<div class="note admonition">
-<p class="admonition-title">연산자 메서드 호출</p>
-<p><code class="docutils literal notranslate"><span class="pre">+</span></code> 연산자를 호출하면 파이썬 실행기 내부에서는 <code class="docutils literal notranslate"><span class="pre">__add__()</span></code> 메서드가 다음처럼 호출된다.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">f14</span><span class="o">.</span><span class="fm">__add__</span><span class="p">(</span><span class="n">f12</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
 <p>그런데 덧셈의 결과가 기약분수의 형태가 아니다.
 따라서 <code class="docutils literal notranslate"><span class="pre">__add__()</span></code> 메서드가 반환하는 <code class="docutils literal notranslate"><span class="pre">Fraction()</span></code> 클래스의 인스턴스가
 덧셈 결과를 최대공약수로 약분한 분수를 표현하는 객체가 되도록 해야 한다.</p>
@@ -1111,10 +1104,10 @@ document.write(`
 </div>
 </div>
 <div class="note admonition">
-<p class="admonition-title"><code class="docutils literal notranslate"><span class="pre">self</span></code> 와 <code class="docutils literal notranslate"><span class="pre">other</span></code></p>
+<p class="admonition-title">연산 실행: <code class="docutils literal notranslate"><span class="pre">self</span></code> 와 <code class="docutils literal notranslate"><span class="pre">other</span></code></p>
 <p><code class="docutils literal notranslate"><span class="pre">f14</span> <span class="pre">+</span> <span class="pre">f12</span></code> 표현식이 실행되면 실제로는
 <code class="docutils literal notranslate"><span class="pre">f14</span></code> 객체의 <code class="docutils literal notranslate"><span class="pre">__add__()</span></code> 메서드가 다음과 같이 호출된다.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">`</span><span class="n">f14</span><span class="o">.</span><span class="fm">__add__</span><span class="p">(</span><span class="n">f12</span><span class="p">)</span><span class="err">`</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">f14</span><span class="o">.</span><span class="fm">__add__</span><span class="p">(</span><span class="n">f12</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>즉, <code class="docutils literal notranslate"><span class="pre">f14</span></code> 를 기준(self)으로 다른 값(other) <code class="docutils literal notranslate"><span class="pre">f12</span></code>와의 덧셈이 실행된다.</p>
