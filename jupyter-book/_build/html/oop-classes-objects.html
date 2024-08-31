@@ -554,7 +554,7 @@ document.write(`
 </div>
 </div>
 <p>메모리 상에서 <code class="docutils literal notranslate"><span class="pre">f35</span></code> 변수가 가리키는 분수 객체는 아래와 같이 저장된다.</p>
-<div align="center" border="1px"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/fraction1.png" width="80%"></div><div class="note admonition">
+<div align="center" border="1px"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/fraction1.png" width="80%"></div><div class="note admonition">
 <p class="admonition-title"><code class="docutils literal notranslate"><span class="pre">self</span></code>의 기능</p>
 <p><code class="docutils literal notranslate"><span class="pre">f35</span> <span class="pre">=</span> <span class="pre">Fraction(3,</span> <span class="pre">5)</span></code> 방식으로 변수 할당이 실행되면
 파이썬 실행기<font size='2'>interpreter</font>는 다음을 싱행한다.</p>
@@ -647,7 +647,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;__main__.Fraction object at 0x7f387c617c20&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;__main__.Fraction object at 0x7f29c1444f50&gt;
 </pre></div>
 </div>
 </div>
@@ -767,7 +767,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;__main__.Fraction at 0x7f385b58da60&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;__main__.Fraction at 0x7f29c147d3a0&gt;
 </pre></div>
 </div>
 </div>
@@ -951,7 +951,7 @@ document.write(`
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">44</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">25</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">f14</span> <span class="o">+</span> <span class="n">f12</span>
 
 <span class="ne">TypeError</span>: unsupported operand type(s) for +: &#39;Fraction&#39; and &#39;Fraction&#39;
@@ -1116,7 +1116,7 @@ document.write(`
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="fm">__add__</span><span class="p">(</span><span class="n">f14</span><span class="p">,</span> <span class="n">f12</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>즉, <code class="docutils literal notranslate"><span class="pre">f14</span></code> 를 기준(self)으로 다른 값(other)과의 연산을 실행함을 의미한다.</p>
+<p>즉, <code class="docutils literal notranslate"><span class="pre">f14</span></code> 를 기준(self)으로 다른 값(other) <code class="docutils literal notranslate"><span class="pre">f12</span></code>와의 연산을 실행함을 의미한다.</p>
 </div>
 </section>
 <section id="id11">
@@ -1150,7 +1150,7 @@ document.write(`
 </div>
 </div>
 </div>
-<div align="center" border="1px"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/fraction4.png" width="80%"></div><p><strong><code class="docutils literal notranslate"><span class="pre">==</span></code> 연산자</strong></p>
+<div align="center" border="1px"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/fraction4.png" width="80%"></div><p><strong><code class="docutils literal notranslate"><span class="pre">==</span></code> 연산자</strong></p>
 <p>단순히 메모리상의 주소가 아닌 두 객체가 동일한 값을 가리키는지 여부인
 두 객체의 동등성은 <code class="docutils literal notranslate"><span class="pre">==</span></code> 연산자로 판단한다.
 그리고 동일한 두 객체는 당연히 동등한 객체로 판정된다.</p>
@@ -1205,7 +1205,7 @@ document.write(`
 </div>
 </div>
 <p>메모리상에서 두 변수가 가리키는 객체가 서로 다름을 아래 이미지에서 확인할 수 있다.</p>
-<div align="center" border="1px"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/fraction3.png" width="80%"></div><p><strong><code class="docutils literal notranslate"><span class="pre">__eq__()</span></code> 매직 메서드</strong></p>
+<div align="center" border="1px"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/fraction3.png" width="80%"></div><p><strong><code class="docutils literal notranslate"><span class="pre">__eq__()</span></code> 매직 메서드</strong></p>
 <p>그럼에도 불구하고 <code class="docutils literal notranslate"><span class="pre">f1</span></code>과 <code class="docutils literal notranslate"><span class="pre">f2</span></code> 모두 1/2를 가리키는 객체라는 사실을 반영할 수 있어야 하는데
 이를 위해 <code class="docutils literal notranslate"><span class="pre">__eq__()</span></code> 매직 메서드를 이용한다.</p>
 <p>아래 코드는 분수의 동등성을 구현한 <code class="docutils literal notranslate"><span class="pre">__eq__()</span></code> 메서드를 <code class="docutils literal notranslate"><span class="pre">Fraction</span></code> 클래스에 추가한다.
@@ -1254,7 +1254,7 @@ document.write(`
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div align="center" border="1px"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/fraction03_aa.png" width="80%"></div><div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f1</span> <span class="o">==</span> <span class="n">f2</span>
 </pre></div>
@@ -1292,7 +1292,6 @@ document.write(`
 </div>
 </div>
 </div>
-<p>보다 다양한 매직 메서드에 대해서는 연습문제를 참고한다.</p>
 </section>
 </section>
 <section id="id12">
