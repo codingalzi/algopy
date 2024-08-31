@@ -1112,11 +1112,12 @@ document.write(`
 </div>
 <div class="note admonition">
 <p class="admonition-title"><code class="docutils literal notranslate"><span class="pre">self</span></code> 와 <code class="docutils literal notranslate"><span class="pre">other</span></code></p>
-<p><code class="docutils literal notranslate"><span class="pre">f14.__add__(f12)</span></code> 이  실행되면 실제로는 <code class="docutils literal notranslate"><span class="pre">__add__()</span></code> 메서드가 다음과 같이 호출된다.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="fm">__add__</span><span class="p">(</span><span class="n">f14</span><span class="p">,</span> <span class="n">f12</span><span class="p">)</span>
+<p><code class="docutils literal notranslate"><span class="pre">f14</span> <span class="pre">+</span> <span class="pre">f12</span></code> 표현식이 실행되면 실제로는
+<code class="docutils literal notranslate"><span class="pre">f14</span></code> 객체의 <code class="docutils literal notranslate"><span class="pre">__add__()</span></code> 메서드가 다음과 같이 호출된다.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">`</span><span class="n">f14</span><span class="o">.</span><span class="fm">__add__</span><span class="p">(</span><span class="n">f12</span><span class="p">)</span><span class="err">`</span>
 </pre></div>
 </div>
-<p>즉, <code class="docutils literal notranslate"><span class="pre">f14</span></code> 를 기준(self)으로 다른 값(other) <code class="docutils literal notranslate"><span class="pre">f12</span></code>와의 연산을 실행함을 의미한다.</p>
+<p>즉, <code class="docutils literal notranslate"><span class="pre">f14</span></code> 를 기준(self)으로 다른 값(other) <code class="docutils literal notranslate"><span class="pre">f12</span></code>와의 덧셈이 실행된다.</p>
 </div>
 </section>
 <section id="id11">
