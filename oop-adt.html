@@ -521,24 +521,23 @@ document.write(`
 </div>
 <p>즉, <code class="docutils literal notranslate"><span class="pre">sqrt()</span></code> 함수가 어떻게 정의되었는가는 모른 채
 제곱근을 계산하는 함수라는 사실과 어떻게 활용하는가를 알기만 하면 된다.</p>
-<p><div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/blackbox.png" width="70%"></div></p><p>이와 같이 해당 함수가 어떻게 구현되었는지 알지 못하더라도
+<p><div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/blackbox.png" width="55%"></div></p><p>이와 같이 해당 함수가 어떻게 구현되었는지 알지 못하더라도
 함수의 기능만 알면 누구나 쉽게 활용할 수 있도록
 프로그램을 구현하는 과정을
 <strong>절차 추상화</strong><font size='2'>procedural abstraction</font>라 부른다.</p>
 <p><strong>데이터 추상화</strong></p>
 <p><strong>추상 자료형</strong><font size='2'>Abstract data type</font>(ADT)은
 특정 종류의 데이터와 그 데이터를 다루는
-API들을 하나로 묶어 다루는 방법을 묘사한다.
-추상 자료형을 이용하여 적절한 자료 구조를 정의하는 기법이
+메서드를 하나로 묶어 다루는 방법을 묘사한다.
+추상 자료형을 이용하여 적절한 자료구조를 정의하는 기법이
 <strong>데이터 추상화</strong><font size='2'>data abstraction</font>다.</p>
-<p>사용자의 입장에서 추상 자료형을 어떻게 직접 구현했는가는 중요하지 않다.
-대신에 해당 추상 자료형이 나타내는 데이터가 무엇을 표현하며 관련 API의 기능을
-어떻게 활용할 수 있는가만 알면 된다.
-그러면 나머지는 해당 추상 자료형을 구현한 객체가 제공하는
-인터페이스를 통해 해당 객체를 활용할 수 있다.</p>
-<p>추상 자료형이 데이터와 함께 관련 API를 하나로 묶어 처리한다는 의미에서
+<p>파이썬은 이를 위해 클래스를 활용한다.
+사용자의 입장에서 클래스로 선언된 자료구조가 구체적으로 어떻게 구현되었는가는 중요하지 않다.
+대신에 해당 자료구조가 담고 있는 데이터가 무엇인가와 데이터를 다루는 메서드의 기능을
+어떻게 활용할 수 있는가만 알면 된다.</p>
+<p>클래스를 이용하여 자료구조가 데이터와 함께 관련 메서드를 하나로 묶어 처리하도록 한다는 의미에서
 데이터 추상화를 <strong>데이터 캡슐화</strong><font size='2'>data encapsulation</font>라고 부르기도 한다.</p>
-<p><div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/encapsulation.png" width="70%"></div></p></section>
+<p><div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/encapsulation.png" width="85%"></div></p></section>
 <section id="id4">
 <h2><span class="section-number">3.3. </span>추상 클래스, 추상 메서드, 자료구조<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
 <p><strong>추상 클래스</strong><font size='2'>abstract class</font>는
