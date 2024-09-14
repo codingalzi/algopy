@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>4. 덱(Deque) &#8212; 문제해결 알고리즘</title>
+    <title>5. 덱Deque &#8212; 문제해결 알고리즘</title>
   
   
   
@@ -60,11 +60,11 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'deques';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'deques_new';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="5. 덱Deque" href="deques_new.html" />
-    <link rel="prev" title="3. 추상 자료형과 자료구조" href="oop-adt.html" />
+    <link rel="next" title="6. 큐(Queue)" href="queues.html" />
+    <link rel="prev" title="4. 덱(Deque)" href="deques.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -176,8 +176,8 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">선형 자료 구조</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">4. 덱(Deque)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="deques_new.html">5. 덱<font size="2">Deque</font></a></li>
+<li class="toctree-l1"><a class="reference internal" href="deques.html">4. 덱(Deque)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">5. 덱<font size="2">Deque</font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="queues.html">6. 큐(Queue)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="stacks.html">7. 스택(Stack)</a></li>
 </ul>
@@ -278,7 +278,7 @@
       
       
       
-      <li><a href="https://colab.research.google.com/github/codingalzi/algopy/blob/master/jupyter-book/deques.ipynb" target="_blank"
+      <li><a href="https://colab.research.google.com/github/codingalzi/algopy/blob/master/jupyter-book/deques_new.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch on Colab"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -326,7 +326,7 @@
       
       
       
-      <li><a href="https://github.com/codingalzi/algopy/issues/new?title=Issue%20on%20page%20%2Fdeques.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/codingalzi/algopy/issues/new?title=Issue%20on%20page%20%2Fdeques_new.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -356,7 +356,7 @@
       
       
       
-      <li><a href="_sources/deques.ipynb" target="_blank"
+      <li><a href="_sources/deques_new.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -440,7 +440,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>덱(Deque)</h1>
+    <h1>덱<font size='2'>Deque</font></h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -450,11 +450,15 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">4.1. 덱의 정의</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">4.2. <code class="docutils literal notranslate"><span class="pre">Deque</span></code> 추상 자료형</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">4.3. 덱 자료구조 구현</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#palindrome">4.4. 실전 예제: 회문<font size="2">palindrome</font> 판별기</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">4.5. 연습문제</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">5.1. 선형 자료구조</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">5.2. 덱 추상 자료형</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">5.2.1. <code class="docutils literal notranslate"><span class="pre">Deque</span></code> 추상 클래스</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vs">5.2.2. 추상 클래스 vs 구상 클래스</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">5.3. 덱 자료구조 구현</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#palindrome">5.4. 실전 예제: 회문<font size="2">palindrome</font> 판별기</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">5.5. 연습문제</a></li>
 </ul>
             </nav>
         </div>
@@ -467,93 +471,160 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="deque">
-<span id="sec-deques"></span><h1><span class="section-number">4. </span>덱(Deque)<a class="headerlink" href="#deque" title="Link to this heading">#</a></h1>
-<p><strong>참고</strong></p>
-<p>아래 내용은 <a class="reference external" href="https://runestone.academy/ns/books/published/pythonds3/index.html">Problem Solving with Algorithms and Data Structures using Python</a>의 3장 내용을
-일부 활용한다.</p>
-<section id="id1">
-<h2><span class="section-number">4.1. </span>덱의 정의<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
-<p><strong>덱</strong>(deque)은 큐(queue)와 유사하게 작동하지만 큐와는 달리 항목의 추가와 삭제가
-머리와 꼬리 양쪽 끝 모두에서 처리된다.
-이런 의미에서 덱은 큐와 스택(stack)의 기능을 함께 제공하며
-어떻게 사용할 것인가는 사용자에 의해 결정된다.</p>
-<figure>
-<div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/basicdeque.png" width="70%"></div>
-</figure></section>
-<section id="id2">
-<h2><span class="section-number">4.2. </span><code class="docutils literal notranslate"><span class="pre">Deque</span></code> 추상 자료형<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
-<p>덱 추상 자료형을 구체적인 파이썬 자료구조(data structure)로
-구현하려면 갖추어야 하는 기본 속성과 기능은 다음과 같다.</p>
+<span id="sec-deques"></span><h1><span class="section-number">5. </span>덱<font size='2'>Deque</font><a class="headerlink" href="#deque" title="Link to this heading">#</a></h1>
+<p><strong>슬라이드</strong></p>
+<p>본문 내용을 요약한 <a class="reference external" href="https://github.com/codingalzi/algopy/raw/master/slides/slides-deques.pdf">슬라이드</a>를 다운로드할 수 있다.</p>
+<p><strong>주요 내용</strong></p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">Deque()</span></code>: 비어 있는 덱 생성.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">add_front(item)</span></code>: 머리에 새로운 항목 추가. 반환값 없음.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">add_rear(item)</span></code>: 꼬리에 새로운 항목 추가. 반환값 없음.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">remove_front()</span></code>: 머리 항목 삭제. 삭제된 항목 반환.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">remove_rear()</span></code>: 꼬리 항목 삭제. 삭제된 항목 반환.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">is_empty()</span></code>: 덱이 비었는지 여부 판단. 부울값 반환.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">size()</span></code>: 항목 개수 반환</p></li>
+<li><p>선형 자료구조</p></li>
+<li><p>덱 자료구조</p></li>
+<li><p>덱 활용</p></li>
 </ul>
-<p>아래 테이블은 덱 생성과 함께 다양한 덱 관련 연산의 작동법을 소개한다.
-항목들의 저장을 위해 리스트를 사용하며 머리는 리스트의 오른쪽 끝,
-꼬리는 왼쪽 끝으로 사용한다.</p>
+<section id="id1">
+<h2><span class="section-number">5.1. </span>선형 자료구조<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p><strong>선형 자료구조</strong><font size='2'>linear data structure</font>는
+여러 개의 항목을 순서에 맞춰 추가하고 삭제할 수 있는 자료구조를 가리킨다.
+항목의 추가/삭제 방식에 따라 서로 다르게 작동하며 일반적으로 다음 선형 자료구조가 활용된다.</p>
+<ul class="simple">
+<li><p>리스트<font size='2'>list</font></p></li>
+<li><p>덱<font size='2'>deque</font></p></li>
+<li><p>큐<font size='2'>queue</font></p></li>
+<li><p>스택<font size='2'>stack</font></p></li>
+<li><p>연결 리스트<font size='2'>linked list</font></p></li>
+<li><p>정렬 리스트<font size='2'>sorted list</font></p></li>
+</ul>
+<p>선형 자료구조의 양 끝인 머리와 꼬리를 부르는 이름이
+자료구조마다 다를 수 있다.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
-<tr class="row-odd"><th class="head"><p><strong>덱 연산</strong></p></th>
-<th class="head"><p><strong>덱 항목</strong></p></th>
-<th class="head"><p><strong>반환값</strong></p></th>
+<tr class="row-odd"><th class="head text-center"><p>양 끝</p></th>
+<th class="head text-left"><p>별칭</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">d</span> <span class="pre">=</span> <span class="pre">Deque()</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">[]</span></code></p></td>
-<td><p></p></td>
+<tr class="row-even"><td class="text-center"><p>머리</p></td>
+<td class="text-left"><p>헤드(head), 위(top), 앞(front)</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">d.is_empty()</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">[]</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">d.add_rear(4)</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">[4]</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">d.add_rear(&quot;dog&quot;)</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">['dog',</span> <span class="pre">4]</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">d.add_front(&quot;cat&quot;)</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">['dog',</span> <span class="pre">4,</span> <span class="pre">'cat']</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">d.add_front(True)</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">['dog',</span> <span class="pre">4,</span> <span class="pre">'cat',</span> <span class="pre">True]</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">d.size()</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">['dog',</span> <span class="pre">4,</span> <span class="pre">'cat',</span> <span class="pre">True]</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">4</span></code></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">d.is_empty()</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">['dog',</span> <span class="pre">4,</span> <span class="pre">'cat',</span> <span class="pre">True]</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">d.add_rear(8.4)</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">[8.4,'dog',</span> <span class="pre">4,</span> <span class="pre">'cat',</span> <span class="pre">True]</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">d.remove_rear()</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">['dog',</span> <span class="pre">4,</span> <span class="pre">'cat',</span> <span class="pre">True]</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">8.4</span></code></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">d.remove_front()</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">['dog',</span> <span class="pre">4,</span> <span class="pre">'cat']</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p></td>
+<tr class="row-odd"><td class="text-center"><p>꼬리</p></td>
+<td class="text-left"><p>테일(tail), 아래(bottom), 뒤(rear)</p></td>
 </tr>
 </tbody>
 </table>
 </div>
+<p>프로그래밍 언어에 따라 언급된 선형 자료구조의 일부가 지원된다.
+파이썬은 큐, 스택, 덱 자료구조를 제공한다.</p>
+<ul class="simple">
+<li><p>덱: <a class="reference external" href="https://docs.python.org/3/library/collections.html#collections.deque">collections</a> 모듈의
+<code class="docutils literal notranslate"><span class="pre">deque</span></code> 클래스</p></li>
+<li><p>큐와 스택: <a class="reference external" href="https://docs.python.org/3/library/queue.html">queue</a> 모듈의 <code class="docutils literal notranslate"><span class="pre">Queue</span></code> 클래스와 <code class="docutils literal notranslate"><span class="pre">LifoQueue</span></code> 클래스</p></li>
+</ul>
+<p>여기서는 덱, 큐, 스택을 추상 자료형으로 선언한 뒤에 직접 파이썬 클래스로 구현해본다.</p>
 </section>
-<section id="id3">
-<h2><span class="section-number">4.3. </span>덱 자료구조 구현<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<section id="id2">
+<h2><span class="section-number">5.2. </span>덱 추상 자료형<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p><strong>덱</strong><font size='2'>deque</font>은 항목의 빠른 추가와 삭제를 지원하는 선형 모음 자료형이다.
+덱은 리스트와 유사한 자료구조이지만 다음 측면에서 차이점이 존재한다.</p>
+<ul class="simple">
+<li><p>항목 추가와 삭제가 머리<font size='2'>head</font>와 꼬리<font size='2'>tail</font>에서만 이루어진다.</p></li>
+<li><p>항목의 추가와 삭제가 리스트의 <code class="docutils literal notranslate"><span class="pre">append()</span></code>, <code class="docutils literal notranslate"><span class="pre">pop()</span></code> 메서드보다 빠르다.</p></li>
+</ul>
+<p><div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/deque.png" width="100%"></div></p><section id="id3">
+<h3><span class="section-number">5.2.1. </span><code class="docutils literal notranslate"><span class="pre">Deque</span></code> 추상 클래스<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>덱 추상 클래스에 기본으로 포함되어야 하는 메서드는 다음과 같다.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>정의</p></th>
+<th class="head text-left"><p>기능</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">Deque</span></code></p></td>
+<td class="text-left"><p>덱 추상 클래스</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">append()</span></code></p></td>
+<td class="text-left"><p>머리에 새로운 항목 추가. 반환값 없음.</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">appendleft()</span></code></p></td>
+<td class="text-left"><p>꼬리에 새로운 항목 추가. 반환값 없음.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">pop()</span></code></p></td>
+<td class="text-left"><p>머리 항목 삭제. 삭제된 항목 반환</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">popleft()</span></code></p></td>
+<td class="text-left"><p>꼬리 항목 삭제. 삭제된 항목 반환.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>아래 코드의 <code class="docutils literal notranslate"><span class="pre">Deque</span></code> 클래스는 덱 추상 자료형을 구현한 추상 클래스다.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">_items</span></code> 인스턴스 변수: 덱에 포함되는 항목들을 리스트로 저장.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">append()</span></code>, <code class="docutils literal notranslate"><span class="pre">pop()</span></code> 인스턴스 메서드: 리스트의 <code class="docutils literal notranslate"><span class="pre">append()</span></code>, <code class="docutils literal notranslate"><span class="pre">pop()</span></code> 메서드 그대로 활용.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">appendleft()</span></code>, <code class="docutils literal notranslate"><span class="pre">popleft()</span></code> 인스턴스 메서드: 추상 메서드 상태로 둠.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Deque</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">items</span><span class="o">=</span><span class="p">[]):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_items</span> <span class="o">=</span> <span class="n">items</span>
+        
+    <span class="k">def</span> <span class="nf">append</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;머리에 항목 추가&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">appendleft</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;꼬리에 항목 추가&quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+    <span class="k">def</span> <span class="nf">pop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;머리 항목 삭제&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_items</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">popleft</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;꼬리 항목 삭제&quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="vs">
+<h3><span class="section-number">5.2.2. </span>추상 클래스 vs 구상 클래스<a class="headerlink" href="#vs" title="Link to this heading">#</a></h3>
+<p>추상 클래스 또한 인스터를 생성하는 데에 활용할 수 있다.
+하지만 아직 정의되지 않은 메서드를 실행하면 <code class="docutils literal notranslate"><span class="pre">NotImplementedError</span></code>가 발생한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">deque_adt</span> <span class="o">=</span> <span class="n">Deque</span><span class="p">()</span>
+
+<span class="n">deque_adt</span><span class="o">.</span><span class="n">appendleft</span><span class="p">(</span><span class="s2">&quot;덱 항목&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NotImplementedError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">45</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">deque_adt</span> <span class="o">=</span> <span class="n">Deque</span><span class="p">()</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">deque_adt</span><span class="o">.</span><span class="n">appendleft</span><span class="p">(</span><span class="s2">&quot;덱 항목&quot;</span><span class="p">)</span>
+
+<span class="nn">Cell In[43], line 13,</span> in <span class="ni">Deque.appendleft</span><span class="nt">(self, item)</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="k">def</span> <span class="nf">appendleft</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">12</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;꼬리에 항목 추가&quot;&quot;&quot;</span>
+<span class="ne">---&gt; </span><span class="mi">13</span>     <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+<span class="ne">NotImplementedError</span>: 
+</pre></div>
+</div>
+</div>
+</div>
+<p>이렇듯 추상 자료형을 구체화시킨 객체를 추상 클래스의 인스턴스로 정의해서는 제대로 활용할 수 없다.
+이유는 추상 클래스에 포함된 추상 메서드가 제대로 구현되지 않았기 때문이다.
+따라서 포함된 모든 추상 메서드가 제대로 구현된 구상 클래스를 먼저 구현해야 한다.
+<strong>구상 클래스</strong><font size='2'>concrete class</font>는 포함된 모든 메서드의 본문이 제대로 구현된 클래스를 가리킨다.</p>
+</section>
+</section>
+<section id="id4">
+<h2><span class="section-number">5.3. </span>덱 자료구조 구현<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
 <p>리스트를 활용할 때 중요한 것은 머리와 꼬리를 어디로 설정하는가이다.
 큐의 경우처럼 꼬리는 리스트의 시작, 머리는 리스트의 오른편 끝으로 정하며
 이에 따라 항목 추가와 삭제 함수를 적절하게 구현한다.</p>
@@ -573,70 +644,56 @@ document.write(`
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Deque</span><span class="p">:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">deque</span><span class="p">(</span><span class="n">Deque</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;리스트를 활용한 덱 구현&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">items</span><span class="o">=</span><span class="p">[]):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;새로운 덱 생성&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_items</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">items</span><span class="p">)</span>
     
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;덱 표기법: &lt;~[1, 2, 3]~&gt; 등등&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;&lt;~</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_items</span><span class="si">}</span><span class="s2">~&gt;&quot;</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;deque(</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_items</span><span class="si">}</span><span class="s2">)&quot;</span>
     
-    <span class="k">def</span> <span class="nf">is_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;비었는지 여부 확인&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="ow">not</span> <span class="nb">bool</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_items</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">add_front</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">append</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;머리에 항목 추가&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">add_rear</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">appendleft</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;꼬리에 항목 추가&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_items</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">remove_front</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">pop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;머리 항목 삭제&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_items</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">remove_rear</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">popleft</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;꼬리 항목 삭제&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_items</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;항목 개수 확인&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_items</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span><span class="o">=</span><span class="n">Deque</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">is_empty</span><span class="p">())</span>
-<span class="n">d</span><span class="o">.</span><span class="n">add_rear</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
-<span class="n">d</span><span class="o">.</span><span class="n">add_rear</span><span class="p">(</span><span class="s1">&#39;dog&#39;</span><span class="p">)</span>
-<span class="n">d</span><span class="o">.</span><span class="n">add_front</span><span class="p">(</span><span class="s1">&#39;cat&#39;</span><span class="p">)</span>
-<span class="n">d</span><span class="o">.</span><span class="n">add_front</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span><span class="o">=</span><span class="n">deque</span><span class="p">([])</span>
+<span class="n">d</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">d</span><span class="o">.</span><span class="n">appendleft</span><span class="p">(</span><span class="s1">&#39;dog&#39;</span><span class="p">)</span>
+<span class="n">d</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;cat&#39;</span><span class="p">)</span>
+<span class="n">d</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">size</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">is_empty</span><span class="p">())</span>
-<span class="n">d</span><span class="o">.</span><span class="n">add_rear</span><span class="p">(</span><span class="mf">8.4</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">remove_rear</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">remove_front</span><span class="p">())</span>
+<span class="n">d</span><span class="o">.</span><span class="n">appendleft</span><span class="p">(</span><span class="mf">8.4</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">popleft</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">pop</span><span class="p">())</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
-&lt;~[&#39;dog&#39;, 4, &#39;cat&#39;, True]~&gt;
-4
-False
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>deque([&#39;dog&#39;, 4, &#39;cat&#39;, True])
 8.4
 True
-&lt;~[&#39;dog&#39;, 4, &#39;cat&#39;]~&gt;
+deque([&#39;dog&#39;, 4, &#39;cat&#39;])
 </pre></div>
 </div>
 </div>
@@ -649,7 +706,7 @@ True
 <p>웹브라우저의 ‘back’과 ‘forward’의 기능도 덱과 유사하게 작동한다.</p>
 </section>
 <section id="palindrome">
-<h2><span class="section-number">4.4. </span>실전 예제: 회문<font size='2'>palindrome</font> 판별기<a class="headerlink" href="#palindrome" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">5.4. </span>실전 예제: 회문<font size='2'>palindrome</font> 판별기<a class="headerlink" href="#palindrome" title="Link to this heading">#</a></h2>
 <p>‘radar’, ‘toot’, ‘madam’, ‘기러기’, ‘실습실’, ‘토마토’ 등 앞으로 읽으나 뒤로 읽으나 동일한 단어가 되는 단어 또는 문장을 <strong>회문</strong>(palindrome)이라 부른다.
 주어진 문자열의 회문 여부를 판별하려면 문자열을 덱(deque) 객체로 만든 다음에
 머리와 꼬리에 위치한 항목의 일치여부를 확인하면 된다.</p>
@@ -738,8 +795,8 @@ True
 </div>
 </div>
 </section>
-<section id="id4">
-<h2><span class="section-number">4.5. </span>연습문제<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<section id="id5">
+<h2><span class="section-number">5.5. </span>연습문제<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p><a class="reference external" href="https://colab.research.google.com/github/codingalzi/algopy/blob/master/excs/exc-deques.ipynb">(실습) 덱</a></p></li>
 </ol>
@@ -777,20 +834,20 @@ True
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="oop-adt.html"
+       href="deques.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">3. </span>추상 자료형과 자료구조</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>덱(Deque)</p>
       </div>
     </a>
     <a class="right-next"
-       href="deques_new.html"
+       href="queues.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">5. </span>덱<font size='2'>Deque</font></p>
+        <p class="prev-next-title"><span class="section-number">6. </span>큐(Queue)</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -810,11 +867,15 @@ True
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">4.1. 덱의 정의</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">4.2. <code class="docutils literal notranslate"><span class="pre">Deque</span></code> 추상 자료형</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">4.3. 덱 자료구조 구현</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#palindrome">4.4. 실전 예제: 회문<font size="2">palindrome</font> 판별기</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">4.5. 연습문제</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">5.1. 선형 자료구조</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">5.2. 덱 추상 자료형</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">5.2.1. <code class="docutils literal notranslate"><span class="pre">Deque</span></code> 추상 클래스</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vs">5.2.2. 추상 클래스 vs 구상 클래스</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">5.3. 덱 자료구조 구현</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#palindrome">5.4. 실전 예제: 회문<font size="2">palindrome</font> 판별기</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">5.5. 연습문제</a></li>
 </ul>
   </nav></div>
 

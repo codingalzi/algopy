@@ -13,6 +13,7 @@ parts:
     chapters:
     - file: oop-classes-objects
     - file: oop-inheritance
+    - file: oop-adt
   - caption: 선형 자료 구조
     numbered: True
     chapters:
