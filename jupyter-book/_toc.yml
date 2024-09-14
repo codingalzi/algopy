@@ -18,7 +18,6 @@ parts:
     numbered: True
     chapters:
     - file: deques
-    - file: deques_new
     - file: queues
     - file: stacks
   - caption: 알고리즘 시간 복잡도
