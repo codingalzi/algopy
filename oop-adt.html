@@ -6,8 +6,9 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Proof Index &#8212; 문제해결 알고리즘</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>3. 추상 자료형과 자료구조 &#8212; 문제해결 알고리즘</title>
   
   
   
@@ -57,18 +58,13 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'prf-prf';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'oop-adt';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-
+    <link rel="next" title="4. 덱Deque" href="deques.html" />
+    <link rel="prev" title="2. 상속" href="oop-inheritance.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-
-    <script>
-      DOCUMENTATION_OPTIONS.COLLAPSE_INDEX = true;
-    </script>
-
-
   </head>
   
   
@@ -129,8 +125,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -173,10 +167,10 @@
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">파이썬 클래스와 추상 자료형</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="oop-classes-objects.html">1. 클래스, 인스턴스, 객체</a></li>
 <li class="toctree-l1"><a class="reference internal" href="oop-inheritance.html">2. 상속</a></li>
-<li class="toctree-l1"><a class="reference internal" href="oop-adt.html">3. 추상 자료형과 자료구조</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">3. 추상 자료형과 자료구조</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">선형 자료 구조</span></p>
 <ul class="nav bd-sidenav">
@@ -273,6 +267,37 @@
 
 
 
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/codingalzi/algopy/blob/master/jupyter-book/oop-adt.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-source-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
     <i class="fab fa-github"></i>
@@ -298,7 +323,7 @@
       
       
       
-      <li><a href="https://github.com/codingalzi/algopy/issues/new?title=Issue%20on%20page%20%2Fprf-prf.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/codingalzi/algopy/issues/new?title=Issue%20on%20page%20%2Foop-adt.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -310,6 +335,54 @@
   </span>
 <span class="btn__text-container">Open issue</span>
 </a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/oop-adt.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
 </li>
       
   </ul>
@@ -351,7 +424,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -362,11 +437,21 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1></h1>
+    <h1>추상 자료형과 자료구조</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3.1. 자료 구조</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">3.2. 코드 추상화</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">3.3. 추상 클래스, 추상 메서드, 자료구조</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -376,60 +461,126 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1><span class="section-number">3. </span>추상 자료형과 자료구조<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p>알고리즘은 하나의 특정 프로그래밍언어로만 구현될 수 있는 것은 아니다.
+실제로 하나의 프로그래밍언어로 구현될 수 있는 알고리즘은
+일반적으로 다른 프로그래밍언어로도 구현될 수 있다.
+다만 사용되는 프로그래밍언어의 특성에 따라 구현 방식이 달라지고,
+그에 따라 성능 또한 다를 수 있다.</p>
+<p>주어진 문제를 해결하는 알고리즘을 특정 프로그래밍언어로 구현하려면 다음 두 가지가 요구된다.</p>
+<ul class="simple">
+<li><p>문제의 사례들을 표현하는 데에 필요한 <strong>자료 구조</strong></p></li>
+<li><p>알고리즘에 포함된 <strong>단계</strong>를 묘사할 수 있는 <strong>명령문</strong></p></li>
+</ul>
+<section id="id2">
+<h2><span class="section-number">3.1. </span>자료 구조<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>대부분의 프로그래밍언어는 아래 데이터들에 대한 자료 구조와 함께
+관련 연산자를 제공한다.
+예를 들어 사칙 연산자와 논리 연산자 등이 기본으로 포함된다.</p>
+<ul class="simple">
+<li><p>정수</p></li>
+<li><p>부동소수점</p></li>
+<li><p>부울값</p></li>
+<li><p>리스트/어레이</p></li>
+<li><p>튜플</p></li>
+<li><p>문자열</p></li>
+</ul>
+<p>반면에 원하는 결과를 생성하기 위한 명령문은 다음과 같다.</p>
+<ul class="simple">
+<li><p>변수 할당</p></li>
+<li><p>조건문: <code class="docutils literal notranslate"><span class="pre">if...else...</span></code> 등</p></li>
+<li><p>반복문: <code class="docutils literal notranslate"><span class="pre">for</span></code>, <code class="docutils literal notranslate"><span class="pre">while</span></code> 등</p></li>
+</ul>
+<p>원칙적으로는 앞서 언급된 기본 자료 구조와 명령문만을 이용하여 모든 계산 가능한 문제를 해결할 수 있다.
+하지만 복잡한 문제를 보다 효율적인 알고리즘으로 해결하려면
+코드 추상화와 함께 고성능의 자료 구조가 요구된다.</p>
+</section>
+<section id="id3">
+<h2><span class="section-number">3.2. </span>코드 추상화<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>프로그래밍에서는 많은 종류의 코드 추상화를 사용하지만
+여기서는 절차 추상화와 데이터 추상화 두 종류만 언급한다.</p>
+<p><strong>절차 추상화</strong></p>
+<p>계산 가능한 문제를 해결하는 알고리즘은 적절한 <strong>API</strong>(Application Programming Interface)를
+조합하여 작성한다.
+하지만 각각의 API를 어떻게 구현하는가는 여기서는 관심대상이 아니다.</p>
+<p>예를 들어, 제곱근을 계산하는 함수 <code class="docutils literal notranslate"><span class="pre">sqrt()</span></code>는 <code class="docutils literal notranslate"><span class="pre">math</span></code> 모듈에 정의되어 있으며 아래와 같이 활용할 수 있다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
 
-   <h1>Proof Index</h1>
+<span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>즉, <code class="docutils literal notranslate"><span class="pre">sqrt()</span></code> 함수가 어떻게 정의되었는가는 모른 채
+제곱근을 계산하는 함수라는 사실과 어떻게 활용하는가를 알기만 하면 된다.</p>
+<p><div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/notebooks/pythonds01-Introduction/Figures/blackbox.png" width="60%"></div></p><p>이와 같이 해당 함수가 어떻게 구현되었는지 알지 못하더라도
+함수의 기능만 알면 누구나 쉽게 활용할 수 있도록
+프로그램을 구현하는 과정을
+<strong>절차 추상화</strong><font size='2'>procedural abstraction</font>라 부른다.</p>
+<p><strong>데이터 추상화</strong></p>
+<p><strong>추상 자료형</strong><font size='2'>Abstract data type</font>(ADT)은
+특정 종류의 데이터와 그 데이터를 다루는
+API들을 하나로 묶어 다루는 방법을 묘사한다.
+추상 자료형을 이용하여 적절한 자료 구조를 정의하는 기법이
+<strong>데이터 추상화</strong><font size='2'>data abstraction</font>다.</p>
+<p>사용자의 입장에서 추상 자료형을 어떻게 직접 구현했는가는 중요하지 않다.
+대신에 해당 추상 자료형이 나타내는 데이터가 무엇을 표현하며 관련 API의 기능을
+어떻게 활용할 수 있는가만 알면 된다.
+그러면 나머지는 해당 추상 자료형을 구현한 객체가 제공하는
+인터페이스를 통해 해당 객체를 활용할 수 있다.</p>
+<p>추상 자료형이 데이터와 함께 관련 API를 하나로 묶어 처리한다는 의미에서
+데이터 추상화를 <strong>데이터 캡슐화</strong><font size='2'>data encapsulation</font>라고 부르기도 한다.</p>
+<div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/notebooks/pythonds01-Introduction/Figures/adt.png" width="40%"></div>   </section>
+<section id="id4">
+<h2><span class="section-number">3.3. </span>추상 클래스, 추상 메서드, 자료구조<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<p><strong>추상 클래스</strong><font size='2'>abstract class</font>는
+추상 자료형에서 명시된 값의 저장 방식과 저장된 값들을 처리하는 필수 기능을 담당하는 메서드 일부를
+구체적으로 구현하지 않은 채로 선언하는 클래스다.
+이때 본문이 구현되지 않은채로 선언되는 메서드를
+<strong>추상 메서드</strong><font size='2'>abstract method</font>라 부른다.</p>
+<p>반면에 <strong>자료구조</strong><font size='2'>data structure</font>는 추상 클래스를 상속하면서
+동시에 구현되지 않은 메서드를 모두 구체적으로 구현한 클래스다.
+즉, 추상 자료형에서 묘사된 모든 기능을
+실제로 활용될 수 있도록 구현해야 한다.</p>
+<p>추상 자료형과 자료 구조를 분리해서 다루는 이유는
+데이터 추상화를 이용하면 다루고자 하는 데이터의 기본 속성과 사용법의 핵심을 보다
+쉽게 전달할 수 있기 때문이다.
+해당 추상 자료형을 어떻게 하나의 자료 구조로 구현할 것인가는
+경우에 따라 부차적인 문제일 수 있다.</p>
+<p>물론 문제를 해결하는 알고리즘을 구현하려면 적절한 추상 자료형을
+구체적인 자료 구조로 구현해야 한다.
+하지만 구현된 자료 구조의 활용법은 해당 추상 자료형의 기본 속성과 API들의 기능을
+이해하는 것으로 쉽게 이해될 수 있다.</p>
+</section>
+</section>
 
-   <div class="modindex-jumpbox">
-   <a href="#cap-exp-change"><strong>exp-change</strong></a> | 
-   <a href="#cap-exp-graph_spanningtree"><strong>exp-graph_spanningtree</strong></a> | 
-   <a href="#cap-exp-matrix-product"><strong>exp-matrix-product</strong></a> | 
-   <a href="#cap-exp-prim_idea"><strong>exp-prim_idea</strong></a> | 
-   <a href="#cap-exp-salesman"><strong>exp-salesman</strong></a>
-   </div>
-
-   <table class="indextable modindextable">
-     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-exp-change"><td></td><td>
-       <strong>exp-change</strong></td><td></td></tr>
-     <tr>
-       <td></td>
-       <td>
-       <a href="greedy_algorithm_1.html#exp-change"><code class="xref">exp-change</code></a> <em>(greedy_algorithm_1)</em></td><td>
-       <em>example</em></td></tr>
-     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-exp-graph_spanningtree"><td></td><td>
-       <strong>exp-graph_spanningtree</strong></td><td></td></tr>
-     <tr>
-       <td></td>
-       <td>
-       <a href="greedy_algorithm_1.html#exp-graph_spanningtree"><code class="xref">exp-graph_spanningtree</code></a> <em>(greedy_algorithm_1)</em></td><td>
-       <em>example</em></td></tr>
-     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-exp-matrix-product"><td></td><td>
-       <strong>exp-matrix-product</strong></td><td></td></tr>
-     <tr>
-       <td></td>
-       <td>
-       <a href="p_np.html#exp-matrix-product"><code class="xref">exp-matrix-product</code></a> <em>(p_np)</em></td><td>
-       <em>example</em></td></tr>
-     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-exp-prim_idea"><td></td><td>
-       <strong>exp-prim_idea</strong></td><td></td></tr>
-     <tr>
-       <td></td>
-       <td>
-       <a href="greedy_algorithm_1.html#exp-prim_idea"><code class="xref">exp-prim_idea</code></a> <em>(greedy_algorithm_1)</em></td><td>
-       <em>example</em></td></tr>
-     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-exp-salesman"><td></td><td>
-       <strong>exp-salesman</strong></td><td></td></tr>
-     <tr>
-       <td></td>
-       <td>
-       <a href="p_np.html#exp-salesman"><code class="xref">exp-salesman</code></a> <em>(p_np)</em></td><td>
-       <em>example</em></td></tr>
-   </table>
-
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
 
                 </article>
               
@@ -441,12 +592,47 @@ document.write(`
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="oop-inheritance.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>상속</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="deques.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>덱<font size='2'>Deque</font></p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3.1. 자료 구조</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">3.2. 코드 추상화</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">3.3. 추상 클래스, 추상 메서드, 자료구조</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

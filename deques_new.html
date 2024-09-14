@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>4. 덱Deque &#8212; 문제해결 알고리즘</title>
+    <title>5. 덱Deque &#8212; 문제해결 알고리즘</title>
   
   
   
@@ -58,11 +58,11 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'deques';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'deques_new';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="5. 큐(Queue)" href="queues.html" />
-    <link rel="prev" title="3. 추상 자료형과 자료구조" href="oop-adt.html" />
+    <link rel="next" title="6. 큐(Queue)" href="queues.html" />
+    <link rel="prev" title="4. 덱(Deque)" href="deques.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -174,53 +174,54 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">선형 자료 구조</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">4. 덱<font size="2">Deque</font></a></li>
-<li class="toctree-l1"><a class="reference internal" href="queues.html">5. 큐(Queue)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="stacks.html">6. 스택(Stack)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deques.html">4. 덱(Deque)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">5. 덱<font size="2">Deque</font></a></li>
+<li class="toctree-l1"><a class="reference internal" href="queues.html">6. 큐(Queue)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stacks.html">7. 스택(Stack)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">알고리즘 시간 복잡도</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="time_complexity.html">7. 시간 복잡도</a></li>
-<li class="toctree-l1"><a class="reference internal" href="orders.html">8. 차수</a></li>
-<li class="toctree-l1"><a class="reference internal" href="python_list_dict.html">9. 파이썬 모음 자료형 분석</a></li>
+<li class="toctree-l1"><a class="reference internal" href="time_complexity.html">8. 시간 복잡도</a></li>
+<li class="toctree-l1"><a class="reference internal" href="orders.html">9. 차수</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_list_dict.html">10. 파이썬 모음 자료형 분석</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">재귀</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="recursive_functions_1.html">10. 재귀 함수</a></li>
-<li class="toctree-l1"><a class="reference internal" href="recursive_functions_2.html">11. 재귀 시각화</a></li>
-<li class="toctree-l1"><a class="reference internal" href="hanoi_tower.html">12. 하노이의 탑과 미로게임</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recursive_functions_1.html">11. 재귀 함수</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recursive_functions_2.html">12. 재귀 시각화</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hanoi_tower.html">13. 하노이의 탑과 미로게임</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">탐색과 정렬</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="sort_search_1.html">13. 탐색과 분할 정복</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sort_search_2.html">14. 버블/선택/합병/퀵 정렬</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sort_search_3.html">15. 깊이 우선 vs. 너비 우선</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sort_search_1.html">14. 탐색과 분할 정복</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sort_search_2.html">15. 버블/선택/합병/퀵 정렬</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sort_search_3.html">16. 깊이 우선 vs. 너비 우선</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">트리, 힙, 맵</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="trees_heaps_maps_1.html">16. 트리(Tree)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="trees_heaps_maps_2.html">17. 힙(Heap)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="trees_heaps_maps_3.html">18. 맵(Map)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trees_heaps_maps_1.html">17. 트리(Tree)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trees_heaps_maps_2.html">18. 힙(Heap)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trees_heaps_maps_3.html">19. 맵(Map)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">동적계획법</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="dynamic_programming_1.html">19. 최적화 문제와 동적계획법</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dynamic_programming_2.html">20. 플로이드-워셜 알고리즘</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dynamic_programming_1.html">20. 최적화 문제와 동적계획법</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dynamic_programming_2.html">21. 플로이드-워셜 알고리즘</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">탐욕 기법</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="greedy_algorithm_1.html">21. 최소비용 신장트리</a></li>
-<li class="toctree-l1"><a class="reference internal" href="greedy_algorithm_2.html">22. 다익스트라 알고리즘</a></li>
-<li class="toctree-l1"><a class="reference internal" href="greedy_algorithm_3.html">23. 탐욕 기법 대 동적계획법</a></li>
+<li class="toctree-l1"><a class="reference internal" href="greedy_algorithm_1.html">22. 최소비용 신장트리</a></li>
+<li class="toctree-l1"><a class="reference internal" href="greedy_algorithm_2.html">23. 다익스트라 알고리즘</a></li>
+<li class="toctree-l1"><a class="reference internal" href="greedy_algorithm_3.html">24. 탐욕 기법 대 동적계획법</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">되추적 기법과 제네릭 프로그래밍</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="backtracking.html">24. 되추적 기법</a></li>
-<li class="toctree-l1"><a class="reference internal" href="generic_programming.html">25. 제네릭 프로그래밍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="backtracking.html">25. 되추적 기법</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generic_programming.html">26. 제네릭 프로그래밍</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">NP 이론</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="p_np.html">26. P-NP 문제</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p_np.html">27. P-NP 문제</a></li>
 </ul>
 
     </div>
@@ -275,7 +276,7 @@
       
       
       
-      <li><a href="https://colab.research.google.com/github/codingalzi/algopy/blob/master/jupyter-book/deques.ipynb" target="_blank"
+      <li><a href="https://colab.research.google.com/github/codingalzi/algopy/blob/master/jupyter-book/deques_new.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch on Colab"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -323,7 +324,7 @@
       
       
       
-      <li><a href="https://github.com/codingalzi/algopy/issues/new?title=Issue%20on%20page%20%2Fdeques.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/codingalzi/algopy/issues/new?title=Issue%20on%20page%20%2Fdeques_new.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -353,7 +354,7 @@
       
       
       
-      <li><a href="_sources/deques.ipynb" target="_blank"
+      <li><a href="_sources/deques_new.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -447,15 +448,15 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">4.1. 선형 자료구조</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">4.2. 덱 추상 자료형</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">4.2.1. <code class="docutils literal notranslate"><span class="pre">Deque</span></code> 추상 클래스</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vs">4.2.2. 추상 클래스 vs 구상 클래스</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">5.1. 선형 자료구조</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">5.2. 덱 추상 자료형</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">5.2.1. <code class="docutils literal notranslate"><span class="pre">Deque</span></code> 추상 클래스</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vs">5.2.2. 추상 클래스 vs 구상 클래스</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">4.3. 덱 자료구조 구현</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#palindrome">4.4. 회문<font size="2">palindrome</font> 판별기</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">4.5. 연습문제</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">5.3. 덱 자료구조 구현</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#palindrome">5.4. 실전 예제: 회문<font size="2">palindrome</font> 판별기</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">5.5. 연습문제</a></li>
 </ul>
             </nav>
         </div>
@@ -468,7 +469,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="deque">
-<span id="sec-deques"></span><h1><span class="section-number">4. </span>덱<font size='2'>Deque</font><a class="headerlink" href="#deque" title="Link to this heading">#</a></h1>
+<span id="sec-deques"></span><h1><span class="section-number">5. </span>덱<font size='2'>Deque</font><a class="headerlink" href="#deque" title="Link to this heading">#</a></h1>
 <p><strong>슬라이드</strong></p>
 <p>본문 내용을 요약한 <a class="reference external" href="https://github.com/codingalzi/algopy/raw/master/slides/slides-deques.pdf">슬라이드</a>를 다운로드할 수 있다.</p>
 <p><strong>주요 내용</strong></p>
@@ -478,7 +479,7 @@ document.write(`
 <li><p>덱 활용</p></li>
 </ul>
 <section id="id1">
-<h2><span class="section-number">4.1. </span>선형 자료구조<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">5.1. </span>선형 자료구조<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
 <p><strong>선형 자료구조</strong><font size='2'>linear data structure</font>는
 여러 개의 항목을 순서에 맞춰 추가하고 삭제할 수 있는 자료구조를 가리킨다.
 항목의 추가/삭제 방식에 따라 서로 다르게 작동하며 일반적으로 다음 선형 자료구조가 활용된다.</p>
@@ -518,7 +519,7 @@ document.write(`
 <p>여기서는 덱, 큐, 스택을 추상 자료형으로 선언한 뒤에 직접 파이썬 클래스로 구현해본다.</p>
 </section>
 <section id="id2">
-<h2><span class="section-number">4.2. </span>덱 추상 자료형<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">5.2. </span>덱 추상 자료형<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
 <p><strong>덱</strong><font size='2'>deque</font>은 항목의 빠른 추가와 삭제를 지원하는 선형 모음 자료형이다.
 덱은 리스트와 유사한 자료구조이지만 다음 측면에서 차이점이 존재한다.</p>
 <ul class="simple">
@@ -526,7 +527,7 @@ document.write(`
 <li><p>항목의 추가와 삭제가 리스트의 <code class="docutils literal notranslate"><span class="pre">append()</span></code>, <code class="docutils literal notranslate"><span class="pre">pop()</span></code> 메서드보다 빠르다.</p></li>
 </ul>
 <p><div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/deque.png" width="100%"></div></p><section id="id3">
-<h3><span class="section-number">4.2.1. </span><code class="docutils literal notranslate"><span class="pre">Deque</span></code> 추상 클래스<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">5.2.1. </span><code class="docutils literal notranslate"><span class="pre">Deque</span></code> 추상 클래스<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
 <p>덱 추상 클래스에 기본으로 포함되어야 하는 메서드는 다음과 같다.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -591,7 +592,7 @@ document.write(`
 </div>
 </section>
 <section id="vs">
-<h3><span class="section-number">4.2.2. </span>추상 클래스 vs 구상 클래스<a class="headerlink" href="#vs" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">5.2.2. </span>추상 클래스 vs 구상 클래스<a class="headerlink" href="#vs" title="Link to this heading">#</a></h3>
 <p>추상 클래스 또한 인스터를 생성하는 데에 활용할 수 있다.
 하지만 아직 정의되지 않은 메서드를 실행하면 <code class="docutils literal notranslate"><span class="pre">NotImplementedError</span></code>가 발생한다.</p>
 <div class="cell docutils container">
@@ -626,7 +627,7 @@ document.write(`
 </section>
 </section>
 <section id="id4">
-<h2><span class="section-number">4.3. </span>덱 자료구조 구현<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">5.3. </span>덱 자료구조 구현<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
 <p>리스트를 선형 자료구조로 활용할 때 가장 중요한 요소는 머리와 꼬리의 지정이다.
 앞서 <code class="docutils literal notranslate"><span class="pre">Deque</span></code> 추상 클래스를 정의할 때 리스트를 이용하여 항목들을 저장하는 방식을 선택하였으며,
 덱의 머리에서 항목의 추가와 삭제를 실행하기 위해 리스트의 <code class="docutils literal notranslate"><span class="pre">append()</span></code>와 <code class="docutils literal notranslate"><span class="pre">pop()</span></code> 메서드를 이용하였다.
@@ -691,7 +692,7 @@ deque([&#39;dog&#39;, 4, &#39;cat&#39;])
 </div>
 </section>
 <section id="palindrome">
-<h2><span class="section-number">4.4. </span>회문<font size='2'>palindrome</font> 판별기<a class="headerlink" href="#palindrome" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">5.4. </span>실전 예제: 회문<font size='2'>palindrome</font> 판별기<a class="headerlink" href="#palindrome" title="Link to this heading">#</a></h2>
 <p>앞으로 읽어도, 뒤로 읽어도 동일한 단어 또는 문장을 <strong>회문</strong><font size='2'>palindrome</font>이라 부른다.
 한글과 영어의 회문 예제는 다음과 같다.
 단, 쉼표, 느낌표, 물음표, 공백, 대소문자 여부 등은 무시한다.</p>
@@ -764,7 +765,7 @@ deque([&#39;dog&#39;, 4, &#39;cat&#39;])
 이를 위해 연습문제를 참고한다.</p>
 </section>
 <section id="id5">
-<h2><span class="section-number">4.5. </span>연습문제<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">5.5. </span>연습문제<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p><a class="reference external" href="https://colab.research.google.com/github/codingalzi/algopy/blob/master/excs/exc-deques.ipynb">(실습) 덱</a></p></li>
 </ol>
@@ -802,12 +803,12 @@ deque([&#39;dog&#39;, 4, &#39;cat&#39;])
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="oop-adt.html"
+       href="deques.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">3. </span>추상 자료형과 자료구조</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>덱(Deque)</p>
       </div>
     </a>
     <a class="right-next"
@@ -815,7 +816,7 @@ deque([&#39;dog&#39;, 4, &#39;cat&#39;])
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">5. </span>큐(Queue)</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>큐(Queue)</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -835,15 +836,15 @@ deque([&#39;dog&#39;, 4, &#39;cat&#39;])
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">4.1. 선형 자료구조</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">4.2. 덱 추상 자료형</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">4.2.1. <code class="docutils literal notranslate"><span class="pre">Deque</span></code> 추상 클래스</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vs">4.2.2. 추상 클래스 vs 구상 클래스</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">5.1. 선형 자료구조</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">5.2. 덱 추상 자료형</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">5.2.1. <code class="docutils literal notranslate"><span class="pre">Deque</span></code> 추상 클래스</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vs">5.2.2. 추상 클래스 vs 구상 클래스</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">4.3. 덱 자료구조 구현</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#palindrome">4.4. 회문<font size="2">palindrome</font> 판별기</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">4.5. 연습문제</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">5.3. 덱 자료구조 구현</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#palindrome">5.4. 실전 예제: 회문<font size="2">palindrome</font> 판별기</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">5.5. 연습문제</a></li>
 </ul>
   </nav></div>
 
