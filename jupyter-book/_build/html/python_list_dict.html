@@ -1013,6 +1013,23 @@ range 객체:		 0.04 초
 <p>리스트, 사전, 집합, 덱(deque) 등 파이썬 모음 자료형의 시간복잡도에 대한 최신 정보는
 <a class="reference external" href="http://wiki.python.org/moin/TimeComplexity">Time Complexity Wiki</a>에서
 확인할 수 있다.</p>
+<p><strong>참고</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">deque</span></code>를 선언할 때 꼬리는 리스트의 시작, 머리는 리스트의 오른편 끝으로 정하며
+이에 따라 항목 추가와 삭제 함수를 적절하게 구현하였다.</p>
+<ul class="simple">
+<li><p>머리</p>
+<ul>
+<li><p>항목 추가: 리스트의 <code class="docutils literal notranslate"><span class="pre">append(item)</span></code> 활용. 시간복잡도는 <span class="math notranslate nohighlight">\(O(1)\)</span>.</p></li>
+<li><p>항목 삭제: 리스트의 <code class="docutils literal notranslate"><span class="pre">pop()</span></code> 활용. 시간복잡도는 <span class="math notranslate nohighlight">\(O(1)\)</span>.</p></li>
+</ul>
+</li>
+<li><p>꼬리</p>
+<ul>
+<li><p>항목 추가: 리스트의 <code class="docutils literal notranslate"><span class="pre">insert(1,</span> <span class="pre">item)</span></code> 활용. 시간복잡도는 <span class="math notranslate nohighlight">\(O(n)\)</span>.</p></li>
+<li><p>항목 삭제: 리스트의 <code class="docutils literal notranslate"><span class="pre">pop(0)</span></code> 활용. 시간복잡도는 <span class="math notranslate nohighlight">\(O(n)\)</span>.</p></li>
+</ul>
+</li>
+</ul>
 </section>
 <section id="id9">
 <h2><span class="section-number">10.4. </span>연습문제<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
