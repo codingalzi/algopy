@@ -455,7 +455,7 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">4.3. 덱 자료구조 구현</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#collections-deque">4.4. <code class="docutils literal notranslate"><span class="pre">collections.deque</span></code> 클래스</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#palindrome">4.5. 회문<font size="2">palindrome</font> 판별기</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#palindrome">4.5. 덱 활용: 회문<font size="2">palindrome</font> 판별기</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">4.6. 연습문제</a></li>
 </ul>
             </nav>
@@ -520,10 +520,11 @@ document.write(`
 </section>
 <section id="id2">
 <h2><span class="section-number">4.2. </span>덱 추상 자료형<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
-<p><strong>덱</strong><font size='2'>deque</font>은 항목의 빠른 추가와 삭제를 지원하는 선형 모음 자료형이다.
+<p><strong>덱</strong><font size='2'>deque</font>은 double-ended queue의 줄임말이며,
+항목의 빠른 추가와 삭제를 지원하는 선형 모음 자료형이다.
 덱은 리스트와 유사한 자료구조이지만 다음 측면에서 차이점이 존재한다.</p>
 <ul class="simple">
-<li><p>항목 추가와 삭제가 머리<font size='2'>head</font>와 꼬리<font size='2'>tail</font>에서만 이루어진다.</p></li>
+<li><p>항목 추가와 삭제가 기본적으로 머리<font size='2'>head</font>와 꼬리<font size='2'>tail</font>에서만 이루어진다.</p></li>
 <li><p>항목의 추가와 삭제가 리스트의 <code class="docutils literal notranslate"><span class="pre">append()</span></code>, <code class="docutils literal notranslate"><span class="pre">pop()</span></code> 메서드보다 빠르다.</p></li>
 </ul>
 <p><div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/deque.png" width="100%"></div></p><section id="id3">
@@ -881,7 +882,7 @@ Wall time: 3.44 ms
 리스트 또는 <code class="docutils literal notranslate"><span class="pre">collections.deque</span></code> 중에 하나의 자료구조를 선택할 필요가 있다.</p>
 </section>
 <section id="palindrome">
-<h2><span class="section-number">4.5. </span>회문<font size='2'>palindrome</font> 판별기<a class="headerlink" href="#palindrome" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">4.5. </span>덱 활용: 회문<font size='2'>palindrome</font> 판별기<a class="headerlink" href="#palindrome" title="Link to this heading">#</a></h2>
 <p>앞으로 읽어도, 뒤로 읽어도 동일한 단어 또는 문장을 <strong>회문</strong><font size='2'>palindrome</font>이라 부른다.
 한글과 영어의 회문 예제는 다음과 같다.
 단, 쉼표, 느낌표, 물음표, 공백, 대소문자 여부 등은 무시한다.</p>
@@ -1032,7 +1033,7 @@ Wall time: 3.44 ms
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">4.3. 덱 자료구조 구현</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#collections-deque">4.4. <code class="docutils literal notranslate"><span class="pre">collections.deque</span></code> 클래스</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#palindrome">4.5. 회문<font size="2">palindrome</font> 판별기</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#palindrome">4.5. 덱 활용: 회문<font size="2">palindrome</font> 판별기</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">4.6. 연습문제</a></li>
 </ul>
   </nav></div>
