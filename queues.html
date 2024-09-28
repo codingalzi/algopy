@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>5. 큐(Queue) &#8212; 문제해결 알고리즘</title>
+    <title>5. 큐Queue &#8212; 문제해결 알고리즘</title>
   
   
   
@@ -58,8 +58,6 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'queues';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -177,7 +175,7 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">선형 자료 구조</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="deques.html">4. 덱<font size="2">Deque</font></a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">5. 큐(Queue)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">5. 큐<font size="2">Queue</font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="stacks.html">6. 스택(Stack)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">알고리즘 시간 복잡도</span></p>
@@ -439,7 +437,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>큐(Queue)</h1>
+    <h1>큐<font size='2'>Queue</font></h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -449,13 +447,11 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">5.1. 선형 자료구조</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">5.2. 큐의 정의</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">5.3. <code class="docutils literal notranslate"><span class="pre">Queue</span></code> 추상 자료형</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">5.4. 큐 자료구조 구현</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">5.5. 실전 예제 1: 폭탄 돌리기</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">5.6. 실전 예제 2: 프린터 인쇄 모의실험</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">5.7. 연습 문제</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">5.1. 큐의 정의</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">5.2. <code class="docutils literal notranslate"><span class="pre">Queue</span></code> 추상 자료형</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">5.3. 큐 자료구조 구현</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">5.4. 큐 활용: 폭탄 돌리기 게임</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">5.5. 연습 문제</a></li>
 </ul>
             </nav>
         </div>
@@ -468,251 +464,143 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="queue">
-<span id="sec-queues"></span><h1><span class="section-number">5. </span>큐(Queue)<a class="headerlink" href="#queue" title="Link to this heading">#</a></h1>
-<p><strong>참고</strong></p>
-<p>아래 내용은 <a class="reference external" href="https://runestone.academy/ns/books/published/pythonds3/index.html">Problem Solving with Algorithms and Data Structures using Python</a>의 3장 내용을
-일부 활용한다.</p>
+<span id="sec-queues"></span><h1><span class="section-number">5. </span>큐<font size='2'>Queue</font><a class="headerlink" href="#queue" title="Link to this heading">#</a></h1>
 <p><strong>슬라이드</strong></p>
 <p>본문 내용을 요약한 <a class="reference external" href="https://github.com/codingalzi/algopy/raw/master/slides/slides-queues.pdf">슬라이드</a>를 다운로드할 수 있다.</p>
 <p><strong>주요 내용</strong></p>
 <ul class="simple">
-<li><p>선형 자료구조</p></li>
+<li><p>큐 추상 자료형</p></li>
 <li><p>큐 자료구조</p></li>
 <li><p>큐 활용</p></li>
 </ul>
 <section id="id1">
-<h2><span class="section-number">5.1. </span>선형 자료구조<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
-<p><strong>선형 자료구조</strong><font size='2'>linear data structure</font>는
-여러 개의 항목을 일렬로 나열하여 저장하며
-나열된 순서, 즉 저장된 위치가 중요한 역할을 수행한다.</p>
-<p>항목의 추가/삭제 방식에 따라 선형 자료구조가 다르게 작동하며 일반적으로 아래 6종류의 선형 자료구조가 활용된다.</p>
+<h2><span class="section-number">5.1. </span>큐의 정의<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>항목 추가는 꼬리에서, 항목 삭제는 머리에서 이루어지는 선형 자료형을
+<strong>큐</strong><font size='2'>queue</font>라 부른다.
+아래 그림에서 보여지는 것처럼 먼저 들어온 항목이 먼저 나간다는
+<strong>선입선출</strong><font size='2'>first in first out</font>(FIFO) 원리를 따른다.
+즉 항목의 삭제는 추가된 순서대로 진행된다.</p>
+<p><div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/fifo.png" width="50%"></div></p><p>큐 자료형은 다음 예제들처럼 다양한 영역에서 이루어진다.</p>
 <ul class="simple">
-<li><p>큐<font size='2'>queue</font></p></li>
-<li><p>스택<font size='2'>stack</font></p></li>
-<li><p>덱<font size='2'>deque</font></p></li>
-<li><p>연결 리스트<font size='2'>linked list</font></p></li>
-<li><p>정렬 리스트<font size='2'>sorted list</font></p></li>
+<li><p>은행: 대기 순서에 따른 번호표 배분</p></li>
+<li><p>프린터: 순서에 따른 서류 인쇄</p></li>
+<li><p>키보드 입력: 키보드 입력값을 버퍼<font size='2'>buffer</font>에 잠시 저장한 다음에 처리 입력 순서대로 처리</p></li>
+<li><p>컴퓨터 CPU: 사용자 명령을 순차적으로 처리</p></li>
 </ul>
-<p>선형 자료구조의 양 끝을 부르는 이름이
-자료구조마다 다를 수 있다.</p>
-<ul class="simple">
-<li><p>머리: 헤드(head), 탑(top), 프론트(front)</p></li>
-<li><p>꼬리: 테일(tail), 바틈(bottom), 리어(rear)</p></li>
-</ul>
-<p>파이썬은 큐, 스택, 덱 자료구조를 제공한다.</p>
-<ul class="simple">
-<li><p>큐와 스택: <a class="reference external" href="https://docs.python.org/3/library/queue.html">queue</a> 모듈의 <code class="docutils literal notranslate"><span class="pre">Queue</span></code> 클래스와 <code class="docutils literal notranslate"><span class="pre">LifoQueue</span></code> 클래스</p></li>
-<li><p>덱: <a class="reference external" href="https://docs.python.org/3/library/collections.html#collections.deque">collections</a> 모듈의
-<code class="docutils literal notranslate"><span class="pre">deque</span></code> 클래스</p></li>
-</ul>
-<p>여기서는 큐, 스택, 덱을 추상자료형으로 선언하고 직접 파이썬 클래스로 구현해본다.</p>
 </section>
 <section id="id2">
-<h2><span class="section-number">5.2. </span>큐의 정의<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
-<p>항목 추가는 <strong>꼬리</strong><font size='2'>rear, tail</font>에서, 항목 삭제는
-<strong>머리</strong><font size='2'>front, head</font>에서
-이루어지며, 입력된 순서대로 머리에서부터 하나씩 삭제되는 모음 자료형을
-<strong>큐</strong><font size='2'>queue</font>라 부른다.</p>
-<p>아래 그림에서 보여지는 것처럼 먼저 들어온 항목이 먼저 나간다는 <strong>선입선출</strong><font size='2'>first in, first out</font>(FIFO) 원리를 따르며,
-항목들의 추가와 삭제는 입력 순서에 따라 한쪽 방향으로 이동하는 방식이
-철저하게 지켜진다.</p>
-<figure>
-<div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/basicqueue.png" width="55%"></div>
-</figure><p>큐의 활용은 다양하게 이루어진다.
-예를 들어, 은행 창구에서 번호표 배분하는 장치는 방문 순서대로 호출되며,
-프린터는 인쇄 과제가 생성된 순서대로 출력한다.
-또한 키보드를 이용하여 타이핑하면 버퍼(buffer)와 같은
-큐에 잠시 저장되어 있다가 순서대로 편집기에 표시되며,
-컴퓨터 CPU가 사용자가 내린 명령문을 처리하는 것 또한 특정 형식의 큐를 이용한다.</p>
-<p><strong>예제: 버퍼 활용</strong></p>
-<p>파이썬 <code class="docutils literal notranslate"><span class="pre">print()</span></code> 함수는 여러 개의 키워드 인자를 사용한다.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="nb">print</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Help on built-in function print in module builtins:
-
-print(*args, sep=&#39; &#39;, end=&#39;\n&#39;, file=None, flush=False)
-    Prints the values to a stream, or to sys.stdout by default.
-    
-    sep
-      string inserted between values, default a space.
-    end
-      string appended after the last value, default a newline.
-    file
-      a file-like object (stream); defaults to the current sys.stdout.
-    flush
-      whether to forcibly flush the stream.
-</pre></div>
-</div>
-</div>
-</div>
-<p>이중에 <code class="docutils literal notranslate"><span class="pre">end</span></code> 키워드는 지정된 문자열 출력후 기본적으로 줄바꿈을 실행하도록 되어 있다.
-그런데 예를 들어 아래 코드의 <code class="docutils literal notranslate"><span class="pre">end='</span> <span class="pre">'</span></code> 처럼 기본값을 변경하면 버퍼(buffer)에 출력할 값들을
-보관한 다음 마지막에 한꺼번에 쏟아내어 화면에 출력하도록 한다.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
-
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
-    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>아래 이미지는 터미널에서 위 코드를 실행한 결과를 보여준다.</p>
-<figure>
-<div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/notebooks/_images/print_buffer_2.gif" width="55%"></div>
-</figure>
-<p>&lt;이미지 출처: <a class="reference external" href="https://velog.io/&#64;janeljs/python-print-sep-end-file-flush">janeljs.log</a>&gt;</p>
-<p>이에 대한 해결책은 <code class="docutils literal notranslate"><span class="pre">flush=True</span></code>로 지정하는 것이다.
-그러면 한 개의 숫자씩 차례대로 출력한다.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
-
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-</pre></div>
-</div>
-</section>
-<section id="id3">
-<h2><span class="section-number">5.3. </span><code class="docutils literal notranslate"><span class="pre">Queue</span></code> 추상 자료형<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">5.2. </span><code class="docutils literal notranslate"><span class="pre">Queue</span></code> 추상 자료형<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
 <p>큐 추상 자료형을 구체적인 파이썬 자료구조(data structure)로
-구현할 때 요구되눈 기본 속성과 기능은 다음과 같다.</p>
+구현할 때 요구되는 기본 속성과 기능은 다음과 같다.</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">Queue(maxsize=0)</span></code>: 비어 있는 큐 생성. <code class="docutils literal notranslate"><span class="pre">maxsize</span></code>를 양의 정수로 지정하면 항목을 최대 그만큼 담을 수 있음.
-아니면 제한 없음.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">put(item)</span></code>: maxsize가 양의 정수이면서 항목을 추가하면 허용되는 항목의 수를 초과하는 경우
-먼저 머리(head, front)를 제거한 다음 새로운 항목을 꼬리(rear, tail)에 추가. 반환값 없음.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">get()</span></code>: 머리(head, front) 항목 삭제. 삭제된 항목 반환.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Queue(maxsize=0)</span></code>: 비어 있는 큐 생성. <code class="docutils literal notranslate"><span class="pre">maxsize</span></code>를 최대로 많이 담을 수 있는 항목의 수.
+0인 경우엔 항목 수 제한 없음.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">put(item)</span></code>: <code class="docutils literal notranslate"><span class="pre">maxsize</span></code>가 초과되지 않을 때 꼬리에 항목 추가</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get()</span></code>: 머리 항목을 삭제하면서 삭제하는 항목 반환.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">empty()</span></code>: 큐가 비었는지 여부 판단. 부울값 반환.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">full()</span></code>: 큐가 꽉 차 있는지 여부 판단. 부울값 반환.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">qsize()</span></code>: 큐에 포함된 항목 개수 반환.</p></li>
 </ul>
-<p>아래 테이블은 큐 생성과 함께 다양한 큐 관련 연산의 작동법을 소개한다.</p>
-<ul class="simple">
-<li><p>항목의 저장: 리스트 활용</p></li>
-<li><p>머리: 리스트의 마지막 인덱스</p></li>
-<li><p>꼬리: 리스트의 0번 인덱스</p></li>
-</ul>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head"><p><strong>큐 연산</strong></p></th>
-<th class="head"><p><strong>큐 항목</strong></p></th>
-<th class="head"><p><strong>반환값</strong></p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">q</span> <span class="pre">=</span> <span class="pre">Queue(maxsize=4)</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">[]</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">q.empty()</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">[]</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">q.put(4)</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">[4]</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">q.put(&quot;dog&quot;)</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">['dog',4]</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">q.put(True)</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">[True,</span> <span class="pre">'dog',</span> <span class="pre">4]</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">q.qsize()</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">[True,</span> <span class="pre">'dog',</span> <span class="pre">4]</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">3</span></code></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">q.empty()</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">[True,</span> <span class="pre">'dog',</span> <span class="pre">4]</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">q.put(8.4)</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">[8.4,</span> <span class="pre">True,</span> <span class="pre">'dog',</span> <span class="pre">4]</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">q.put('하나</span> <span class="pre">더?')</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">['하나</span> <span class="pre">더?',</span> <span class="pre">8.4,</span> <span class="pre">True,</span> <span class="pre">'dog']</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">q.get()</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">['하나</span> <span class="pre">더?',</span> <span class="pre">8.4,</span> <span class="pre">True]</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">'dog'</span></code></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">q.get()</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">['하나</span> <span class="pre">더?',</span> <span class="pre">8.4]</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">q.qsize()</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">['하나</span> <span class="pre">더?',</span> <span class="pre">8.4]</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">2</span></code></p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-<section id="id4">
-<h2><span class="section-number">5.4. </span>큐 자료구조 구현<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
-<p>리스트를 활용할 때 중요한 것은 머리와 꼬리를 어디로 설정하는가이다.
-앞서 본 것처럼 꼬리는 리스트의 시작, 머리는 리스트의 오른편 끝으로 정하며,
-이에 따라 <code class="docutils literal notranslate"><span class="pre">put()</span></code>와 <code class="docutils literal notranslate"><span class="pre">get()</span></code>를 정의하기 위해 리스트의
-<code class="docutils literal notranslate"><span class="pre">insert()</span></code>와 <code class="docutils literal notranslate"><span class="pre">pop()</span></code> 메서드를 활용한다.</p>
+<p><strong>Queue 추상 클래스</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Queue</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;리스트를 활용한 큐 구현&quot;&quot;&quot;</span>
-
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">maxsize</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;새로운 큐 생성&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">maxsize</span> <span class="o">=</span> <span class="n">maxsize</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_items</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        - 새로운 큐 생성</span>
+<span class="sd">        - maxsize: 최대 항목 수. 0은 무한대 의미.</span>
+<span class="sd">        - 저장 방식은 자식 클래스가 지정해야 함.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
     
-    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;큐 표기법: &lt;&lt;[1, 2, 3]&gt;&gt; 등등&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;&lt;&lt;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_items</span><span class="si">}</span><span class="s2">&gt;&gt;&quot;</span>
+    <span class="k">def</span> <span class="nf">qsize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;항목 수 반환&quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
     
     <span class="k">def</span> <span class="nf">empty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;비었는지 여부 확인&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="ow">not</span> <span class="nb">bool</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_items</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
 
     <span class="k">def</span> <span class="nf">full</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;maxsize 충족 여부 확인&quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">maxsize</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">False</span>
-        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">qsize</span><span class="p">()</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">maxsize</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">True</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
 
     <span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;꼬리에 항목 추가</span>
-<span class="sd">        - maxsize를 채웠을 경우 머리 항목 삭제 후 추가</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">full</span><span class="p">()</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-            
-        <span class="bp">self</span><span class="o">.</span><span class="n">_items</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;항목 추가&quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
 
     <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;머리 항목 삭제&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_items</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
-
-    <span class="k">def</span> <span class="nf">qsize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;항목 개수 확인&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_items</span><span class="p">)</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;항목 삭제&quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
 </pre></div>
 </div>
 </div>
 </div>
+</section>
+<section id="id3">
+<h2><span class="section-number">5.3. </span>큐 자료구조 구현<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>큐 자료구조를 선언할 때 항목의 저장방식과 머리와 꼬리를 어디로 설정하는가이다.
+<a class="reference internal" href="deques.html#sec-deques"><span class="std std-numref">4장</span></a>에서 <code class="docutils literal notranslate"><span class="pre">myDeque</span></code> 클래스를 선언할 때 사용한
+리스트는 꼬리에서의 항목 추가와 삭제가 느리편이다.
+따라서 여기서는 리스트 대신에 <code class="docutils literal notranslate"><span class="pre">collections.queue</span></code> 클래스를 이용한다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">(</span><span class="n">maxsize</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">deque</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">q</span><span class="o">.</span><span class="n">empty</span><span class="p">())</span>
+<span class="k">class</span> <span class="nc">myQueue</span><span class="p">(</span><span class="n">Queue</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">maxsize</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        - 새로운 큐 생성</span>
+<span class="sd">        - _maxsize: 최대 항목 수. 0은 무한대 의미.</span>
+<span class="sd">        - _container: 항목 저장 장치. collections 모듈의 queue 활용.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_maxsize</span> <span class="o">=</span> <span class="n">maxsize</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_container</span> <span class="o">=</span> <span class="n">deque</span><span class="p">([])</span>
+    
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;큐 표기법: queue([1, 2, 3]) 등등&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">repr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_container</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">qsize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;항목 수 반환&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_container</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">empty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;비었는지 여부 확인&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_container</span>
+
+    <span class="k">def</span> <span class="nf">full</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;_maxsize 충족 여부 확인&quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_maxsize</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">qsize</span><span class="p">()</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_maxsize</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>            
+
+    <span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        _maxsize를 못 채웠을 경우에만 항목 추가</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">full</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_container</span><span class="o">.</span><span class="n">appendleft</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;추가되지 않아요!&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;머리 항목 삭제 후 반환&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_container</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>아래 코드가 큐 객체를 생성하고 활용하는 간단한 작동법을 소개한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q</span> <span class="o">=</span> <span class="n">myQueue</span><span class="p">(</span><span class="n">maxsize</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
 <span class="n">q</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
 <span class="n">q</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="s2">&quot;dog&quot;</span><span class="p">)</span>
 <span class="n">q</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
@@ -733,340 +621,86 @@ print(*args, sep=&#39; &#39;, end=&#39;\n&#39;, file=None, flush=False)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
-&lt;&lt;[True, &#39;dog&#39;, 4]&gt;&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>deque([])
+deque([True, &#39;dog&#39;, 4])
 False
 3
 False
 True
-&lt;&lt;[8.4, True, &#39;dog&#39;, 4]&gt;&gt;
-&lt;&lt;[&#39;하나 더?&#39;, 8.4, True, &#39;dog&#39;]&gt;&gt;
+deque([8.4, True, &#39;dog&#39;, 4])
+추가되지 않아요!
+deque([8.4, True, &#39;dog&#39;, 4])
+4
 dog
-True
 2
-&lt;&lt;[&#39;하나 더?&#39;, 8.4]&gt;&gt;
+deque([8.4, True])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id4">
+<h2><span class="section-number">5.4. </span>큐 활용: 폭탄 돌리기 게임<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<p><strong>게임 소개</strong></p>
+<p>여러 명이 빙 둘러앉아 폭탄 돌리기 게임을 한다.
+폭탄을 계속 돌리다가 멈추는 순간 폭탄을 들고 있는 사람은 탈락된다.
+폭탄을 몇 번 돌리는가는 미리 지정하며 최종적으로 한 명이 남을 때까지 게임을 진행한다.
+아래 그림은 6명이 폭탄 돌리기 게임에 참여해서 폭탄을 5번 돌린 후
+폭탄을 갖고 있는 6번이 삭제 대상으로 지정되는 과정을 보여준다.</p>
+<p><div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/hotpotato.png" width="50%"></div></p><p><strong>게임 구현</strong></p>
+<p>폭탄 돌리기 게임을 큐를 이용하여 구현한다.
+게임 시작과 진행 과정에 필요한 사항들은 다음과 같다.</p>
+<ul class="simple">
+<li><p>게임 시작: 참여자들의 수 <code class="docutils literal notranslate"><span class="pre">player</span></code>와 폭탄 돌리기 횟수 <code class="docutils literal notranslate"><span class="pre">count</span></code></p></li>
+<li><p>폭탄 시작 위치: 큐의 머리</p></li>
+<li><p>폭탄 전달: 머리 항목 삭제 후 바로 꼬리에 추가</p></li>
+<li><p>탈락: <code class="docutils literal notranslate"><span class="pre">cout</span></code>번의 폭탄 돌리기 이후 머리에 위치한 사람 탈락</p></li>
+<li><p>게임 정지: 한 명이 남을 때까지 반복</p></li>
+</ul>
+<p><div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/namequeue.png" width="70%"></div></p><p>위 알고리즘을 함수로 구현하면 다음과 같다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">bomb_turn</span><span class="p">(</span><span class="n">player</span><span class="p">,</span> <span class="n">count</span><span class="p">):</span>
+
+    <span class="n">player_queue</span> <span class="o">=</span> <span class="n">myQueue</span><span class="p">()</span>
+    
+    <span class="c1"># 큐에 사람 목록 추가</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">player</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">player_queue</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+
+    <span class="c1"># 게임 진행</span>
+    <span class="k">while</span> <span class="n">player_queue</span><span class="o">.</span><span class="n">qsize</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="c1"># count번 폭탄 돌린 후 탈락자 지정</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">count</span><span class="p">):</span>
+            <span class="n">player_queue</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">player_queue</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
+
+        <span class="n">player_queue</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">player_queue</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>    <span class="c1"># 마지막 남은 사람</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>아래 코드는 폭탄을 5번 돌릴 때마다 탈락자를 정할 때
+마지막에 4번이 남는다는 것을 확인해준다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bomb_turn</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="id5">
-<h2><span class="section-number">5.5. </span>실전 예제 1: 폭탄 돌리기<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
-<p><strong>게임 소개</strong></p>
-<p>여러 명이 빙 둘러앉아 폭탄 돌리기 게임을 한다.
-폭탄을 계속 돌리다가 멈추는 순간 폭탄을 들고 있는 사람은 탈락된다.
-폭탄을 몇 번 돌리는가는 미리 지정하며 최종적으로 한 명이 남을 때까지 게임을 진행한다.</p>
-<figure>
-<div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/hotpotato.png" width="45%"></div>
-</figure><p><strong>게임 구현</strong></p>
-<p>폭탄 돌리기 게임을 큐를 이용하여 구현해보자.
-게임 시작과 진행 과정에 필요한 사항들은 다음과 같다.</p>
-<ul class="simple">
-<li><p>게임 시작: 사람들의 리스트(<code class="docutils literal notranslate"><span class="pre">name_list</span></code>)와 정수(<code class="docutils literal notranslate"><span class="pre">num</span></code>)</p></li>
-<li><p>폭탄 위치: 큐의 머리(리스트의 가장 오른편)에 있는 사람</p></li>
-<li><p>폭탄 전달: 머리 항목 삭제 후 바로 꼬리(리스트의 0번 인덱스 위치)에 추가</p></li>
-<li><p>탈락: <code class="docutils literal notranslate"><span class="pre">num</span></code>번의 폭탄 돌리기 이후 머리에 위치한 사람 탈락</p></li>
-<li><p>게임 정지: 한 명이 남을 때까지 반복</p></li>
-</ul>
-<figure>
-<div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/namequeue.png" width="60%"></div>
-</figure><p>위 알고리즘을 함수로 구현하면 다음과 같다.
-참고로, 폭탄 돌리기 게임을 영어로 Hot Potato 게임이라 한다.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">hot_potato</span><span class="p">(</span><span class="n">name_list</span><span class="p">,</span> <span class="n">num</span><span class="p">):</span>
-
-    <span class="n">sim_queue</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">()</span>
-    
-    <span class="c1"># 큐에 사람 목록 추가</span>
-    <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">name_list</span><span class="p">:</span>
-        <span class="n">sim_queue</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-
-    <span class="c1"># 게임 진행</span>
-    <span class="k">while</span> <span class="n">sim_queue</span><span class="o">.</span><span class="n">qsize</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="c1"># num 번 폭탄 돌린 후 탈락자 지정</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
-            <span class="n">sim_queue</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">sim_queue</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
-
-        <span class="n">sim_queue</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-
-    <span class="k">return</span> <span class="n">sim_queue</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>    <span class="c1"># 마지막 남은 사람</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>아래 코드는 폭탄을 7번 돌릴 때마다 탈락자를 정할 때
-마지막에 ‘은혜’가 남는다.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">hot_potato</span><span class="p">([</span><span class="s2">&quot;형택&quot;</span><span class="p">,</span> <span class="s2">&quot;진서&quot;</span><span class="p">,</span> <span class="s2">&quot;은혜&quot;</span><span class="p">,</span> <span class="s2">&quot;민규&quot;</span><span class="p">,</span> <span class="s2">&quot;정은&quot;</span><span class="p">,</span> <span class="s2">&quot;청용&quot;</span><span class="p">],</span> <span class="mi">7</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>은혜
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="id6">
-<h2><span class="section-number">5.6. </span>실전 예제 2: 프린터 인쇄 모의실험<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
-<p>여러 명이 함께 사용하는 실혐실 공용 프린터 한 대가 무작위적으로 입력되는 인쇄 작업을 수행할 때
-벌어지는 일을 모의실험한다.
-모의실험의 목적은 사용자가 인쇄 명령을 내리고 인쇄물을 받을 때까지 평균적으로 걸리는 시간을
-계산하는 일이다.</p>
-<figure>
-<div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/simulationsetup.png" width="60%"></div>
-</figure><p><strong>필요한 객체 확인</strong></p>
-<p>세 개의 객체를 사용한다.</p>
-<ul class="simple">
-<li><p>프린터 객체: <code class="docutils literal notranslate"><span class="pre">Printer</span></code> 클래스의 인스턴스. 프린터의 기본 기능 제공</p>
-<ul>
-<li><p>인쇄 속도: 분당 출력 쪽 수(ppm)</p></li>
-<li><p>프린터 상태: busy 또는 대기</p></li>
-<li><p>인쇄 과제 실행</p></li>
-<li><p>인쇄 과제별 수행 시간 측정</p></li>
-</ul>
-</li>
-<li><p>인쇄 과제 객체: <code class="docutils literal notranslate"><span class="pre">Task</span></code> 클래스의 인스턴스. 실행할 인쇄 과제 정보 저장</p>
-<ul>
-<li><p>출력 쪽 수</p></li>
-<li><p>인쇄 과제가 생성된 시간</p></li>
-<li><p>인쇄까지 대기 시간: 생성부터 인쇄 시작까지의 대기 시간</p></li>
-</ul>
-</li>
-<li><p>인쇄 큐 객체: <code class="docutils literal notranslate"><span class="pre">Queue</span></code> 클래스의 인스턴스</p>
-<ul>
-<li><p>인쇄 과제 대기 목록</p></li>
-</ul>
-</li>
-</ul>
-<p><strong>180분의 1의 확률</strong></p>
-<p>모의실험에 대한 추가 전제 사항이 있다.</p>
-<ul class="simple">
-<li><p>사람들이 무작위적으로 시간당 20건의 인쇄 명령 실행</p></li>
-<li><p>인쇄는 과제당 최대 20쪽까지 허용.</p></li>
-</ul>
-<p>위 전제조건은 확률적으로 180초에 한 번 인쇄 명령이 실행됨을 의미한다.</p>
-<div class="math notranslate nohighlight">
-\[
-\frac{20\, 건}{1\, 시간}
-\, = 
-\frac {20\, 건} {3600\, 초}=
-\frac {1\, 건} {180\, 초}
-\]</div>
-<p>즉 매 초마다 180분의 1 확률로 인쇄 명령이 실행되고,
-프린터는 하나의 인쇄 과제에 대해 1에서 20쪽 사이의 임의의 쪽 수를 인쇄해야 한다.</p>
-<p>이런 임의성을 구현하기 위해 지정된 구간에서 임의로 정수 하나를 선택하는 <code class="docutils literal notranslate"><span class="pre">random.randrange()</span></code> 함수를 이용한다.
-예를 들어, 1에서 180까지의 정수 중에 무작위로 5개의 값을 생성하려면 다음과 같이 실행한다.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
-
-<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">181</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>11
-123
-83
-38
-137
-</pre></div>
-</div>
-</div>
-</div>
-<p><code class="docutils literal notranslate"><span class="pre">randrange(1,181)</span></code>을 매 초마다 실행하여 생성된 값이 180인 경우에만 인쇄 과제를 생성하도록 하면
-초당 180분의 1로 어떤 사건이 발생하는 것을 모의실험할 수 있다.
-아래 <code class="docutils literal notranslate"><span class="pre">new_print_task()</span></code> 함수는 무작위로 생성된 값이 180인지를 확인한다.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">new_print_task</span><span class="p">():</span>
-    <span class="k">return</span> <span class="mi">180</span> <span class="o">==</span> <span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">181</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p><strong>모의실험</strong></p>
-<p>모의 실험에 두 개의 클래스가 필요하다.</p>
-<p><strong><code class="docutils literal notranslate"><span class="pre">Printer</span></code> 클래스</strong></p>
-<p>앞서 언급한 대로 <code class="docutils literal notranslate"><span class="pre">Printer</span></code> 클래스와 <code class="docutils literal notranslate"><span class="pre">Task</span></code> 클래스를 구현해야 한다.
-먼저 <code class="docutils literal notranslate"><span class="pre">Printer</span></code> 클래스가 가져야 하는 속성과 메서드는 다음과 같다.</p>
-<ul class="simple">
-<li><p>분당 출력 쪽 수</p></li>
-<li><p>다음 인쇄 과제 지정하기</p></li>
-<li><p>현재 실행 중인 인쇄 과제 확인</p></li>
-<li><p>수행중인 인쇄 과제의 남은 실행 시간동안 busy 상태 유지. 인쇄 과정을 간적접으로 묘사함.</p></li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Printer</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ppm</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">page_rate</span> <span class="o">=</span> <span class="n">ppm</span>                    <span class="c1"># 분당 출력 페이지 수</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">current_task</span> <span class="o">=</span> <span class="kc">None</span>                <span class="c1"># 수행 대상 인쇄 과제</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">time_remaining</span> <span class="o">=</span> <span class="mi">0</span>                 <span class="c1"># 수행 대상 인쇄 과제 출력에 걸리는 시간</span>
-
-    <span class="c1"># 수행중인 인쇄 과제를 출력하는 동안 busy 상태 유지</span>
-    <span class="c1"># 1초에 한 번 실행된다고 가정함</span>
-    <span class="k">def</span> <span class="nf">tick</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_task</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>     
-            <span class="bp">self</span><span class="o">.</span><span class="n">time_remaining</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_remaining</span> <span class="o">-</span> <span class="mi">1</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_remaining</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">current_task</span> <span class="o">=</span> <span class="kc">None</span>
-
-    <span class="k">def</span> <span class="nf">busy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>                              <span class="c1"># 프린터 상태</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_task</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-
-    <span class="k">def</span> <span class="nf">start_next</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_task</span><span class="p">):</span>              <span class="c1"># 다음 인쇄 과제 불러오기</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">current_task</span> <span class="o">=</span> <span class="n">new_task</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">time_remaining</span> <span class="o">=</span> <span class="n">new_task</span><span class="o">.</span><span class="n">get_pages</span><span class="p">()</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">page_rate</span>    <span class="c1"># 지정된 인쇄 과제 인쇄 시간 계산. 초단위.</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p><strong><code class="docutils literal notranslate"><span class="pre">Task</span></code> 클래스</strong></p>
-<p><code class="docutils literal notranslate"><span class="pre">Task</span></code> 클래스가 가져야 하는 속성과 메서드는 다음과 같다.</p>
-<ul class="simple">
-<li><p>인쇄 과제 생성 시간</p></li>
-<li><p>인쇄 대상 페이지 수: 1~20 사이의 무작위 수</p></li>
-<li><p>과제 생성 후 인쇄 시작까지 대기 시간</p></li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
-
-<span class="k">class</span> <span class="nc">Task</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">timestamp</span> <span class="o">=</span> <span class="n">time</span>                   <span class="c1"># 생성 시간</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">pages</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">21</span><span class="p">)</span>    <span class="c1"># 페이지 수</span>
-
-    <span class="k">def</span> <span class="nf">get_stamp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>                        <span class="c1"># 생성 시간 확인</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">timestamp</span>
-
-    <span class="k">def</span> <span class="nf">get_pages</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>                        <span class="c1"># 페이지 수 확인</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">pages</span>
-
-    <span class="k">def</span> <span class="nf">waiting_time</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">current_time</span><span class="p">):</span>          <span class="c1"># 대기 시간</span>
-        <span class="k">return</span> <span class="n">current_time</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">timestamp</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p><strong>모의실험 구현</strong></p>
-<p>모의실험은 매 초당 아래 과제를 수행하는 것으로 이루어진다.</p>
-<ol class="arabic simple">
-<li><p>초당 180분의 1의 확률로 인쇄 과제 생성</p>
-<ul class="simple">
-<li><p>생성된 시간 저장.
-나중에 프린터가 실행될 때의 시간을 확인하여 대기시간을 측정할 수 있도록 함.</p></li>
-<li><p>인쇄 과제 생성 후 바로 인쇄 과제 큐에 추가</p></li>
-</ul>
-</li>
-<li><p>프린터가 대기 상태이고 인쇄 과제 큐에 과제가 남아 있으면 아래 과제 수행</p>
-<ul class="simple">
-<li><p>인쇄 과제 큐의 헤드를 삭제하고 수행할 과제로 지정</p></li>
-<li><p>해당 과제의 대기 시간을 계산(현재 시간과 과제 생성시간의 차이)한 후에
-모든 과제의 대기 기간 리스트에 추가</p></li>
-<li><p>인쇄 과제의 인쇄 쪽 수를 확인한 후에 인쇄에 필요한 시간 계산.
-해당 시간 동안 프린터 상태가 <code class="docutils literal notranslate"><span class="pre">busy</span></code>로 표시되어 다음 인쇄 과제들은 큐에서 기다리게 됨.</p></li>
-<li><p>해당 인쇄 과제가 완수되면 대기 상태로 전환됨.</p></li>
-</ul>
-</li>
-</ol>
-<p>아래 <code class="docutils literal notranslate"><span class="pre">simulation()</span></code> 함수는 지정된 시간동안 인쇄 작업을 수행할 때
-인쇄 과제당 평균 대기 시간을 계산한다.</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">num_seconds</span></code>: 프린터 작동 시간</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">pages_per_minutes</span></code>: 분당 출력 페이지 수</p></li>
-</ul>
-<p><strong>주의사항</strong>: 여기서는 <code class="docutils literal notranslate"><span class="pre">for</span></code> 반복문이 초당 1회 실행된다고 가정한다.
-따라서 아래 함수들이 초당 1회 실행되는 것을 잘 구현한다.</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">new_print_task()</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">tick()</span></code></p></li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
-
-<span class="k">def</span> <span class="nf">simulation</span><span class="p">(</span><span class="n">num_seconds</span><span class="p">,</span> <span class="n">pages_per_minute</span><span class="p">):</span>
-    
-    <span class="n">lab_printer</span> <span class="o">=</span> <span class="n">Printer</span><span class="p">(</span><span class="n">pages_per_minute</span><span class="p">)</span>     <span class="c1"># 프린터 생성</span>
-    <span class="n">print_queue</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">()</span>                       <span class="c1"># 인쇄 과제 큐 생성</span>
-    <span class="n">waiting_times</span> <span class="o">=</span> <span class="p">[]</span>                          <span class="c1"># 과제들의 대기시간 리스트</span>
-
-    <span class="c1"># 모의실험 단계: 초당 수행 내용</span>
-    <span class="k">for</span> <span class="n">current_second</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_seconds</span><span class="p">):</span>
-        <span class="c1"># 새 인쇄 과제 생성 여부 판단 </span>
-        <span class="k">if</span> <span class="n">new_print_task</span><span class="p">():</span>
-            <span class="n">task</span> <span class="o">=</span> <span class="n">Task</span><span class="p">(</span><span class="n">current_second</span><span class="p">)</span>
-            <span class="n">print_queue</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">task</span><span class="p">)</span>
-
-        <span class="c1"># 프린터가 대기 상태인 경우: 다음 인쇄 과제 지정, 대기 시간 계산, 과제 수행</span>
-        <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="n">lab_printer</span><span class="o">.</span><span class="n">busy</span><span class="p">())</span> <span class="ow">and</span> <span class="p">(</span><span class="ow">not</span> <span class="n">print_queue</span><span class="o">.</span><span class="n">empty</span><span class="p">()):</span> 
-            <span class="n">nexttask</span> <span class="o">=</span> <span class="n">print_queue</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-            <span class="n">waiting_times</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nexttask</span><span class="o">.</span><span class="n">waiting_time</span><span class="p">(</span><span class="n">current_second</span><span class="p">))</span>
-            <span class="n">lab_printer</span><span class="o">.</span><span class="n">start_next</span><span class="p">(</span><span class="n">nexttask</span><span class="p">)</span>
-
-        <span class="c1"># 수행중인 과제 남은 시간 확인 후 프린터 상태 지정: busy 및 대기</span>
-        <span class="n">lab_printer</span><span class="o">.</span><span class="n">tick</span><span class="p">()</span>
-
-    <span class="c1"># 인쇄 과제 평균 대기 시간 반환</span>
-    <span class="n">average_wait</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">waiting_times</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">waiting_times</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">average_wait</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>아래 코드는 분당 5장을 출력하는 프린터를 1시간 동안 돌리는 모의실험을 100번 실행할 때의 결과를 보여준다.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
-<span class="n">average_wait_list</span> <span class="o">=</span> <span class="p">[]</span>
-
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
-    <span class="n">average_wait_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">simulation</span><span class="p">(</span><span class="mi">3600</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-    
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;평균 대기시간: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">average_wait_list</span><span class="p">)</span><span class="si">:</span><span class="s2">6.2f</span><span class="si">}</span><span class="s2"> 초&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>평균 대기시간: 119.41 초
-</pre></div>
-</div>
-</div>
-</div>
-<p>분당 출력 페이지수를 10장으로 하면 아래 결과를 얻는다.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
-<span class="n">average_wait_list</span> <span class="o">=</span> <span class="p">[]</span>
-
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
-    <span class="n">average_wait_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">simulation</span><span class="p">(</span><span class="mi">3600</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
-    
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;평균 대기시간: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">average_wait_list</span><span class="p">)</span><span class="si">:</span><span class="s2">6.2f</span><span class="si">}</span><span class="s2"> 초&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>평균 대기시간:  21.15 초
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="id7">
-<h2><span class="section-number">5.7. </span>연습 문제<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">5.5. </span>연습 문제<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p><a class="reference external" href="https://colab.research.google.com/github/codingalzi/algopy/blob/master/excs/exc-queues.ipynb">(실습) 큐</a></p></li>
+<li><p><a class="reference external" href="https://www.acmicpc.net/problem/2164">백준 2164번</a> 활용</p></li>
 </ol>
 </section>
 </section>
@@ -1135,13 +769,11 @@ True
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">5.1. 선형 자료구조</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">5.2. 큐의 정의</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">5.3. <code class="docutils literal notranslate"><span class="pre">Queue</span></code> 추상 자료형</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">5.4. 큐 자료구조 구현</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">5.5. 실전 예제 1: 폭탄 돌리기</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">5.6. 실전 예제 2: 프린터 인쇄 모의실험</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">5.7. 연습 문제</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">5.1. 큐의 정의</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">5.2. <code class="docutils literal notranslate"><span class="pre">Queue</span></code> 추상 자료형</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">5.3. 큐 자료구조 구현</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">5.4. 큐 활용: 폭탄 돌리기 게임</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">5.5. 연습 문제</a></li>
 </ul>
   </nav></div>
 
