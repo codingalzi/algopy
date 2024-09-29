@@ -559,7 +559,9 @@ document.write(`
     
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;큐 표기법: queue([1, 2, 3]) 등등&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="nb">repr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_container</span><span class="p">)</span>
+        <span class="n">parent_repr</span> <span class="o">=</span> <span class="nb">repr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_container</span><span class="p">)</span>
+        <span class="c1"># deque 문자열을 myQueue 문자열로 대체</span>
+        <span class="k">return</span> <span class="n">parent_repr</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;deque&quot;</span><span class="p">,</span> <span class="s1">&#39;myQueue&#39;</span><span class="p">)</span>
     
     <span class="k">def</span> <span class="nf">qsize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;항목 수 반환&quot;&quot;&quot;</span>
@@ -621,19 +623,19 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>deque([])
-deque([True, &#39;dog&#39;, 4])
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>myQueue([])
+myQueue([True, &#39;dog&#39;, 4])
 False
 3
 False
 True
-deque([8.4, True, &#39;dog&#39;, 4])
+myQueue([8.4, True, &#39;dog&#39;, 4])
 추가되지 않아요!
-deque([8.4, True, &#39;dog&#39;, 4])
+myQueue([8.4, True, &#39;dog&#39;, 4])
 4
 dog
 2
-deque([8.4, True])
+myQueue([8.4, True])
 </pre></div>
 </div>
 </div>
@@ -660,7 +662,7 @@ deque([8.4, True])
 <p><div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/namequeue.png" width="70%"></div></p><p>위 알고리즘을 함수로 구현하면 다음과 같다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">bomb_turn</span><span class="p">(</span><span class="n">player</span><span class="p">,</span> <span class="n">count</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">bombing</span><span class="p">(</span><span class="n">player</span><span class="p">,</span> <span class="n">count</span><span class="p">):</span>
 
     <span class="n">player_queue</span> <span class="o">=</span> <span class="n">myQueue</span><span class="p">()</span>
     
@@ -685,7 +687,7 @@ deque([8.4, True])
 마지막에 4번이 남는다는 것을 확인해준다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bomb_turn</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bombing</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -700,7 +702,6 @@ deque([8.4, True])
 <h2><span class="section-number">5.5. </span>연습 문제<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p><a class="reference external" href="https://colab.research.google.com/github/codingalzi/algopy/blob/master/excs/exc-queues.ipynb">(실습) 큐</a></p></li>
-<li><p><a class="reference external" href="https://www.acmicpc.net/problem/2164">백준 2164번</a> 활용</p></li>
 </ol>
 </section>
 </section>
