@@ -452,23 +452,13 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">6.1. 스택의 정의</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">6.2. 스택 자료구조 구현</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#queue-lifoqueue">6.3. <code class="docutils literal notranslate"><span class="pre">queue.LifoQueue</span></code> 클래스</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">6.4. 스택 실전 활용</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">6.4.1. 괄호 짝맞추기 문제</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">6.4.2. 괄호 짝맞추기 문제(일반화)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">6.4. 스택 활용: 괄호 짝맞추기</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">6.4.1. 소괄호 짝맞추기</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">6.4.2. 대중소 괄호 짝맞추기</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">6.4.3. 수리 표현식 괄호 짝맞추기</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">6.5. 중위/전위/후위 표기법</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">6.5.1. 중위 표기법</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">6.5.2. 전위/후위 표기법</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">6.6. 표기법 변환</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">6.6.1. 괄호를 사용한 중위 표기법 변환</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">6.6.2. 표기법 변환 알고리즘</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">6.7. 후위 표기법 표현식 계산</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">6.8. 연습 문제</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">6.5. 연습 문제</a></li>
 </ul>
             </nav>
         </div>
@@ -501,7 +491,7 @@ document.write(`
 <li><p>베이스: 남아 있는 항목 중에서 가장 먼저 추가된 항목의 위치</p></li>
 </ul>
 <p>가장 나중에 추가된 항목이 가장 먼저 삭제되는 후입선출<font size='2'>last-in first-out</font>(LIFO) 원리를 따른다.</p>
-<p><div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/lifo.png" width="40%"></div></p></section>
+<p><div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/lifo.png" width="50%"></div></p></section>
 <section id="id2">
 <h2><span class="section-number">6.2. </span>스택 자료구조 구현<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
 <p>스택 자료구조는 큐 자료구조와는 달리 항목의 추가와 삭제를 탑이라고 부르는 곳에서만 처리한다.
@@ -519,19 +509,29 @@ document.write(`
 <span class="sd">        - maxsize: 최대 항목 수. 0은 무한대 의미.</span>
 <span class="sd">        - 저장 방식은 자식 클래스가 지정해야 함.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;아래 두 변수 구현 필요</span>
+<span class="sd">            self._maxsize=maxsize</span>
+<span class="sd">            self._container=비어 있는 모음 객체. 항목 저장.</span>
+<span class="sd">            &quot;&quot;&quot;</span><span class="p">)</span>
     
     <span class="k">def</span> <span class="nf">qsize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;항목 수 반환&quot;&quot;&quot;</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_container</span><span class="p">)</span>
     
     <span class="k">def</span> <span class="nf">empty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;비었는지 여부 확인&quot;&quot;&quot;</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+        <span class="k">return</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_container</span>
 
     <span class="k">def</span> <span class="nf">full</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;maxsize 충족 여부 확인&quot;&quot;&quot;</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;_maxsize 충족 여부 확인&quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_maxsize</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">qsize</span><span class="p">()</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_maxsize</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>            
 
     <span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;항목 추가&quot;&quot;&quot;</span>
@@ -557,30 +557,12 @@ document.write(`
 <span class="sd">        - _container: 항목 저장 장치. list 활용</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_maxsize</span> <span class="o">=</span> <span class="n">maxsize</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_container</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span> <span class="c1"># 빈 리스트</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_container</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span> <span class="c1"># 비어있는 리스트</span>
     
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;스택 표기법: stack([1, 2, 3]) 등등&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;stack(</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_container</span><span class="si">}</span><span class="s2">)&quot;</span>
     
-    <span class="k">def</span> <span class="nf">qsize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;항목 수 반환&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_container</span><span class="p">)</span>
-    
-    <span class="k">def</span> <span class="nf">empty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;비었는지 여부 확인&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_container</span>
-
-    <span class="k">def</span> <span class="nf">full</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;_maxsize 충족 여부 확인&quot;&quot;&quot;</span>
-
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_maxsize</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">False</span>
-        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">qsize</span><span class="p">()</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_maxsize</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">False</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">True</span>            
-
     <span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        _maxsize를 못 채웠을 경우에만 항목 추가</span>
@@ -662,8 +644,8 @@ False
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 11.2 ms, sys: 47 μs, total: 11.2 ms
-Wall time: 11.1 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 10.9 ms, sys: 109 μs, total: 11.1 ms
+Wall time: 11 ms
 </pre></div>
 </div>
 </div>
@@ -681,8 +663,8 @@ Wall time: 11.1 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 54.4 ms, sys: 0 ns, total: 54.4 ms
-Wall time: 54.2 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 45.8 ms, sys: 4.45 ms, total: 50.2 ms
+Wall time: 49.9 ms
 </pre></div>
 </div>
 </div>
@@ -700,8 +682,8 @@ Wall time: 54.2 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 7.56 ms, sys: 0 ns, total: 7.56 ms
-Wall time: 7.49 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 6.82 ms, sys: 0 ns, total: 6.82 ms
+Wall time: 6.76 ms
 </pre></div>
 </div>
 </div>
@@ -716,17 +698,17 @@ Wall time: 7.49 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 46.7 ms, sys: 9.96 ms, total: 56.7 ms
-Wall time: 56.2 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 54.2 ms, sys: 146 μs, total: 54.4 ms
+Wall time: 53.9 ms
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="id3">
-<h2><span class="section-number">6.4. </span>스택 실전 활용<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">6.4. </span>스택 활용: 괄호 짝맞추기<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
 <section id="id4">
-<h3><span class="section-number">6.4.1. </span>괄호 짝맞추기 문제<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.4.1. </span>소괄호 짝맞추기<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
 <p>아래 식에서처럼 함수나 또는 연산 실행을 위해 사용되는 괄호는 짝이 맞아야 한다.
 즉, 여는 괄호 하나와 닫는 괄호 하나가 짝이 맞아야 한다.</p>
 <div class="math notranslate nohighlight">
@@ -775,9 +757,7 @@ Wall time: 56.2 ms
 <li><p>끝까지 확인했을 때 스택이 비워지지 않은 경우: 여는 괄호가 너무 많음</p></li>
 <li><p>그렇지 않으면 모든 괄호의 짝이 맞음.</p></li>
 </ul>
-<figure>
-<div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/simpleparcheck.png" width="50%"></div>
-</figure><div class="cell docutils container">
+<p><div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/simpleparcheck.png" width="70%"></div></p><div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">par_checker</span><span class="p">(</span><span class="n">symbol_string</span><span class="p">):</span>
 
@@ -816,7 +796,7 @@ False
 </div>
 </section>
 <section id="id5">
-<h3><span class="section-number">6.4.2. </span>괄호 짝맞추기 문제(일반화)<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.4.2. </span>대중소 괄호 짝맞추기<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
 <p>소, 중, 대 세 종류의 괄호를 대상으로 짝맞추기 문제를 해결하는 알고리즘을 구현한다.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">(</span></code>, <code class="docutils literal notranslate"><span class="pre">)</span></code>: 튜플, 표현식 등</p></li>
@@ -878,483 +858,57 @@ False
 </div>
 </div>
 </section>
-</section>
 <section id="id6">
-<h2><span class="section-number">6.5. </span>중위/전위/후위 표기법<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
-<p>이항 연산자를 이용한 표현식을 작성하는 세 종류의 표기법을 살펴본다.
-또한 표기법 변환 알고리즘과 변환된 표현식의 값을 계산하는 알고리즘을 스택 자료구조를 이용하여 구현한다.</p>
+<h3><span class="section-number">6.4.3. </span>수리 표현식 괄호 짝맞추기<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">balance_checker()</span></code> 함수를 살짝 수정하면 표현식에 사용된 괄호의 매칭 여부를 판단하도록
+만들 수 있다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">expression_checker</span><span class="p">(</span><span class="n">expression</span><span class="p">):</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">Stack</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">symbol</span> <span class="ow">in</span> <span class="n">expression</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">symbol</span> <span class="ow">not</span> <span class="ow">in</span> <span class="s2">&quot;()[]</span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="k">elif</span> <span class="n">symbol</span> <span class="ow">in</span> <span class="s2">&quot;([{&quot;</span><span class="p">:</span>
+            <span class="n">s</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">symbol</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">s</span><span class="o">.</span><span class="n">empty</span><span class="p">():</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">matches</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span> <span class="n">symbol</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="n">empty</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">expression_checker</span><span class="p">(</span><span class="s1">&#39;{({([][])}())}&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">expression_checker</span><span class="p">(</span><span class="s1">&#39;[{()]&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">expression_checker</span><span class="p">(</span><span class="s1">&#39;(A + B) * C - (D - E) * (F + G)&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">expression_checker</span><span class="p">(</span><span class="s1">&#39;(5 + 6) * (7 + 8) / (4 + 3&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">expression_checker</span><span class="p">(</span><span class="s1">&#39;(5 + 6) * (7 + 8) / (4 + 3)&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">expression_checker</span><span class="p">(</span><span class="s1">&#39;((x + y) * z)&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+False
+True
+False
+True
+True
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
 <section id="id7">
-<h3><span class="section-number">6.5.1. </span>중위 표기법<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
-<p>아래 두 수식에 사용되는 덧셈 연산자(<code class="docutils literal notranslate"><span class="pre">+</span></code>)와
-곱셈 연산자(<code class="docutils literal notranslate"><span class="pre">*</span></code>)는 더해지거나 곱해지는 두
-피연산자<font size='2'>operand</font>, 즉 두 인자의 사이에 위치한다.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
-<span class="mi">2</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="mi">6</span>
-</pre></div>
-</div>
-<p>이렇게 이항 연산자를
-두 피연산자 사이에 위치시켜 표현식을 작성하는 방법을
-<strong>중위 표기법</strong><font size='2'>infix notation</font>이라 한다.
-중위 표기법으로 작성된 표현식은 간단하게 <strong>중위 표현식</strong>이라 부른다.</p>
-<p>중위 표현식을 해석할 때 연산자들의 <strong>우선순위</strong>를 잘 고려해야 한다.
-예를 들어 <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">+</span> <span class="pre">3</span> <span class="pre">*</span> <span class="pre">6</span></code>는 <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">+</span> <span class="pre">(3</span> <span class="pre">*</span> <span class="pre">6)</span></code>로 해석되어 최종적으로 20으로 계산된다.
-이유는 덧셈 보다 곱셈의 우선순위가 높기 때문이다.
-반면에 <code class="docutils literal notranslate"><span class="pre">(2</span> <span class="pre">+</span> <span class="pre">3)</span> <span class="pre">*</span> <span class="pre">6</span></code> 처럼 연산자의 우선순위와 다르게 연산을 강요하려면
-괄호를 사용한다. 그러면 괄호에 의해 <code class="docutils literal notranslate"><span class="pre">5</span> <span class="pre">*</span> <span class="pre">6</span></code>, 즉 30으로 계산된다.</p>
-<p>또한 <code class="docutils literal notranslate"><span class="pre">4</span> <span class="pre">-</span> <span class="pre">x</span> <span class="pre">+</span> <span class="pre">7</span></code>와 <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">/</span> <span class="pre">x</span> <span class="pre">*</span> <span class="pre">y</span></code> 처럼 우선순위가 동일한 연산자가 연속적으로 사용되었을 경우엔
-왼쪽에 위치한 연산자부터 계산한다.
-즉, <code class="docutils literal notranslate"><span class="pre">4</span> <span class="pre">-</span> <span class="pre">x</span> <span class="pre">+</span> <span class="pre">7</span></code>는 <code class="docutils literal notranslate"><span class="pre">(4</span> <span class="pre">-</span> <span class="pre">x)</span> <span class="pre">+</span> <span class="pre">7</span></code>로, <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">/</span> <span class="pre">x</span> <span class="pre">*</span> <span class="pre">y</span></code>는 <code class="docutils literal notranslate"><span class="pre">(2</span> <span class="pre">/</span> <span class="pre">x)</span> <span class="pre">*</span> <span class="pre">y</span></code> 로 계산된다.
-<code class="docutils literal notranslate"><span class="pre">4</span> <span class="pre">-</span> <span class="pre">(x</span> <span class="pre">+</span> <span class="pre">7)</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">/</span> <span class="pre">(x</span> <span class="pre">*</span> <span class="pre">y)</span></code> 는 다른 값으로 계산됨에 주의한다.</p>
-</section>
-<section id="id8">
-<h3><span class="section-number">6.5.2. </span>전위/후위 표기법<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
-<p>이처럼 중위 표기법을 사용하는 표현식은 의도된 계산을 명확히 하기 위해 괄호를 사용해야 한다.
-반면에 <strong>전위 표기법</strong><font size='2'>prefix notation</font>
-또는 <strong>후위 표기법</strong><font size='2'>postfix notation</font>은 괄호를 필요로 하지 않으면서
-하나의 표현식이 하나의 값만 가리키도록 해준다.</p>
-<ul class="simple">
-<li><p>전위 표기법</p>
-<ul>
-<li><p>모든 연산자가 모든 피연산자(연산자의 인자)의 왼쪽에 위치</p></li>
-<li><p>피연산자는 연산자 오른쪽에 차례대로 위치</p></li>
-</ul>
-</li>
-<li><p>후위 표기법</p>
-<ul>
-<li><p>모든 연산자가 모든 피연산자(연산자의 인자)의 오른쪽에 위치</p></li>
-<li><p>피연산자는 연산자 왼쪽에 차례대로 위치</p></li>
-</ul>
-</li>
-</ul>
-<p>예를 들어 <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">+</span> <span class="pre">y</span></code>를 전위 표기법과 후위 표기법으로 표현하면 다음과 같다.</p>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head text-center"><p>중위 표기법</p></th>
-<th class="head text-center"><p>전위 표기법</p></th>
-<th class="head text-center"><p>후위 표기법</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">+</span> <span class="pre">y</span></code></p></td>
-<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">+</span> <span class="pre">x</span> <span class="pre">y</span></code></p></td>
-<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">y</span> <span class="pre">+</span></code></p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">+</span> <span class="pre">y</span> <span class="pre">*</span> <span class="pre">z</span></code>의 전위와 후위 표현식은 다음과 같다.</p>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head text-center"><p>중위 표기법</p></th>
-<th class="head text-center"><p>전위 표기법</p></th>
-<th class="head text-center"><p>후위 표기법</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">+</span> <span class="pre">y</span> <span class="pre">*</span> <span class="pre">z</span></code></p></td>
-<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">+</span> <span class="pre">x</span> <span class="pre">*</span> <span class="pre">y</span> <span class="pre">z</span></code></p></td>
-<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">y</span> <span class="pre">z</span> <span class="pre">*</span> <span class="pre">+</span></code></p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>각 표기법으로 변환 과정은 다음과 같다.
-괄호로 감싸인 표현식은 아직 중위 표기법을 사용한다는 점에 주의한다.</p>
-<ul class="simple">
-<li><p>전위 표기법으로의 변환</p></li>
-</ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="o">*</span> <span class="n">z</span> <span class="o">=&gt;</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="p">(</span><span class="n">y</span> <span class="o">*</span> <span class="n">z</span><span class="p">))</span> <span class="o">=&gt;</span> <span class="o">+</span> <span class="n">x</span> <span class="p">(</span><span class="n">y</span> <span class="o">*</span> <span class="n">z</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="o">*</span> <span class="n">y</span> <span class="n">z</span>
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>후위 표기법으로의 변환</p></li>
-</ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="o">*</span> <span class="n">z</span> <span class="o">=&gt;</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="p">(</span><span class="n">y</span> <span class="o">*</span> <span class="n">z</span><span class="p">))</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="p">(</span><span class="n">y</span> <span class="o">*</span> <span class="n">z</span><span class="p">)</span> <span class="o">+</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="n">y</span> <span class="n">z</span> <span class="o">*</span> <span class="o">+</span>
-</pre></div>
-</div>
-<p>아래 표는 <code class="docutils literal notranslate"><span class="pre">(x</span> <span class="pre">+</span> <span class="pre">y)</span> <span class="pre">*</span> <span class="pre">z</span></code>의 전위와 후위 표현식을 보여준다.</p>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head text-center"><p>중위 표기법</p></th>
-<th class="head text-center"><p>전위 표기법</p></th>
-<th class="head text-center"><p>후위 표기법</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">(x</span> <span class="pre">+</span> <span class="pre">y)</span> <span class="pre">*</span> <span class="pre">z</span></code></p></td>
-<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">*</span> <span class="pre">+</span> <span class="pre">x</span> <span class="pre">y</span> <span class="pre">z</span></code></p></td>
-<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">y</span> <span class="pre">+</span> <span class="pre">z</span> <span class="pre">*</span></code></p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>각 표기법으로 변환 과정은 다음과 같다.
-괄호로 감싸인 표현식은 아직 중위 표기법을 사용한다는 점에 주의한다.</p>
-<ul class="simple">
-<li><p>전위 표기법으로의 변환</p></li>
-</ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">)</span> <span class="o">*</span> <span class="n">z</span> <span class="o">=&gt;</span> <span class="p">((</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">)</span> <span class="o">*</span> <span class="n">z</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">)</span> <span class="n">z</span> <span class="o">=&gt;</span> <span class="o">*</span> <span class="o">+</span> <span class="n">x</span> <span class="n">y</span> <span class="n">z</span>
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>후위 표기법으로의 변환</p></li>
-</ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">)</span> <span class="o">*</span> <span class="n">z</span> <span class="o">=&gt;</span> <span class="p">((</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">)</span> <span class="o">*</span> <span class="n">z</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">)</span> <span class="n">z</span> <span class="o">*</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="n">y</span> <span class="o">+</span> <span class="n">z</span> <span class="o">*</span>
-</pre></div>
-</div>
-<p>이처럼 전위 또는 후위 표기법을 사용하면 괄호가 없어도 모든 표현식이 하나의 값만 가리킨다.</p>
-<p><strong>예제</strong></p>
-<p>아래 표에 포함된 보다 복잡한 중위 표현식을 전위와 후위 표현식으로 변환화는 과정을 묘사하면서
-전위와 후위 표기법에 친숙해지도록 하기를 권장한다.</p>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head text-center"><p>중위 표기법</p></th>
-<th class="head text-center"><p>전위 표기법</p></th>
-<th class="head text-center"><p>후위 표기법</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">+</span> <span class="pre">y</span> <span class="pre">*</span> <span class="pre">z</span> <span class="pre">+</span> <span class="pre">v</span></code></p></td>
-<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">+</span> <span class="pre">+</span> <span class="pre">x</span> <span class="pre">*</span> <span class="pre">y</span> <span class="pre">z</span> <span class="pre">v</span></code></p></td>
-<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">y</span> <span class="pre">z</span> <span class="pre">*</span> <span class="pre">+</span> <span class="pre">v</span> <span class="pre">+</span></code></p></td>
-</tr>
-<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">(x</span> <span class="pre">+</span> <span class="pre">y)</span> <span class="pre">*</span> <span class="pre">(z</span> <span class="pre">+</span> <span class="pre">v)</span></code></p></td>
-<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">*</span> <span class="pre">+</span> <span class="pre">x</span> <span class="pre">y</span> <span class="pre">+</span> <span class="pre">z</span> <span class="pre">v</span></code></p></td>
-<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">y</span> <span class="pre">+</span> <span class="pre">z</span> <span class="pre">v</span> <span class="pre">+</span> <span class="pre">*</span></code></p></td>
-</tr>
-<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">*</span> <span class="pre">y</span> <span class="pre">+</span> <span class="pre">z</span> <span class="pre">*</span> <span class="pre">v</span></code></p></td>
-<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">+</span> <span class="pre">*</span> <span class="pre">x</span> <span class="pre">y</span> <span class="pre">*</span> <span class="pre">z</span> <span class="pre">v</span></code></p></td>
-<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">y</span> <span class="pre">*</span> <span class="pre">z</span> <span class="pre">v</span> <span class="pre">*</span> <span class="pre">+</span></code></p></td>
-</tr>
-<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">+</span> <span class="pre">y</span> <span class="pre">+</span> <span class="pre">z</span> <span class="pre">+</span> <span class="pre">v</span></code></p></td>
-<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">+</span> <span class="pre">+</span> <span class="pre">+</span> <span class="pre">x</span> <span class="pre">y</span> <span class="pre">z</span> <span class="pre">v</span></code></p></td>
-<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">y</span> <span class="pre">+</span> <span class="pre">z</span> <span class="pre">+</span> <span class="pre">v</span> <span class="pre">+</span></code></p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-</section>
-<section id="id9">
-<h2><span class="section-number">6.6. </span>표기법 변환<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
-<section id="id10">
-<h3><span class="section-number">6.6.1. </span>괄호를 사용한 중위 표기법 변환<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">+</span> <span class="pre">B</span> <span class="pre">*</span> <span class="pre">C</span></code> 표현식의 의미는 <code class="docutils literal notranslate"><span class="pre">(A</span> <span class="pre">+</span> <span class="pre">(B</span> <span class="pre">*</span> <span class="pre">C))</span></code> 와 동일하다.
-그리고 <code class="docutils literal notranslate"><span class="pre">(A</span> <span class="pre">+</span> <span class="pre">(B</span> <span class="pre">*</span> <span class="pre">C))</span></code>처럼 사용되는 모든 연산자를 대상으로 괄호가 사용된
-표현식을 전위 또는 후위 표기법으로 변환하는 일은 어렵지 않다.
-이유는 여는 괄호는 표현식의 시작을 의미하고,
-바로 옆에는 첫째 피연산자가, 그 다음엔 (중위) 연산자가,
-그 다음엔 둘째 피연산자가 위치하며,
-마지막의 닫는 괄호는 표현식의 끝을 의미하기 때문이다.</p>
-<p>결국 <code class="docutils literal notranslate"><span class="pre">(B</span> <span class="pre">*</span> <span class="pre">C)</span></code> 와 같은 표현식을 <code class="docutils literal notranslate"><span class="pre">*</span> <span class="pre">B</span> <span class="pre">C</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">B</span> <span class="pre">C</span> <span class="pre">*</span></code> 로 변환하는
-과정을 반복하기만 하면 아무리 복잡한 표현식이라도
-간단하게 전위 또는 후위 표기법으로 변환할 수 있다.</p>
-<p><strong>예제</strong></p>
-<p><code class="docutils literal notranslate"><span class="pre">(A</span> <span class="pre">+</span> <span class="pre">B)</span> <span class="pre">*</span> <span class="pre">C</span> <span class="pre">-</span> <span class="pre">(D</span> <span class="pre">-</span> <span class="pre">E)</span> <span class="pre">*</span> <span class="pre">(F</span> <span class="pre">+</span> <span class="pre">G)</span></code> 를 전위/후위 표기법으로 표현하는 과정은 다음과 같다.</p>
-<figure>
-<div align="center"><img src="https://runestone.academy/ns/books/published/pythonds3/_images/complexmove.png" width="80%"></div>
-</figure></section>
-<section id="id11">
-<h3><span class="section-number">6.6.2. </span>표기법 변환 알고리즘<a class="headerlink" href="#id11" title="Link to this heading">#</a></h3>
-<p>중위 표현식을 후위 표현식으로 변환하는 알고리즘을 구현해보자.</p>
-<p>중위 표현식이 앞서 설명한 것처럼 모든 이항 연산에 대해 괄호를 철저하게 사용하였다면 아주 쉽게 변환할 수 있다.
-하지만 일반적으로는 반드시 필요하지 않은 괄호는 생략하고 연산자의
-우선순위에 따라 계산되도록 한다.
-예를 들어, <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">+</span> <span class="pre">B</span> <span class="pre">*</span> <span class="pre">C</span></code> 는 <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">+</span> <span class="pre">(B</span> <span class="pre">*</span> <span class="pre">C)</span></code>과 동일하기에 후위 표기법으로 <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">B</span> <span class="pre">C</span> <span class="pre">*</span> <span class="pre">+</span></code> 로 변환된다.</p>
-<p>중위 표현식을 후위 표현식으로 변환할 때 피연산자의 순서는 그대로 유지되지만
-연산자의 순서는 연산자의 우선순위와 괄호에 의한 연산자 실행 순서에 의해 달라진다는
-성질을 이용하여 표기법 변환 알고리즘을 작성한다.</p>
-<ul class="simple">
-<li><p>중위 표현식의 왼쪽에서부터 차례대로 사용된 피연산자와 연산자를 확인한다.</p></li>
-<li><p>피연산자가 확인되면 그대로 후위 표기법 표현식에 추가한다.</p></li>
-<li><p>연산자의 경우엔 별도로 준비된 스택에 추가한다.
-단, 해당 연산자의 우선순위와 괄호의 사용 여부에 따라
-먼저 스택을 조작한 다음에 추가한다.</p></li>
-</ul>
-<p>연산자들을 스택으로 관리하는 이유는 먼저 스택에 추가된 연산자보다 낮은 우선순위의 연산자를
-만나는 순간 스택에 포함된 보다 높거나 같은 우선순위의 연산자와 관련된 계산을 먼저 실행해야 하기에
-해당 연산자들을 스택에서 제거해서 바로 후위 표기법의 표현식에 추가할 수 있기 때문이다.
-또한 <code class="docutils literal notranslate"><span class="pre">(A</span> <span class="pre">+</span> <span class="pre">B)</span> <span class="pre">*</span> <span class="pre">C</span></code>의 경우처럼 괄호가 포함되면 여는 괄호도 스택에 추가한다.
-반면에 닫는 괄호를 만나는 순간 스택에 있는 여는 괄호를 만날 때까지 스택을 비우면서
-후위 표기법 표현식을 완성해 나간다.</p>
-<p>이런 점들을 고려하면서 알고리즘을 묘사하면 다음과 같다.
-먼저, 중위 표현식에 사용된 모든 연산자, 피연산, 괄호 등은 모두 공백(space)로
-구분된 문자열로 주어진다고 가정한다.</p>
-<ol class="arabic">
-<li><p>연산자와 여는 괄호를 쌓아 둘 스택 <code class="docutils literal notranslate"><span class="pre">op_stack</span></code>을 준비해 놓는다.
-또한 후위 표현식에 사용될 기호를 차례대로 저장할 빈 리스트 <code class="docutils literal notranslate"><span class="pre">postfix_list</span></code>도 준비한다.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">op_stack</span> <span class="o">=</span> <span class="n">Stack</span><span class="p">()</span>
-<span class="n">postfix_list</span> <span class="o">=</span> <span class="p">[]</span>
-</pre></div>
-</div>
-</li>
-<li><p>문자열로 입력된 중위 표현식을 <code class="docutils literal notranslate"><span class="pre">split()</span></code> 메서드를 이용하여 리스트로 변환한다.</p></li>
-<li><p>리스트의 항목(토큰, token)의 종류에 따라 아래 과정을 처리한다.</p>
-<ul class="simple">
-<li><p>피연산자인 경우: <code class="docutils literal notranslate"><span class="pre">postfix_list</span></code>에 추가한다.</p></li>
-<li><p>여는 괄호인 경우: <code class="docutils literal notranslate"><span class="pre">op_stack</span></code>에 추가한다.</p></li>
-<li><p>닫는 괄호인 경우: <code class="docutils literal notranslate"><span class="pre">op_stack</span></code>에서 여는 괄호를 만날 때까지 탑을 빼서 <code class="docutils literal notranslate"><span class="pre">postfix_list</span></code>에 추가한다.</p></li>
-<li><p>연산자(<code class="docutils literal notranslate"><span class="pre">*</span></code>, <code class="docutils literal notranslate"><span class="pre">/</span></code>, <code class="docutils literal notranslate"><span class="pre">+</span></code>, <code class="docutils literal notranslate"><span class="pre">-</span></code>)인 경우: <code class="docutils literal notranslate"><span class="pre">op_stack</span></code>에 추가한다.
-단, 먼저 <code class="docutils literal notranslate"><span class="pre">op_stack</span></code>으로부터 우선순위가 높거나 같은 연산자를 모두 탑에서 빼서 <code class="docutils literal notranslate"><span class="pre">postfix_list</span></code>에 추가해야 한다.</p></li>
-</ul>
-</li>
-<li><p>입력된 중위 표현식에 사용된 모든 기호를 처리했다면 <code class="docutils literal notranslate"><span class="pre">op_stack</span></code>에 남아있는 모든 연산자를 빼서
-<code class="docutils literal notranslate"><span class="pre">postfix_list</span></code>에 추가한다.</p></li>
-</ol>
-<p>아래 그림은 <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">*</span> <span class="pre">B</span> <span class="pre">+</span> <span class="pre">C</span> <span class="pre">*</span> <span class="pre">D</span></code>를 후위 표기법으로 변환하는 과정을 잘 보여준다.</p>
-<figure>
-<div align="center"><img src="https://runestone.academy/ns/books/published/pythonds3/_images/intopost.png" width="80%"></div>
-</figure><p>위 알고리즘을 파이썬 코드로 구현하기 위해 <code class="docutils literal notranslate"><span class="pre">Stack</span></code> 클래스를 이용한다.
-후위 표현식으로 변환 알고리즘에서 사용될 연산자들의 우선순위는 <code class="docutils literal notranslate"><span class="pre">precedence</span></code> 이라는 사전으로 관리한다.</p>
-<p>여는 괄호(<code class="docutils literal notranslate"><span class="pre">(</span></code>)에도 우선순위를 부여한다. 하지만 다른 연산자들에 비해 가장 낮다.
-이유는 닫는 괄호가 아닌 다른 연산자에 의해 <code class="docutils literal notranslate"><span class="pre">op_stack</span></code>에서 제거되지 않도록
-하기 위해서이다.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">precedence</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;*&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;/&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;+&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;(&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">infix_to_postfix</span><span class="p">(</span><span class="n">infix_expr</span><span class="p">):</span>
-    <span class="n">op_stack</span> <span class="o">=</span> <span class="n">Stack</span><span class="p">()</span>
-    <span class="n">postfix_list</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">token_list</span> <span class="o">=</span> <span class="n">infix_expr</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
-
-    <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">token_list</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">token</span> <span class="ow">not</span> <span class="ow">in</span> <span class="s1">&#39;()*/+-&#39;</span><span class="p">:</span>
-            <span class="n">postfix_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="n">token</span> <span class="o">==</span> <span class="s2">&quot;(&quot;</span><span class="p">:</span>
-            <span class="n">op_stack</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="n">token</span> <span class="o">==</span> <span class="s2">&quot;)&quot;</span><span class="p">:</span>
-            <span class="n">top_token</span> <span class="o">=</span> <span class="n">op_stack</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-            <span class="k">while</span> <span class="n">top_token</span> <span class="o">!=</span> <span class="s2">&quot;(&quot;</span><span class="p">:</span>
-                <span class="n">postfix_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">top_token</span><span class="p">)</span>
-                <span class="n">top_token</span> <span class="o">=</span> <span class="n">op_stack</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">while</span> <span class="p">(</span><span class="ow">not</span> <span class="n">op_stack</span><span class="o">.</span><span class="n">empty</span><span class="p">())</span> <span class="ow">and</span> <span class="p">(</span><span class="n">precedence</span><span class="p">[</span><span class="n">op_stack</span><span class="o">.</span><span class="n">peek</span><span class="p">()]</span> <span class="o">&gt;=</span> <span class="n">precedence</span><span class="p">[</span><span class="n">token</span><span class="p">]):</span>
-                <span class="n">postfix_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">op_stack</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
-            <span class="n">op_stack</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
-
-    <span class="k">while</span> <span class="ow">not</span> <span class="n">op_stack</span><span class="o">.</span><span class="n">empty</span><span class="p">():</span>
-        <span class="n">postfix_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">op_stack</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
-
-    <span class="k">return</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">postfix_list</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p><strong>예제</strong></p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">infix_to_postfix</span><span class="p">(</span><span class="s2">&quot;A * B + C * D&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">15</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">infix_to_postfix</span><span class="p">(</span><span class="s2">&quot;A * B + C * D&quot;</span><span class="p">)</span>
-
-<span class="nn">Cell In[14], line 17,</span> in <span class="ni">infix_to_postfix</span><span class="nt">(infix_expr)</span>
-<span class="g g-Whitespace">     </span><span class="mi">15</span>         <span class="n">top_token</span> <span class="o">=</span> <span class="n">op_stack</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="k">else</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">17</span>     <span class="k">while</span> <span class="p">(</span><span class="ow">not</span> <span class="n">op_stack</span><span class="o">.</span><span class="n">empty</span><span class="p">())</span> <span class="ow">and</span> <span class="p">(</span><span class="n">precedence</span><span class="p">[</span><span class="n">op_stack</span><span class="o">.</span><span class="n">peek</span><span class="p">()]</span> <span class="o">&gt;=</span> <span class="n">precedence</span><span class="p">[</span><span class="n">token</span><span class="p">]):</span>
-<span class="g g-Whitespace">     </span><span class="mi">18</span>         <span class="n">postfix_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">op_stack</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
-<span class="g g-Whitespace">     </span><span class="mi">19</span>     <span class="n">op_stack</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
-
-<span class="ne">AttributeError</span>: &#39;Stack&#39; object has no attribute &#39;peek&#39;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">infix_to_postfix</span><span class="p">(</span><span class="s2">&quot;( A + B ) * C - ( D - E ) * ( F + G )&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;A B + C * D E - F G + * -&#39;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">infix_to_postfix</span><span class="p">(</span><span class="s2">&quot;( A + B ) * ( C + D )&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;A B + C D + *&#39;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">infix_to_postfix</span><span class="p">(</span><span class="s2">&quot;( A + B ) * C&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;A B + C *&#39;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">infix_to_postfix</span><span class="p">(</span><span class="s2">&quot;A + B * C&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;A B C * +&#39;
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-</section>
-<section id="id12">
-<h2><span class="section-number">6.7. </span>후위 표기법 표현식 계산<a class="headerlink" href="#id12" title="Link to this heading">#</a></h2>
-<p>후위 표현식을 실제로 계산하는 알고리즘을 스택을 이용하여 구현한다.
-후위 표현식에서는 연산자보다 피연산자, 즉 연산자의 인자들이 먼저 확인되기에
-피연산자들을 스택에 쌓아두고 적절한 연산자가 확인될 때까지 기다리도록 해야 한다.
-정리하면 다음과 같다.</p>
-<p>후위 표현식을 계산하기 위해 왼쪽에서 오른쪽으로 표현식에 사용된 기호를 확인한다.
-확인된 기호의 종류에 따라 다음 과정을 반복 실행한다.</p>
-<ul class="simple">
-<li><p>수: 스택에 추가한다.</p></li>
-<li><p>연산자: 스택에서 <code class="docutils literal notranslate"><span class="pre">get()</span></code>을 두 번 실행해서 얻어진 피연산자를 이용해서 연산 실행. 이후 결과를 다시 스택에 쌓는다.</p></li>
-</ul>
-<p>표현식의 모든 기호를 확인하면 스택에 하나의 값만 남게 되고 해당 값이 바로 주어진 표현식이 나타내는 값이 된다.</p>
-<p><strong>예제</strong></p>
-<p>후위 표현식 <code class="docutils literal notranslate"><span class="pre">4</span> <span class="pre">5</span> <span class="pre">6</span> <span class="pre">*</span> <span class="pre">+</span></code>을 설명된 알고리즘에 따라 계산하는 과정은 아래 그림과 같다.</p>
-<figure>
-<div align="center"><img src="https://runestone.academy/ns/books/published/pythonds3/_images/evalpostfix1.png" width="55%"></div>
-</figure><p><strong>예제</strong></p>
-<p>후위 표현식 <code class="docutils literal notranslate"><span class="pre">7</span> <span class="pre">8</span> <span class="pre">+</span> <span class="pre">3</span> <span class="pre">2</span> <span class="pre">+</span> <span class="pre">/</span></code>을 설명된 알고리즘에 따라 계산하는 과정은 아래 그림과 같다.</p>
-<figure>
-<div align="center"><img src="https://runestone.academy/ns/books/published/pythonds3/_images/evalpostfix2.png" width="60%"></div>
-</figure><p><strong>주의사항</strong></p>
-<p>나눗셈과 뺄셈처럼 교환법칙이 성립하지 않은 이항 연산자처럼 첫째, 둘째 인자의 위치가 중요한 경우에는 스택을 활용할 때 조심해야 한다.
-이유는 표현식을 왼쪽에서부터 확인할 때 첫째 인자가 먼저 스택에 쌓이기에 <code class="docutils literal notranslate"><span class="pre">get()</span></code> 연산을 실행하면 첫째 인자가 나중에 나온다.
-따라서 <code class="docutils literal notranslate"><span class="pre">7</span> <span class="pre">8</span> <span class="pre">+</span></code>의 결과인 15가 <code class="docutils literal notranslate"><span class="pre">3</span> <span class="pre">2</span> <span class="pre">+</span></code>의 결과인 5 보다 먼저 스택에 쌓이게 되고,
-최종적으로 <code class="docutils literal notranslate"><span class="pre">15</span> <span class="pre">5</span> <span class="pre">/</span></code>를 계산하기 위해 <code class="docutils literal notranslate"><span class="pre">get()</span></code>을 실행하면 5와 15 순서로 먼저 스택에서 나온다.
-이때 그냥 바로 나눗셈을 계산하면 <code class="docutils literal notranslate"><span class="pre">15/5</span></code>가 아닌 <code class="docutils literal notranslate"><span class="pre">5/15</span></code>가 계산되어 잘못된 결과를 얻게 된다.</p>
-<p>이점을 고려하면서 후위 표현식 계산 알고리즘을 정리하면 다음과 같다.
-표현식에 사용된 연산 기호는 <code class="docutils literal notranslate"><span class="pre">*,</span> <span class="pre">/,</span> <span class="pre">+,</span> <span class="pre">-</span></code>로 제한한다.</p>
-<ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">operand_stack</span></code> 라는 비어있는 스택을 준비한다.</p></li>
-<li><p>후위 표현식 문자열을 <code class="docutils literal notranslate"><span class="pre">split()</span></code> 메서드를 이용하여 리스트로 변환한다.</p></li>
-<li><p>리스트를 왼쪽에서부터 하나씩 차례대로 확인하면서 확인된 기호의 종류에 다라 아래 과정을 반복한다.</p>
-<ul class="simple">
-<li><p>피연산자인 경우: 수(number)로 변환한 다음 <code class="docutils literal notranslate"><span class="pre">operand_stack</span></code>에 추가한다.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">*,</span> <span class="pre">/,</span> <span class="pre">+,</span> <span class="pre">-</span></code> 중 하나인 경우: <code class="docutils literal notranslate"><span class="pre">operand_stack</span></code>을 두 번 <code class="docutils literal notranslate"><span class="pre">get()</span></code>한다.
-첫번째로 얻어진 값은 둘째 인자로,
-두번째로 얻어진 값은 첫째 인자로 지정한다.
-두 인자를 이용하여 연산을 실행한 다음
-계산된 값을 다시 <code class="docutils literal notranslate"><span class="pre">operand_stack</span></code>에 추가한다.</p></li>
-</ul>
-</li>
-<li><p>리스트의 모든 항목을 확인한 다음에 <code class="docutils literal notranslate"><span class="pre">operand_stack</span></code>에 납아있는 유일한 값을 주어진 표현식을 계산한 값으로 사용한다.</p></li>
-</ol>
-<p>위 알고리즘을 파이썬으로 구현한 코드는 다음과 같다.
-<code class="docutils literal notranslate"><span class="pre">do_math()</span></code> 함수는 연산자와 두 개의 피연산자가 주어졌을 때 해당 연산을 실행한다.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">do_math</span><span class="p">(</span><span class="n">op</span><span class="p">,</span> <span class="n">op1</span><span class="p">,</span> <span class="n">op2</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">op</span> <span class="o">==</span> <span class="s2">&quot;*&quot;</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">op1</span> <span class="o">*</span> <span class="n">op2</span>
-    <span class="k">elif</span> <span class="n">op</span> <span class="o">==</span> <span class="s2">&quot;/&quot;</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">op1</span> <span class="o">/</span> <span class="n">op2</span>
-    <span class="k">elif</span> <span class="n">op</span> <span class="o">==</span> <span class="s2">&quot;+&quot;</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">op1</span> <span class="o">+</span> <span class="n">op2</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">op1</span> <span class="o">-</span> <span class="n">op2</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">postfix_eval</span><span class="p">(</span><span class="n">postfix_expr</span><span class="p">):</span>
-    <span class="n">operand_stack</span> <span class="o">=</span> <span class="n">Stack</span><span class="p">()</span>
-    <span class="n">token_list</span> <span class="o">=</span> <span class="n">postfix_expr</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">operand_stack</span><span class="p">)</span>
-
-    <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">token_list</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">token</span> <span class="ow">not</span> <span class="ow">in</span> <span class="s1">&#39;*/+-&#39;</span><span class="p">:</span>
-            <span class="n">operand_stack</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">token</span><span class="p">))</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">operand2</span> <span class="o">=</span> <span class="n">operand_stack</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-            <span class="n">operand1</span> <span class="o">=</span> <span class="n">operand_stack</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-            <span class="n">result</span> <span class="o">=</span> <span class="n">do_math</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="n">operand1</span><span class="p">,</span> <span class="n">operand2</span><span class="p">)</span>
-            <span class="n">operand_stack</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">operand_stack</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">operand_stack</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">postfix_eval</span><span class="p">(</span><span class="s2">&quot;7 8 + 3 2 + /&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;[]&gt;
-&lt;[7]&gt;
-&lt;[7, 8]&gt;
-&lt;[15]&gt;
-&lt;[15, 3]&gt;
-&lt;[15, 3, 2]&gt;
-&lt;[15, 5]&gt;
-&lt;[3.0]&gt;
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.0
-</pre></div>
-</div>
-</div>
-</div>
-<p><code class="docutils literal notranslate"><span class="pre">infix_to_postfix()</span></code> 함수의 표기법 변환이 제대로 작동함을 다시 한 번 다음과 같이 확인할 수 있다.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">postfix_eval</span><span class="p">(</span><span class="n">infix_to_postfix</span><span class="p">(</span><span class="s2">&quot;( 7 + 8 ) / ( 3 + 2 )&quot;</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;[]&gt;
-&lt;[7]&gt;
-&lt;[7, 8]&gt;
-&lt;[15]&gt;
-&lt;[15, 3]&gt;
-&lt;[15, 3, 2]&gt;
-&lt;[15, 5]&gt;
-&lt;[3.0]&gt;
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.0
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="id13">
-<h2><span class="section-number">6.8. </span>연습 문제<a class="headerlink" href="#id13" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">6.5. </span>연습 문제<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p><a class="reference external" href="https://colab.research.google.com/github/codingalzi/algopy/blob/master/excs/exc-stacks.ipynb">(실습) 스택</a></p></li>
-<li><p><a class="reference external" href="https://colab.research.google.com/github/codingalzi/algopy/blob/master/excs/exc-infix_prefix_postfix.ipynb">(실습) 중위, 전위, 후위 표기법</a></p></li>
 </ol>
 </section>
 </section>
@@ -1426,23 +980,13 @@ False
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">6.1. 스택의 정의</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">6.2. 스택 자료구조 구현</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#queue-lifoqueue">6.3. <code class="docutils literal notranslate"><span class="pre">queue.LifoQueue</span></code> 클래스</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">6.4. 스택 실전 활용</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">6.4.1. 괄호 짝맞추기 문제</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">6.4.2. 괄호 짝맞추기 문제(일반화)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">6.4. 스택 활용: 괄호 짝맞추기</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">6.4.1. 소괄호 짝맞추기</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">6.4.2. 대중소 괄호 짝맞추기</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">6.4.3. 수리 표현식 괄호 짝맞추기</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">6.5. 중위/전위/후위 표기법</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">6.5.1. 중위 표기법</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">6.5.2. 전위/후위 표기법</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">6.6. 표기법 변환</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">6.6.1. 괄호를 사용한 중위 표기법 변환</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">6.6.2. 표기법 변환 알고리즘</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">6.7. 후위 표기법 표현식 계산</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">6.8. 연습 문제</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">6.5. 연습 문제</a></li>
 </ul>
   </nav></div>
 

@@ -503,6 +503,8 @@ document.write(`
 <li><p><code class="docutils literal notranslate"><span class="pre">qsize()</span></code>: 큐에 포함된 항목 개수 반환.</p></li>
 </ul>
 <p><strong>Queue 추상 클래스</strong></p>
+<p>아래 코드에서 정의하는 추상 클래스 <code class="docutils literal notranslate"><span class="pre">Queue</span></code>는 생성자 또한 구현되어 있지 않다.
+이유는 저장 방식을 자식 클래스에 위임하려 하기 때문이다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Queue</span><span class="p">:</span>
@@ -512,57 +514,11 @@ document.write(`
 <span class="sd">        - maxsize: 최대 항목 수. 0은 무한대 의미.</span>
 <span class="sd">        - 저장 방식은 자식 클래스가 지정해야 함.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
-    
-    <span class="k">def</span> <span class="nf">qsize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;항목 수 반환&quot;&quot;&quot;</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
-    
-    <span class="k">def</span> <span class="nf">empty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;비었는지 여부 확인&quot;&quot;&quot;</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
-
-    <span class="k">def</span> <span class="nf">full</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;maxsize 충족 여부 확인&quot;&quot;&quot;</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
-
-    <span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;항목 추가&quot;&quot;&quot;</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
-
-    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;항목 삭제&quot;&quot;&quot;</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="id3">
-<h2><span class="section-number">5.3. </span>큐 자료구조 구현<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
-<p>큐 자료구조를 선언할 때 항목의 저장방식과 머리와 꼬리를 어디로 설정하는가이다.
-<a class="reference internal" href="deques.html#sec-deques"><span class="std std-numref">4장</span></a>에서 <code class="docutils literal notranslate"><span class="pre">myDeque</span></code> 클래스를 선언할 때 사용한
-리스트는 꼬리에서의 항목 추가와 삭제가 느리편이다.
-따라서 여기서는 리스트 대신에 <code class="docutils literal notranslate"><span class="pre">collections.queue</span></code> 클래스를 이용한다.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">deque</span>
-
-<span class="k">class</span> <span class="nc">myQueue</span><span class="p">(</span><span class="n">Queue</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">maxsize</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        - 새로운 큐 생성</span>
-<span class="sd">        - _maxsize: 최대 항목 수. 0은 무한대 의미.</span>
-<span class="sd">        - _container: 항목 저장 장치. collections 모듈의 queue 활용.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_maxsize</span> <span class="o">=</span> <span class="n">maxsize</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_container</span> <span class="o">=</span> <span class="n">deque</span><span class="p">([])</span>
-    
-    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;큐 표기법: queue([1, 2, 3]) 등등&quot;&quot;&quot;</span>
-        <span class="n">parent_repr</span> <span class="o">=</span> <span class="nb">repr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_container</span><span class="p">)</span>
-        <span class="c1"># deque 문자열을 myQueue 문자열로 대체</span>
-        <span class="k">return</span> <span class="n">parent_repr</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;deque&quot;</span><span class="p">,</span> <span class="s1">&#39;myQueue&#39;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;아래 두 변수 구현 필요</span>
+<span class="sd">            self._maxsize=maxsize</span>
+<span class="sd">            self._container=비어 있는 모음 객체. 항목 저장.</span>
+<span class="sd">            &quot;&quot;&quot;</span><span class="p">)</span>
     
     <span class="k">def</span> <span class="nf">qsize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;항목 수 반환&quot;&quot;&quot;</span>
@@ -582,6 +538,83 @@ document.write(`
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">True</span>            
 
+    <span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;항목 추가&quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;항목 삭제&quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>클래스의 생성자가 구현되어 있지 않기에 객체 선언도 허용되지 않는다.
+다만 생성자 함수를 구현할 때 반드시 선언해야 하는 두 개의 변수를 지정하도록 유도한다.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">self._maxsize=maxsize</span></code>: 저장가능한 최대 항목 수</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">self._container</span></code>: 비어 있는 모음 객체. 항목 저장 용도.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NotImplementedError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">26</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">q</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">()</span>
+
+<span class="nn">Cell In[25], line 8,</span> in <span class="ni">Queue.__init__</span><span class="nt">(self, maxsize)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">maxsize</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span><span class="sd">     - 새로운 큐 생성</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span><span class="sd">     - maxsize: 최대 항목 수. 0은 무한대 의미.</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span><span class="sd">     - 저장 방식은 자식 클래스가 지정해야 함.</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">----&gt; </span><span class="mi">8</span>     <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span><span class="w">         </span><span class="sd">&quot;&quot;&quot;아래 두 변수 구현 필요</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span><span class="sd">         self._maxsize=maxsize</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span><span class="sd">         self._container=비어 있는 모음 객체. 항목 저장.</span>
+<span class="g g-Whitespace">     </span><span class="mi">12</span><span class="sd">         &quot;&quot;&quot;</span><span class="p">)</span>
+
+<span class="ne">NotImplementedError</span>: 아래 두 변수 구현 필요
+            <span class="bp">self</span><span class="o">.</span><span class="n">_maxsize</span><span class="o">=</span><span class="n">maxsize</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_container</span><span class="o">=</span><span class="n">비어</span> <span class="n">있는</span> <span class="n">모음</span> <span class="n">객체</span><span class="o">.</span> <span class="n">항목</span> <span class="n">저장</span><span class="o">.</span>
+            
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id3">
+<h2><span class="section-number">5.3. </span>큐 자료구조 구현<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>큐 자료구조를 선언할 때의 핵심은 항목의 저장방식과 머리와 꼬리를 어디로 설정하는가이다.
+<a class="reference internal" href="deques.html#sec-deques"><span class="std std-numref">4장</span></a>에서 <code class="docutils literal notranslate"><span class="pre">myDeque</span></code> 클래스를 선언할 때 사용한
+리스트는 꼬리에서의 항목 추가와 삭제가 느린편이다.
+따라서 여기서는 리스트 대신에 <code class="docutils literal notranslate"><span class="pre">collections.queue</span></code> 클래스를 이용한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">deque</span>
+
+<span class="k">class</span> <span class="nc">myQueue</span><span class="p">(</span><span class="n">Queue</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">maxsize</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        - 새로운 큐 생성</span>
+<span class="sd">        - _maxsize: 최대 항목 수. 0은 무한대 의미.</span>
+<span class="sd">        - _container: 항목 저장 장치. collections 모듈의 queue 활용.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_maxsize</span> <span class="o">=</span> <span class="n">maxsize</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_container</span> <span class="o">=</span> <span class="n">deque</span><span class="p">([])</span> <span class="c1"># 비어있는 덱</span>
+    
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;큐 표기법: queue([1, 2, 3]) 등등&quot;&quot;&quot;</span>
+        <span class="n">parent_repr</span> <span class="o">=</span> <span class="nb">repr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_container</span><span class="p">)</span>
+        <span class="c1"># deque 문자열을 myQueue 문자열로 대체</span>
+        <span class="k">return</span> <span class="n">parent_repr</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;deque&quot;</span><span class="p">,</span> <span class="s1">&#39;myQueue&#39;</span><span class="p">)</span>
+    
     <span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        _maxsize를 못 채웠을 경우에만 항목 추가</span>
@@ -664,8 +697,8 @@ False
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 11.5 ms, sys: 128 μs, total: 11.6 ms
-Wall time: 11.4 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 11.2 ms, sys: 45 μs, total: 11.2 ms
+Wall time: 11.1 ms
 </pre></div>
 </div>
 </div>
@@ -683,8 +716,8 @@ Wall time: 11.4 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 53.7 ms, sys: 0 ns, total: 53.7 ms
-Wall time: 53.3 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 56.3 ms, sys: 0 ns, total: 56.3 ms
+Wall time: 55.7 ms
 </pre></div>
 </div>
 </div>
@@ -702,8 +735,8 @@ Wall time: 53.3 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 9.99 ms, sys: 0 ns, total: 9.99 ms
-Wall time: 9.94 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 7.66 ms, sys: 0 ns, total: 7.66 ms
+Wall time: 7.68 ms
 </pre></div>
 </div>
 </div>
@@ -718,8 +751,8 @@ Wall time: 9.94 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 56.3 ms, sys: 0 ns, total: 56.3 ms
-Wall time: 55.9 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 53.5 ms, sys: 0 ns, total: 53.5 ms
+Wall time: 53 ms
 </pre></div>
 </div>
 </div>
