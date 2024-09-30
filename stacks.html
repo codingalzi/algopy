@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>6. 스택(Stack) &#8212; 문제해결 알고리즘</title>
+    <title>6. 스택Stack &#8212; 문제해결 알고리즘</title>
   
   
   
@@ -178,7 +178,7 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="deques.html">4. 덱<font size="2">Deque</font></a></li>
 <li class="toctree-l1"><a class="reference internal" href="queues.html">5. 큐<font size="2">Queue</font></a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">6. 스택(Stack)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">6. 스택<font size="2">Stack</font></a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">알고리즘 시간 복잡도</span></p>
 <ul class="nav bd-sidenav">
@@ -439,7 +439,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>스택(Stack)</h1>
+    <h1>스택<font size='2'>Stack</font></h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -484,7 +484,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="stack">
-<span id="sec-stacks"></span><h1><span class="section-number">6. </span>스택(Stack)<a class="headerlink" href="#stack" title="Link to this heading">#</a></h1>
+<span id="sec-stacks"></span><h1><span class="section-number">6. </span>스택<font size='2'>Stack</font><a class="headerlink" href="#stack" title="Link to this heading">#</a></h1>
 <p><strong>참고</strong></p>
 <p>아래 내용은 <a class="reference external" href="https://runestone.academy/ns/books/published/pythonds3/index.html">Problem Solving with Algorithms and Data Structures using Python</a>의 3장 내용을
 일부 활용한다.</p>
@@ -509,9 +509,44 @@ document.write(`
 <h2><span class="section-number">6.2. </span>스택 자료구조 구현<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
 <p>스택 자료구조는 큐 자료구조와는 달리 항목의 추가와 삭제를 한쪽에서만 처리한다.
 하지만 그 이외에는 동일한 기능을 지원한다.
-따라서 스택 자료구조를 큐와 동일하게 큐 추상 클래스를 상속하는 방식으로 정의할 수 있다.
-실제로 파이썬이 제공하는</p>
-<p><code class="xref std std-numref docutils literal notranslate"><span class="pre">&lt;&gt;</span></code></p>
+실제로 파이썬에서 스택 자료구조로 제공되는 <code class="docutils literal notranslate"><span class="pre">queue.LifoQueue</span></code> 클래스가
+큐 자료구조인 <code class="docutils literal notranslate"><span class="pre">queue.Queue</span></code>와 동일한 메서드를 제공한다.</p>
+<p>따라서 여기서도 <a class="reference internal" href="queues.html#sec-queues"><span class="std std-numref">5장</span></a>에서 정의한 다음 <code class="docutils literal notranslate"><span class="pre">Queue</span></code> 추상 자료형을
+구상 클래스로 구현하는 방식으로 스택 자료구조를 선언한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Queue</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">maxsize</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        - 새로운 큐 생성</span>
+<span class="sd">        - maxsize: 최대 항목 수. 0은 무한대 의미.</span>
+<span class="sd">        - 저장 방식은 자식 클래스가 지정해야 함.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+    
+    <span class="k">def</span> <span class="nf">qsize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;항목 수 반환&quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+    
+    <span class="k">def</span> <span class="nf">empty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;비었는지 여부 확인&quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+    <span class="k">def</span> <span class="nf">full</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;maxsize 충족 여부 확인&quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+    <span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;항목 추가&quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;항목 삭제&quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+</pre></div>
+</div>
+</div>
+</div>
 <p>스택 자료구조를 <code class="docutils literal notranslate"><span class="pre">Stack</span></code> 클래스로 구현하기 위해
 리스트를 항목들의 저장 장치로 활용한다.
 앞서 소개한 기능들은 모두 메서드로 정의한다.
