@@ -603,14 +603,10 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q</span> <span class="o">=</span> <span class="n">myQueue</span><span class="p">(</span><span class="n">maxsize</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
 <span class="n">q</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
 <span class="n">q</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="s2">&quot;dog&quot;</span><span class="p">)</span>
 <span class="n">q</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">q</span><span class="o">.</span><span class="n">full</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">q</span><span class="o">.</span><span class="n">qsize</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">q</span><span class="o">.</span><span class="n">empty</span><span class="p">())</span>
 <span class="n">q</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="mf">8.4</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">q</span><span class="o">.</span><span class="n">full</span><span class="p">())</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
@@ -620,15 +616,12 @@ document.write(`
 <span class="nb">print</span><span class="p">(</span><span class="n">q</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">q</span><span class="o">.</span><span class="n">qsize</span><span class="p">())</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">q</span><span class="o">.</span><span class="n">empty</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>myQueue([])
-myQueue([True, &#39;dog&#39;, 4])
-False
-3
-False
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>myQueue([True, &#39;dog&#39;, 4])
 True
 myQueue([8.4, True, &#39;dog&#39;, 4])
 추가되지 않아요!
@@ -637,6 +630,7 @@ myQueue([8.4, True, &#39;dog&#39;, 4])
 dog
 2
 myQueue([8.4, True])
+False
 </pre></div>
 </div>
 </div>
