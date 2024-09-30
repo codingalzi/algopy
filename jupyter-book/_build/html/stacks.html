@@ -452,8 +452,13 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">6.1. 스택의 정의</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">6.2. 스택 자료구조 구현</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#queue-lifoqueue">6.3. <code class="docutils literal notranslate"><span class="pre">queue.LifoQueue</span></code> 클래스</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">6.4. 스택 활용: 괄호 짝맞추기</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">6.5. 연습 문제</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">6.4. 스택 활용: 괄호 짝맞추기</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">6.4.1. 소괄호 짝맞추기</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">6.4.2. 대중소 괄호 짝맞추기</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">6.4.3. 수리 표현식 괄호 짝맞추기</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">6.5. 연습 문제</a></li>
 </ul>
             </nav>
         </div>
@@ -639,8 +644,8 @@ False
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 11.2 ms, sys: 0 ns, total: 11.2 ms
-Wall time: 11.1 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 10.9 ms, sys: 109 μs, total: 11.1 ms
+Wall time: 11 ms
 </pre></div>
 </div>
 </div>
@@ -658,8 +663,8 @@ Wall time: 11.1 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 50.5 ms, sys: 0 ns, total: 50.5 ms
-Wall time: 50.1 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 45.8 ms, sys: 4.45 ms, total: 50.2 ms
+Wall time: 49.9 ms
 </pre></div>
 </div>
 </div>
@@ -677,8 +682,8 @@ Wall time: 50.1 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.95 ms, sys: 4.64 ms, total: 6.59 ms
-Wall time: 6.57 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 6.82 ms, sys: 0 ns, total: 6.82 ms
+Wall time: 6.76 ms
 </pre></div>
 </div>
 </div>
@@ -693,8 +698,8 @@ Wall time: 6.57 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 51.9 ms, sys: 297 μs, total: 52.2 ms
-Wall time: 51.4 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 54.2 ms, sys: 146 μs, total: 54.4 ms
+Wall time: 53.9 ms
 </pre></div>
 </div>
 </div>
@@ -702,6 +707,8 @@ Wall time: 51.4 ms
 </section>
 <section id="id3">
 <h2><span class="section-number">6.4. </span>스택 활용: 괄호 짝맞추기<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<section id="id4">
+<h3><span class="section-number">6.4.1. </span>소괄호 짝맞추기<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
 <p>아래 식에서처럼 함수나 또는 연산 실행을 위해 사용되는 괄호는 짝이 맞아야 한다.
 즉, 여는 괄호 하나와 닫는 괄호 하나가 짝이 맞아야 한다.</p>
 <div class="math notranslate nohighlight">
@@ -750,9 +757,7 @@ Wall time: 51.4 ms
 <li><p>끝까지 확인했을 때 스택이 비워지지 않은 경우: 여는 괄호가 너무 많음</p></li>
 <li><p>그렇지 않으면 모든 괄호의 짝이 맞음.</p></li>
 </ul>
-<figure>
-<div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/simpleparcheck.png" width="50%"></div>
-</figure><div class="cell docutils container">
+<p><div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/simpleparcheck.png" width="70%"></div></p><div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">par_checker</span><span class="p">(</span><span class="n">symbol_string</span><span class="p">):</span>
 
@@ -789,7 +794,9 @@ False
 </div>
 </div>
 </div>
-<p><strong>일반화</strong></p>
+</section>
+<section id="id5">
+<h3><span class="section-number">6.4.2. </span>대중소 괄호 짝맞추기<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
 <p>소, 중, 대 세 종류의 괄호를 대상으로 짝맞추기 문제를 해결하는 알고리즘을 구현한다.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">(</span></code>, <code class="docutils literal notranslate"><span class="pre">)</span></code>: 튜플, 표현식 등</p></li>
@@ -851,11 +858,57 @@ False
 </div>
 </div>
 </section>
-<section id="id4">
-<h2><span class="section-number">6.5. </span>연습 문제<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<section id="id6">
+<h3><span class="section-number">6.4.3. </span>수리 표현식 괄호 짝맞추기<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">balance_checker()</span></code> 함수를 살짝 수정하면 표현식에 사용된 괄호의 매칭 여부를 판단하도록
+만들 수 있다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">expression_checker</span><span class="p">(</span><span class="n">expression</span><span class="p">):</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">Stack</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">symbol</span> <span class="ow">in</span> <span class="n">expression</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">symbol</span> <span class="ow">not</span> <span class="ow">in</span> <span class="s2">&quot;()[]</span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="k">elif</span> <span class="n">symbol</span> <span class="ow">in</span> <span class="s2">&quot;([{&quot;</span><span class="p">:</span>
+            <span class="n">s</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">symbol</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">s</span><span class="o">.</span><span class="n">empty</span><span class="p">():</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">matches</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span> <span class="n">symbol</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="n">empty</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">expression_checker</span><span class="p">(</span><span class="s1">&#39;{({([][])}())}&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">expression_checker</span><span class="p">(</span><span class="s1">&#39;[{()]&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">expression_checker</span><span class="p">(</span><span class="s1">&#39;(A + B) * C - (D - E) * (F + G)&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">expression_checker</span><span class="p">(</span><span class="s1">&#39;(5 + 6) * (7 + 8) / (4 + 3&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">expression_checker</span><span class="p">(</span><span class="s1">&#39;(5 + 6) * (7 + 8) / (4 + 3)&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">expression_checker</span><span class="p">(</span><span class="s1">&#39;((x + y) * z)&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+False
+True
+False
+True
+True
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="id7">
+<h2><span class="section-number">6.5. </span>연습 문제<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p><a class="reference external" href="https://colab.research.google.com/github/codingalzi/algopy/blob/master/excs/exc-stacks.ipynb">(실습) 스택</a></p></li>
-<li><p><a class="reference external" href="https://colab.research.google.com/github/codingalzi/algopy/blob/master/excs/exc-infix_prefix_postfix.ipynb">(실습) 중위, 전위, 후위 표기법</a></p></li>
 </ol>
 </section>
 </section>
@@ -927,8 +980,13 @@ False
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">6.1. 스택의 정의</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">6.2. 스택 자료구조 구현</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#queue-lifoqueue">6.3. <code class="docutils literal notranslate"><span class="pre">queue.LifoQueue</span></code> 클래스</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">6.4. 스택 활용: 괄호 짝맞추기</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">6.5. 연습 문제</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">6.4. 스택 활용: 괄호 짝맞추기</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">6.4.1. 소괄호 짝맞추기</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">6.4.2. 대중소 괄호 짝맞추기</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">6.4.3. 수리 표현식 괄호 짝맞추기</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">6.5. 연습 문제</a></li>
 </ul>
   </nav></div>
 
