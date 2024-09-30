@@ -450,8 +450,9 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">5.1. 큐의 정의</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">5.2. <code class="docutils literal notranslate"><span class="pre">Queue</span></code> 추상 자료형</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">5.3. 큐 자료구조 구현</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">5.4. 큐 활용: 폭탄 돌리기 게임</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">5.5. 연습 문제</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#queue-queue">5.4. <code class="docutils literal notranslate"><span class="pre">queue.Queue</span></code> 클래스</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">5.5. 큐 활용: 폭탄 돌리기 게임</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">5.6. 연습 문제</a></li>
 </ul>
             </nav>
         </div>
@@ -641,8 +642,97 @@ myQueue([8.4, True])
 </div>
 </div>
 </section>
+<section id="queue-queue">
+<h2><span class="section-number">5.4. </span><code class="docutils literal notranslate"><span class="pre">queue.Queue</span></code> 클래스<a class="headerlink" href="#queue-queue" title="Link to this heading">#</a></h2>
+<p>파이썬 <code class="docutils literal notranslate"><span class="pre">queue</span></code> 모듈이 큐 추상 자료형을 자료구조로 구현한 <code class="docutils literal notranslate"><span class="pre">Queue</span></code> 클래스를 지원한다.
+앞서 <code class="docutils literal notranslate"><span class="pre">collections.deque</span></code>를 이용하여 정의한 <code class="docutils literal notranslate"><span class="pre">myQueue</span></code>와의 항목 추가와 삭제 실행 속도를
+비교했을 때 <code class="docutils literal notranslate"><span class="pre">myQueue</span></code>가 4, 5배 정도 빠른 것으로 확인된다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">queue</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">put()</span></code> 메서드 속도 비교</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="mi">100_000</span>
+<span class="n">q1</span> <span class="o">=</span> <span class="n">myQueue</span><span class="p">(</span><span class="n">maxsize</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">q1</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 11.5 ms, sys: 128 μs, total: 11.6 ms
+Wall time: 11.4 ms
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="mi">100_000</span>
+<span class="n">q2</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">Queue</span><span class="p">(</span><span class="n">maxsize</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">q2</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 53.7 ms, sys: 0 ns, total: 53.7 ms
+Wall time: 53.3 ms
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">get()</span></code> 메서드 속도 비교</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">q1</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 9.99 ms, sys: 0 ns, total: 9.99 ms
+Wall time: 9.94 ms
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">q2</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 56.3 ms, sys: 0 ns, total: 56.3 ms
+Wall time: 55.9 ms
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 <section id="id4">
-<h2><span class="section-number">5.4. </span>큐 활용: 폭탄 돌리기 게임<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">5.5. </span>큐 활용: 폭탄 돌리기 게임<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
 <p><strong>게임 소개</strong></p>
 <p>여러 명이 빙 둘러앉아 폭탄 돌리기 게임을 한다.
 폭탄을 계속 돌리다가 멈추는 순간 폭탄을 들고 있는 사람은 탈락된다.
@@ -699,7 +789,7 @@ myQueue([8.4, True])
 </div>
 </section>
 <section id="id5">
-<h2><span class="section-number">5.5. </span>연습 문제<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">5.6. </span>연습 문제<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p><a class="reference external" href="https://colab.research.google.com/github/codingalzi/algopy/blob/master/excs/exc-queues.ipynb">(실습) 큐</a></p></li>
 </ol>
@@ -773,8 +863,9 @@ myQueue([8.4, True])
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">5.1. 큐의 정의</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">5.2. <code class="docutils literal notranslate"><span class="pre">Queue</span></code> 추상 자료형</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">5.3. 큐 자료구조 구현</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">5.4. 큐 활용: 폭탄 돌리기 게임</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">5.5. 연습 문제</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#queue-queue">5.4. <code class="docutils literal notranslate"><span class="pre">queue.Queue</span></code> 클래스</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">5.5. 큐 활용: 폭탄 돌리기 게임</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">5.6. 연습 문제</a></li>
 </ul>
   </nav></div>
 
