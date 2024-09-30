@@ -61,7 +61,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'queues';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="6. 스택(Stack)" href="stacks.html" />
+    <link rel="next" title="6. 스택Stack" href="stacks.html" />
     <link rel="prev" title="4. 덱Deque" href="deques.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -176,7 +176,7 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="deques.html">4. 덱<font size="2">Deque</font></a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">5. 큐<font size="2">Queue</font></a></li>
-<li class="toctree-l1"><a class="reference internal" href="stacks.html">6. 스택(Stack)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stacks.html">6. 스택<font size="2">Stack</font></a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">알고리즘 시간 복잡도</span></p>
 <ul class="nav bd-sidenav">
@@ -603,14 +603,10 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q</span> <span class="o">=</span> <span class="n">myQueue</span><span class="p">(</span><span class="n">maxsize</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
 <span class="n">q</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
 <span class="n">q</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="s2">&quot;dog&quot;</span><span class="p">)</span>
 <span class="n">q</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">q</span><span class="o">.</span><span class="n">full</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">q</span><span class="o">.</span><span class="n">qsize</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">q</span><span class="o">.</span><span class="n">empty</span><span class="p">())</span>
 <span class="n">q</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="mf">8.4</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">q</span><span class="o">.</span><span class="n">full</span><span class="p">())</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
@@ -620,15 +616,12 @@ document.write(`
 <span class="nb">print</span><span class="p">(</span><span class="n">q</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">q</span><span class="o">.</span><span class="n">qsize</span><span class="p">())</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">q</span><span class="o">.</span><span class="n">empty</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>myQueue([])
-myQueue([True, &#39;dog&#39;, 4])
-False
-3
-False
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>myQueue([True, &#39;dog&#39;, 4])
 True
 myQueue([8.4, True, &#39;dog&#39;, 4])
 추가되지 않아요!
@@ -637,6 +630,7 @@ myQueue([8.4, True, &#39;dog&#39;, 4])
 dog
 2
 myQueue([8.4, True])
+False
 </pre></div>
 </div>
 </div>
@@ -840,7 +834,7 @@ Wall time: 55.9 ms
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">6. </span>스택(Stack)</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>스택<font size='2'>Stack</font></p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
