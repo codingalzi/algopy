@@ -450,29 +450,28 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">6.1. 스택의 정의</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">6.2. <code class="docutils literal notranslate"><span class="pre">Stack</span></code> 추상 자료형</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">6.3. 스택 자료구조 구현</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">6.3.1. 구현 방식에 따른 속도 차이</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#queue-lifoqueue">6.3.2. <code class="docutils literal notranslate"><span class="pre">queue</span></code> 모듈의 <code class="docutils literal notranslate"><span class="pre">LifoQueue</span></code> 클래스</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">6.2. 스택 자료구조 구현</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">6.2.1. 구현 방식에 따른 속도 차이</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#queue-lifoqueue">6.2.2. <code class="docutils literal notranslate"><span class="pre">queue</span></code> 모듈의 <code class="docutils literal notranslate"><span class="pre">LifoQueue</span></code> 클래스</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">6.4. 스택 실전 활용</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">6.4.1. 괄호 짝맞추기 문제</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">6.4.2. 괄호 짝맞추기 문제(일반화)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">6.3. 스택 실전 활용</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">6.3.1. 괄호 짝맞추기 문제</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">6.3.2. 괄호 짝맞추기 문제(일반화)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">6.5. 중위/전위/후위 표기법</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">6.5.1. 중위 표기법</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">6.5.2. 전위/후위 표기법</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">6.4. 중위/전위/후위 표기법</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">6.4.1. 중위 표기법</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">6.4.2. 전위/후위 표기법</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">6.6. 표기법 변환</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">6.6.1. 괄호를 사용한 중위 표기법 변환</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">6.6.2. 표기법 변환 알고리즘</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">6.5. 표기법 변환</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">6.5.1. 괄호를 사용한 중위 표기법 변환</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">6.5.2. 표기법 변환 알고리즘</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">6.7. 후위 표기법 표현식 계산</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">6.8. 연습 문제</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">6.6. 후위 표기법 표현식 계산</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">6.7. 연습 문제</a></li>
 </ul>
             </nav>
         </div>
@@ -498,103 +497,21 @@ document.write(`
 </ul>
 <section id="id1">
 <h2><span class="section-number">6.1. </span>스택의 정의<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
-<p><strong>스택</strong><font size='2'>stack</font>은 여러 개의 값을 가지며 값들 사이의 순서가 중요한 선형 자료형이다.
-항목의 추가 및 삭제는 보통 <strong>탑</strong><font size='2'>top</font>이라 불리는 한 쪽 끝에서만 허용된다.
+<p><strong>스택</strong><font size='2'>stack</font>은 항목의 추가 및 삭제를 보통 <strong>탑</strong><font size='2'>top</font>이라 불리는 한 쪽 끝에서만 허용한다.
 반면에 다른 한 쪽 끝은 <strong>베이스</strong><font size='2'>base</font>라 한다.</p>
 <ul class="simple">
 <li><p>탑: 가장 나중에 추가된 항목의 위치</p></li>
 <li><p>베이스: 남아 있는 항목 중에서 가장 먼저 추가된 항목의 위치</p></li>
 </ul>
-<p><div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/lifo.png" width="40%"></div></p><figure>
-<div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/primitive.png" width="60%"></div>
-</figure><p><strong>후입선출</strong><font size='2'>last-in first-out</font>(LIFO)</p>
-<p>아래 그림에서 설명된 것처럼 들어온 순서 역순으로 삭제되는 것을 의미한다.</p>
-<figure>
-<div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/simplereversal.png" width="75%"></div>
-</figure></section>
+<p>가장 나중에 추가된 항목이 가장 먼저 삭제되는 후입선출<font size='2'>last-in first-out</font>(LIFO) 원리르 따른다.</p>
+<p><div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/lifo.png" width="40%"></div></p></section>
 <section id="id2">
-<h2><span class="section-number">6.2. </span><code class="docutils literal notranslate"><span class="pre">Stack</span></code> 추상 자료형<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
-<p>스택 추상 자료형을 구체적인 파이썬 자료구조로
-구현하기 위해 구비해야 하는 기본 속성과 기능은 다음과 같다.</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">Stack(maxsize=0)</span></code>: 비어 있는 스택 생성.
-maxsize를 양의 정수로 지정하면 항목을 최대 그만큼 담을 수 있음.
-아니면 제한 없음.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">put(item)</span></code>: <code class="docutils literal notranslate"><span class="pre">maxsize</span></code>가 양의 정수이면서 항목을 추가하면 허용되는 항목의 수를 초과하는 경우
-먼저 탑(top) 항목을 제거한 다음 새로운 항목을 탑에 추가. 반환값 없음.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">get()</span></code>: 탑 항목 삭제. 삭제된 항목 반환.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">peek()</span></code>: 탑 항목 반환. 하지만 삭제하진 않음.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">empty()</span></code>: 스택이 비었는지 여부 판단. 부울값 반환.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">full()</span></code>: 스택이 꽉 차 있는지 여부 판단. 부울값 반환.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">qsize()</span></code>:  항목 개수 반환.</p></li>
-</ul>
-<p>아래 테이블은 스택을 생성하과 활용하는 과정을 간단하게 소개한다.</p>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head text-left"><p>스택 연산</p></th>
-<th class="head text-left"><p>스택 항목</p></th>
-<th class="head text-left"><p>반환값</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">s</span> <span class="pre">=</span> <span class="pre">Stack(maxsize=4)</span></code></p></td>
-<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">[]</span></code></p></td>
-<td class="text-left"><p></p></td>
-</tr>
-<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">s.empty()</span></code></p></td>
-<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">[]</span></code></p></td>
-<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p></td>
-</tr>
-<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">s.put(4)</span></code></p></td>
-<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">[4]</span></code></p></td>
-<td class="text-left"><p></p></td>
-</tr>
-<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">s.put('dog')</span></code></p></td>
-<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">[4,</span> <span class="pre">'dog']</span></code></p></td>
-<td class="text-left"><p></p></td>
-</tr>
-<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">s.peek()</span></code></p></td>
-<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">[4,</span> <span class="pre">'dog']</span></code></p></td>
-<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">'dog'</span></code></p></td>
-</tr>
-<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">s.put(True)</span></code></p></td>
-<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">[4,</span> <span class="pre">'dog',</span> <span class="pre">True]</span></code></p></td>
-<td class="text-left"><p></p></td>
-</tr>
-<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">s.qsize()</span></code></p></td>
-<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">[4,</span> <span class="pre">'dog',</span> <span class="pre">True]</span></code></p></td>
-<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">3</span></code></p></td>
-</tr>
-<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">s.empty()</span></code></p></td>
-<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">[4,</span> <span class="pre">'dog',</span> <span class="pre">True]</span></code></p></td>
-<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
-</tr>
-<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">s.put(8.4)</span></code></p></td>
-<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">[4,</span> <span class="pre">'dog',</span> <span class="pre">True,</span> <span class="pre">8.4]</span></code></p></td>
-<td class="text-left"><p></p></td>
-</tr>
-<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">s.full()</span></code></p></td>
-<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">[4,</span> <span class="pre">'dog',</span> <span class="pre">True,</span> <span class="pre">8.4]</span></code></p></td>
-<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p></td>
-</tr>
-<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">s.get()</span></code></p></td>
-<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">[4,</span> <span class="pre">'dog',</span> <span class="pre">True]</span></code></p></td>
-<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">8.4</span></code></p></td>
-</tr>
-<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">s.get()</span></code></p></td>
-<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">[4,</span> <span class="pre">'dog']</span></code></p></td>
-<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p></td>
-</tr>
-<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">s.qsize()</span></code></p></td>
-<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">[4,</span> <span class="pre">'dog']</span></code></p></td>
-<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">2</span></code></p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-<section id="id3">
-<h2><span class="section-number">6.3. </span>스택 자료구조 구현<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">6.2. </span>스택 자료구조 구현<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>스택 자료구조는 큐 자료구조와는 달리 항목의 추가와 삭제를 한쪽에서만 처리한다.
+하지만 그 이외에는 동일한 기능을 지원한다.
+따라서 스택 자료구조를 큐와 동일하게 큐 추상 클래스를 상속하는 방식으로 정의할 수 있다.
+실제로 파이썬이 제공하는</p>
+<p><code class="xref std std-numref docutils literal notranslate"><span class="pre">&lt;&gt;</span></code></p>
 <p>스택 자료구조를 <code class="docutils literal notranslate"><span class="pre">Stack</span></code> 클래스로 구현하기 위해
 리스트를 항목들의 저장 장치로 활용한다.
 앞서 소개한 기능들은 모두 메서드로 정의한다.
@@ -738,8 +655,8 @@ True
 </div>
 </div>
 </div>
-<section id="id4">
-<h3><span class="section-number">6.3.1. </span>구현 방식에 따른 속도 차이<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<section id="id3">
+<h3><span class="section-number">6.2.1. </span>구현 방식에 따른 속도 차이<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
 <p>스택의 탑을 리스트의 첫째 항목으로 정하면
 항목을 추가할 때 <code class="docutils literal notranslate"><span class="pre">insert(0,</span> <span class="pre">item)</span></code>을,
 항목을 삭제할 때 <code class="docutils literal notranslate"><span class="pre">pop(0)</span></code>를 사용할 수 있다.
@@ -993,7 +910,7 @@ True
 나머지 항목들의 위치를 이동시키기 위해 보다 많은 시간이 요구되기 때문이다.</p>
 </section>
 <section id="queue-lifoqueue">
-<h3><span class="section-number">6.3.2. </span><code class="docutils literal notranslate"><span class="pre">queue</span></code> 모듈의 <code class="docutils literal notranslate"><span class="pre">LifoQueue</span></code> 클래스<a class="headerlink" href="#queue-lifoqueue" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.2.2. </span><code class="docutils literal notranslate"><span class="pre">queue</span></code> 모듈의 <code class="docutils literal notranslate"><span class="pre">LifoQueue</span></code> 클래스<a class="headerlink" href="#queue-lifoqueue" title="Link to this heading">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">queue</span></code> 모듈의 <code class="docutils literal notranslate"><span class="pre">LifoQueue</span></code> 클래스가 스택 자료구조를 가리킨다.
 앞서 정의한 <code class="docutils literal notranslate"><span class="pre">Stack</span></code> 클래스보다 10배 정도 느리다.</p>
 <ul class="simple">
@@ -1074,10 +991,10 @@ True
 </div>
 </section>
 </section>
+<section id="id4">
+<h2><span class="section-number">6.3. </span>스택 실전 활용<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
 <section id="id5">
-<h2><span class="section-number">6.4. </span>스택 실전 활용<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
-<section id="id6">
-<h3><span class="section-number">6.4.1. </span>괄호 짝맞추기 문제<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.3.1. </span>괄호 짝맞추기 문제<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
 <p>아래 식에서처럼 함수나 또는 연산 실행을 위해 사용되는 괄호는 짝이 맞아야 한다.
 즉, 여는 괄호 하나와 닫는 괄호 하나가 짝이 맞아야 한다.</p>
 <div class="math notranslate nohighlight">
@@ -1166,8 +1083,8 @@ False
 </div>
 </div>
 </section>
-<section id="id7">
-<h3><span class="section-number">6.4.2. </span>괄호 짝맞추기 문제(일반화)<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<section id="id6">
+<h3><span class="section-number">6.3.2. </span>괄호 짝맞추기 문제(일반화)<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
 <p>소, 중, 대 세 종류의 괄호를 대상으로 짝맞추기 문제를 해결하는 알고리즘을 구현한다.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">(</span></code>, <code class="docutils literal notranslate"><span class="pre">)</span></code>: 튜플, 표현식 등</p></li>
@@ -1230,12 +1147,12 @@ False
 </div>
 </section>
 </section>
-<section id="id8">
-<h2><span class="section-number">6.5. </span>중위/전위/후위 표기법<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
+<section id="id7">
+<h2><span class="section-number">6.4. </span>중위/전위/후위 표기법<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
 <p>이항 연산자를 이용한 표현식을 작성하는 세 종류의 표기법을 살펴본다.
 또한 표기법 변환 알고리즘과 변환된 표현식의 값을 계산하는 알고리즘을 스택 자료구조를 이용하여 구현한다.</p>
-<section id="id9">
-<h3><span class="section-number">6.5.1. </span>중위 표기법<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<section id="id8">
+<h3><span class="section-number">6.4.1. </span>중위 표기법<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
 <p>아래 두 수식에 사용되는 덧셈 연산자(<code class="docutils literal notranslate"><span class="pre">+</span></code>)와
 곱셈 연산자(<code class="docutils literal notranslate"><span class="pre">*</span></code>)는 더해지거나 곱해지는 두
 피연산자<font size='2'>operand</font>, 즉 두 인자의 사이에 위치한다.</p>
@@ -1257,8 +1174,8 @@ False
 즉, <code class="docutils literal notranslate"><span class="pre">4</span> <span class="pre">-</span> <span class="pre">x</span> <span class="pre">+</span> <span class="pre">7</span></code>는 <code class="docutils literal notranslate"><span class="pre">(4</span> <span class="pre">-</span> <span class="pre">x)</span> <span class="pre">+</span> <span class="pre">7</span></code>로, <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">/</span> <span class="pre">x</span> <span class="pre">*</span> <span class="pre">y</span></code>는 <code class="docutils literal notranslate"><span class="pre">(2</span> <span class="pre">/</span> <span class="pre">x)</span> <span class="pre">*</span> <span class="pre">y</span></code> 로 계산된다.
 <code class="docutils literal notranslate"><span class="pre">4</span> <span class="pre">-</span> <span class="pre">(x</span> <span class="pre">+</span> <span class="pre">7)</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">/</span> <span class="pre">(x</span> <span class="pre">*</span> <span class="pre">y)</span></code> 는 다른 값으로 계산됨에 주의한다.</p>
 </section>
-<section id="id10">
-<h3><span class="section-number">6.5.2. </span>전위/후위 표기법<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
+<section id="id9">
+<h3><span class="section-number">6.4.2. </span>전위/후위 표기법<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
 <p>이처럼 중위 표기법을 사용하는 표현식은 의도된 계산을 명확히 하기 위해 괄호를 사용해야 한다.
 반면에 <strong>전위 표기법</strong><font size='2'>prefix notation</font>
 또는 <strong>후위 표기법</strong><font size='2'>postfix notation</font>은 괄호를 필요로 하지 않으면서
@@ -1386,10 +1303,10 @@ False
 </div>
 </section>
 </section>
+<section id="id10">
+<h2><span class="section-number">6.5. </span>표기법 변환<a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
 <section id="id11">
-<h2><span class="section-number">6.6. </span>표기법 변환<a class="headerlink" href="#id11" title="Link to this heading">#</a></h2>
-<section id="id12">
-<h3><span class="section-number">6.6.1. </span>괄호를 사용한 중위 표기법 변환<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.5.1. </span>괄호를 사용한 중위 표기법 변환<a class="headerlink" href="#id11" title="Link to this heading">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">+</span> <span class="pre">B</span> <span class="pre">*</span> <span class="pre">C</span></code> 표현식의 의미는 <code class="docutils literal notranslate"><span class="pre">(A</span> <span class="pre">+</span> <span class="pre">(B</span> <span class="pre">*</span> <span class="pre">C))</span></code> 와 동일하다.
 그리고 <code class="docutils literal notranslate"><span class="pre">(A</span> <span class="pre">+</span> <span class="pre">(B</span> <span class="pre">*</span> <span class="pre">C))</span></code>처럼 사용되는 모든 연산자를 대상으로 괄호가 사용된
 표현식을 전위 또는 후위 표기법으로 변환하는 일은 어렵지 않다.
@@ -1405,8 +1322,8 @@ False
 <figure>
 <div align="center"><img src="https://runestone.academy/ns/books/published/pythonds3/_images/complexmove.png" width="80%"></div>
 </figure></section>
-<section id="id13">
-<h3><span class="section-number">6.6.2. </span>표기법 변환 알고리즘<a class="headerlink" href="#id13" title="Link to this heading">#</a></h3>
+<section id="id12">
+<h3><span class="section-number">6.5.2. </span>표기법 변환 알고리즘<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
 <p>중위 표현식을 후위 표현식으로 변환하는 알고리즘을 구현해보자.</p>
 <p>중위 표현식이 앞서 설명한 것처럼 모든 이항 연산에 대해 괄호를 철저하게 사용하였다면 아주 쉽게 변환할 수 있다.
 하지만 일반적으로는 반드시 필요하지 않은 괄호는 생략하고 연산자의
@@ -1560,8 +1477,8 @@ False
 </div>
 </section>
 </section>
-<section id="id14">
-<h2><span class="section-number">6.7. </span>후위 표기법 표현식 계산<a class="headerlink" href="#id14" title="Link to this heading">#</a></h2>
+<section id="id13">
+<h2><span class="section-number">6.6. </span>후위 표기법 표현식 계산<a class="headerlink" href="#id13" title="Link to this heading">#</a></h2>
 <p>후위 표현식을 실제로 계산하는 알고리즘을 스택을 이용하여 구현한다.
 후위 표현식에서는 연산자보다 피연산자, 즉 연산자의 인자들이 먼저 확인되기에
 피연산자들을 스택에 쌓아두고 적절한 연산자가 확인될 때까지 기다리도록 해야 한다.
@@ -1689,8 +1606,8 @@ False
 </div>
 </div>
 </section>
-<section id="id15">
-<h2><span class="section-number">6.8. </span>연습 문제<a class="headerlink" href="#id15" title="Link to this heading">#</a></h2>
+<section id="id14">
+<h2><span class="section-number">6.7. </span>연습 문제<a class="headerlink" href="#id14" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p><a class="reference external" href="https://colab.research.google.com/github/codingalzi/algopy/blob/master/excs/exc-stacks.ipynb">(실습) 스택</a></p></li>
 <li><p><a class="reference external" href="https://colab.research.google.com/github/codingalzi/algopy/blob/master/excs/exc-infix_prefix_postfix.ipynb">(실습) 중위, 전위, 후위 표기법</a></p></li>
@@ -1763,29 +1680,28 @@ False
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">6.1. 스택의 정의</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">6.2. <code class="docutils literal notranslate"><span class="pre">Stack</span></code> 추상 자료형</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">6.3. 스택 자료구조 구현</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">6.3.1. 구현 방식에 따른 속도 차이</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#queue-lifoqueue">6.3.2. <code class="docutils literal notranslate"><span class="pre">queue</span></code> 모듈의 <code class="docutils literal notranslate"><span class="pre">LifoQueue</span></code> 클래스</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">6.2. 스택 자료구조 구현</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">6.2.1. 구현 방식에 따른 속도 차이</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#queue-lifoqueue">6.2.2. <code class="docutils literal notranslate"><span class="pre">queue</span></code> 모듈의 <code class="docutils literal notranslate"><span class="pre">LifoQueue</span></code> 클래스</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">6.4. 스택 실전 활용</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">6.4.1. 괄호 짝맞추기 문제</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">6.4.2. 괄호 짝맞추기 문제(일반화)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">6.3. 스택 실전 활용</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">6.3.1. 괄호 짝맞추기 문제</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">6.3.2. 괄호 짝맞추기 문제(일반화)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">6.5. 중위/전위/후위 표기법</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">6.5.1. 중위 표기법</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">6.5.2. 전위/후위 표기법</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">6.4. 중위/전위/후위 표기법</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">6.4.1. 중위 표기법</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">6.4.2. 전위/후위 표기법</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">6.6. 표기법 변환</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">6.6.1. 괄호를 사용한 중위 표기법 변환</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">6.6.2. 표기법 변환 알고리즘</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">6.5. 표기법 변환</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">6.5.1. 괄호를 사용한 중위 표기법 변환</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">6.5.2. 표기법 변환 알고리즘</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">6.7. 후위 표기법 표현식 계산</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">6.8. 연습 문제</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">6.6. 후위 표기법 표현식 계산</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">6.7. 연습 문제</a></li>
 </ul>
   </nav></div>
 
