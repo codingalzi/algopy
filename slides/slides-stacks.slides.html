@@ -7440,7 +7440,7 @@ main {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="%EC%8A%A4%ED%83%9D(Stack)">스택(Stack)<a class="anchor-link" href="#%EC%8A%A4%ED%83%9D(Stack)">¶</a></h1>
+<h1 id="%EC%8A%A4%ED%83%9DStack">스택<font size="2">Stack</font><a class="anchor-link" href="#%EC%8A%A4%ED%83%9DStack">¶</a></h1>
 </div>
 </div>
 </div>
@@ -7702,8 +7702,8 @@ False
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>CPU times: user 6.81 ms, sys: 0 ns, total: 6.81 ms
-Wall time: 6.95 ms
+<pre>CPU times: user 7.95 ms, sys: 0 ns, total: 7.95 ms
+Wall time: 7.94 ms
 </pre>
 </div>
 </div>
@@ -7736,8 +7736,8 @@ Wall time: 6.95 ms
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>CPU times: user 32.7 ms, sys: 299 μs, total: 33 ms
-Wall time: 32.7 ms
+<pre>CPU times: user 31.7 ms, sys: 0 ns, total: 31.7 ms
+Wall time: 31.4 ms
 </pre>
 </div>
 </div>
@@ -7778,8 +7778,8 @@ Wall time: 32.7 ms
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>CPU times: user 0 ns, sys: 4.53 ms, total: 4.53 ms
-Wall time: 4.53 ms
+<pre>CPU times: user 3.73 ms, sys: 0 ns, total: 3.73 ms
+Wall time: 3.74 ms
 </pre>
 </div>
 </div>
@@ -7809,8 +7809,8 @@ Wall time: 4.53 ms
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>CPU times: user 34 ms, sys: 0 ns, total: 34 ms
-Wall time: 33.8 ms
+<pre>CPU times: user 32.6 ms, sys: 0 ns, total: 32.6 ms
+Wall time: 32.4 ms
 </pre>
 </div>
 </div>
@@ -8369,43 +8369,6 @@ False
 True
 False
 </pre>
-</div>
-</div>
-</div>
-</div>
-</div></section></section><section><section><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">traitlets.config.manager</span> <span class="kn">import</span> <span class="n">BaseJSONConfigManager</span>
-<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
-<span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="o">.</span><span class="n">home</span><span class="p">()</span> <span class="o">/</span> <span class="s2">".jupyter"</span> <span class="o">/</span> <span class="s2">"nbconfig"</span>
-<span class="n">cm</span> <span class="o">=</span> <span class="n">BaseJSONConfigManager</span><span class="p">(</span><span class="n">config_dir</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
-<span class="n">tmp</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
-        <span class="s2">"rise"</span><span class="p">,</span>
-        <span class="p">{</span>
-            <span class="s2">"theme"</span><span class="p">:</span> <span class="s2">"serif"</span><span class="p">,</span>
-            <span class="s2">"transition"</span><span class="p">:</span> <span class="s2">"fade"</span><span class="p">,</span>
-            <span class="s2">"start_slideshow_at"</span><span class="p">:</span> <span class="s2">"selected"</span><span class="p">,</span>
-            <span class="s2">"autolaunch"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-            <span class="s2">"width"</span><span class="p">:</span> <span class="s2">"100%"</span><span class="p">,</span>
-            <span class="s2">"height"</span><span class="p">:</span> <span class="s2">"100%"</span><span class="p">,</span>
-            <span class="s2">"header"</span><span class="p">:</span> <span class="s2">""</span><span class="p">,</span>
-            <span class="s2">"footer"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span>
-            <span class="s2">"scroll"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-            <span class="s2">"enable_chalkboard"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-            <span class="s2">"slideNumber"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-            <span class="s2">"center"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-            <span class="s2">"controlsLayout"</span><span class="p">:</span> <span class="s2">"edges"</span><span class="p">,</span>
-            <span class="s2">"slideNumber"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-            <span class="s2">"hash"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="p">}</span>
-    <span class="p">)</span>
-</pre></div>
 </div>
 </div>
 </div>
