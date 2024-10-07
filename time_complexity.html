@@ -449,7 +449,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">7.1. 알고리즘 분석</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">7.1. 알고리즘 복잡도 분석</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">7.1.1. 문제와 알고리즘</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">7.1.2. 컴퓨팅 자원</a></li>
 </ul>
@@ -484,12 +484,12 @@ document.write(`
 <p>본문 내용을 요약한 <a class="reference external" href="https://github.com/codingalzi/algopy/raw/master/slides/slides-time_complexity.pdf">슬라이드</a>를 다운로드할 수 있다.</p>
 <p><strong>주요 내용</strong></p>
 <ul class="simple">
-<li><p>알고리즘 분석</p></li>
+<li><p>알고리즘 복잡도 분석</p></li>
 <li><p>시간 복잡도와 “Big-O” 표기법</p></li>
 <li><p>최선, 최악, 평균 시간 복잡도</p></li>
 </ul>
 <section id="id2">
-<h2><span class="section-number">7.1. </span>알고리즘 분석<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">7.1. </span>알고리즘 복잡도 분석<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
 <p>동일한 문제를 해결하는 프로그램 두 개의 성능을 어떻게 비교할 수 있을까? 라는 질문에 대답하려면
 먼저 <strong>알고리즘</strong>과 <strong>프로그램</strong>의 차이점을 이해해야 한다.</p>
 <ul class="simple">
@@ -595,8 +595,8 @@ document.write(`
 <p>두 프로그램 중에서 어떤 프로그램이 보다 좋은 프로그램인가?
 가독성, 명료성 등을 기준으로 보면 &lt;프로그램 1&gt;이 보다 좋은 프로그램이다.
 가독성, 명료성이 물론 매우 중요한 기준이지만 여기서는
-알고리즘 분석이라는 다른 기준을 소개한다.</p>
-<p><strong>알고리즘 분석</strong>은 프로그램을 실행할 때 필요한 자원을 가리키는
+알고리즘 복잡도 분석이라는 다른 기준을 소개한다.</p>
+<p><strong>알고리즘 복잡도 분석</strong>은 프로그램을 실행할 때 필요한 자원을 가리키는
 <strong>컴퓨팅 자원</strong><font size='2'>computing resources</font>의 양과
 활용의 효율성을 측정한다.
 이 기준에서 보면 위 두 프로그램은 동등하다.
@@ -661,7 +661,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1부터 10000까지 더하는데 평균적으로 0.00021초 걸림.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1부터 10000까지 더하는데 평균적으로 0.00023초 걸림.
 </pre></div>
 </div>
 </div>
@@ -681,7 +681,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1부터 100000까지 더하는데 평균적으로 0.00252초 걸림.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1부터 100000까지 더하는데 평균적으로 0.00260초 걸림.
 </pre></div>
 </div>
 </div>
@@ -701,7 +701,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1부터 1000000까지 더하는데 평균적으로 0.02552초 걸림.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1부터 1000000까지 더하는데 평균적으로 0.02782초 걸림.
 </pre></div>
 </div>
 </div>
@@ -721,7 +721,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1부터 10000000까지 더하는데 평균적으로 0.23504초 걸림.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1부터 10000000까지 더하는데 평균적으로 0.28615초 걸림.
 </pre></div>
 </div>
 </div>
@@ -777,10 +777,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1부터    10000까지 더하는데 평균적으로 0.0000003099441528초 걸림.
-1부터   100000까지 더하는데 평균적으로 0.0000002145767212초 걸림.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1부터    10000까지 더하는데 평균적으로 0.0000004053115845초 걸림.
+1부터   100000까지 더하는데 평균적으로 0.0000002622604370초 걸림.
 1부터  1000000까지 더하는데 평균적으로 0.0000001430511475초 걸림.
-1부터 10000000까지 더하는데 평균적으로 0.0000001430511475초 걸림.
+1부터 10000000까지 더하는데 평균적으로 0.0000002145767212초 걸림.
 </pre></div>
 </div>
 </div>
@@ -901,7 +901,7 @@ T(n) \in O(f(n))
 <p><span class="math notranslate nohighlight">\(3n^{2} + 2n + 4\)</span>에서 <span class="math notranslate nohighlight">\(n\)</span>이 커질 때 <span class="math notranslate nohighlight">\(3 n^{2}\)</span>이 주도적 역할을 수행한다.
 그런데 <span class="math notranslate nohighlight">\(3n^{2}\)</span>과 <span class="math notranslate nohighlight">\(n^{2}\)</span> 관계에서처럼 상수 배수는 무시된다.
 이유는 동일한 알고리즘을 돌렸을 때 컴퓨터 사양에 따라 발생하는 몇 배 정도의 실행 시간의 차이는
-알고리즘 분석의 핵심으로 간주되지 않기 때문이다.</p>
+알고리즘 복잡도 분석의 핵심으로 간주되지 않기 때문이다.</p>
 <p>결론적으로 다음이 성립한다.</p>
 <div class="math notranslate nohighlight">
 \[
@@ -929,7 +929,7 @@ T(n) \in O(1)
 </section>
 <section id="id6">
 <h3><span class="section-number">7.2.2. </span>주요 시간 복잡도 함수<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
-<p>알고리즘 분석에 가장 많이 사용되는 주요 시간 복잡도 함수는 다음과 같다.</p>
+<p>알고리즘 복잡도 분석에 가장 많이 사용되는 주요 시간 복잡도 함수는 다음과 같다.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p><strong>시간 복잡도</strong></p></th>
@@ -1254,7 +1254,7 @@ False
 </div>
 </div>
 </div>
-<p>위 알고리즘 분석에 사용되는 계산 단위로
+<p>위 알고리즘 복잡도 분석에 사용되는 계산 단위로
 첫째 문자열 <code class="docutils literal notranslate"><span class="pre">s1</span></code>의 항목과 둘째 문자열로부터 변환된
 리스트 <code class="docutils literal notranslate"><span class="pre">s2_list</span></code>의 항목 사이의 비교연산(<code class="docutils literal notranslate"><span class="pre">==</span></code>)을 사용한다.
 두 문자열의 길이가 <span class="math notranslate nohighlight">\(n\)</span>이라 하자.
@@ -1538,7 +1538,7 @@ T(n) = 2n + 26 \in O(n)
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">7.1. 알고리즘 분석</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">7.1. 알고리즘 복잡도 분석</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">7.1.1. 문제와 알고리즘</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">7.1.2. 컴퓨팅 자원</a></li>
 </ul>
