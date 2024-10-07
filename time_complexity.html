@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=b4b7a797" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=ca93fcec" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -486,6 +486,7 @@ document.write(`
 <ul class="simple">
 <li><p>알고리즘 분석</p></li>
 <li><p>시간 복잡도와 “Big-O” 표기법</p></li>
+<li><p>최선, 최악, 평균 시간 복잡도</p></li>
 </ul>
 <section id="id2">
 <h2><span class="section-number">7.1. </span>알고리즘 분석<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
@@ -605,16 +606,8 @@ document.write(`
 <h3><span class="section-number">7.1.2. </span>컴퓨팅 자원<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
 <p>컴퓨팅 자원은 보통 다음 두 가지 중에 하나 또는 모두를 가리킨다.</p>
 <ul class="simple">
-<li><p>공간량</p>
-<ul>
-<li><p>알고리즘을 구현한 프로그램이 실행 될 때 요구되는 메모리, 저장 공간 등의 양</p></li>
-</ul>
-</li>
-<li><p>실행 시간</p>
-<ul>
-<li><p>알고리즘을 구현한 프로그램이 특정 결과를 반환할 때까지 걸리는 실행 시간</p></li>
-</ul>
-</li>
+<li><p>공간량: 알고리즘을 구현한 프로그램이 실행 될 때 요구되는 메모리, 저장 공간 등의 양</p></li>
+<li><p>실행 시간: 알고리즘을 구현한 프로그램이 특정 결과를 반환할 때까지 걸리는 실행 시간</p></li>
 </ul>
 <p><strong>입력값과 입력 크기</strong></p>
 <p>알고리즘을 실행했을 때 요구되는 공간량과 실행 시간은 입력값의 크기에 의존한다.</p>
@@ -633,7 +626,7 @@ document.write(`
 </li>
 </ul>
 <p>여기서는 알고리즘 실행에 필요한 공간량에 대해서는 거의 다루지 않고 대신 실행 시간에 대한 이야기에 집중한다.</p>
-<p><strong>입력 크기에 실행 시간이 선형적으로 달라지는 알고리즘</strong></p>
+<p><strong>입력 크기에 따라 실행 시간이 선형적으로 달라지는 알고리즘</strong></p>
 <p>아래 <code class="docutils literal notranslate"><span class="pre">sum_of_n_2()</span></code> 함수는 양의 정수 n이 주어졌을 때
 1부터 n까지 정수의 합을 계산하기 위해 필요한 실행 시간을 계산한다.</p>
 <div class="cell docutils container">
@@ -668,7 +661,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1부터 10000까지 더하는데 평균적으로 0.00015초 걸림.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1부터 10000까지 더하는데 평균적으로 0.00021초 걸림.
 </pre></div>
 </div>
 </div>
@@ -688,7 +681,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1부터 100000까지 더하는데 평균적으로 0.00157초 걸림.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1부터 100000까지 더하는데 평균적으로 0.00252초 걸림.
 </pre></div>
 </div>
 </div>
@@ -708,7 +701,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1부터 1000000까지 더하는데 평균적으로 0.01645초 걸림.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1부터 1000000까지 더하는데 평균적으로 0.02552초 걸림.
 </pre></div>
 </div>
 </div>
@@ -728,7 +721,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1부터 10000000까지 더하는데 평균적으로 0.16858초 걸림.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1부터 10000000까지 더하는데 평균적으로 0.23504초 걸림.
 </pre></div>
 </div>
 </div>
@@ -784,10 +777,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1부터    10000까지 더하는데 평균적으로 0.0000002622604370초 걸림.
-1부터   100000까지 더하는데 평균적으로 0.0000001907348633초 걸림.
-1부터  1000000까지 더하는데 평균적으로 0.0000001907348633초 걸림.
-1부터 10000000까지 더하는데 평균적으로 0.0000001668930054초 걸림.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1부터    10000까지 더하는데 평균적으로 0.0000003099441528초 걸림.
+1부터   100000까지 더하는데 평균적으로 0.0000002145767212초 걸림.
+1부터  1000000까지 더하는데 평균적으로 0.0000001430511475초 걸림.
+1부터 10000000까지 더하는데 평균적으로 0.0000001430511475초 걸림.
 </pre></div>
 </div>
 </div>
@@ -826,7 +819,7 @@ document.write(`
 \[
 T(n) = n + 1
 \]</div>
-<p><span class="math notranslate nohighlight">\(T()\)</span> 함수는 ‘<strong>크기가 <span class="math notranslate nohighlight">\(n\)</span>인 입력값에 대해 <span class="math notranslate nohighlight">\(T(n)\)</span>의 시간이 지나면 해당 알고리즘이 반환값을 계산하고 종료한다</strong>’ 라는
+<p><span class="math notranslate nohighlight">\(T()\)</span> 함수는 <strong>크기가 <span class="math notranslate nohighlight">\(n\)</span>인 입력값에 대해 <span class="math notranslate nohighlight">\(T(n)\)</span>의 시간이 지나면 해당 알고리즘이 반환값을 계산하고 종료한다</strong> 라는
 의미의 <strong>일정 시간 복잡도</strong>를 계산하는 함수이다.</p>
 <p>따라서 <code class="docutils literal notranslate"><span class="pre">sum_of_n()</span></code> 함수의 일정 시간 복잡도가 <span class="math notranslate nohighlight">\(T(n) = n + 1\)</span> 이라는 것은 다음을 의미한다.</p>
 <div class="math notranslate nohighlight">
@@ -887,15 +880,19 @@ T(n) &amp;= 3 + 3n^{2} + 2n + 1 \\
 수식에 사용되는 모든 항을 다룰 필요가 없다.
 예를 들어 <span class="math notranslate nohighlight">\(T(n) = n + 1\)</span> 에서 <span class="math notranslate nohighlight">\(1\)</span>은 별로 중요하지 않다.
 실제로 <span class="math notranslate nohighlight">\(n\)</span>이 커질 수록 <span class="math notranslate nohighlight">\((n + 1)\)</span>에서 <span class="math notranslate nohighlight">\(1\)</span>의 역할은 거의 사라진다.
-실제로 <span class="math notranslate nohighlight">\((n+1) / n\)</span>은 <span class="math notranslate nohighlight">\(n\)</span>이 커질 수로 1에 무한히 가까워진다.
-이를 <strong>Big-O 표기법</strong>으로 나타내면 다음과 같다.</p>
+즉, 변수 할당을 한 번 더 하는 것은 실행 시간에 별 영향을 주지 않기에
+핵심은 <span class="math notranslate nohighlight">\(n\)</span>에 집중된다.
+위 설명이 <strong>Big-O 표기법</strong>의 핵심이며
+<span class="math notranslate nohighlight">\(T(n)\)</span>과 연관지어 다음과 같이 작성한다.</p>
 <div class="math notranslate nohighlight">
 \[
 T(n) \in O(n)
 \]</div>
-<p>실행 시간 함수 <span class="math notranslate nohighlight">\(T(n)\)</span>을 Big-O 표기법으로 나타내려면 앞서 설명한 것처럼 실행 시간 계산에 있어서
-입력 크기 <span class="math notranslate nohighlight">\(n\)</span>이 매우 커질 때 가장 중요한 역할을 수행하는 항인 찾아야 한다.
-그런 항이 <span class="math notranslate nohighlight">\(f(n)\)</span> 이라 할 때 아래처럼 표기한다.</p>
+<p>실행 시간 함수 <span class="math notranslate nohighlight">\(T(n)\)</span>을 Big-O 표기법으로 표현하는 일반적인 방법은 다음과 같다.</p>
+<ul class="simple">
+<li><p>입력 크기 <span class="math notranslate nohighlight">\(n\)</span>이 매우 커질 때 가장 중요한 역할을 수행하는 항 지정</p></li>
+<li><p>그런 항이 <span class="math notranslate nohighlight">\(f(n)\)</span> 이라 할 때 아래처럼 표기:</p></li>
+</ul>
 <div class="math notranslate nohighlight">
 \[
 T(n) \in O(f(n))
@@ -955,13 +952,10 @@ T(n) \in O(1)
 <tr class="row-even"><td><p><span class="math notranslate nohighlight">\(n^{2}\)</span></p></td>
 <td><p>2차 시간</p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(n^{3}\)</span></p></td>
-<td><p>3차 시간</p></td>
-</tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(2^{n}\)</span></p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(2^{n}\)</span></p></td>
 <td><p>지수 시간</p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(n!\)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(n!\)</span></p></td>
 <td><p>계승 시간</p></td>
 </tr>
 </tbody>
@@ -969,7 +963,7 @@ T(n) \in O(1)
 </div>
 <p>아래 그림은 주요 Big-O 함수들의 그래프를 담고 있다.
 <span class="math notranslate nohighlight">\(n\)</span>이 커질 때 함수값 변화의 차이를 잘 보여준다.</p>
-<div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/notebooks/_images/big-o1.png" width="70%"></div>
+<div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/notebooks/_images/big-o1.png" width="80%"></div>
 <p>&lt;그림 출처: <a class="reference external" href="https://www.bigocheatsheet.com/">Big-O Cheat Sheet</a>&gt;</p>
 </section>
 <section id="sec-running-time">
@@ -978,15 +972,15 @@ T(n) \in O(1)
 <li><p>가정: 계산 단위 실행 시간 = 1 ns(나노 초, 10억 분의 1 초)</p></li>
 <li><p><span class="math notranslate nohighlight">\(\mu\)</span>s(마이크로 초): 100만 분의 1초</p></li>
 <li><p>ms(밀리 초): 천 분의 1초</p></li>
+<li><p><span class="math notranslate nohighlight">\(n\)</span>: 입력 크기</p></li>
 </ul>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
-<tr class="row-odd"><th class="head text-right"><p>입력 크기(n)</p></th>
+<tr class="row-odd"><th class="head text-right"><p><span class="math notranslate nohighlight">\(n\)</span></p></th>
 <th class="head text-right"><p><div style="width:80px"><span class="math notranslate nohighlight">\(\lg n\)</span></div></p></th>
 <th class="head text-right"><p><div style="width:100px"><span class="math notranslate nohighlight">\(n\)</span></div></p></th>
 <th class="head text-right"><p><div style="width:100px"><span class="math notranslate nohighlight">\(n\, \lg n\)</span></div></p></th>
 <th class="head text-right"><p><div style="width:100px"><span class="math notranslate nohighlight">\(n^2\)</span></div></p></th>
-<th class="head text-right"><p><div style="width:100px"><span class="math notranslate nohighlight">\(n^3\)</span></div></p></th>
 <th class="head text-right"><p><div style="width:100px"><span class="math notranslate nohighlight">\(2^n\)</span></div></p></th>
 </tr>
 </thead>
@@ -996,7 +990,6 @@ T(n) \in O(1)
 <td class="text-right"><p><span class="math notranslate nohighlight">\(0.01\)</span> <span class="math notranslate nohighlight">\(\mu\)</span>s</p></td>
 <td class="text-right"><p><span class="math notranslate nohighlight">\(0.033\)</span> <span class="math notranslate nohighlight">\(\mu\)</span>s</p></td>
 <td class="text-right"><p><span class="math notranslate nohighlight">\(0.10\)</span> <span class="math notranslate nohighlight">\(\mu\)</span>s</p></td>
-<td class="text-right"><p><span class="math notranslate nohighlight">\(1.0\)</span> <span class="math notranslate nohighlight">\(\mu\)</span>s</p></td>
 <td class="text-right"><p><span class="math notranslate nohighlight">\(1\)</span> <span class="math notranslate nohighlight">\(\mu\)</span>s</p></td>
 </tr>
 <tr class="row-odd"><td class="text-right"><p><span class="math notranslate nohighlight">\(20\)</span></p></td>
@@ -1004,7 +997,6 @@ T(n) \in O(1)
 <td class="text-right"><p><span class="math notranslate nohighlight">\(0.02\)</span> <span class="math notranslate nohighlight">\(\mu\)</span>s</p></td>
 <td class="text-right"><p><span class="math notranslate nohighlight">\(0.086\)</span> <span class="math notranslate nohighlight">\(\mu\)</span>s</p></td>
 <td class="text-right"><p><span class="math notranslate nohighlight">\(0.40\)</span> <span class="math notranslate nohighlight">\(\mu\)</span>s</p></td>
-<td class="text-right"><p><span class="math notranslate nohighlight">\(8.0\)</span> <span class="math notranslate nohighlight">\(\mu\)</span>s</p></td>
 <td class="text-right"><p><span class="math notranslate nohighlight">\(1\)</span> ms</p></td>
 </tr>
 <tr class="row-even"><td class="text-right"><p><span class="math notranslate nohighlight">\(30\)</span></p></td>
@@ -1012,7 +1004,6 @@ T(n) \in O(1)
 <td class="text-right"><p><span class="math notranslate nohighlight">\(0.03\)</span> <span class="math notranslate nohighlight">\(\mu\)</span>s</p></td>
 <td class="text-right"><p><span class="math notranslate nohighlight">\(0.147\)</span> <span class="math notranslate nohighlight">\(\mu\)</span>s</p></td>
 <td class="text-right"><p><span class="math notranslate nohighlight">\(0.90\)</span> <span class="math notranslate nohighlight">\(\mu\)</span>s</p></td>
-<td class="text-right"><p><span class="math notranslate nohighlight">\(27.0\)</span> <span class="math notranslate nohighlight">\(\mu\)</span>s</p></td>
 <td class="text-right"><p><span class="math notranslate nohighlight">\(1\)</span> 초</p></td>
 </tr>
 <tr class="row-odd"><td class="text-right"><p><span class="math notranslate nohighlight">\(40\)</span></p></td>
@@ -1020,7 +1011,6 @@ T(n) \in O(1)
 <td class="text-right"><p><span class="math notranslate nohighlight">\(0.04\)</span> <span class="math notranslate nohighlight">\(\mu\)</span>s</p></td>
 <td class="text-right"><p><span class="math notranslate nohighlight">\(0.213\)</span> <span class="math notranslate nohighlight">\(\mu\)</span>s</p></td>
 <td class="text-right"><p><span class="math notranslate nohighlight">\(1.60\)</span> <span class="math notranslate nohighlight">\(\mu\)</span>s</p></td>
-<td class="text-right"><p><span class="math notranslate nohighlight">\(64.0\)</span> <span class="math notranslate nohighlight">\(\mu\)</span>s</p></td>
 <td class="text-right"><p><span class="math notranslate nohighlight">\(18.3\)</span> 분</p></td>
 </tr>
 <tr class="row-even"><td class="text-right"><p><span class="math notranslate nohighlight">\(50\)</span></p></td>
@@ -1028,7 +1018,6 @@ T(n) \in O(1)
 <td class="text-right"><p><span class="math notranslate nohighlight">\(0.05\)</span> <span class="math notranslate nohighlight">\(\mu\)</span>s</p></td>
 <td class="text-right"><p><span class="math notranslate nohighlight">\(0.282\)</span> <span class="math notranslate nohighlight">\(\mu\)</span>s</p></td>
 <td class="text-right"><p><span class="math notranslate nohighlight">\(2.50\)</span> <span class="math notranslate nohighlight">\(\mu\)</span>s</p></td>
-<td class="text-right"><p><span class="math notranslate nohighlight">\(125.0\)</span> <span class="math notranslate nohighlight">\(\mu\)</span>s</p></td>
 <td class="text-right"><p><span class="math notranslate nohighlight">\(13\)</span> 일</p></td>
 </tr>
 <tr class="row-odd"><td class="text-right"><p><span class="math notranslate nohighlight">\(10^2\)</span></p></td>
@@ -1036,7 +1025,6 @@ T(n) \in O(1)
 <td class="text-right"><p><span class="math notranslate nohighlight">\(0.10\)</span> <span class="math notranslate nohighlight">\(\mu\)</span>s</p></td>
 <td class="text-right"><p><span class="math notranslate nohighlight">\(0.664\)</span> <span class="math notranslate nohighlight">\(\mu\)</span>s</p></td>
 <td class="text-right"><p><span class="math notranslate nohighlight">\(10.00\)</span> <span class="math notranslate nohighlight">\(\mu\)</span>s</p></td>
-<td class="text-right"><p><span class="math notranslate nohighlight">\(1.0\)</span> ms</p></td>
 <td class="text-right"><p><span class="math notranslate nohighlight">\(4 \times 10^{13}\)</span> 년</p></td>
 </tr>
 <tr class="row-even"><td class="text-right"><p><span class="math notranslate nohighlight">\(10^3\)</span></p></td>
@@ -1044,7 +1032,6 @@ T(n) \in O(1)
 <td class="text-right"><p><span class="math notranslate nohighlight">\(1.00\)</span> <span class="math notranslate nohighlight">\(\mu\)</span>s</p></td>
 <td class="text-right"><p><span class="math notranslate nohighlight">\(9.966\)</span> <span class="math notranslate nohighlight">\(\mu\)</span>s</p></td>
 <td class="text-right"><p><span class="math notranslate nohighlight">\(1.00\)</span> ms</p></td>
-<td class="text-right"><p><span class="math notranslate nohighlight">\(1.0\)</span> 초</p></td>
 <td class="text-right"><p></p></td>
 </tr>
 <tr class="row-odd"><td class="text-right"><p><span class="math notranslate nohighlight">\(10^4\)</span></p></td>
@@ -1052,7 +1039,6 @@ T(n) \in O(1)
 <td class="text-right"><p><span class="math notranslate nohighlight">\(10.00\)</span> <span class="math notranslate nohighlight">\(\mu\)</span>s</p></td>
 <td class="text-right"><p><span class="math notranslate nohighlight">\(130.000\)</span> <span class="math notranslate nohighlight">\(\mu\)</span>s</p></td>
 <td class="text-right"><p><span class="math notranslate nohighlight">\(100.00\)</span> ms</p></td>
-<td class="text-right"><p><span class="math notranslate nohighlight">\(16.7\)</span> 분</p></td>
 <td class="text-right"><p></p></td>
 </tr>
 <tr class="row-even"><td class="text-right"><p><span class="math notranslate nohighlight">\(10^5\)</span></p></td>
@@ -1060,7 +1046,6 @@ T(n) \in O(1)
 <td class="text-right"><p><span class="math notranslate nohighlight">\(0.10\)</span> ms</p></td>
 <td class="text-right"><p><span class="math notranslate nohighlight">\(1.670\)</span> ms</p></td>
 <td class="text-right"><p><span class="math notranslate nohighlight">\(10.00\)</span> 초</p></td>
-<td class="text-right"><p><span class="math notranslate nohighlight">\(11.6\)</span> 일</p></td>
 <td class="text-right"><p></p></td>
 </tr>
 <tr class="row-odd"><td class="text-right"><p><span class="math notranslate nohighlight">\(10^6\)</span></p></td>
@@ -1068,15 +1053,13 @@ T(n) \in O(1)
 <td class="text-right"><p><span class="math notranslate nohighlight">\(1.00\)</span> ms</p></td>
 <td class="text-right"><p><span class="math notranslate nohighlight">\(19.930\)</span> ms</p></td>
 <td class="text-right"><p><span class="math notranslate nohighlight">\(16.70\)</span> 초</p></td>
-<td class="text-right"><p><span class="math notranslate nohighlight">\(31.7\)</span> 년</p></td>
 <td class="text-right"><p></p></td>
 </tr>
 <tr class="row-even"><td class="text-right"><p><span class="math notranslate nohighlight">\(10^7\)</span></p></td>
 <td class="text-right"><p><span class="math notranslate nohighlight">\(0.023\)</span> <span class="math notranslate nohighlight">\(\mu\)</span>s</p></td>
 <td class="text-right"><p><span class="math notranslate nohighlight">\(0.01\)</span> 초</p></td>
-<td class="text-right"><p>0.230 초</p></td>
+<td class="text-right"><p><span class="math notranslate nohighlight">\(0.230\)</span> 초</p></td>
 <td class="text-right"><p><span class="math notranslate nohighlight">\(1.16\)</span> 일</p></td>
-<td class="text-right"><p><span class="math notranslate nohighlight">\(31,709\)</span> 년</p></td>
 <td class="text-right"><p></p></td>
 </tr>
 <tr class="row-odd"><td class="text-right"><p><span class="math notranslate nohighlight">\(10^8\)</span></p></td>
@@ -1084,7 +1067,6 @@ T(n) \in O(1)
 <td class="text-right"><p><span class="math notranslate nohighlight">\(0.10\)</span> 초</p></td>
 <td class="text-right"><p><span class="math notranslate nohighlight">\(2.660\)</span> 초</p></td>
 <td class="text-right"><p><span class="math notranslate nohighlight">\(115.70\)</span> 일</p></td>
-<td class="text-right"><p><span class="math notranslate nohighlight">\(3.17 \times 10^7\)</span> 년</p></td>
 <td class="text-right"><p></p></td>
 </tr>
 <tr class="row-even"><td class="text-right"><p><span class="math notranslate nohighlight">\(10^9\)</span></p></td>
@@ -1092,7 +1074,6 @@ T(n) \in O(1)
 <td class="text-right"><p><span class="math notranslate nohighlight">\(1.00\)</span> 초</p></td>
 <td class="text-right"><p><span class="math notranslate nohighlight">\(29.900\)</span> 초</p></td>
 <td class="text-right"><p><span class="math notranslate nohighlight">\(31.70\)</span> 년</p></td>
-<td class="text-right"><p></p></td>
 <td class="text-right"><p></p></td>
 </tr>
 </tbody>
