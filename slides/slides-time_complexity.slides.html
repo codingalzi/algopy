@@ -7897,7 +7897,7 @@ main {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>1부터 10000까지 더하는데 평균적으로 0.00022초 걸림.
+<pre>1부터 10000까지 더하는데 평균적으로 0.00021초 걸림.
 </pre>
 </div>
 </div>
@@ -7942,7 +7942,7 @@ main {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>1부터 100000까지 더하는데 평균적으로 0.00252초 걸림.
+<pre>1부터 100000까지 더하는데 평균적으로 0.00239초 걸림.
 </pre>
 </div>
 </div>
@@ -7987,7 +7987,7 @@ main {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>1부터 1000000까지 더하는데 평균적으로 0.02760초 걸림.
+<pre>1부터 1000000까지 더하는데 평균적으로 0.02529초 걸림.
 </pre>
 </div>
 </div>
@@ -8032,7 +8032,7 @@ main {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>1부터 10000000까지 더하는데 평균적으로 0.26712초 걸림.
+<pre>1부터 10000000까지 더하는데 평균적으로 0.24920초 걸림.
 </pre>
 </div>
 </div>
@@ -8156,10 +8156,10 @@ $$
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>1부터    10000까지 더하는데 평균적으로 0.0000002384185791초 걸림.
+<pre>1부터    10000까지 더하는데 평균적으로 0.0000003337860107초 걸림.
 1부터   100000까지 더하는데 평균적으로 0.0000001668930054초 걸림.
-1부터  1000000까지 더하는데 평균적으로 0.0000001907348633초 걸림.
-1부터 10000000까지 더하는데 평균적으로 0.0000000238418579초 걸림.
+1부터  1000000까지 더하는데 평균적으로 0.0000000000000000초 걸림.
+1부터 10000000까지 더하는데 평균적으로 0.0000000953674316초 걸림.
 </pre>
 </div>
 </div>
@@ -8369,34 +8369,23 @@ $$T(n) = 1$$
 <div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">no_meaning</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="c1"># 3번 할당</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">fun</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
     <span class="n">a</span> <span class="o">=</span> <span class="mi">5</span>
     <span class="n">b</span> <span class="o">=</span> <span class="mi">6</span>
-    <span class="n">c</span> <span class="o">=</span> <span class="mi">10</span>
-
-    <span class="c1"># 3*n*n 번 할당</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
             <span class="n">x</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="n">i</span>
             <span class="n">y</span> <span class="o">=</span> <span class="n">j</span> <span class="o">*</span> <span class="n">j</span>
             <span class="n">z</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="n">j</span>
-
-    <span class="c1"># 2n 번 할당</span>
     <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
         <span class="n">w</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">45</span>
         <span class="n">v</span> <span class="o">=</span> <span class="n">b</span> <span class="o">*</span> <span class="n">b</span>
-
-    <span class="c1"># 1번 할당</span>
-    <span class="n">d</span> <span class="o">=</span> <span class="mi">33</span>
-    
-    <span class="k">return</span> <span class="kc">None</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-</div></section></section><section><section>
+</div>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -8404,16 +8393,11 @@ $$T(n) = 1$$
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <ul>
-<li><p>계산단위: 변수 할당</p>
-</li>
-<li><p>일정 시간 복잡도</p>
-</li>
+<li>계산단위: 변수 할당</li>
+<li>일정 시간 복잡도</li>
 </ul>
 $$
-\begin{align*}
-T(n) &amp;= 3 + 3n^{2} + 2n + 1 \\
- &amp;= 3n^{2} + 2n + 4
-\end{align*}
+T(n) = 3n^{2} + 2n + 2
 $$
 </div>
 </div>
@@ -8507,7 +8491,7 @@ $$
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p><strong>예제: $T(n)=3n^{2} + 2n + 4$</strong></p>
+<p><strong>예제: $T(n)=3n^{2} + 2n + 2$</strong></p>
 </div>
 </div>
 </div>
@@ -8520,7 +8504,7 @@ $$
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <ul>
 <li>고차항이 가장 중요.</li>
-<li>상수배는 컴퓨터의 성능에 따라 발생할 수 있는 요인임.</li>
+<li>상수배는 컴퓨터의 성능에 따라 발생할 수 있는 요인이기에 무시함.</li>
 </ul>
 </div>
 </div>
@@ -8905,7 +8889,7 @@ $$
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<div align="center"><img alt="No description has been provided for this image" src="https://runestone.academy/runestone/books/published/pythonds/_images/seqsearch.png" width="70%"/></div>
+<div align="center"><img alt="No description has been provided for this image" src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/seqsearch.png" width="50%"/></div>
 </div>
 </div>
 </div>
@@ -8914,19 +8898,13 @@ $$
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [19]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">sequentialSearch</span><span class="p">(</span><span class="n">alist</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
-    <span class="n">pos</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">found</span> <span class="o">=</span> <span class="kc">False</span>
-
-    <span class="k">while</span> <span class="n">pos</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">alist</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">found</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">alist</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="o">==</span> <span class="n">item</span><span class="p">:</span>             <span class="c1"># 값 비교 계산단위</span>
-            <span class="n">found</span> <span class="o">=</span> <span class="kc">True</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">pos</span> <span class="o">=</span> <span class="n">pos</span><span class="o">+</span><span class="mi">1</span>
-
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">seqSearch</span><span class="p">(</span><span class="n">sequence</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">sequence</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">item</span> <span class="o">==</span> <span class="n">value</span><span class="p">:</span>    <span class="c1"># 계산 단위</span>
+            <span class="k">return</span> <span class="kc">True</span>
     <span class="k">return</span> <span class="n">found</span>
 </pre></div>
 </div>
@@ -8938,14 +8916,13 @@ $$
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [20]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">testlist</span> <span class="o">=</span> <span class="p">[</span><span class="mi">54</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">93</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">77</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">65</span><span class="p">]</span>
-<span class="n">testlist_sorted</span> <span class="o">=</span> <span class="p">[</span><span class="mi">17</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span> <span class="mi">54</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">65</span><span class="p">,</span> <span class="mi">77</span><span class="p">,</span> <span class="mi">93</span><span class="p">]</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">sequentialSearch</span><span class="p">(</span><span class="n">testlist</span><span class="p">,</span> <span class="mi">93</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">sequentialSearch</span><span class="p">(</span><span class="n">testlist_sorted</span><span class="p">,</span> <span class="mi">93</span><span class="p">))</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">seq</span> <span class="o">=</span> <span class="p">[</span><span class="mi">54</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">93</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">77</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">65</span><span class="p">]</span>
+<span class="n">seq_sorted</span> <span class="o">=</span> <span class="p">[</span><span class="mi">17</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span> <span class="mi">54</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">65</span><span class="p">,</span> <span class="mi">77</span><span class="p">,</span> <span class="mi">93</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">seqSearch</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="mi">93</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">seqSearch</span><span class="p">(</span><span class="n">seq_sorted</span><span class="p">,</span> <span class="mi">93</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -8972,7 +8949,7 @@ True
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="sequentialSearch()-%ED%95%A8%EC%88%98%EC%9D%98-%EC%9D%BC%EC%A0%95-%EC%8B%9C%EA%B0%84-%EB%B3%B5%EC%9E%A1%EB%8F%84-$T(n)$-%EA%B3%84%EC%82%B0-%EA%B0%80%EB%8A%A5?"><code>sequentialSearch()</code> 함수의 일정 시간 복잡도 $T(n)$ 계산 가능?<a class="anchor-link" href="#sequentialSearch()-%ED%95%A8%EC%88%98%EC%9D%98-%EC%9D%BC%EC%A0%95-%EC%8B%9C%EA%B0%84-%EB%B3%B5%EC%9E%A1%EB%8F%84-$T(n)$-%EA%B3%84%EC%82%B0-%EA%B0%80%EB%8A%A5?">¶</a></h3>
+<h3 id="seqSearch()-%ED%95%A8%EC%88%98%EC%9D%98-%EC%9D%BC%EC%A0%95-%EC%8B%9C%EA%B0%84-%EB%B3%B5%EC%9E%A1%EB%8F%84-$T(n)$-%EA%B3%84%EC%82%B0-%EA%B0%80%EB%8A%A5?"><code>seqSearch()</code> 함수의 일정 시간 복잡도 $T(n)$ 계산 가능?<a class="anchor-link" href="#seqSearch()-%ED%95%A8%EC%88%98%EC%9D%98-%EC%9D%BC%EC%A0%95-%EC%8B%9C%EA%B0%84-%EB%B3%B5%EC%9E%A1%EB%8F%84-$T(n)$-%EA%B3%84%EC%82%B0-%EA%B0%80%EB%8A%A5?">¶</a></h3>
 </div>
 </div>
 </div>
@@ -8997,7 +8974,7 @@ True
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <ul>
-<li>계산단위: 리스트의 항목 확인과 비교. 즉, while 문 안에 있는 if 문의 <code>alist[pos] == item</code>를 계산단위로 사용.</li>
+<li>계산 단위: 비교 연산 <code>==</code> 명령문</li>
 </ul>
 </div>
 </div>
@@ -9010,7 +8987,7 @@ True
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <ul>
-<li><code>sequentialSearch(testlist, 93)</code> 호출: 비교를 세 번 실행</li>
+<li><code>seqSearch(testlist, 93)</code> 호출: 비교를 세 번 실행</li>
 </ul>
 </div>
 </div>
@@ -9023,7 +9000,7 @@ True
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <ul>
-<li><code>sequentialSearch(testlist_sorted, 93)</code> 호출: 비교 열 번 실행</li>
+<li><code>seqSearch(testlist_sorted, 93)</code> 호출: 비교 열 번 실행</li>
 </ul>
 </div>
 </div>
@@ -9061,7 +9038,7 @@ True
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="sequentialSearch()-%ED%95%A8%EC%88%98%EC%9D%98-%EC%B5%9C%EC%84%A0,-%EC%B5%9C%EC%95%85,-%ED%8F%89%EA%B7%A0-%EC%8B%9C%EA%B0%84-%EB%B3%B5%EC%9E%A1%EB%8F%84"><code>sequentialSearch()</code> 함수의 최선, 최악, 평균 시간 복잡도<a class="anchor-link" href="#sequentialSearch()-%ED%95%A8%EC%88%98%EC%9D%98-%EC%B5%9C%EC%84%A0,-%EC%B5%9C%EC%95%85,-%ED%8F%89%EA%B7%A0-%EC%8B%9C%EA%B0%84-%EB%B3%B5%EC%9E%A1%EB%8F%84">¶</a></h3>
+<h3 id="seqSearch()-%ED%95%A8%EC%88%98%EC%9D%98-%EC%B5%9C%EC%84%A0,-%EC%B5%9C%EC%95%85,-%ED%8F%89%EA%B7%A0-%EC%8B%9C%EA%B0%84-%EB%B3%B5%EC%9E%A1%EB%8F%84"><code>seqSearch()</code> 함수의 최선, 최악, 평균 시간 복잡도<a class="anchor-link" href="#seqSearch()-%ED%95%A8%EC%88%98%EC%9D%98-%EC%B5%9C%EC%84%A0,-%EC%B5%9C%EC%95%85,-%ED%8F%89%EA%B7%A0-%EC%8B%9C%EA%B0%84-%EB%B3%B5%EC%9E%A1%EB%8F%84">¶</a></h3>
 </div>
 </div>
 </div>
@@ -9202,13 +9179,36 @@ True
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <ul>
 <li>단어를 구성하는 문자의 순서를 바꾸어 새로운 단어 생성하기</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<ul>
 <li>영어로 <strong>애너그램</strong><font size="2">anagram</font></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<ul>
 <li>예제:<ul>
-<li>"국왕" 과 "왕국"</li>
-<li>"감동"과 "동감"</li>
-<li>"다들 힘내"와 "힘내 다들" 또는 "내 힘들다"</li>
-<li>"heart"와 "earth"</li>
-<li>"python"과 "typhon"</li>
+<li>"국왕", "왕국"</li>
+<li>"다들 힘내", "힘내 다들", "내 힘들다"</li>
+<li>"heart", "earth"</li>
+<li>"python", "typhon"</li>
 </ul>
 </li>
 </ul>
@@ -9235,29 +9235,24 @@ True
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">anagram_solution_1</span><span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">):</span>
-    <span class="n">still_ok</span> <span class="o">=</span> <span class="kc">True</span>           <span class="c1"># 첫째 문자열에 포함된 문자 대상 어구전철 여부 저장</span>
-    
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">s2</span><span class="p">):</span>    <span class="c1"># 동일한 길이 여부 확인</span>
+    <span class="n">still_ok</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">s2</span><span class="p">):</span>
         <span class="n">still_ok</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">s2_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span>
+    <span class="n">pos_1</span> <span class="o">=</span> <span class="mi">0</span>         
 
-    <span class="n">s2_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span>         <span class="c1"># 둘째 문자열을 리스트로 변환</span>
-    <span class="n">pos_1</span> <span class="o">=</span> <span class="mi">0</span>                 <span class="c1"># 현재 확인 위치 저장</span>
-
-    <span class="k">while</span> <span class="n">pos_1</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span> <span class="ow">and</span> <span class="n">still_ok</span><span class="p">:</span>             <span class="c1"># 첫째 문자열의 모든 문자 대상 반복</span>
+    <span class="k">while</span> <span class="n">pos_1</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span> <span class="ow">and</span> <span class="n">still_ok</span><span class="p">:</span>
         <span class="n">pos_2</span> <span class="o">=</span> <span class="mi">0</span>                                 
         <span class="n">found</span> <span class="o">=</span> <span class="kc">False</span>
-        
-        <span class="k">while</span> <span class="n">pos_2</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">s2_list</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">found</span><span class="p">:</span>    <span class="c1"># 둘째 문자열의 모든 문자 대상 비교</span>
-            <span class="k">if</span> <span class="n">s1</span><span class="p">[</span><span class="n">pos_1</span><span class="p">]</span> <span class="o">==</span> <span class="n">s2_list</span><span class="p">[</span><span class="n">pos_2</span><span class="p">]:</span>          <span class="c1"># 계산단위: 비교</span>
+        <span class="k">while</span> <span class="n">pos_2</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">s2_list</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">found</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">s1</span><span class="p">[</span><span class="n">pos_1</span><span class="p">]</span> <span class="o">==</span> <span class="n">s2_list</span><span class="p">[</span><span class="n">pos_2</span><span class="p">]:</span>
                 <span class="n">found</span> <span class="o">=</span> <span class="kc">True</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">pos_2</span> <span class="o">=</span> <span class="n">pos_2</span> <span class="o">+</span> <span class="mi">1</span>
-
         <span class="k">if</span> <span class="n">found</span><span class="p">:</span>
             <span class="n">s2_list</span><span class="p">[</span><span class="n">pos_2</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">still_ok</span> <span class="o">=</span> <span class="kc">False</span>
-
         <span class="n">pos_1</span> <span class="o">=</span> <span class="n">pos_1</span> <span class="o">+</span> <span class="mi">1</span>
 
     <span class="k">return</span> <span class="n">still_ok</span>
@@ -9273,33 +9268,20 @@ True
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="%EB%91%90-%EB%AC%B8%EC%9E%90%EC%97%B4%EC%9D%B4-%EC%84%9C%EB%A1%9C-%EC%96%B4%EA%B5%AC%EC%A0%84%EC%B2%A0%EC%9D%BC--%EB%95%8C">두 문자열이 서로 어구전철일  때<a class="anchor-link" href="#%EB%91%90-%EB%AC%B8%EC%9E%90%EC%97%B4%EC%9D%B4-%EC%84%9C%EB%A1%9C-%EC%96%B4%EA%B5%AC%EC%A0%84%EC%B2%A0%EC%9D%BC--%EB%95%8C">¶</a></h3>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <ul>
 <li>계산단위: 두 문자열 항목들 사이의 비교 연산</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<ul>
 <li>입력 크기: 문자열의 길이</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<ul>
 <li>두 문자열이 서로 어구전철일 때</li>
 </ul>
 </div>
@@ -9316,8 +9298,7 @@ $$
 \begin{align*}
 T(n) &amp;= \sum_{i=1}^{n} i \\
     &amp;= \frac {n(n+1)}{2} \\
-    &amp; = \frac {1}{2}n^{2} + \frac {1}{2}n \\
-    &amp; \in O(n^{2})
+    &amp; = \frac {1}{2}n^{2} + \frac {1}{2}n \in O(n^{2})
 \end{align*}
 $$
 </div>
@@ -9429,24 +9410,17 @@ $$
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">anagram_solution_2</span><span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">):</span>
-    <span class="c1"># 리스트로 형변환</span>
     <span class="n">a_list_1</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span>
     <span class="n">a_list_2</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span>
-
-    <span class="c1"># 리스트 정렬</span>
     <span class="n">a_list_1</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
     <span class="n">a_list_2</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
-
-    <span class="c1"># 동일 위치에 대해 일대일 비교. 다르면 바로 종료</span>
     <span class="n">pos</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">matches</span> <span class="o">=</span> <span class="kc">True</span>
-
     <span class="k">while</span> <span class="n">pos</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span> <span class="ow">and</span> <span class="n">matches</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">a_list_1</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="o">==</span> <span class="n">a_list_2</span><span class="p">[</span><span class="n">pos</span><span class="p">]:</span>    <span class="c1"># 계산단위: 비교</span>
+        <span class="k">if</span> <span class="n">a_list_1</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="o">==</span> <span class="n">a_list_2</span><span class="p">[</span><span class="n">pos</span><span class="p">]:</span> 
             <span class="n">pos</span> <span class="o">=</span> <span class="n">pos</span> <span class="o">+</span> <span class="mi">1</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">matches</span> <span class="o">=</span> <span class="kc">False</span>
-
     <span class="k">return</span> <span class="n">matches</span>
 </pre></div>
 </div>
@@ -9460,89 +9434,7 @@ $$
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="%EC%96%B4%EA%B5%AC%EC%A0%84%EC%B2%A0-%ED%99%95%EC%9D%B8-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-3:-%EB%B6%80%EB%A5%B4%ED%8A%B8-%ED%8F%AC%EC%8A%A4-%EA%B8%B0%EB%B2%95">어구전철 확인 알고리즘 3: 부르트 포스 기법<a class="anchor-link" href="#%EC%96%B4%EA%B5%AC%EC%A0%84%EC%B2%A0-%ED%99%95%EC%9D%B8-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-3:-%EB%B6%80%EB%A5%B4%ED%8A%B8-%ED%8F%AC%EC%8A%A4-%EA%B8%B0%EB%B2%95">¶</a></h3>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<ul>
-<li><strong>부르트 포스</strong><font size="2">brute force</font> 기법: 모든 가능한 경우를 일일이 나열해보는 방법</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<ul>
-<li>예제: 문자열 <code>s1</code>에 사용된 문자들의 모든 조합을 생성한 다음에 그 중에 문자열 <code>s2</code>가 있는가를 확인하는 방식</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<ul>
-<li>일반적으로 활용하기 어려운 알고리즘임.</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<ul>
-<li>$n$ 개의 문자를 이용하여 생성할 수 있는 문자열의 개수</li>
-</ul>
-$$
-n \cdot (n - 1) \cdot (n - 2) \cdots 3 \cdot 2 \cdot 1 = n!
-$$
-</div>
-</div>
-</div>
-</div></section></section><section><section>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="%EC%96%B4%EA%B5%AC%EC%A0%84%EC%B2%A0-%ED%99%95%EC%9D%B8-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-4:-%EB%B9%88%EB%8F%84-%ED%99%9C%EC%9A%A9">어구전철 확인 알고리즘 4: 빈도 활용<a class="anchor-link" href="#%EC%96%B4%EA%B5%AC%EC%A0%84%EC%B2%A0-%ED%99%95%EC%9D%B8-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-4:-%EB%B9%88%EB%8F%84-%ED%99%9C%EC%9A%A9">¶</a></h3>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<ul>
-<li><p>어구전철 관계인 두 문자열: 각 문자를 동일한 수만큼 포함</p>
-</li>
-<li><p>모든 알파벳에 대해 각 문자열에 포함된 빈도를 측정 후 비교</p>
-</li>
-</ul>
+<h3 id="%EC%96%B4%EA%B5%AC%EC%A0%84%EC%B2%A0-%ED%99%95%EC%9D%B8-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-3:-%EB%B9%88%EB%8F%84-%ED%99%9C%EC%9A%A9">어구전철 확인 알고리즘 3: 빈도 활용<a class="anchor-link" href="#%EC%96%B4%EA%B5%AC%EC%A0%84%EC%B2%A0-%ED%99%95%EC%9D%B8-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-3:-%EB%B9%88%EB%8F%84-%ED%99%9C%EC%9A%A9">¶</a></h3>
 </div>
 </div>
 </div>
@@ -9554,32 +9446,23 @@ $$
 <div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">anagram_solution_4</span><span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">):</span>
-    
-    <span class="c1"># 빈도수 저장 용도 리스트</span>
-    <span class="n">c1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">26</span>
-    <span class="n">c2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">26</span>
-
-    <span class="c1"># s1에 포함된 문자들의 빈도수</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s1</span><span class="p">)):</span>
-        <span class="n">pos</span> <span class="o">=</span> <span class="nb">ord</span><span class="p">(</span><span class="n">s1</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">-</span> <span class="nb">ord</span><span class="p">(</span><span class="s2">"a"</span><span class="p">)</span>
-        <span class="n">c1</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="o">=</span> <span class="n">c1</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>          <span class="c1"># 계산단위: 카운트</span>
-
-    <span class="c1"># s2에 포함된 문자들의 빈도수</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s2</span><span class="p">)):</span>
-        <span class="n">pos</span> <span class="o">=</span> <span class="nb">ord</span><span class="p">(</span><span class="n">s2</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">-</span> <span class="nb">ord</span><span class="p">(</span><span class="s2">"a"</span><span class="p">)</span>
-        <span class="n">c2</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="o">=</span> <span class="n">c2</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>          <span class="c1"># 계산단위: 카운트</span>
-
-    <span class="c1"># 모든 알파벳 대상 빈도수 비교</span>
-    <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">still_ok</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="k">while</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="mi">26</span> <span class="ow">and</span> <span class="n">still_ok</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">c1</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="n">c2</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>             <span class="c1"># 계산단위: 항목 비교</span>
-            <span class="n">j</span> <span class="o">=</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">anagram_solution_3</span><span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">):</span>
+    <span class="n">alphabets</span> <span class="o">=</span> <span class="s2">"abcdefghijklmnopqrstuvwxys"</span>
+    <span class="n">alpha_dict1</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+    <span class="n">alpha_dict2</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">alphabets</span><span class="p">:</span>
+        <span class="n">alpha_dict1</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">alpha_dict2</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">s1</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+        <span class="n">alpha_dict1</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">s2</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+        <span class="n">alpha_dict2</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">alpha</span> <span class="ow">in</span> <span class="n">alphabets</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">alpha_dict1</span><span class="p">[</span><span class="n">alpha</span><span class="p">]</span> <span class="o">==</span> <span class="n">alpha_dict2</span><span class="p">[</span><span class="n">alpha</span><span class="p">]:</span> <span class="c1"># 계산 단위: 값 비교</span>
+            <span class="k">continue</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">still_ok</span> <span class="o">=</span> <span class="kc">False</span>
-
-    <span class="k">return</span> <span class="n">still_ok</span>
+            <span class="k">return</span> <span class="kc">False</span>
+    <span class="k">return</span> <span class="kc">True</span>
 </pre></div>
 </div>
 </div>
@@ -9593,10 +9476,14 @@ $$
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <ul>
+<li>모든 알파벳에 대해 각 문자열에 포함된 빈도를 측정 후 비교</li>
 <li>길이가 $n$인 문자열에 포함된 문자들의 빈도를 확인하는 시간 복잡도</li>
 </ul>
 $$
-T(n) = 2n + 26 \in O(n)
+\begin{align*}
+B(n) &amp;= 2n + 1 \in O(n) \\
+W(n) &amp;= 2n + 26 \in O(n)
+\end{align*}
 $$
 </div>
 </div>
@@ -9620,7 +9507,7 @@ $$
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <ul>
-<li><code>anagram_solution_4()</code>의 시간 복잡도는 이전 세 알고리즘에 비해 훨씬 좋음.</li>
+<li><code>anagram_solution_3()</code>의 시간 복잡도는 이전 세 알고리즘에 비해 훨씬 좋음.</li>
 </ul>
 </div>
 </div>
@@ -9633,48 +9520,12 @@ $$
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <ul>
-<li>하지만 그 대신에 빈도 리스트를 새로 생성하기 위해 보다 많은 메모리를 사용</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<ul>
+<li>하지만 그 대신에 빈도 리스트를 새로 생성하기 위해 보다 많은 메모리를 사용<ul>
 <li><code>anagram_solution_1()</code>: 문자열 <code>s2</code>를 리스트로 변환한 값</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<ul>
 <li><code>anagram_solution_2()</code>: 두 문자열을 리스트로 형변환한 후 정렬. 
   그리고 정렬 과정에서 추가 메모리 사용 가능.</li>
 </ul>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<ul>
-<li><code>anagram_solution_3()</code>: 실제로 알고리즘을 구현하면 모든 가능한 조합을 생성하거나 저장할 때
-  추가 메모리 요구될 것임.</li>
+</li>
 </ul>
 </div>
 </div>
