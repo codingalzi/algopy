@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=ca93fcec" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=b4b7a797" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -449,19 +449,15 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">8.1. 시간 복잡도 함수의 차수 이해</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">8.1.1. 궁극적으로 빠르다? 느리다?</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">8.1.2. 시간 복잡도 함수의 차수</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">8.2. 차수의 정의</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">8.1. 궁극적으로 빠르다? 느리다?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">8.2. 차수의 정의</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#big-o">8.2.1. Big-<span class="math notranslate nohighlight">\(O\)</span> 표기법</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#omega">8.2.2. <span class="math notranslate nohighlight">\(\Omega\)</span> 표기법</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#theta">8.2.3. 차수(<span class="math notranslate nohighlight">\(\Theta\)</span>) 표기법</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">8.2.4. 차수의 특성</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">8.2.4. 차수 특성의 직관적 이해</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">8.3. 연습문제</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">8.3. 연습문제</a></li>
 </ul>
             </nav>
         </div>
@@ -483,15 +479,13 @@ document.write(`
 <li><p><span class="math notranslate nohighlight">\(O\)</span>, <span class="math notranslate nohighlight">\(\Omega\)</span>, <span class="math notranslate nohighlight">\(\Theta\)</span> 정의</p></li>
 </ul>
 <section id="id2">
-<h2><span class="section-number">8.1. </span>시간 복잡도 함수의 차수 이해<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">8.1. </span>궁극적으로 빠르다? 느리다?<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
 <p>일반적으로 고차 다항식의 시간 복잡도를 갖는 알고리즘이 실행 시간 측면에서 비효율적이다.
 하지만 최고차 항의 계수가 상대적으로 작으면 입력값의 크기에 따라 충분히 좋은 알고리즘으로 사용될 수 있다.</p>
 <p>반면에 최고차 항의 계수가 아무리 작더라도 입력값의 크기가 어느 정도 이상 크면
 실행시간이 많이 또는 매우 오래 걸릴 수 있다.</p>
 <p><em>“입력값의 크기가 어느 정도 이상 크면 실행시간이 …. 보다 오래 걸린다”</em> 라는 의미를 가리키는
 <strong>궁극적으로 느리다/빠르다</strong>의 개념을 소개한다.</p>
-<section id="id3">
-<h3><span class="section-number">8.1.1. </span>궁극적으로 빠르다? 느리다?<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
 <p>동일한 문제를 해결하는 아래 두 알고리즘 중에서 어떤 알고리즘을 선택해야 할까?</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -509,18 +503,18 @@ document.write(`
 </tbody>
 </table>
 </div>
-<p>위 두 알고리즘의 경우 입력 크기 1만을 기준으로 다르게 선택할 수 있다.</p>
+<p>위 두 알고리즘의 경우 입력 크기 10,000을 기준으로 다르게 선택할 수 있다.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
-<tr class="row-odd"><th class="head text-center"><p>입력 크기 n</p></th>
+<tr class="row-odd"><th class="head text-center"><p>입력 크기 <code class="docutils literal notranslate"><span class="pre">n</span></code></p></th>
 <th class="head text-center"><p>선택 알고리즘</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(n &gt; 10,000\)</span></p></td>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">&gt;</span> <span class="pre">10,000</span></code></p></td>
 <td class="text-center"><p>A</p></td>
 </tr>
-<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(n \le 10,000\)</span></p></td>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">&lt;=</span> <span class="pre">10,000</span></code></p></td>
 <td class="text-center"><p>B</p></td>
 </tr>
 </tbody>
@@ -535,30 +529,25 @@ document.write(`
     &amp;\Longleftrightarrow \quad n &gt; 10000
 \end{align*}
 \end{split}\]</div>
-<p>이처럼 입력값의 크기가 작을 때와 클 때 두 알고리즘의 실행시간이 다른 현상을
-“궁극적으로 느리다/빠르다” 라고 말한다.
-알고리즘 A와 B의 경우에는 따라서 다음 두 방식으로 말할 수 있다.</p>
+<p>이처럼 어떤 값 <span class="math notranslate nohighlight">\(N\)</span>을 기준으로 입력 크기에 따른 두 알고리즘의 실행시간이 크기가 달라질 때
+“궁극적으로 느리다” 또는 “궁극적으로 빠르다” 라고 말한다.
+예를 들어 알고리즘 A와 B의 경우에는 <span class="math notranslate nohighlight">\(N=10,000\)</span>을 사용할 수 있으며
+다음 두 가지 방식으로 두 알고리즘 빠르기를 설명할 수 있다.</p>
 <ul class="simple">
 <li><p>알고리즘 A가 알고리즘 B 보다 궁극적으로 빠르다</p></li>
 <li><p>알고리즘 B가 알고리즘 A 보다 궁극적으로 느리다</p></li>
 </ul>
-</section>
-<section id="id4">
-<h3><span class="section-number">8.1.2. </span>시간 복잡도 함수의 차수<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
 <p>동일한 문제를 해결하는
-두 개의 알고리즘 A와 B를 비교할 때 “궁극적으로 느리다/빠르다”를
-판단하는 다양한 방식이 존재하며, 그 중에 하나로
-<strong>차수</strong><font size='2'>order</font> 개념을 소개한다.</p>
-<p><strong>차수 개념</strong></p>
+두 개의 알고리즘 A와 B에 대해 “누가 누구보다 궁극적으로 느리다/빠르다”를
+판단하기 위해 일반적으로 <strong>차수</strong><font size='2'>order</font>를 이용한다.</p>
+<p><strong>차수 개념 활용</strong></p>
 <p>알고리즘 A에 대해 다음이 성립할 때,
-“알고리즘 A의 시간 복잡도 함수의 차수가 <span class="math notranslate nohighlight">\(\Theta(f(n))\)</span> 이다” 라고 말한다.</p>
+“알고리즘 A의 시간 복잡도 함수의 차수가 <span class="math notranslate nohighlight">\(\Theta(f(n))\)</span> 이다” 라고 말한다:</p>
 <blockquote>
-<div><p>입력 크기가 <span class="math notranslate nohighlight">\(n\)</span>인 임의의 입력값에 대해 알고리즘 A는 <strong>항상 <span class="math notranslate nohighlight">\(f(n)\)</span> 시간 정도 보다 빠르지도 느리지도 않게</strong> 실행을 멈춘다.</p>
+<div><p>알고리즘 A는 임의의 입력 크기 <span class="math notranslate nohighlight">\(n\)</span>에 대해 <strong>항상 <span class="math notranslate nohighlight">\(f(n)\)</span> 시간 정도 보다 빠르지도 느리지도 않게</strong> 실행한다.</p>
 </div></blockquote>
-<p>차수의 엄밀한 정의를 내리기 이전에 알고리즘 분석에서 가장 많이
-언급되는 차수를 살펴 본다.</p>
 <p><strong>차수 예제</strong></p>
-<p>먼저, 상수, 1차, 2차, 3차 차수의 시간 복잡도를 표기하는 방법과 함수들의 예제는 다음과 같다.</p>
+<p>알고리즘 분석에서 가장 많이 언급되는 차수는 다음과 같다.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head text-left"><p>기호</p></th>
@@ -583,25 +572,13 @@ document.write(`
 <td class="text-left"><p>3차 시간 복잡도</p></td>
 <td class="text-left"><p><span class="math notranslate nohighlight">\(7 n^3\)</span>, <span class="math notranslate nohighlight">\(n^3 + 5 n^2 + 100 n + 2\)</span>, …</p></td>
 </tr>
-</tbody>
-</table>
-</div>
-<p>다음은 <span class="math notranslate nohighlight">\(\log n\)</span>과 <span class="math notranslate nohighlight">\(n \log n\)</span> 의 시간 복잡도를 표기하는 방법과 함수들의 예제를 보여준다.</p>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head text-left"><p>기호</p></th>
-<th class="head text-left"><p>시간 복잡도</p></th>
-<th class="head text-left"><p>예제</p></th>
-</tr>
-</thead>
-<tbody>
 <tr class="row-even"><td class="text-left"><p><span class="math notranslate nohighlight">\(\Theta(\log n)\)</span></p></td>
 <td class="text-left"><p>로그 복잡도</p></td>
 <td class="text-left"><p><span class="math notranslate nohighlight">\(\log n\)</span>, <span class="math notranslate nohighlight">\(2 \log n\)</span>, <span class="math notranslate nohighlight">\(\frac{1}{2} \cdot \log n+ 3\)</span>, …</p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><span class="math notranslate nohighlight">\(\Theta(n\, \log n)\)</span></p></td>
+<tr class="row-odd"><td class="text-left"><p><span class="math notranslate nohighlight">\(\Theta(n \log n)\)</span></p></td>
 <td class="text-left"><p>엔-로그-엔(<span class="math notranslate nohighlight">\(n \log n\)</span>) 복잡도</p></td>
-<td class="text-left"><p><span class="math notranslate nohighlight">\(n\, \log n\)</span>, <span class="math notranslate nohighlight">\(2 n\, \log n\)</span>, <span class="math notranslate nohighlight">\(\frac 1 2 n\, \log n+ \log n + 3\)</span>, …</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(n \log n\)</span>, <span class="math notranslate nohighlight">\(2 n \log n\)</span>, <span class="math notranslate nohighlight">\(\frac 1 2 n \log n+ \log n + 3\)</span>, …</p></td>
 </tr>
 </tbody>
 </table>
@@ -609,27 +586,26 @@ document.write(`
 <p>앞서 언급된 시간 복잡도를 사용 효율성 측면에서 구분하면 다음과 같다.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
-<tr class="row-odd"><th class="head text-center"><p>효율성</p></th>
+<tr class="row-odd"><th class="head text-left"><p>효율성</p></th>
 <th class="head text-left"><p>알고리즘 복잡도</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td class="text-center"><p>매우 효율적인 알고리즘</p></td>
+<tr class="row-even"><td class="text-left"><p>매우 효율적인 알고리즘</p></td>
 <td class="text-left"><p><span class="math notranslate nohighlight">\(\Theta(1)\)</span>, <span class="math notranslate nohighlight">\(\Theta(\log n)\)</span>, <span class="math notranslate nohighlight">\(\Theta(n)\)</span>, <span class="math notranslate nohighlight">\(\Theta(n \log n)\)</span></p></td>
 </tr>
-<tr class="row-odd"><td class="text-center"><p>경우에 따라 괜찮은 알고리즘</p></td>
+<tr class="row-odd"><td class="text-left"><p>경우에 따라 괜찮은 알고리즘</p></td>
 <td class="text-left"><p><span class="math notranslate nohighlight">\(\Theta(n^2)\)</span>, <span class="math notranslate nohighlight">\(\Theta(n^3)\)</span></p></td>
 </tr>
-<tr class="row-even"><td class="text-center"><p>사실상 사용 불가 알고리즘</p></td>
+<tr class="row-even"><td class="text-left"><p>사실상 사용 불가 알고리즘</p></td>
 <td class="text-left"><p><span class="math notranslate nohighlight">\(\Theta(2^n)\)</span>, <span class="math notranslate nohighlight">\(\Theta(n!)\)</span></p></td>
 </tr>
 </tbody>
 </table>
 </div>
 </section>
-</section>
-<section id="id5">
-<h2><span class="section-number">8.2. </span>차수의 정의<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<section id="id3">
+<h2><span class="section-number">8.2. </span>차수의 정의<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
 <p>차수(<span class="math notranslate nohighlight">\(\Theta\)</span>)를 엄밀하게 정의하려면 Big-<span class="math notranslate nohighlight">\(O\)</span>와 <span class="math notranslate nohighlight">\(\Omega\)</span>(Omega, 오메가) 개념이 요구된다.</p>
 <section id="big-o">
 <h3><span class="section-number">8.2.1. </span>Big-<span class="math notranslate nohighlight">\(O\)</span> 표기법<a class="headerlink" href="#big-o" title="Link to this heading">#</a></h3>
@@ -738,25 +714,26 @@ document.write(`
 입력 크기 <span class="math notranslate nohighlight">\(n\)</span>에 대해 최악의 경우와 최선의 경우 모두 시간 복잡도 <span class="math notranslate nohighlight">\(f(n)\)</span>의 실행시간보다 느리지도 않고 빠르지도 않다.
 즉, 기본적으로 <span class="math notranslate nohighlight">\(f(n)\)</span>의 시간 내에 실행이 종료되며, 아래 그림이 이를 잘 반영한다.</p>
 <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/algo01/algo01-13.png" width="300"/></div></section>
-<section id="id6">
-<h3><span class="section-number">8.2.4. </span>차수의 특성<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<section id="id4">
+<h3><span class="section-number">8.2.4. </span>차수 특성의 직관적 이해<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
 <p>다음 세 가지 성질을 직관적으로 이해하고 기억해두어야 한다.</p>
 <p>첫째, <span class="math notranslate nohighlight">\(g(n) \in O(f(n))\)</span> 이 성립하면 <span class="math notranslate nohighlight">\(f(n) \in \Omega(g(n))\)</span> 도 성립한다.</p>
 <p>둘째, <span class="math notranslate nohighlight">\(f(n) \in \Omega(g(n))\)</span> 이 성립하면 <span class="math notranslate nohighlight">\(g(n) \in O(f(n))\)</span> 도 성립한다.</p>
 <p>셋째, <span class="math notranslate nohighlight">\(g(n) \in \Theta(f(n))\)</span> 이 성립하면 <span class="math notranslate nohighlight">\(f(n) \in \Theta(g(n))\)</span> 도 성립한다.</p>
-<p>넷째, 1보다 큰 임의의 양의 정수 <span class="math notranslate nohighlight">\(a, b &gt; 1\)</span>에 대해 다음이 성립한다.
+<p><strong>로그 함수의 차수 비교</strong></p>
+<p>1보다 큰 임의의 양의 정수 <span class="math notranslate nohighlight">\(a, b &gt; 1\)</span>에 대해 다음이 성립한다.
 즉, 로그 함수는 모두 동일한 복잡도 카테고리에 속한다.</p>
 <div class="math notranslate nohighlight">
 \[\log_a n \in \Theta(\log_b n)\]</div>
-<p>이와 더불어 알고리즘의 시간 복잡도와 관련해서
-가장 많이 언급되는 복잡도 카테고리를 복잡도 순서대로 나열하면 다음과 같다.</p>
+<p><strong>차수 카테고리 복잡도</strong></p>
+<p>알고리즘의 시간 복잡도와 관련해서 복잡도 순서대로 차수를 정렬하면 다음과 같다.
+아래 식에서 <span class="math notranslate nohighlight">\(2 &lt; j &lt; k\)</span> 와 <span class="math notranslate nohighlight">\(1 &lt; a&lt; b\)</span>라고 가정한다.</p>
 <div class="math notranslate nohighlight">
 \[\Theta(\log n), \;\; \Theta(n),\;\; \Theta(n\, \log n),\;\; \Theta(n^2),\;\; \Theta(n^j),\;\; \Theta(n^k),\;\; \Theta(a^n),\;\; \Theta(b^n),\;\; \Theta(n!)\]</div>
-<p>단, <span class="math notranslate nohighlight">\(2 &lt; j &lt; k\)</span> 와 <span class="math notranslate nohighlight">\(1 &lt; a&lt; b\)</span> 가 성립한다고 가정한다.</p>
 </section>
 </section>
-<section id="id7">
-<h2><span class="section-number">8.3. </span>연습문제<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<section id="id5">
+<h2><span class="section-number">8.3. </span>연습문제<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p><a class="reference external" href="https://colab.research.google.com/github/codingalzi/algopy/blob/master/excs/exc-orders.ipynb">(실습) 차수</a></p></li>
 </ol>
@@ -827,19 +804,15 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">8.1. 시간 복잡도 함수의 차수 이해</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">8.1.1. 궁극적으로 빠르다? 느리다?</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">8.1.2. 시간 복잡도 함수의 차수</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">8.2. 차수의 정의</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">8.1. 궁극적으로 빠르다? 느리다?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">8.2. 차수의 정의</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#big-o">8.2.1. Big-<span class="math notranslate nohighlight">\(O\)</span> 표기법</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#omega">8.2.2. <span class="math notranslate nohighlight">\(\Omega\)</span> 표기법</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#theta">8.2.3. 차수(<span class="math notranslate nohighlight">\(\Theta\)</span>) 표기법</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">8.2.4. 차수의 특성</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">8.2.4. 차수 특성의 직관적 이해</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">8.3. 연습문제</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">8.3. 연습문제</a></li>
 </ul>
   </nav></div>
 
