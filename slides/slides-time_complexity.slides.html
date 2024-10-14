@@ -9231,31 +9231,28 @@ True
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [14]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">anagram_solution_1</span><span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">):</span>
-    <span class="n">still_ok</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">s2</span><span class="p">):</span>
-        <span class="n">still_ok</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span>
     <span class="n">s2_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span>
-    <span class="n">pos_1</span> <span class="o">=</span> <span class="mi">0</span>         
 
-    <span class="k">while</span> <span class="n">pos_1</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span> <span class="ow">and</span> <span class="n">still_ok</span><span class="p">:</span>
-        <span class="n">pos_2</span> <span class="o">=</span> <span class="mi">0</span>                                 
+    <span class="k">for</span> <span class="n">idx1</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
         <span class="n">found</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="k">while</span> <span class="n">pos_2</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">s2_list</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">found</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">s1</span><span class="p">[</span><span class="n">pos_1</span><span class="p">]</span> <span class="o">==</span> <span class="n">s2_list</span><span class="p">[</span><span class="n">pos_2</span><span class="p">]:</span>
+        <span class="k">for</span> <span class="n">idx2</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">s1</span><span class="p">[</span><span class="n">idx1</span><span class="p">]</span> <span class="o">==</span> <span class="n">s2_list</span><span class="p">[</span><span class="n">idx2</span><span class="p">]:</span>
                 <span class="n">found</span> <span class="o">=</span> <span class="kc">True</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">pos_2</span> <span class="o">=</span> <span class="n">pos_2</span> <span class="o">+</span> <span class="mi">1</span>
-        <span class="k">if</span> <span class="n">found</span><span class="p">:</span>
-            <span class="n">s2_list</span><span class="p">[</span><span class="n">pos_2</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">still_ok</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="n">pos_1</span> <span class="o">=</span> <span class="n">pos_1</span> <span class="o">+</span> <span class="mi">1</span>
+                <span class="n">s2_list</span><span class="p">[</span><span class="n">idx2</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="k">break</span>
 
-    <span class="k">return</span> <span class="n">still_ok</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">found</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">return</span> <span class="kc">True</span>
 </pre></div>
 </div>
 </div>
@@ -9438,6 +9435,26 @@ $$
 </div>
 </div>
 </div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<ul>
+<li>모든 알파벳에 대해 각 문자열에 포함된 빈도를 측정 후 비교</li>
+<li>길이가 $n$인 문자열에 포함된 문자들의 빈도를 확인하는 시간 복잡도</li>
+</ul>
+$$
+\begin{align*}
+B(n) &amp;= 2n + 1 \in O(n) \\
+W(n) &amp;= 2n + 26 \in O(n)
+\end{align*}
+$$
+</div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -9458,13 +9475,24 @@ $$
     <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">s2</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
         <span class="n">alpha_dict2</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
     <span class="k">for</span> <span class="n">alpha</span> <span class="ow">in</span> <span class="n">alphabets</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">alpha_dict1</span><span class="p">[</span><span class="n">alpha</span><span class="p">]</span> <span class="o">==</span> <span class="n">alpha_dict2</span><span class="p">[</span><span class="n">alpha</span><span class="p">]:</span> <span class="c1"># 계산 단위: 값 비교</span>
+        <span class="k">if</span> <span class="n">alpha_dict1</span><span class="p">[</span><span class="n">alpha</span><span class="p">]</span> <span class="o">==</span> <span class="n">alpha_dict2</span><span class="p">[</span><span class="n">alpha</span><span class="p">]:</span>
             <span class="k">continue</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">False</span>
     <span class="k">return</span> <span class="kc">True</span>
 </pre></div>
 </div>
+</div>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-2-vs.-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-3">알고리즘 2 vs. 알고리즘 3<a class="anchor-link" href="#%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-2-vs.-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-3">¶</a></h3>
 </div>
 </div>
 </div>
@@ -9476,15 +9504,400 @@ $$
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <ul>
-<li>모든 알파벳에 대해 각 문자열에 포함된 빈도를 측정 후 비교</li>
-<li>길이가 $n$인 문자열에 포함된 문자들의 빈도를 확인하는 시간 복잡도</li>
+<li>입력 문자열의 길이: 2백60만, 2천600만, 2억6천만</li>
 </ul>
-$$
-\begin{align*}
-B(n) &amp;= 2n + 1 \in O(n) \\
-W(n) &amp;= 2n + 26 \in O(n)
-\end{align*}
-$$
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<ul>
+<li>평가에 사용된 PC의 성능<ul>
+<li>프로세서: 11th Gen Intel(R) Core(TM) i9-11950H @ 2.60GHz   2.61 GHz</li>
+<li>RAM: 32GB</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="%EC%9E%85%EB%A0%A5%EA%B0%92-%EC%83%9D%EC%84%B1">입력값 생성<a class="anchor-link" href="#%EC%9E%85%EB%A0%A5%EA%B0%92-%EC%83%9D%EC%84%B1">¶</a></h3>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>영어 알파벳 26개로 구성된 문자열을 10만번, 100만번, 천만번 이어붙이기</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [22]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">time</span>
+
+<span class="n">s1</span> <span class="o">=</span> <span class="n">alphabets</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[22]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>26</pre>
+</div>
+</div>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-2:-%EC%9E%85%EB%A0%A5-%ED%81%AC%EA%B8%B0-2%EB%B0%B160%EB%A7%8C">알고리즘 2: 입력 크기 2백60만<a class="anchor-link" href="#%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-2:-%EC%9E%85%EB%A0%A5-%ED%81%AC%EA%B8%B0-2%EB%B0%B160%EB%A7%8C">¶</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [23]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
+
+<span class="n">k</span> <span class="o">=</span> <span class="mi">100_000</span>
+<span class="n">anagram_solution_2</span><span class="p">(</span><span class="n">s1</span><span class="o">*</span><span class="n">k</span><span class="p">,</span> <span class="n">s1</span><span class="o">*</span><span class="n">k</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="n">start</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>0.35188865661621094
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-2:-%EC%9E%85%EB%A0%A5-%ED%81%AC%EA%B8%B0-2%EC%B2%9C600%EB%A7%8C">알고리즘 2: 입력 크기 2천600만<a class="anchor-link" href="#%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-2:-%EC%9E%85%EB%A0%A5-%ED%81%AC%EA%B8%B0-2%EC%B2%9C600%EB%A7%8C">¶</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [24]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
+
+<span class="n">k</span> <span class="o">=</span> <span class="mi">1_000_000</span>
+<span class="n">anagram_solution_2</span><span class="p">(</span><span class="n">s1</span><span class="o">*</span><span class="n">k</span><span class="p">,</span> <span class="n">s1</span><span class="o">*</span><span class="n">k</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="n">start</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>3.6589527130126953
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-2:-%EC%9E%85%EB%A0%A5-%ED%81%AC%EA%B8%B0-2%EC%96%B56%EC%B2%9C%EB%A7%8C">알고리즘 2: 입력 크기 2억6천만<a class="anchor-link" href="#%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-2:-%EC%9E%85%EB%A0%A5-%ED%81%AC%EA%B8%B0-2%EC%96%B56%EC%B2%9C%EB%A7%8C">¶</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [25]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
+
+<span class="n">k</span> <span class="o">=</span> <span class="mi">10_000_000</span>
+<span class="n">anagram_solution_2</span><span class="p">(</span><span class="n">s1</span><span class="o">*</span><span class="n">k</span><span class="p">,</span> <span class="n">s1</span><span class="o">*</span><span class="n">k</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="n">start</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>39.13177156448364
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-3:-%EC%9E%85%EB%A0%A5-%ED%81%AC%EA%B8%B0-2%EB%B0%B160%EB%A7%8C">알고리즘 3: 입력 크기 2백60만<a class="anchor-link" href="#%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-3:-%EC%9E%85%EB%A0%A5-%ED%81%AC%EA%B8%B0-2%EB%B0%B160%EB%A7%8C">¶</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [26]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
+
+<span class="n">k</span> <span class="o">=</span> <span class="mi">100_000</span>
+<span class="n">anagram_solution_3</span><span class="p">(</span><span class="n">s1</span><span class="o">*</span><span class="n">k</span><span class="p">,</span> <span class="n">s1</span><span class="o">*</span><span class="n">k</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="n">start</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>0.19489121437072754
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-3:-%EC%9E%85%EB%A0%A5-%ED%81%AC%EA%B8%B0-2%EC%B2%9C600%EB%A7%8C">알고리즘 3: 입력 크기 2천600만<a class="anchor-link" href="#%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-3:-%EC%9E%85%EB%A0%A5-%ED%81%AC%EA%B8%B0-2%EC%B2%9C600%EB%A7%8C">¶</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [27]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
+
+<span class="n">k</span> <span class="o">=</span> <span class="mi">1_000_000</span>
+<span class="n">anagram_solution_3</span><span class="p">(</span><span class="n">s1</span><span class="o">*</span><span class="n">k</span><span class="p">,</span> <span class="n">s1</span><span class="o">*</span><span class="n">k</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="n">start</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>2.007293939590454
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-3:-%EC%9E%85%EB%A0%A5-%ED%81%AC%EA%B8%B0-2%EC%96%B56%EC%B2%9C%EB%A7%8C">알고리즘 3: 입력 크기 2억6천만<a class="anchor-link" href="#%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-3:-%EC%9E%85%EB%A0%A5-%ED%81%AC%EA%B8%B0-2%EC%96%B56%EC%B2%9C%EB%A7%8C">¶</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [28]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
+
+<span class="n">k</span> <span class="o">=</span> <span class="mi">10_000_000</span>
+<span class="n">anagram_solution_3</span><span class="p">(</span><span class="n">s1</span><span class="o">*</span><span class="n">k</span><span class="p">,</span> <span class="n">s1</span><span class="o">*</span><span class="n">k</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="n">start</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>19.824604749679565
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="%EC%8B%A4%ED%97%98-%EA%B2%B0%EA%B3%BC">실험 결과<a class="anchor-link" href="#%EC%8B%A4%ED%97%98-%EA%B2%B0%EA%B3%BC">¶</a></h3>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<ul>
+<li>실행 시간 자체는 별로 중요하지 않음. 실험에 사용된 컴퓨터 환경에 따라 실행 시간이 조금씩 다를 수 있기 때문.</li>
+<li>아래 사실이 중요<ul>
+<li>알고리즘 2: 입력 크기가 10배일 때 실행시간은 10배보다 조금 더 김</li>
+<li>알고리즘 3: 입력 크기가 10배일 때 실행시간은 10배 정도 오래 걸림</li>
+</ul>
+</li>
+<li>참고: 알고리즘 2의 경우 정렬 알고리즘의 시간 복잡도가 $O(n \ln n)$ 정도</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">입력 크기</th>
+<th style="text-align:center">알고리즘 2</th>
+<th style="text-align:center">알고리즘 3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">2백60만</td>
+<td style="text-align:center">0.363136초</td>
+<td style="text-align:center">0.208275초</td>
+</tr>
+<tr>
+<td style="text-align:center">2천600만</td>
+<td style="text-align:center">3.745986초</td>
+<td style="text-align:center">1.935389초</td>
+</tr>
+<tr>
+<td style="text-align:center">2억6천만</td>
+<td style="text-align:center">39.513536초</td>
+<td style="text-align:center">19.316656초</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>

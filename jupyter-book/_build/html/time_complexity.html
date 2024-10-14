@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=b4b7a797" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=ca93fcec" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -681,7 +681,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1부터 100000까지 더하는데 평균적으로 0.00260초 걸림.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1부터 100000까지 더하는데 평균적으로 0.00232초 걸림.
 </pre></div>
 </div>
 </div>
@@ -701,7 +701,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1부터 1000000까지 더하는데 평균적으로 0.02782초 걸림.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1부터 1000000까지 더하는데 평균적으로 0.02509초 걸림.
 </pre></div>
 </div>
 </div>
@@ -721,7 +721,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1부터 10000000까지 더하는데 평균적으로 0.28615초 걸림.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1부터 10000000까지 더하는데 평균적으로 0.24466초 걸림.
 </pre></div>
 </div>
 </div>
@@ -777,10 +777,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1부터    10000까지 더하는데 평균적으로 0.0000004053115845초 걸림.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1부터    10000까지 더하는데 평균적으로 0.0000003337860107초 걸림.
 1부터   100000까지 더하는데 평균적으로 0.0000002622604370초 걸림.
-1부터  1000000까지 더하는데 평균적으로 0.0000001430511475초 걸림.
-1부터 10000000까지 더하는데 평균적으로 0.0000002145767212초 걸림.
+1부터  1000000까지 더하는데 평균적으로 0.0000000953674316초 걸림.
+1부터 10000000까지 더하는데 평균적으로 0.0000000476837158초 걸림.
 </pre></div>
 </div>
 </div>
@@ -1190,32 +1190,24 @@ True
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">anagram_solution_1</span><span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">):</span>
-    <span class="n">still_ok</span> <span class="o">=</span> <span class="kc">True</span>           <span class="c1"># 첫째 문자열에 포함된 문자 대상 어구전철 여부 저장</span>
-    
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">s2</span><span class="p">):</span>    <span class="c1"># 동일한 길이 여부 확인</span>
-        <span class="n">still_ok</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">s2</span><span class="p">):</span>                 <span class="c1"># 동일 길이 여부 확인</span>
+        <span class="k">return</span> <span class="kc">False</span>
 
-    <span class="n">s2_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span>         <span class="c1"># 둘째 문자열을 리스트로 변환</span>
-    <span class="n">pos_1</span> <span class="o">=</span> <span class="mi">0</span>                 <span class="c1"># 현재 확인 위치 저장</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span>                            <span class="c1"># 문자열 길이 활용</span>
+    <span class="n">s2_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span>                     <span class="c1"># 둘째 문자열을 리스트로 변환</span>
 
-    <span class="k">while</span> <span class="n">pos_1</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span> <span class="ow">and</span> <span class="n">still_ok</span><span class="p">:</span>             <span class="c1"># 첫째 문자열의 모든 문자 대상 반복</span>
-        <span class="n">pos_2</span> <span class="o">=</span> <span class="mi">0</span>                                 
-        <span class="n">found</span> <span class="o">=</span> <span class="kc">False</span>
-        
-        <span class="k">while</span> <span class="n">pos_2</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">s2_list</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">found</span><span class="p">:</span>    <span class="c1"># 둘째 문자열의 모든 문자 대상 비교</span>
-            <span class="k">if</span> <span class="n">s1</span><span class="p">[</span><span class="n">pos_1</span><span class="p">]</span> <span class="o">==</span> <span class="n">s2_list</span><span class="p">[</span><span class="n">pos_2</span><span class="p">]:</span>          <span class="c1"># 계산 단위: 비교</span>
+    <span class="k">for</span> <span class="n">idx1</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>                  <span class="c1"># 첫째 문자열의 모든 문자 대상 반복</span>
+        <span class="n">found</span> <span class="o">=</span> <span class="kc">False</span>                      <span class="c1"># s2에서 동일 문자가 확인되었는지 여부</span>
+        <span class="k">for</span> <span class="n">idx2</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>              <span class="c1"># 둘째 문자열의 모든 문자 대상 비교</span>
+            <span class="k">if</span> <span class="n">s1</span><span class="p">[</span><span class="n">idx1</span><span class="p">]</span> <span class="o">==</span> <span class="n">s2_list</span><span class="p">[</span><span class="n">idx2</span><span class="p">]:</span>  <span class="c1"># 계산 단위: 항목 비교</span>
                 <span class="n">found</span> <span class="o">=</span> <span class="kc">True</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">pos_2</span> <span class="o">=</span> <span class="n">pos_2</span> <span class="o">+</span> <span class="mi">1</span>
+                <span class="n">s2_list</span><span class="p">[</span><span class="n">idx2</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="k">break</span>
 
-        <span class="k">if</span> <span class="n">found</span><span class="p">:</span>
-            <span class="n">s2_list</span><span class="p">[</span><span class="n">pos_2</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">still_ok</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">found</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
 
-        <span class="n">pos_1</span> <span class="o">=</span> <span class="n">pos_1</span> <span class="o">+</span> <span class="mi">1</span>
-
-    <span class="k">return</span> <span class="n">still_ok</span>
+    <span class="k">return</span> <span class="kc">True</span>
 </pre></div>
 </div>
 </div>
@@ -1321,7 +1313,7 @@ T(n) &amp;= \sum_{i=1}^{n} i \\
     <span class="n">matches</span> <span class="o">=</span> <span class="kc">True</span>
 
     <span class="k">while</span> <span class="n">pos</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span> <span class="ow">and</span> <span class="n">matches</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">a_list_1</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="o">==</span> <span class="n">a_list_2</span><span class="p">[</span><span class="n">pos</span><span class="p">]:</span>    <span class="c1"># 계산 단위: 비교</span>
+        <span class="k">if</span> <span class="n">a_list_1</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="o">==</span> <span class="n">a_list_2</span><span class="p">[</span><span class="n">pos</span><span class="p">]:</span>    <span class="c1"># 계산 단위: 항목 비교</span>
             <span class="n">pos</span> <span class="o">=</span> <span class="n">pos</span> <span class="o">+</span> <span class="mi">1</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">False</span>
@@ -1415,6 +1407,183 @@ B(n) &amp;= 2n + 1 \in O(n) \\
 W(n) &amp;= 2n + 26 \in O(n)
 \end{align*}
 \end{split}\]</div>
+<p><strong>알고리즘 2 vs. 알고리즘 3</strong></p>
+<p>입력 문자열의 길이를 2백60만, 2천600만, 2억6천만으로 늘릴 때
+알고리즘 2와 알고리즘 3의 실행시간 차이를 직접 비교한다.
+평가에 사용된 PC의 성능은 다음과 같다.</p>
+<ul class="simple">
+<li><p>프로세서: 11th Gen Intel(R) Core(TM) i9-11950H &#64; 2.60GHz   2.61 GHz</p></li>
+<li><p>RAM: 32GB</p></li>
+</ul>
+<p>입력값은 영어 알파벳 26개로 구성된 문자열을 10만번, 100만번, 천만번 이어붙이는 방식으로 생성한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">time</span>
+
+<span class="n">s1</span> <span class="o">=</span> <span class="n">alphabets</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>26
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>알고리즘 2: 입력 크기 2백60만</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
+
+<span class="n">k</span> <span class="o">=</span> <span class="mi">100_000</span>
+<span class="n">anagram_solution_2</span><span class="p">(</span><span class="n">s1</span><span class="o">*</span><span class="n">k</span><span class="p">,</span> <span class="n">s1</span><span class="o">*</span><span class="n">k</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="n">start</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.35188865661621094
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>알고리즘 2: 입력 크기 2천600만</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
+
+<span class="n">k</span> <span class="o">=</span> <span class="mi">1_000_000</span>
+<span class="n">anagram_solution_2</span><span class="p">(</span><span class="n">s1</span><span class="o">*</span><span class="n">k</span><span class="p">,</span> <span class="n">s1</span><span class="o">*</span><span class="n">k</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="n">start</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.6589527130126953
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>알고리즘 2: 입력 크기 2억6천만</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
+
+<span class="n">k</span> <span class="o">=</span> <span class="mi">10_000_000</span>
+<span class="n">anagram_solution_2</span><span class="p">(</span><span class="n">s1</span><span class="o">*</span><span class="n">k</span><span class="p">,</span> <span class="n">s1</span><span class="o">*</span><span class="n">k</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="n">start</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>39.13177156448364
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>알고리즘 3: 입력 크기 2백60만</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
+
+<span class="n">k</span> <span class="o">=</span> <span class="mi">100_000</span>
+<span class="n">anagram_solution_3</span><span class="p">(</span><span class="n">s1</span><span class="o">*</span><span class="n">k</span><span class="p">,</span> <span class="n">s1</span><span class="o">*</span><span class="n">k</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="n">start</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.19489121437072754
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>알고리즘 3: 입력 크기 2천600만</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
+
+<span class="n">k</span> <span class="o">=</span> <span class="mi">1_000_000</span>
+<span class="n">anagram_solution_3</span><span class="p">(</span><span class="n">s1</span><span class="o">*</span><span class="n">k</span><span class="p">,</span> <span class="n">s1</span><span class="o">*</span><span class="n">k</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="n">start</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.007293939590454
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>알고리즘 3: 입력 크기 2억6천만</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
+
+<span class="n">k</span> <span class="o">=</span> <span class="mi">10_000_000</span>
+<span class="n">anagram_solution_3</span><span class="p">(</span><span class="n">s1</span><span class="o">*</span><span class="n">k</span><span class="p">,</span> <span class="n">s1</span><span class="o">*</span><span class="n">k</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="n">start</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>19.824604749679565
+</pre></div>
+</div>
+</div>
+</div>
+<p>실험 결과를 요약하면 다음과 같다.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>입력 크기</p></th>
+<th class="head text-center"><p>알고리즘 2</p></th>
+<th class="head text-center"><p>알고리즘 3</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>2백60만</p></td>
+<td class="text-center"><p>0.363136초</p></td>
+<td class="text-center"><p>0.208275초</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>2천600만</p></td>
+<td class="text-center"><p>3.745986초</p></td>
+<td class="text-center"><p>1.935389초</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>2억6천만</p></td>
+<td class="text-center"><p>39.513536초</p></td>
+<td class="text-center"><p>19.316656초</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>실행 시간 자체는 별로 중요하지 않다.
+이유는 실험에 사용된 컴퓨터 환경에 따라 실행 시간이 조금씩 다를 수 있다.
+대신 아래 내용이 보다 중요하다.</p>
+<ul class="simple">
+<li><p>알고리즘 2: 입력 크기가 10배 커질 때마다 실행시간이 10배보다 조금 더 오래 걸린다.</p></li>
+<li><p>알고리즘 3: 입력 크기가 10배 커질 때마다 실행시간이 10배 정도 오래 걸린다.</p></li>
+</ul>
+<p>알고리즘 2의 경우 정렬 알고리즘의 시간 복잡도가 <span class="math notranslate nohighlight">\(O(n \ln n)\)</span>일 것이기에 입력 크기 <span class="math notranslate nohighlight">\(n\)</span>이
+10 배 커지면 실행시간은 10배보다 조금 더 걸린다.</p>
 </section>
 </section>
 <section id="id11">
