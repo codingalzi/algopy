@@ -451,8 +451,11 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">10.1. 재귀 함수</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">10.2. 재귀 알고리즘의 특징</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">10.3. 진법 변환</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">10.4. 콜 스택</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">10.5. 연습 문제</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">10.4. 콜 스택</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">10.4.1. 스택 오버플로우</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">10.5. 연습 문제</a></li>
 </ul>
             </nav>
         </div>
@@ -517,7 +520,7 @@ document.write(`
 <p>위 코드의 <code class="docutils literal notranslate"><span class="pre">for</span></code> 반복문에서 항목을 확인할 때마다 업데이트되는
 <code class="docutils literal notranslate"><span class="pre">the_sum</span></code> 변수는 아래 괄호가 묶인 순서대로 계산되는 값을 차례대로 가리킨다.</p>
 <div class="math notranslate nohighlight">
-\[(((1 + 3) + 5) + 7) + 9\]</div>
+\[((((0+1) + 3) + 5) + 7) + 9\]</div>
 <p>반면에 재귀 기법을 적용하면 <code class="docutils literal notranslate"><span class="pre">the_sum</span></code>의 값이 다음과 같이 업데이트 된다.</p>
 <figure>
 <div align="center"><img src="https://runestone.academy/runestone/books/published/pythonds3/_images/sumlistIn.png" width="45%"></div>
@@ -576,28 +579,28 @@ document.write(`
 <p>재귀 알고리즘은 아래 세 가지 특징을 가져야 한다.</p>
 <ol class="arabic simple">
 <li><p>재귀 호출이 반드시 발생해야 한다.</p></li>
-<li><p><strong>종료조건</strong><font size='2'>base case</font>이 존재해야 한다.</p>
+<li><p><strong>종료 조건</strong><font size='2'>base case</font>이 존재해야 한다.</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">sum()</span></code> 함수의 경우 <code class="docutils literal notranslate"><span class="pre">len(num_list)</span> <span class="pre">==</span> <span class="pre">1</span></code>이 종료조건을 다룬다.</p></li>
-<li><p>종료조건이 없는 재귀 알고리즘은 실행이 종료되지 않을 수 있다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sum()</span></code> 함수의 경우 <code class="docutils literal notranslate"><span class="pre">len(num_list)</span> <span class="pre">==</span> <span class="pre">1</span></code>이 종료 조건을 다룬다.</p></li>
+<li><p>종료 조건이 없는 재귀 알고리즘은 실행이 종료되지 않을 수 있다.</p></li>
 </ul>
 </li>
 <li><p>재귀 호출에 사용되는 입력값의 크기가 줄어들어야 한다.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">sum()</span></code> 함수의 경우 <code class="docutils literal notranslate"><span class="pre">sum(num_list[1:])</span></code>에 사용된
 리스트 <code class="docutils literal notranslate"><span class="pre">num_list[1:]</span></code>의 크기는 <code class="docutils literal notranslate"><span class="pre">num_list</span></code> 보다 1 작다.</p></li>
-<li><p>재귀 호출이 반복되어 결국에는 종료조건을 만족하는 상태,
+<li><p>재귀 호출이 반복되어 결국에는 종료 조건을 만족하는 상태,
 즉 <code class="docutils literal notranslate"><span class="pre">len(num_list)</span> <span class="pre">==</span> <span class="pre">1</span></code>이 되는 <code class="docutils literal notranslate"><span class="pre">num_list</span></code>가 인자로 사용되어야 한다.</p></li>
 </ul>
 </li>
 </ol>
 <p><strong>예제 1</strong>: 종료 조건이 없는 경우</p>
-<p>종료조건이 없는 재귀 호출은 실행이 종료되지 않을 수 있다.</p>
+<p>종료 조건이 없는 재귀 호출은 실행이 종료되지 않을 수 있다.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
 </pre></div>
 </div>
-<p><strong>예제 2</strong>: 종료조건에 다달하는지 여부를 알 수 없는 경우</p>
+<p><strong>예제 2</strong>: 종료 조건에 다달하는지 여부를 알 수 없는 경우</p>
 <p>아래 <code class="docutils literal notranslate"><span class="pre">collatz(n)</span></code> 함수는 임의의 양의 정수 <code class="docutils literal notranslate"><span class="pre">n</span></code>에 대해 짝수면 2로 나누고,
 홀수면 세 배 더하기 1을 반복적으로 실행하여 언젠가 1이 나오면 멈춘다.</p>
 <div class="cell docutils container">
@@ -664,12 +667,12 @@ document.write(`
 <p>정수를 특정 진법으로 변환하는 함수를 재귀를 이용하여 구현한다.
 반환값은 문자열로 처리한다.</p>
 <p><strong>이진법 변환</strong></p>
-<p>아래 그림은 10을 이진법으로 변환하는 과정을 보여준다.</p>
+<p>아래 그림은 정수 10을 이진법으로 변환하는 과정을 보여준다.</p>
 <figure>
 <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/jupyter-book/imgs/toStrBase2.png" width="45%"></div>
 </figure><p>결론적으로 아래 세 가지 사항을 재귀 알고리즘 정의에 활용할 수 있다.</p>
 <ol class="arabic simple">
-<li><p>종료조건: 사용되는 진법보다 작은 수는 그대로 문자열로 사용한다. 예를 들어</p>
+<li><p>종료 조건: 사용되는 진법보다 작은 수는 그대로 문자열로 사용한다. 예를 들어</p>
 <ul class="simple">
 <li><p>8진법인 경우엔 0부터 7까지의 수는 각각 <code class="docutils literal notranslate"><span class="pre">'0'</span></code>, <code class="docutils literal notranslate"><span class="pre">'1'</span></code>, …, <code class="docutils literal notranslate"><span class="pre">'7'</span></code> 등으로 변환한다.</p></li>
 <li><p>16진법인 경우엔 0부터 15까지의 수를 각각 <code class="docutils literal notranslate"><span class="pre">'0'</span></code>, <code class="docutils literal notranslate"><span class="pre">'1'</span></code>, …, <code class="docutils literal notranslate"><span class="pre">'9'</span></code>, <code class="docutils literal notranslate"><span class="pre">'A'</span></code>, <code class="docutils literal notranslate"><span class="pre">'B'</span></code>, …, <code class="docutils literal notranslate"><span class="pre">'F'</span></code>로 변환한다.</p></li>
@@ -683,12 +686,12 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">to_str</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">base</span><span class="p">):</span>
-    <span class="n">convert_string</span> <span class="o">=</span> <span class="s2">&quot;0123456789ABCDEF&quot;</span>   <span class="c1"># 종료조건에 사용될 자료</span>
+    <span class="n">numeric_string</span> <span class="o">=</span> <span class="s2">&quot;0123456789ABCDEF&quot;</span>
     
-    <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="n">base</span><span class="p">:</span>                          <span class="c1"># 종료조건</span>
-        <span class="k">return</span> <span class="n">convert_string</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="n">base</span><span class="p">:</span>                          <span class="c1"># 종료 조건</span>
+        <span class="k">return</span> <span class="n">numeric_string</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
     <span class="k">else</span><span class="p">:</span>                                 <span class="c1"># 재귀</span>
-        <span class="k">return</span> <span class="n">to_str</span><span class="p">(</span><span class="n">n</span> <span class="o">//</span> <span class="n">base</span><span class="p">,</span> <span class="n">base</span><span class="p">)</span> <span class="o">+</span> <span class="n">convert_string</span><span class="p">[</span><span class="n">n</span> <span class="o">%</span> <span class="n">base</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">to_str</span><span class="p">(</span><span class="n">n</span> <span class="o">//</span> <span class="n">base</span><span class="p">,</span> <span class="n">base</span><span class="p">)</span> <span class="o">+</span> <span class="n">numeric_string</span><span class="p">[</span><span class="n">n</span> <span class="o">%</span> <span class="n">base</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -739,21 +742,21 @@ document.write(`
 생성되는 프레임은 스택으로 관리되며
 이를 <strong>콜 스택</strong><font size='2'>call stack</font>이라 부른다.</p>
 <p>아래 진법 변환 함수를
-<a class="reference external" href="https://pythontutor.com/visualize.html#code=convert_string%20%3D%20%220123456789ABCDEF%22%0Aremainder_list%20%3D%20%5B%5D%0A%0Adef%20to_str%28n,%20base%29%3A%0A%20%20%20%20if%20n%20%3C%20base%3A%0A%20%20%20%20%20%20%20%20return%20convert_string%5Bn%5D%0A%20%20%20%20else%3A%0A%20%20%20%20%20%20%20%20quotient%20%3D%20n%20//%20base%0A%20%20%20%20%20%20%20%20remainder%20%3D%20n%20%25%20base%0A%20%20%20%20%20%20%20%20remainder_string%20%3D%20convert_string%5Bremainder%5D%0A%20%20%20%20%20%20%20%20remainder_list.append%28remainder_string%29%0A%20%20%20%20%20%20%20%20return%20to_str%28quotient,%20base%29%20%2B%20remainder_list.pop%28%29%0A%20%20%20%20%20%20%20%20%0Aprint%28to_str%2846685,%2016%29%29&amp;amp;cumulative=false&amp;amp;curInstr=0&amp;amp;heapPrimitives=nevernest&amp;amp;mode=display&amp;amp;origin=opt-frontend.js&amp;amp;py=3&amp;amp;rawInputLstJSON=%5B%5D&amp;amp;textReferences=false">PythonTutor: 콜 스택</a>
+<a class="reference external" href="https://pythontutor.com/visualize.html#code=numeric_string%20%3D%20%220123456789ABCDEF%22%0Aremainder_list%20%3D%20%5B%5D%0A%0Adef%20to_str%28n,%20base%29%3A%0A%20%20%20%20if%20n%20%3C%20base%3A%0A%20%20%20%20%20%20%20%20return%20numeric_string%5Bn%5D%0A%20%20%20%20else%3A%0A%20%20%20%20%20%20%20%20quotient%20%3D%20n%20//%20base%0A%20%20%20%20%20%20%20%20remainder%20%3D%20n%20%25%20base%0A%20%20%20%20%20%20%20%20remainder_string%20%3D%20numeric_string%5Bremainder%5D%0A%20%20%20%20%20%20%20%20remainder_list.append%28remainder_string%29%0A%20%20%20%20%20%20%20%20return%20to_str%28quotient,%20base%29%20%2B%20remainder_list.pop%28%29%0A%20%20%20%20%20%20%20%20%0Aprint%28to_str%2846685,%2016%29%29&amp;amp;cumulative=false&amp;amp;curInstr=0&amp;amp;heapPrimitives=nevernest&amp;amp;mode=display&amp;amp;origin=opt-frontend.js&amp;amp;py=3&amp;amp;rawInputLstJSON=%5B%5D&amp;amp;textReferences=false">PythonTutor: 콜 스택</a>
 에서 실행하면서 프레임 스택의 변화를 한 눈에 살펴볼 수 있다.</p>
 <p><strong>참고</strong>: 메모리 상에서의 변화를 보다 명료하게 보여주기 위해 이전 보다 변수가 몇 개 더 추가되었다.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">convert_string</span> <span class="o">=</span> <span class="s2">&quot;0123456789ABCDEF&quot;</span>                           <span class="c1"># 진법 표현에 사용될 기호</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numeric_string</span> <span class="o">=</span> <span class="s2">&quot;0123456789ABCDEF&quot;</span>                           <span class="c1"># 진법 표현에 사용될 기호</span>
 <span class="n">remainder_list</span> <span class="o">=</span> <span class="p">[]</span>                                           <span class="c1"># 나머지 기호 저장용 스택</span>
 
 <span class="k">def</span> <span class="nf">to_str</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">base</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="n">base</span><span class="p">:</span>                                              <span class="c1"># 종료조건</span>
-        <span class="k">return</span> <span class="n">convert_string</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="n">base</span><span class="p">:</span>                                              <span class="c1"># 종료 조건</span>
+        <span class="k">return</span> <span class="n">numeric_string</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">quotient</span> <span class="o">=</span> <span class="n">n</span> <span class="o">//</span> <span class="n">base</span>                                  <span class="c1"># 몫</span>
         <span class="n">remainder</span> <span class="o">=</span> <span class="n">n</span> <span class="o">%</span> <span class="n">base</span>                                  <span class="c1"># 나머지</span>
-        <span class="n">remainder_string</span> <span class="o">=</span> <span class="n">convert_string</span><span class="p">[</span><span class="n">remainder</span><span class="p">]</span>
+        <span class="n">remainder_string</span> <span class="o">=</span> <span class="n">numeric_string</span><span class="p">[</span><span class="n">remainder</span><span class="p">]</span>
         <span class="n">remainder_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">remainder_string</span><span class="p">)</span>               <span class="c1"># 나머지 기호 저장</span>
         <span class="k">return</span> <span class="n">to_str</span><span class="p">(</span><span class="n">quotient</span><span class="p">,</span> <span class="n">base</span><span class="p">)</span> <span class="o">+</span> <span class="n">remainder_list</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>  <span class="c1"># 몫에 대한 재귀 호출</span>
         
@@ -776,9 +779,51 @@ document.write(`
 <p>아래 그림은 <code class="docutils literal notranslate"><span class="pre">to_str(46685,</span> <span class="pre">16)</span></code>이 호출되어 콜 스택이 가장 높게 쌓였을 때를 보여준다.</p>
 <figure>
 <div align="center"><img src="https://raw.githubusercontent.com/codingalzi/algopy/master/notebooks/_images/call_stack_1.png" width="70%"></div>
-</figure></section>
-<section id="id6">
-<h2><span class="section-number">10.5. </span>연습 문제<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+</figure><section id="id6">
+<h3><span class="section-number">10.4.1. </span>스택 오버플로우<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<p>재귀 호출이 너무 많은 경우 스택 오버플로우로 인한 <code class="docutils literal notranslate"><span class="pre">RecursionError</span></code> 오류가 발생한다.
+예를 들어 아래 <code class="docutils literal notranslate"><span class="pre">f()</span></code> 함수는 재귀를 무한정 호출한다.
+파이썬은 재귀 호출에 활용되는 스택 메모리 영역을 보호하기 위해 최대 1만번 까지의 재귀 호출을 허용한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">f</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">RecursionError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">15</span><span class="p">],</span> <span class="n">line</span> <span class="mi">4</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">f</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="nn">Cell In[15], line 2,</span> in <span class="ni">f</span><span class="nt">(x)</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="ne">----&gt; </span><span class="mi">2</span>     <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="nn">Cell In[15], line 2,</span> in <span class="ni">f</span><span class="nt">(x)</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="ne">----&gt; </span><span class="mi">2</span>     <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="p">[</span><span class="o">...</span> <span class="n">skipping</span> <span class="n">similar</span> <span class="n">frames</span><span class="p">:</span> <span class="n">f</span> <span class="n">at</span> <span class="n">line</span> <span class="mi">2</span> <span class="p">(</span><span class="mi">2975</span> <span class="n">times</span><span class="p">)]</span>
+
+<span class="nn">Cell In[15], line 2,</span> in <span class="ni">f</span><span class="nt">(x)</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="ne">----&gt; </span><span class="mi">2</span>     <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="ne">RecursionError</span>: maximum recursion depth exceeded
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="id7">
+<h2><span class="section-number">10.5. </span>연습 문제<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p><a class="reference external" href="https://colab.research.google.com/github/codingalzi/algopy/blob/master/excs/exc-recursive_functions_1.ipynb">(실습) 재귀 함수</a></p></li>
 </ol>
@@ -852,8 +897,11 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">10.1. 재귀 함수</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">10.2. 재귀 알고리즘의 특징</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">10.3. 진법 변환</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">10.4. 콜 스택</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">10.5. 연습 문제</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">10.4. 콜 스택</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">10.4.1. 스택 오버플로우</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">10.5. 연습 문제</a></li>
 </ul>
   </nav></div>
 
